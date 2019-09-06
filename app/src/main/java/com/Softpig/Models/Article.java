@@ -3,13 +3,13 @@ package com.Softpig.Models;
 public class Article {
 
     private short idArticle;
-    private short idType;
+    private String typeArticle;
     private String name;
     private short quantity;
 
-    public Article(short idArticle, short idType, String name, short quantity) {
+    public Article(short idArticle, String typeArticle, String name, short quantity) {
         this.idArticle = idArticle;
-        this.idType = idType;
+        this.typeArticle = typeArticle;
         this.name = name;
         this.quantity = quantity;
     }
@@ -18,8 +18,8 @@ public class Article {
         return idArticle;
     }
 
-    public short getIdType() {
-        return idType;
+    public String getTypeArticle() {
+        return typeArticle;
     }
 
     public String getName() {
