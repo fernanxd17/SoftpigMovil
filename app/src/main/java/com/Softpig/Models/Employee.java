@@ -5,7 +5,7 @@ import java.util.Date;
 public class Employee {
 
     private short idEmployee;
-    private short idRole;
+    private String role;
     private String status;
     private Date admissionDate;
     private String document;
@@ -21,11 +21,11 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(short idEmployee, short idRole, String status, Date admissionDate, String document,
+    public Employee(short idEmployee, String role, String status, Date admissionDate, String document,
                     String gender, String firstName, String secondName, String lastName,
                     String motherLastName, String email, String telephone, String mobile) {
         this.idEmployee = idEmployee;
-        this.idRole = idRole;
+        this.role = role;
         this.status = status;
         this.admissionDate = admissionDate;
         this.document = document;
@@ -43,8 +43,8 @@ public class Employee {
         return idEmployee;
     }
 
-    public int getIdRole() {
-        return idRole;
+    public String getRole() {
+        return role;
     }
 
     public String getStatus() {
