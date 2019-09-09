@@ -31,7 +31,7 @@
         </TextView>
 
         <EditText
-            android:onClick="etCodigo"
+            android:id="@+id/etCodeUser"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -40,6 +40,7 @@
         </EditText>
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -48,6 +49,7 @@
         </EditText>
 
         <TextView
+            android:id="@+id/etForgetPassword"
             android:gravity="start"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -56,7 +58,7 @@
         </TextView>
 
         <Button
-            android:onClick="btLogin"
+            android:id="@+id/btLogin"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/app_iniciar">
