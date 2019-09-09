@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">SoftPig</string>
+    <string name="app_Bienvenida">!Bienvenido a SoftPig¡</string>
+
+    <string name="app_reporteFerti">Reporte de Fertilidad</string>
+    <string name="app_reportePro">Reporte de Productiva</string>
+    <string name="app_reporteRepro">Reporte de Reproductoras</string>
+
+
+    <string name="app_codigo">Codigo</string>
+    <string name="app_contraseña">Contraseña</string>
+    <string name="app_olvidocontraseña">¿Olvidaste la Contraseña?</string>
+    <string name="app_iniciar">Iniciar Sesion</string>
+    <string name="app_cerrar">Cerrar Sesion</string>
+    <string name="app_generarpdf">Generar PDF</string>
+
+    <string name="app_porcino">Porcino</string>
+    <string name="app_agregarporcino">Agregar Porcino</string>
+
+    <string name="app_empleado">Empleado</string>
+    <string name="app_agregarempleado">Agregar Empleado</string>
+
+    <string name="app_articulo">Articulos</string>
+
+    <string name="app_instalacion">Instalaciones</string>
+
+    <string name="app_reporte">Reportes</string>
 </resources>
