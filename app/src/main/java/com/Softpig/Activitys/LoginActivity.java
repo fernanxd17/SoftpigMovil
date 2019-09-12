@@ -13,7 +13,7 @@ import com.Softpig.Service.ControllerMaster;
 import com.example.Softpig.R;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,7 +27,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        capturarCampos();
+
+        this.etCodeUser = (EditText)findViewById(R.id.etCodeUser);
+        this.etPassword = (EditText)findViewById(R.id.etPassword);
+        this.btLogin = (Button)findViewById(R.id.btLogin);
+        this.etForgetPassword = (TextView)findViewById(R.id.etForgetPassword);
+
         this.controllerMaster = new ControllerMaster();
 
         this.btLogin.setOnClickListener(new View.OnClickListener() {
@@ -55,12 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void capturarCampos(){
-        this.etCodeUser = (EditText)findViewById(R.id.etCodeUser);
-        this.etPassword = (EditText)findViewById(R.id.etPassword);
-        this.btLogin = (Button)findViewById(R.id.btLogin);
-        this.etForgetPassword = (TextView)findViewById(R.id.etForgetPassword);
-    }
+
 
     private void login(String codeUser, String password){
         JSONObject datos = LoginActivity.this.controllerMaster.login(codeUser, password);

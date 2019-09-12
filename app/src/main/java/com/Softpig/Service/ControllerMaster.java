@@ -11,18 +11,12 @@ public class ControllerMaster {
 
 
 
-   public JSONObject login( final String codeUser, final String password) {
+   public static JSONObject login( final String codeUser, final String password) {
 
         try{
 
-            //Realiza la petion get de login a la API en Python
-            if(true){
-                //Si la peticion funciono y los datos son correctos crea una nueva activity del menu principal, returna el Json
+            //Realiza la petion post de login a la API en Python, retorna el jsonObject
 
-            }else{
-                //Si la peticion funciono pero los datos son incorrectos, returna el Json
-                return null;
-            }
         }catch(Exception e){
 
             //Hubo un error conectandose al servidor
@@ -30,5 +24,19 @@ public class ControllerMaster {
 
         return null;
 
+    }
+
+    public static boolean  changePassword(){
+
+        try{
+
+            //Realiza la petion post de login a la API en Python, retorna el jsonObject
+
+        }catch(Exception e){
+
+            //Hubo un error conectandose al servidor
+        }
+
+       return true;
     }
 }
