@@ -122,22 +122,26 @@
         android:layout_marginTop="10dp">
 
         <LinearLayout
+            android:id="@+id/ll_downfirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp">
             <TextView
+                android:id="@+id/dictionary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Diccionario Porcino">
             </TextView>
             <TextView
+                android:id="@+id/divider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" | ">
             </TextView>
             <TextView
+                android:id="@+id/about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Acerca De">
@@ -145,11 +149,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_downsecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/copyrigth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Todos los derechos reservador 2019">
@@ -157,5 +163,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

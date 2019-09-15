@@ -26,12 +26,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
 
-        this.etCodeUser = (EditText)findViewById(R.id.etCodeUser);
-        this.etPassword = (EditText)findViewById(R.id.etPassword);
-        this.btLogin = (Button)findViewById(R.id.btLogin);
-        this.etForgetPassword = (TextView)findViewById(R.id.etForgetPassword);
+        this.etCodeUser = (EditText)findViewById(R.id.et_codeuser);
+        this.etPassword = (EditText)findViewById(R.id.et_password);
+        this.btLogin = (Button)findViewById(R.id.bt_loginup);
+        this.etForgetPassword = (TextView)findViewById(R.id.et_forgetpassword);
 
         this.controllerMaster = new ControllerMaster();
 
