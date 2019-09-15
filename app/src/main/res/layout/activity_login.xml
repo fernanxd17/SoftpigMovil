@@ -11,13 +11,14 @@
     android:gravity="center">
 
     <LinearLayout
+        android:id="@+id/ll_logo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:paddingHorizontal="10dp">
 
         <ImageView
             android:layout_gravity="center"
-            android:id="@+id/imageView"
+            android:id="@+id/iv_softpig"
             android:layout_width="match_parent"
             android:layout_height="200sp"
             android:layout_weight="1"
@@ -26,6 +27,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_login"
         android:paddingVertical="50dp"
         android:layout_width="match_parent"
         android:layout_height="400dp"
@@ -34,6 +36,7 @@
         android:layout_gravity="center">
 
         <LinearLayout
+            android:id="@+id/ll_codeuser"
             android:layout_gravity="center"
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -41,15 +44,15 @@
             android:layout_marginBottom="15dp">
 
             <ImageView
+                android:id="@+id/iv_user"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="#000">
             </ImageView>
 
             <EditText
-
-                android:id="@+id/etCodeUser"
-                android:layout_width="200dp"
+                android:id="@+id/et_codeuser"
+                android:layout_width="205dp"
                 android:layout_height="45dp"
                 android:inputType="number"
                 android:hint="@string/app_codigo"
@@ -59,32 +62,39 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_password"
             android:layout_gravity="center"
             android:layout_width="250dp"
             android:layout_height="45dp"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/iv_password"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="#000">
-
             </ImageView>
 
             <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="200dp"
+                android:id="@+id/et_password"
+                android:layout_width="160dp"
                 android:layout_height="45dp"
                 android:inputType="textPassword"
                 android:hint="@string/app_contraseña"
                 android:layout_marginBottom="5dp">
             </EditText>
 
+            <ImageView
+                android:id="@+id/iv_hidepassword"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="#000">
+            </ImageView>
         </LinearLayout>
 
         <TextView
+            android:id="@+id/et_forgetpassword"
             android:layout_gravity="center"
-            android:id="@+id/etForgetPassword"
             android:gravity="start"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -93,9 +103,9 @@
         </TextView>
 
         <Button
+            android:id="@+id/bt_loginup"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:id="@+id/btLogin"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/app_iniciar"
@@ -104,6 +114,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
