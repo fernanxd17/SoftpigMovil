@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/primaryColor"
+    android:layout_height="match_parent"
+    tools:context="com.Softpig.Activitys.LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:layout_weight="1"
+            android:src="@drawable/login_softpig" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingVertical="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:background="#ffff"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="#000">
+            </ImageView>
+
+            <EditText
+
+                android:id="@+id/etCodeUser"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:inputType="number"
+                android:hint="@string/app_codigo"
+                android:layout_marginBottom="15dp">
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="#000">
+
+            </ImageView>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:inputType="textPassword"
+                android:hint="@string/app_contraseña"
+                android:layout_marginBottom="5dp">
+            </EditText>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/etForgetPassword"
+            android:gravity="start"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/app_olvidocontraseña"
+            android:layout_marginBottom="15dp">
+        </TextView>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/btLogin"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/app_iniciar"
+            android:background="@color/primaryColor">
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diccionario Porcino">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" | ">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acerca De">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Todos los derechos reservador 2019">
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
