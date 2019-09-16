@@ -10,7 +10,7 @@
     <string name="app_codigo">Codigo</string>
     <string name="app_contraseña">Contraseña</string>
     <string name="app_olvidocontraseña">¿Olvidaste la Contraseña?</string>
-    <string name="app_iniciar">Iniciar Sesion</string>
+    <string name="app_iniciar">Iniciar Sesión</string>
     <string name="app_cerrar">Cerrar Sesion</string>
     <string name="app_generarpdf">Generar PDF</string>
 
@@ -25,4 +25,30 @@
     <string name="app_instalacion">Instalaciones</string>
 
     <string name="app_reporte">Reportes</string>
+
+    <string name="diseccion">
+        Destrucción de los microorganismos en todos los ambientes o partes en
+        los que puedan ser nocivos, usando distintos métodos físicos (por ejemplo, sometiéndolos a
+        una temperatura elevada) o químicos (por ejemplo, usando desinfectantes).
+    </string>
+
+    <string name="fecundacion">
+        Es el proceso por el cual los espermatozoides penetran dentro de los
+        óvulos de la hembra, lo que lleva al inicio del desarrollo del embrión. Ocurre en un lugar
+        cercano al oviducto, donde espermatozoides y óvulos deben coincidir dentro de un margen de
+        tiempo.
+    </string>
+
+    <string name="gen">
+        Secuencia de ADN que constituye la unidad funcional para la transmisión de los caracteres hereditarios.
+    </string>
+
+    <string name="lechon_destetado">
+        El lechón lactante pasa a ser lechón destetado cuando es separado definitivamente de su madre.
+    </string>
+
+    <string name="ubre">
+        Es el conjunto de todas las mamas o tetas de la madre. También se denomina línea mamaria,
+        porque las mamas se encuentran alineadas formando los complejos mamarios derecho e izquierdo.
+    </string>
 </resources>

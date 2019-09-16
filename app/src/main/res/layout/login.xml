@@ -17,8 +17,8 @@
         android:paddingHorizontal="10dp">
 
         <ImageView
-            android:layout_gravity="center"
             android:id="@+id/iv_softpig"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="200sp"
             android:layout_weight="1"
@@ -36,7 +36,7 @@
         android:layout_gravity="center">
 
         <LinearLayout
-            android:id="@+id/ll_codeuser"
+            android:id="@+id/ll_code_user"
             android:layout_gravity="center"
             android:layout_width="250dp"
             android:layout_height="45dp"
@@ -51,7 +51,7 @@
             </ImageView>
 
             <EditText
-                android:id="@+id/et_codeuser"
+                android:id="@+id/et_code_user"
                 android:layout_width="205dp"
                 android:layout_height="45dp"
                 android:inputType="number"
@@ -85,7 +85,7 @@
             </EditText>
 
             <ImageView
-                android:id="@+id/iv_hidepassword"
+                android:id="@+id/iv_hide_password"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="#000">
@@ -93,7 +93,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/et_forgetpassword"
+            android:id="@+id/et_forget_password"
             android:layout_gravity="center"
             android:gravity="start"
             android:layout_width="250dp"
@@ -109,7 +109,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/app_iniciar"
-            android:background="@color/primaryColor">
+            android:background="@color/secondaryColor">
         </Button>
     </LinearLayout>
 
@@ -122,14 +122,14 @@
         android:layout_marginTop="10dp">
 
         <LinearLayout
-            android:id="@+id/ll_downfirst"
+            android:id="@+id/ll_down_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp">
             <TextView
-                android:id="@+id/dictionary"
+                android:id="@+id/tv_dictionary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Diccionario Porcino">
@@ -141,7 +141,7 @@
                 android:text=" | ">
             </TextView>
             <TextView
-                android:id="@+id/about"
+                android:id="@+id/tv_about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Acerca De">
@@ -149,7 +149,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_downsecond"
+            android:id="@+id/ll_down_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
