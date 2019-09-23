@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                     login(codeUser, password);
                 }else{
                     //Notifica que no estan los campos completos
-                    Toast.makeText(LoginActivity.this, "Algunos campos estan vacios", Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginActivity.this, "Algunos campos estan vacios", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -75,17 +75,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void iniciarCampos() {
-        this.etCodeUser = (EditText)findViewById(R.id.et_code_user);
-        this.etPassword = (EditText)findViewById(R.id.et_password);
-        this.btLogin = (Button)findViewById(R.id.bt_loginup);
-        this.etForgetPassword = (TextView)findViewById(R.id.et_forget_password);
-        this.etDictionary = (TextView)findViewById(R.id.tv_dictionary);
-        this.etAbout = (TextView)findViewById(R.id.tv_about);
+        this.etCodeUser = findViewById(R.id.et_code_user);
+        this.etPassword = findViewById(R.id.et_password);
+        this.btLogin = findViewById(R.id.bt_loginup);
+        this.etForgetPassword = findViewById(R.id.et_forget_password);
+        this.etDictionary = findViewById(R.id.tv_dictionary);
+        this.etAbout = findViewById(R.id.tv_about);
     }
 
 
     private void login(String codeUser, String password){
-        JSONObject datos = LoginActivity.this.controllerMaster.login(codeUser, password);
+        //JSONObject datos = LoginActivity.this.controllerMaster.login(codeUser, password);
+
+
+    }
+
+    public void startAbout(View view){
+        Intent i = new Intent();
+        i.setClass(this, AboutActivity.class);
+        startActivity(i);
+
+
     }
 
     @Override

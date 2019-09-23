@@ -334,12 +334,14 @@
         android:layout_height="wrap_content">
 
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/ll_pie_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/secondaryColor">
+        android:background="@color/secondaryColor"
+        android:layout_gravity="end">
 
 
 
@@ -438,10 +440,6 @@
 
     </LinearLayout>
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:layout_width=""
-        android:layout_height="">
 
-    </view>
 
 </LinearLayout>
