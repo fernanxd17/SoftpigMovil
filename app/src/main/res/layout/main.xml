@@ -438,10 +438,5 @@
 
     </LinearLayout>
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:layout_width=""
-        android:layout_height="">
-
-    </view>
 
 </LinearLayout>
