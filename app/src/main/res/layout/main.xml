@@ -334,12 +334,14 @@
         android:layout_height="wrap_content">
 
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/ll_pie_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/secondaryColor">
+        android:background="@color/secondaryColor"
+        android:layout_gravity="end">
 
 
 
@@ -438,5 +440,9 @@
 
     </LinearLayout>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a369b11d328ece14ee8a87d5bf09be70257ac27
 
 </LinearLayout>
