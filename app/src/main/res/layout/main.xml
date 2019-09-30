@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,11 +23,12 @@
 
             <ImageView
                 android:id="@+id/iv_menu_main"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_menu"
                 android:layout_marginLeft="15dp"
-                >
+                android:layout_gravity="center"
+                android:contentDescription="">
             </ImageView>
 
             <TextView
@@ -58,16 +58,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="15dp">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp">
 
                 <ImageView
                     android:id="@+id/iv_home"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_home"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="15dp">
+                    android:layout_gravity="center">
                 </ImageView>
 
                 <TextView
@@ -84,6 +83,14 @@
                 </TextView>
 
             </LinearLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_marginHorizontal="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#000"/>
+
 
             <LinearLayout
                 android:layout_below="@id/ll_home"
@@ -106,6 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Empleados"
+                        android:theme="@style/EditTextBlack"
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_gravity="left">
@@ -116,6 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="50 Empleados registrados"
+                        android:theme="@style/EditTextBlack"
                         android:textStyle="bold"
                         android:textAlignment="textEnd"
                         android:textSize="15dp">
@@ -127,35 +136,37 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginHorizontal="0dp"
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:id="@+id/iv_email"
-                        android:layout_width="45dp"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/ic_supervisor_account"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center">
                     </ImageView>
 
                     <LinearLayout
+                        android:paddingTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Empleados Administrativos: 20"
                             android:layout_marginBottom="5dp"
-                            android:layout_gravity="right">
+                            android:layout_gravity="left">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Empleados operativos 30"
-                            android:layout_gravity="right">
+                            android:layout_gravity="left">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
@@ -213,35 +224,36 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp">
 
                     <ImageView
                         android:id="@+id/iv_instalations"
-                        android:layout_width="45dp"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/ic_room"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center">
                     </ImageView>
 
                     <LinearLayout
+                        android:paddingTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3 Instalaciones Registradas"
                             android:layout_marginBottom="5dp"
-                            android:layout_gravity="right">
+                            android:layout_gravity="left">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mas información"
-                            android:layout_gravity="right">
+                            android:layout_gravity="left">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
@@ -297,35 +309,36 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp">
 
                     <ImageView
                         android:id="@+id/iv_tools"
-                        android:layout_width="45dp"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/ic_build"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center">
                     </ImageView>
 
                     <LinearLayout
+                        android:paddingTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_gravity="center_vertical">
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10 Herramientas de Trabajo"
                             android:layout_marginBottom="5dp"
-                            android:layout_gravity="right">
+                            android:layout_gravity="left">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mas Información"
-                            android:layout_gravity="right">
+                            android:layout_gravity="left">
                         </TextView>
                         <TextView
                             android:layout_width="wrap_content"
@@ -338,6 +351,8 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+
         </LinearLayout>
 
 
@@ -357,8 +372,8 @@
 
                 <ImageView
                     android:id="@+id/iv_home_main"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_home"
                     android:layout_gravity="center">
                 </ImageView>
@@ -380,8 +395,8 @@
 
                 <ImageView
                     android:id="@+id/iv_pigs_main"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_pets"
                     android:layout_gravity="center">
                 </ImageView>
@@ -403,8 +418,8 @@
 
                 <ImageView
                     android:id="@+id/iv_medicine_main"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_favorite"
                     android:layout_gravity="center">
                 </ImageView>
@@ -426,8 +441,8 @@
 
                 <ImageView
                     android:id="@+id/iv_alarm_main"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_notifications"
                     android:layout_gravity="center">
                 </ImageView>
