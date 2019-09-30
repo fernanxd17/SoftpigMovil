@@ -86,8 +86,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String codeUser, String password){
         //JSONObject datos = LoginActivity.this.controllerMaster.login(codeUser, password);
-
-
+        ControllerMaster.login(codeUser, password);
+        Intent i = new Intent();
+        i.setClass(this, MainActivity.class);
+        startActivity(i);
     }
 
     public void startAbout(View view){

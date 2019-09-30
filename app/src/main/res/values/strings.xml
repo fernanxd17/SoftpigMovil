@@ -51,4 +51,7 @@
         Es el conjunto de todas las mamas o tetas de la madre. También se denomina línea mamaria,
         porque las mamas se encuentran alineadas formando los complejos mamarios derecho e izquierdo.
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
