@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.Softpig.R;
+import com.Softpig.R;
 
 public class AboutActivity extends AppCompatActivity {
 

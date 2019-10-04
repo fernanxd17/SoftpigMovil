@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.Softpig.R;
+import com.Softpig.R;
 
 public class MainActivity extends AppCompatActivity {
 

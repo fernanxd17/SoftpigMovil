@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Softpig.Service.ControllerMaster;
-import com.example.Softpig.R;
+import com.Softpig.R;
 
 import org.json.JSONObject;
 

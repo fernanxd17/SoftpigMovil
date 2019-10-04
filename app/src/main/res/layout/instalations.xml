@@ -75,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:inputType="number"
-                    android:text="Inicio"
+                    android:text="Instalacione Registradas"
                     android:textSize="25sp"
                     android:textAlignment="textStart"
                     android:layout_gravity="bottom"
