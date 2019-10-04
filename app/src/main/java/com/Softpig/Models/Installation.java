@@ -1,13 +1,13 @@
 package com.Softpig.Models;
 
-public class Instalation {
+public class Installation {
 
     private short idInstalation;
     private String typeInstalation;
     private String name;
     private short capacity;
 
-    public Instalation(short idInstalation, String typeInstalation, String name, short capacity) {
+    public Installation(short idInstalation, String typeInstalation, String name, short capacity) {
         this.idInstalation = idInstalation;
         this.typeInstalation = typeInstalation;
         this.name = name;
