@@ -1,4 +1,4 @@
-package com.Softpig.Activitys;
+package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,15 +8,16 @@ import android.widget.TextView;
 
 import com.Softpig.R;
 
-public class AboutActivity extends AppCompatActivity {
+public class DictionaryActivity extends AppCompatActivity {
 
     private static TextView tvLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about);
+        setContentView(R.layout.dictionary);
 
-        this.tvLogin = (TextView)findViewById(R.id.tv_loginup_about);
+        this.tvLogin = (TextView)findViewById(R.id.tv_loginup_dictionary);
 
         this.tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,5 +45,4 @@ public class AboutActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-
 }

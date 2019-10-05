@@ -1,4 +1,4 @@
-package com.Softpig.Models;
+package com.Softpig.Model;
 
 import java.sql.Date;
 

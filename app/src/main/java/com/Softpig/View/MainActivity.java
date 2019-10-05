@@ -1,4 +1,4 @@
-package com.Softpig.Activitys;
+package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 

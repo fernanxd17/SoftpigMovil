@@ -38,7 +38,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/idInstallation"
+                        android:id="@+id/tvIdInstallation"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/nameInstallation"
+                        android:id="@+id/tvNameInstallation"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/typeInstallation"
+                        android:id="@+id/tvTypeInstallation"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/otherInstallation"
+                        android:id="@+id/tvOtherDat"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

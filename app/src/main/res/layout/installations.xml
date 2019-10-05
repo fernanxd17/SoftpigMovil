@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
-    tools:context="com.Softpig.Activitys.MainActivity">
+    tools:context="com.Softpig.View.MainActivity">
 
     <LinearLayout
         android:id="@+id/ll_main_main"
@@ -58,6 +58,12 @@
                 android:layout_height="5dp"
                 android:background="#000"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvInstallations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
 
 

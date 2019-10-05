@@ -1,23 +1,17 @@
-package com.Softpig.Service;
+package com.Softpig.Presenter;
 
-import android.content.Intent;
-import android.view.View;
-
-import com.Softpig.Activitys.LoginActivity;
-import com.Softpig.Activitys.MainActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ControllerMaster {
+public class MasterPresenter {
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
 
-   public ControllerMaster(){
+   public MasterPresenter(){
 
    }
 

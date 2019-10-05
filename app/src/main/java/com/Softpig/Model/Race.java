@@ -1,4 +1,4 @@
-package com.Softpig.Models;
+package com.Softpig.Model;
 
 /**
  * Se necesita por que cualquier usuario puede listar las

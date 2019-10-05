@@ -1,21 +1,17 @@
-package com.Softpig.Activitys;
+package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Softpig.Service.ControllerMaster;
+import com.Softpig.Presenter.MasterPresenter;
 import com.Softpig.R;
-
-import org.json.JSONObject;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,13 +22,13 @@ public class LoginActivity extends AppCompatActivity {
     private static TextView etForgetPassword;
     private static TextView etDictionary;
     private static TextView etAbout;
-    private ControllerMaster controllerMaster;
+    private MasterPresenter masterPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        this.controllerMaster = new ControllerMaster();
+        this.masterPresenter = new MasterPresenter();
         iniciarCampos();
 
 
@@ -74,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void iniciarCampos() {
+
+    private void startFilds() {
         this.etCodeUser = findViewById(R.id.et_code_user);
         this.etPassword = findViewById(R.id.et_password);
         this.btLogin = findViewById(R.id.bt_loginup);
@@ -85,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void login(String codeUser, String password){
-        //JSONObject datos = LoginActivity.this.controllerMaster.login(codeUser, password);
-        ControllerMaster.login(codeUser, password);
+        //JSONObject datos = LoginActivity.this.masterPresenter.login(codeUser, password);
+        MasterPresenter.login(codeUser, password);
         Intent i = new Intent();
         i.setClass(this, MainActivity.class);
         startActivity(i);
