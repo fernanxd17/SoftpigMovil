@@ -79,7 +79,7 @@
                             android:theme="@style/EditTextBlack">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/et_code_user"
+                                android:id="@+id/etCodeUser"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
@@ -111,7 +111,7 @@
                             android:theme="@style/EditTextBlack">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/et_password"
+                                android:id="@+id/etPassword"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:inputType="textPassword"
@@ -124,23 +124,24 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/et_forget_password"
-                        android:textAlignment="textEnd"
-                        android:layout_width="match_parent"
+                        android:id="@+id/etForgetPassword"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/app_olvidocontraseña"
                         android:layout_marginBottom="30dp"
-                        android:textColor="@color/editTextColorBlack">
+                        android:textColor="@color/editTextColorBlack"
+                        android:layout_gravity="right">
                     </TextView>
 
                     <Button
                         android:layout_marginHorizontal="30dp"
-                        android:id="@+id/bt_loginup"
+                        android:id="@+id/btLoginUp"
                         android:layout_gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/app_iniciar"
-                        android:theme="@style/RaisedButtonDark">
+                        android:theme="@style/RaisedButtonDark"
+                        android:background="@drawable/custom_button">
                     </Button>
 
                 </LinearLayout>
@@ -166,7 +167,7 @@
                             android:layout_gravity="center">
 
                             <TextView
-                                android:id="@+id/tv_dictionary"
+                                android:id="@+id/tvDictionary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Diccionario"
@@ -182,7 +183,7 @@
                                 android:textSize="@dimen/textSize_Dictionary">
                             </TextView>
                             <TextView
-                                android:id="@+id/tv_about"
+                                android:id="@+id/tvAbout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Acerca De"

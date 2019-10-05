@@ -14,6 +14,15 @@
     <string name="app_cerrar">Cerrar Sesion</string>
     <string name="app_generarpdf">Generar PDF</string>
 
+    <!--    CAMBIO DE CONTRASEÑA     -->
+    <string name="app_recuperar_contraseña">Recuperacion de Contraseña</string>
+    <string name="app_cambiarcontraseña">Cambiar Contraseña</string>
+
+    <!--    ACERCA DE, DICCIONARIO, DERECHOS    -->
+    <string name="app_acercade">Acerca de</string>
+    <string name="app_diccionario_porcino">Diccionario Porcino</string>
+    <string name="app_derechos_reservados">Todos los Derechos Reservados 2019</string>
+
     <string name="app_porcino">Porcino</string>
     <string name="app_agregarporcino">Agregar Porcino</string>
 

@@ -9,19 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.Softpig.Presenter.MasterPresenter;
 import com.Softpig.R;
 
-
 public class LoginActivity extends AppCompatActivity {
 
-    private static EditText etCodeUser;
-    private static EditText etPassword;
+    private static EditText etCodeUser, etPassword;
+    private static TextView etForgetPassword, etDictionary, etAbout;
     private static Button btLogin;
-    private static TextView etForgetPassword;
-    private static TextView etDictionary;
-    private static TextView etAbout;
     private MasterPresenter masterPresenter;
 
     @Override
@@ -29,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         this.masterPresenter = new MasterPresenter();
-        iniciarCampos();
+        this.startFilds();
 
 
         this.btLogin.setOnClickListener(new View.OnClickListener() {
@@ -48,39 +43,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        this.etDictionary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent dictionary = new Intent();
-                dictionary.setClass(LoginActivity.this, DictionaryActivity.class);
-                startActivity(dictionary);
-            }
-        });
-
-        this.etAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent about = new Intent();
-                about.setClass(LoginActivity.this, AboutActivity.class);
-                startActivity(about);
-            }
-        });
-
-
-
     }
 
-
+    /**
+     * Toma control de los campos del layout
+     */
     private void startFilds() {
-        this.etCodeUser = findViewById(R.id.et_code_user);
-        this.etPassword = findViewById(R.id.et_password);
-        this.btLogin = findViewById(R.id.bt_loginup);
-        this.etForgetPassword = findViewById(R.id.et_forget_password);
-        this.etDictionary = findViewById(R.id.tv_dictionary);
-        this.etAbout = findViewById(R.id.tv_about);
+        this.etCodeUser = findViewById(R.id.etCodeUser);
+        this.etPassword = findViewById(R.id.etPassword);
+        this.btLogin = findViewById(R.id.btLoginUp);
+        this.etForgetPassword = findViewById(R.id.etForgetPassword);
+        this.etDictionary = findViewById(R.id.tvDictionary);
+        this.etAbout = findViewById(R.id.tvAbout);
     }
 
-
+    /**
+     * Comunica al MasterPresenter la peticion de login
+     * @param codeUser
+     * @param password
+     */
     private void login(String codeUser, String password){
         //JSONObject datos = LoginActivity.this.masterPresenter.login(codeUser, password);
         MasterPresenter.login(codeUser, password);
@@ -89,7 +70,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void startAbout(View view){
+    /**
+     * Inicia About activity
+     * @param view, necesario para tener el control del metodo a traves del onClic
+     */
+    public void openAboutView(View view){
         Intent i = new Intent();
         i.setClass(this, AboutActivity.class);
         startActivity(i);
@@ -97,6 +82,30 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Inicia Dictionary Activity
+     * @param view
+     */
+    public void openDictionaryView(View view){
+        Intent dictionary = new Intent();
+        dictionary.setClass(LoginActivity.this, DictionaryActivity.class);
+        startActivity(dictionary);
+    }
+
+    /**
+     * Inicia ForgetPassword activity
+     * @param view Necesaria para tener el control del metodo a traves del onClic
+     */
+    public void openForgetPassword(View view){
+        Intent forgetPassword  = new Intent();
+        forgetPassword.setClass(this, ForgetPasswordActivity.class);
+        startActivity(forgetPassword);
+    }
+
+    /**
+     * Estos dos ultimos metodos son para ocultar la barra de navegacion y la de notificaciones
+     * @param hasFocus
+     */
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
