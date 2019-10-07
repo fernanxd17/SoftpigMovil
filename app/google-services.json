@@ -8,9 +8,46 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1051272631052:android:b7a81233962ca3b561ef29",
+        "mobilesdk_app_id": "1:1051272631052:android:91822c60a44e5f2661ef29",
         "android_client_info": {
           "package_name": "com.Softpig"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051272631052-3m5jbo2fjs99r5avsup10qcudhqd5519.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Softpig",
+            "certificate_hash": "d79ed6955256a54e3fcaca9282a35afbade95426"
+          }
+        },
+        {
+          "client_id": "1051272631052-pcaslpdimipfn9ppi4t4acvtbqaqas2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPYQC2x_Gpshh18i_ZMm9qDTvjCCTqjcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051272631052-pcaslpdimipfn9ppi4t4acvtbqaqas2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051272631052:android:b7a81233962ca3b561ef29",
+        "android_client_info": {
+          "package_name": "com.example.appcomidasmoviles"
         }
       },
       "oauth_client": [
@@ -18,7 +55,7 @@
           "client_id": "1051272631052-d3lamkp3uce7bgvdsr4505umqhdlaojq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.Softpig",
+            "package_name": "com.example.appcomidasmoviles",
             "certificate_hash": "d79ed6955256a54e3fcaca9282a35afbade95426"
           }
         },
