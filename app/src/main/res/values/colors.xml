@@ -3,6 +3,7 @@
     <color name="accentColor">#000000</color>
 
     <color name="primaryColor">#fce4ec</color>
+    <color name="primaryColorTrans">#90fce4ec</color>
 
     <color name="primaryLightColor">#ffffff</color>
 

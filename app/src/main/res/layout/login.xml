@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
     tools:context="com.Softpig.View.LoginActivity">
 
@@ -15,32 +15,28 @@
         android:weightSum="1"
         android:orientation="vertical">
 
-        <LinearLayout
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.7"
-            android:padding="30dp">
-
-            <RelativeLayout
+            android:gravity="bottom">
+            <ImageView
+                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/iv_softpig"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/login_softpig" />
-            </RelativeLayout>
-
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="@drawable/logo_softpig">
+            </ImageView>
+        </RelativeLayout>
 
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:fitsSystemWindows="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,38 +49,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="@dimen/padding_horizontal_login"
-                    android:background="#fff"
-                    android:layout_weight="0.15"
+                    android:paddingHorizontal="@dimen/padding_horizontal_login"
+                    android:layout_weight="0.2"
                     android:gravity="center">
 
                     <LinearLayout
                         android:id="@+id/ll_code_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="20dp">
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/iv_user"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
+                            style="@style/RaisedButtonDark"
                             android:background="@drawable/ic_person">
                         </ImageView>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:theme="@style/EditTextBlack">
+                            android:theme="@style/EditTextWhite"
+                            android:focusableInTouchMode="false">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etCodeUser"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
-                                android:hint="@string/app_codigo"
-                                android:layout_marginBottom="15dp">
+                                android:hint="@string/app_codigo">
                             </com.google.android.material.textfield.TextInputEditText>
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +91,8 @@
                         android:id="@+id/ll_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp">
 
                         <ImageView
                             android:layout_gravity="center"
@@ -105,20 +102,40 @@
                             android:background="@drawable/ic_lock">
                         </ImageView>
 
-                        <com.google.android.material.textfield.TextInputLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:theme="@style/EditTextBlack">
+                            android:layout_height="match_parent"
+                            android:weightSum="1"
+                            android:orientation="horizontal">
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etPassword"
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:inputType="textPassword"
-                                android:hint="@string/app_contraseña"
-                                android:layout_marginBottom="5dp">
-                            </com.google.android.material.textfield.TextInputEditText>
-                        </com.google.android.material.textfield.TextInputLayout>
+                                android:theme="@style/EditTextWhite"
+                                android:focusedByDefault="false"
+                                android:layout_weight="0.2">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textPassword"
+                                    android:hint="@string/app_contraseña">
+
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:id="@+id/as"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_remove_red_eye"
+                                android:layout_weight="0.8">
+                            </ImageView>
+
+                        </LinearLayout>
+
 
 
                     </LinearLayout>
@@ -128,21 +145,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/app_olvidocontraseña"
-                        android:layout_marginBottom="30dp"
-                        android:textColor="@color/editTextColorBlack"
+                        android:textStyle="bold"
+                        android:textColor="@color/editTextColorWhite"
                         android:layout_gravity="right">
                     </TextView>
 
-                    <Button
-                        android:layout_marginHorizontal="30dp"
-                        android:id="@+id/btLoginUp"
-                        android:layout_gravity="center"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_iniciar"
-                        android:theme="@style/RaisedButtonDark"
-                        android:background="@drawable/custom_button">
-                    </Button>
+                        android:gravity="center"
+                        android:layout_marginTop="45dp">
+                        <Button
+
+                            android:id="@+id/btLoginUp"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_iniciar"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textAllCaps="false"
+                            style="@style/RaisedButtonDark"
+                            android:background="@drawable/custom_button">
+                        </Button>
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -150,7 +177,8 @@
                     android:id="@+id/rl_down"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.85">
+                    android:layout_weight="0.8"
+                    android:gravity="bottom">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -171,6 +199,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Diccionario"
+                                android:textStyle="bold"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/textSize_Dictionary">
                             </TextView>
@@ -179,6 +208,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" | "
+                                android:textStyle="bold"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/textSize_Dictionary">
                             </TextView>
@@ -187,6 +217,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Acerca De"
+                                android:textStyle="bold"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/textSize_Dictionary">
                             </TextView>
@@ -204,7 +235,8 @@
                                 android:id="@+id/copyrigth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Todos los derechos reservados 2019"
+                                android:textStyle="bold"
+                                android:text="TODOS LOS DERECHOS RESERVADOR 2019"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/textSize_Dictionary">
                             </TextView>

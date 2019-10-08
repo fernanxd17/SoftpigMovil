@@ -15,7 +15,8 @@
         <activity android:name=".View.MainActivity" />
         <activity android:name=".View.AboutActivity" />
         <activity android:name=".View.DictionaryActivity" />
-        <activity android:name=".View.LoginActivity">
+        <activity android:name=".View.LoginActivity" android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
