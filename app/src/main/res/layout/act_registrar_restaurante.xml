@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/primaryColor"
+    android:layout_height="match_parent"
+    tools:context="com.Softpig.View.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_main_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:orientation="vertical">
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_horizontal_login"
+                    android:background="#fff"
+                    android:layout_weight="0.15"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/ll_code_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
+
+                        <ImageView
+                            android:id="@+id/iv_user"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_person">
+                        </ImageView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/EditTextBlack">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etNameRest"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:hint="Nombre Restaurante"
+                                android:layout_marginBottom="15dp">
+                            </com.google.android.material.textfield.TextInputEditText>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="15dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:id="@+id/iv_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_lock">
+                        </ImageView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/EditTextBlack"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etDesc"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textPassword"
+                                android:hint="Descripción"
+                                android:layout_marginBottom="5dp">
+                            </com.google.android.material.textfield.TextInputEditText>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="15dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:id="@+id/iv_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_lock">
+                        </ImageView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/EditTextBlack">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLatitud"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="numberDecimal"
+                                android:hint="Latitud"
+                                android:layout_marginBottom="5dp">
+                            </com.google.android.material.textfield.TextInputEditText>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="30dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:id="@+id/iv_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_lock">
+                        </ImageView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/EditTextBlack">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLongitud"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="numberDecimal"
+                                android:hint="Longitud">
+                            </com.google.android.material.textfield.TextInputEditText>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+
+
+                    <Button
+                        android:layout_marginHorizontal="30dp"
+                        android:id="@+id/btRegistrarRest"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Registrar"
+                        android:theme="@style/RaisedButtonDark"
+                        android:background="@drawable/custom_button">
+                    </Button>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
