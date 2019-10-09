@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#53292929"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp">
         <ImageView
             android:id="@+id/imagenPIg"
             android:layout_width="match_parent"

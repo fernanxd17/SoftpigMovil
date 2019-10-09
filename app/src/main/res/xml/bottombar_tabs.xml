@@ -4,21 +4,24 @@
         id="@+id/home"
         title="@string/tab_home"
         barColorWhereSelected="@color/primaryColor"
-        icon="@drawable/">
+        icon="@drawable/home">
     </tab>
     <tab
         id="@+id/pig"
         title="@string/tab_pig"
-        barColorWhereSelected="@color/primaryColor">
+        barColorWhereSelected="@color/primaryColor"
+        icon="@drawable/pig">
     </tab>
     <tab
         id="@+id/medicine"
         title="@string/tab_medicine"
-        barColorWhereSelected="@color/primaryColor">
+        barColorWhereSelected="@color/primaryColor"
+        icon="@drawable/medicine">
     </tab>
     <tab
         id="@+id/alert"
         title="@string/tab_alert"
-        barColorWhereSelected="@color/primaryColor">
+        barColorWhereSelected="@color/primaryColor"
+        icon="@drawable/alarm">
     </tab>
 </tabs>
