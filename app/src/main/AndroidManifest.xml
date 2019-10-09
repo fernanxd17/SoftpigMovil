@@ -9,21 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MovilesClase.RegistrarRestaurante"></activity>
-        <activity android:name=".View.ForgetPasswordActivity" />
-        <activity android:name=".View.InstallationActivity" />
-        <activity android:name=".MovilesClase.ContenedorActivity" />
-        <activity android:name=".View.MainActivity" />
-        <activity android:name=".View.AboutActivity" />
-        <activity android:name=".View.DictionaryActivity" />
-        <activity android:name=".View.LoginActivity" android:windowSoftInputMode="adjustResize">
-
+        <activity android:name=".View.ContainerActivity"></activity>
+        <activity android:name=".View.PigActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MovilesClase.RegistrarRestaurante" />
+        <activity android:name=".View.ForgetPasswordActivity" />
+        <activity android:name=".View.InstallationActivity" />
+        <activity android:name=".MovilesClase.ContenedorActivity" />
+        <activity android:name=".View.MainActivity"></activity>
+        <activity android:name=".View.AboutActivity" />
+        <activity android:name=".View.DictionaryActivity" />
+        <activity
+            android:name=".View.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

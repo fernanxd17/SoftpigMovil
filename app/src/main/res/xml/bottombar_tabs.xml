@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        id="@+id/home"
+        title="@string/tab_home"
+        barColorWhereSelected="@color/primaryColor"
+        icon="@drawable/">
+    </tab>
+    <tab
+        id="@+id/pig"
+        title="@string/tab_pig"
+        barColorWhereSelected="@color/primaryColor">
+    </tab>
+    <tab
+        id="@+id/medicine"
+        title="@string/tab_medicine"
+        barColorWhereSelected="@color/primaryColor">
+    </tab>
+    <tab
+        id="@+id/alert"
+        title="@string/tab_alert"
+        barColorWhereSelected="@color/primaryColor">
+    </tab>
+</tabs>
