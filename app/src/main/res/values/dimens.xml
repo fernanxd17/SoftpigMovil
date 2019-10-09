@@ -12,4 +12,6 @@
     <dimen name="textSize_cardview">25sp</dimen>
     <dimen name="margincardview">10dp</dimen>
     <dimen name="bottombar_height">70dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
 </resources>
