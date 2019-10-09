@@ -4,8 +4,7 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_employee"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_cardview"
-    cardview:cardCornerRadius="@dimen/cornerradius_cardview">
+    android:layout_height="@dimen/height_cardview">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_cardview"
             android:background="@drawable/lechon"
-            android:scaleType="centerCrop">
+            android:scaleType="centerCrop"
+            cardview:cardCornerRadius="@dimen/cornerradius_cardview">
         </ImageView>
         <TextView
             android:id="@+id/idPig"
