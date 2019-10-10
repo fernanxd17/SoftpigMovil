@@ -2,33 +2,30 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview_employee"
+    android:id="@+id/cardview_pig"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_cardview">
-    <FrameLayout
+    android:layout_height="@dimen/height_cardview"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="10dp"
+    cardview:cardCornerRadius="@dimen/cornerradius_cardview"
+    android:background="#53292929">
+    <ImageView
+        android:id="@+id/imagenPig"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#53292929"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp">
-        <ImageView
-            android:id="@+id/imagenPIg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_cardview"
-            android:background="@drawable/lechon"
-            android:scaleType="centerCrop"
-            cardview:cardCornerRadius="@dimen/cornerradius_cardview">
-        </ImageView>
-        <TextView
-            android:id="@+id/idPig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/idPig"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_cardview"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
-        </TextView>
+        android:layout_height="@dimen/height_cardview"
+        android:background="@drawable/lechon_modificado"
+        android:scaleType="centerCrop">
+    </ImageView>
+    <TextView
+        android:id="@+id/idPig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/idPig"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_cardview"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+    </TextView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +54,9 @@
                     android:text="@string/pesoPig"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/textSize_cardview"
-                    android:layout_weight="0.5">
+                    android:layout_weight="0.5"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/custom_button">
                 </TextView>
                 <TextView
                     android:id="@+id/sexoPig"
@@ -66,18 +65,14 @@
                     android:text="@string/sexoPig"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/textSize_cardview"
-                    android:textAlignment="textEnd"
                     android:layout_weight="0.5"
-                    android:layout_gravity="end">
+                    android:paddingLeft="150dp">
 
                 </TextView>
             </LinearLayout>
 
 
         </LinearLayout>
-
-    </FrameLayout>
-
 </com.google.android.material.card.MaterialCardView>
 
 

@@ -24,7 +24,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
     @NonNull
     @Override
     public ViewHolderInstallation onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_installations, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_installations, null, false);
         return new ViewHolderInstallation(view);
     }
 
