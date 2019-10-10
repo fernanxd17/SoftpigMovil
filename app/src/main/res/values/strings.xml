@@ -94,4 +94,8 @@
     <string name="medidas_installations">500x500</string>
     <string name="nameEmployee">William Pajaro Caballero</string>
     <string name="type_employee">Empleado administrativo</string>
+    <string name="nombre_article">Tijeras</string>
+    <string name="type_article">Cuidado Porcino</string>
+    <string name="totalarticle">10 unidades</string>
+    <string name="idAriticle">ID: 01</string>
 </resources>
