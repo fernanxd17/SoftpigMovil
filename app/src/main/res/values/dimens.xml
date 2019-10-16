@@ -5,7 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="edittext_textSize_login">22sp</dimen>
     <dimen name="padding_horizontal_login">32dp</dimen>
-    <dimen name="height_cardview">200dp</dimen>
+    <dimen name="height_cardview">150dp</dimen>
     <dimen name="cornerradius_cardview">10dp</dimen>
     <dimen name="textSize_Dictionary">16sp</dimen>
     <dimen name="padding_cardview">17dp</dimen>

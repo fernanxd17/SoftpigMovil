@@ -27,11 +27,11 @@ public class LoginActivity extends AppCompatActivity {
         this.startFilds();
 
 
-        this.btLogin.setOnClickListener(new View.OnClickListener() {
+        btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String codeUser = LoginActivity.this.etCodeUser.getText().toString();
-                String password = LoginActivity.this.etPassword.getText().toString();
+                String codeUser = etCodeUser.getText().toString();
+                String password = etPassword.getText().toString();
 
                 if(!codeUser.isEmpty() && !password.isEmpty()){
                     //Realiza el login
@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity {
      * Toma control de los campos del layout
      */
     private void startFilds() {
-        this.etCodeUser = findViewById(R.id.etCodeUser);
-        this.etPassword = findViewById(R.id.etPassword);
-        this.btLogin = findViewById(R.id.btLoginUp);
-        this.etForgetPassword = findViewById(R.id.etForgetPassword);
-        this.etDictionary = findViewById(R.id.tvDictionary);
-        this.etAbout = findViewById(R.id.tvAbout);
+        etCodeUser = findViewById(R.id.etCodeUser);
+        etPassword = findViewById(R.id.etPassword);
+        btLogin = findViewById(R.id.btLoginUp);
+        etForgetPassword = findViewById(R.id.etForgetPassword);
+        etDictionary = findViewById(R.id.tvDictionary);
+        etAbout = findViewById(R.id.tvAbout);
     }
 
     /**

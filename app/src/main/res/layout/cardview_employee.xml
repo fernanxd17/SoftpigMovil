@@ -9,16 +9,21 @@
     android:layout_marginTop="10dp"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     android:background="#53292929">
-    <ImageView
-        android:id="@+id/imagenEmployee"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_cardview"
-        android:background="@drawable/employee_modificado"
-        android:scaleType="centerCrop">
-    </ImageView>
+        android:layout_height="@dimen/height_cardview">
+        <ImageView
+            android:id="@+id/imagenEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_cardview"
+            android:background="@drawable/employee_modificado"
+            android:scaleType="centerCrop">
+        </ImageView>
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/idEmployee"
+        android:id="@+id/tv_idEmployee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/idEmpleado"
@@ -38,7 +43,7 @@
         android:paddingBottom="@dimen/padding_cardview">
 
         <TextView
-            android:id="@+id/nameEmployee"
+            android:id="@+id/tv_nameEmployee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nameEmployee"
@@ -51,7 +56,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/typeEmployee"
+                android:id="@+id/tv_typeEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_employee"
@@ -62,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/icon_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/male"

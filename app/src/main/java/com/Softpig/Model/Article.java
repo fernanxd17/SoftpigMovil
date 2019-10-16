@@ -7,6 +7,9 @@ public class Article {
     private String name;
     private short quantity;
 
+    public Article() {
+    }
+
     public Article(short idArticle, String typeArticle, String name, short quantity) {
         this.idArticle = idArticle;
         this.typeArticle = typeArticle;

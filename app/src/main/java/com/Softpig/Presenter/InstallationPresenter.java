@@ -11,7 +11,7 @@ public class InstallationPresenter {
      * Return: ArrayList con las instalaciones
      */
     public static ArrayList<Installation> getInstallations() {
-
-        return null;
+        ArrayList<Installation> listInstallations = new ArrayList<>();
+        return listInstallations;
     }
 }

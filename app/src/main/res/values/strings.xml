@@ -98,4 +98,13 @@
     <string name="type_article">Cuidado Porcino</string>
     <string name="totalarticle">10 unidades</string>
     <string name="idAriticle">ID: 01</string>
+    <string name="name_race">Duroc</string>
+    <string name="description">Pequeña descripcion</string>
+    <string name="idRace">ID:01</string>
+    <string name="idFemale">ID: 01</string>
+    <string name="nulipara"> no</string>
+    <string name="pesoFemale">50 Kg</string>
+    <string name="gestacion">si</string>
+    <string name="raceMale">Duroc</string>
+    <string name="conformacionfisica">Conformación fisica del reproductor</string>
 </resources>

@@ -24,7 +24,7 @@ public class InstallationActivity extends AppCompatActivity {
         setContentView(R.layout.installations);
 
         listInstallations = new ArrayList<Installation>();
-        recyclerInstallations = findViewById(R.id.rvInstallations);
+        recyclerInstallations = findViewById(R.id.recyclerInstallations);
         recyclerInstallations.setLayoutManager(new LinearLayoutManager(this));
         showInstallations();
 

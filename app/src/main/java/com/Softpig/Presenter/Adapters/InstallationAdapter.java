@@ -3,6 +3,7 @@ package com.Softpig.Presenter.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,10 +31,10 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderInstallation holder, int position) {
-            holder.tvIdInstallation.setText(listInstallations.get(position).getIdInstalation());
-            holder.tvNameInstallation.setText(listInstallations.get(position).getName());
-            holder.tvTypeInstallation.setText(listInstallations.get(position).getTypeInstalation());
-            holder.tvOtherDat.setText(listInstallations.get(position).getCapacity());
+            holder.tv_idInstallation.setText(listInstallations.get(position).getIdInstalation());
+            holder.tv_nameInstallation.setText(listInstallations.get(position).getName());
+            holder.tv_typeInstallation.setText(listInstallations.get(position).getTypeInstalation());
+            holder.tv_measurements.setText(listInstallations.get(position).getCapacity());
 
     }
 
@@ -43,16 +44,16 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
     }
 
     public class ViewHolderInstallation extends RecyclerView.ViewHolder {
-
-        TextView tvIdInstallation, tvNameInstallation, tvTypeInstallation, tvOtherDat;
+        ImageView imageninstallation;
+        TextView tv_idInstallation, tv_nameInstallation, tv_typeInstallation, tv_measurements;
 
 
         public ViewHolderInstallation(@NonNull View itemView) {
             super(itemView);
-            this.tvIdInstallation = itemView.findViewById(R.id.tvIdInstallation);
-            this.tvNameInstallation = itemView.findViewById(R.id.tvNameInstallation);
-            this.tvTypeInstallation = itemView.findViewById(R.id.tvTypeInstallation);
-            this.tvOtherDat = itemView.findViewById(R.id.tvOtherDat);
+            this.tv_idInstallation = itemView.findViewById(R.id.tv_idInstallation);
+            this.tv_nameInstallation = itemView.findViewById(R.id.tv_nameInstallation);
+            this.tv_typeInstallation = itemView.findViewById(R.id.tv_typeInstallation);
+            this.tv_measurements = itemView.findViewById(R.id.tv_measurements);
         }
     }
 }
