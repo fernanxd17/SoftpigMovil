@@ -25,7 +25,7 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
     @NonNull
     @Override
     public ViewHolderMale onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getCoxntext()).inflate(R.layout.cardview_male,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_male,null, false);
         return new ViewHolderMale(view);
     }
 

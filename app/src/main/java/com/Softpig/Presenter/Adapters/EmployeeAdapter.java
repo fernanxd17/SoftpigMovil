@@ -31,7 +31,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderEmployee holder, int position) {
-        holder.tv_idEmployee.setText(listEmployee.get(position).getIdEmployee());
+        holder.tv_idEmployee.setText(""+listEmployee.get(position).getIdEmployee());
         holder.tv_nameEmployee.setText(listEmployee.get(position).getName());
         holder.tv_typeEmployee.setText(listEmployee.get(position).getRole());
         //holder.imagenEmployee.setImageResource('@drawable/');
@@ -49,9 +49,9 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
         public ViewHolderEmployee(@NonNull View itemView) {
             super(itemView);
-            tv_idEmployee = (TextView) itemView.findViewById(R.id.tv_idEmployee);
-            tv_nameEmployee = (TextView) itemView.findViewById(R.id.tv_nameEmployee);
-            tv_typeEmployee = (TextView) itemView.findViewById(R.id.tv_typeEmployee);
+            tv_idEmployee =  itemView.findViewById(R.id.tv_idEmployee);
+            tv_nameEmployee =  itemView.findViewById(R.id.tv_nameEmployee);
+            tv_typeEmployee =  itemView.findViewById(R.id.tv_typeEmployee);
         }
     }
 }
