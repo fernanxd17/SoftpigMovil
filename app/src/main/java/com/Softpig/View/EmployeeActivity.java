@@ -19,25 +19,28 @@ public class EmployeeActivity extends AppCompatActivity {
 
     ArrayList<Employee> listEmployee;
     RecyclerView recyclerEmployee;
+    EmployeePresenter employeePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employees);
+        employeePresenter = new EmployeePresenter();
         listEmployee = new ArrayList<Employee>();
         recyclerEmployee = findViewById(R.id.recyclerEmployee);
-        recyclerEmployee.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        showEmployees();
+        recyclerEmployee.setLayoutManager(new LinearLayoutManager(this));
+                showEmployees();
 
     }
 
     private void showEmployees() {
-        listEmployee = EmployeePresenter.getEmployees();
+        listEmployee = employeePresenter.getEmployees();
         EmployeeAdapter employeeAdapter = new EmployeeAdapter(listEmployee);
+        this.recyclerEmployee.setAdapter(employeeAdapter);
 
-        for (int i =0; i<listEmployee.size();i++){
-            this.recyclerEmployee.setAdapter(employeeAdapter);
-        }
+
+
+
         /*Date fecha = new Date();
         listEmployee.add(new Employee((short) 01, "Administrador", "Activo",fecha , "1090512864", "Masculino", "Eduardo", "Jose", "Pajaro", "Caballero", "eduardojosepc@ufps.edu.co", "55555","3504018064"));
         listEmployee.add(new Employee((short) 01, "Administrador", "Activo",fecha , "1090512864", "Masculino", "Eduardo", "Jose", "Pajaro", "Caballero", "eduardojosepc@ufps.edu.co", "55555","3504018064"));
