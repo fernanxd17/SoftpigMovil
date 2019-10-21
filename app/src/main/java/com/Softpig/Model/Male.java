@@ -17,16 +17,8 @@ public class Male extends Pig{
         return idMale;
     }
 
-    public void setIdMale(short idMale) {
-        this.idMale = idMale;
-    }
-
     public String getConformacionFisica() {
         return conformacionFisica;
     }
 
-
-    public void setConformacionFisica(String conformacionFisica) {
-        this.conformacionFisica = conformacionFisica;
-    }
 }
