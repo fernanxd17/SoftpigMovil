@@ -17,30 +17,28 @@ import java.util.Date;
 
 public class EmployeeActivity extends AppCompatActivity {
 
-    ArrayList<Employee> listEmployee;
-    RecyclerView recyclerEmployee;
+    private ArrayList<Employee> listEmployee;
+    private RecyclerView recyclerEmployee;
+    private EmployeePresenter employeePresenter;
+    private EmployeeAdapter employeeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employees);
-        listEmployee = new ArrayList<Employee>();
+        employeePresenter = new EmployeePresenter();
+        listEmployee = new ArrayList<>();
         recyclerEmployee = findViewById(R.id.recyclerEmployee);
-        recyclerEmployee.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerEmployee.setLayoutManager(new LinearLayoutManager(this));
         showEmployees();
-
+        employeeAdapter = new EmployeeAdapter(listEmployee);
+        recyclerEmployee.setAdapter(employeeAdapter);
     }
 
     private void showEmployees() {
-        listEmployee = EmployeePresenter.getEmployees();
-        EmployeeAdapter employeeAdapter = new EmployeeAdapter(listEmployee);
+        listEmployee = employeePresenter.getEmployees();
+        //employeeAdapter = new EmployeeAdapter(listEmployee);
+        //recyclerEmployee.setAdapter(employeeAdapter);
+   }
 
-        for (int i =0; i<listEmployee.size();i++){
-            this.recyclerEmployee.setAdapter(employeeAdapter);
-        }
-        /*Date fecha = new Date();
-        listEmployee.add(new Employee((short) 01, "Administrador", "Activo",fecha , "1090512864", "Masculino", "Eduardo", "Jose", "Pajaro", "Caballero", "eduardojosepc@ufps.edu.co", "55555","3504018064"));
-        listEmployee.add(new Employee((short) 01, "Administrador", "Activo",fecha , "1090512864", "Masculino", "Eduardo", "Jose", "Pajaro", "Caballero", "eduardojosepc@ufps.edu.co", "55555","3504018064"));
-        listEmployee.add(new Employee((short) 01, "Administrador", "Activo",fecha , "1090512864", "Masculino", "Eduardo", "Jose", "Pajaro", "Caballero", "eduardojosepc@ufps.edu.co", "55555","3504018064"));*/
-    }
 }

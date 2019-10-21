@@ -20,6 +20,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public EmployeeAdapter(ArrayList<Employee> listEmployee) {
         this.listEmployee = listEmployee;
+        System.out.println("employeeadapter: "+listEmployee.size());
     }
 
     @NonNull
@@ -39,7 +40,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return listEmployee.size();
+        return this.listEmployee.size();
     }
 
     public class ViewHolderEmployee extends RecyclerView.ViewHolder {
