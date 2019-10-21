@@ -8,29 +8,26 @@ import android.os.Bundle;
 
 import com.Softpig.Model.Male;
 import com.Softpig.Presenter.Adapters.MaleAdapter;
+import com.Softpig.Presenter.MalePresenter;
 import com.Softpig.R;
 
 import java.util.ArrayList;
 
 public class MaleActivity extends AppCompatActivity {
 
-    ArrayList<Male> listMales;
-    RecyclerView recyclerMale;
+    private RecyclerView recyclerMale;
+    private MalePresenter malePresenter;
+    private MaleAdapter maleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.males);
-        listMales = new ArrayList<Male>();
+        malePresenter = new MalePresenter();
         recyclerMale = findViewById(R.id.recyclerMale);
-        recyclerMale.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        showMales();
-        MaleAdapter maleAdapter = new MaleAdapter(listMales);
+        recyclerMale.setLayoutManager(new LinearLayoutManager(this));
+        maleAdapter = new MaleAdapter(malePresenter.getMales());
         recyclerMale.setAdapter(maleAdapter);
     }
-
-    private void showMales() {
-    }
-
 
 }

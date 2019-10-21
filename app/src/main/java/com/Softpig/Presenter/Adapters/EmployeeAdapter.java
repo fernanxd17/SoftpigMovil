@@ -3,7 +3,6 @@ package com.Softpig.Presenter.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public EmployeeAdapter(ArrayList<Employee> listEmployee) {
         this.listEmployee = listEmployee;
-        System.out.println("employeeadapter: "+listEmployee.size());
     }
 
     @NonNull
@@ -35,7 +33,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         holder.tv_idEmployee.setText("ID: "+listEmployee.get(position).getIdEmployee());
         holder.tv_nameEmployee.setText(listEmployee.get(position).getName());
         holder.tv_typeEmployee.setText(listEmployee.get(position).getRole());
-        //holder.imagenEmployee.setImageResource('@drawable/');
     }
 
     @Override
@@ -45,7 +42,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public class ViewHolderEmployee extends RecyclerView.ViewHolder {
 
-        ImageView imagenEmployee, icon_male;
         TextView tv_idEmployee, tv_nameEmployee, tv_typeEmployee;
 
         public ViewHolderEmployee(@NonNull View itemView) {

@@ -31,10 +31,10 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderInstallation holder, int position) {
-            holder.tv_idInstallation.setText(listInstallations.get(position).getIdInstalation());
+            holder.tv_idInstallation.setText("ID: "+listInstallations.get(position).getIdInstalation());
             holder.tv_nameInstallation.setText(listInstallations.get(position).getName());
             holder.tv_typeInstallation.setText(listInstallations.get(position).getTypeInstalation());
-            holder.tv_measurements.setText(listInstallations.get(position).getCapacity());
+            holder.tv_measurements.setText(listInstallations.get(position).getCapacity()+" metros");
 
     }
 
@@ -44,7 +44,6 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
     }
 
     public class ViewHolderInstallation extends RecyclerView.ViewHolder {
-        ImageView imageninstallation;
         TextView tv_idInstallation, tv_nameInstallation, tv_typeInstallation, tv_measurements;
 
 

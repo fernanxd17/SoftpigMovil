@@ -15,24 +15,18 @@ import java.util.ArrayList;
 
 public class FemaleActivity extends AppCompatActivity {
 
-    ArrayList<Female> listFemale;
-    RecyclerView recyclerFemale;
+    private RecyclerView recyclerFemale;
+    private FemalePresenter femalePresenter;
+    private FemaleAdapter femaleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.females);
-        listFemale = new ArrayList<Female>();
+        femalePresenter = new FemalePresenter();
         recyclerFemale = findViewById(R.id.recyclerFemale);
-        recyclerFemale.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        showFemale();
-        FemaleAdapter femaleAdapter = new FemaleAdapter(listFemale);
+        recyclerFemale.setLayoutManager(new LinearLayoutManager(this));
+        FemaleAdapter femaleAdapter = new FemaleAdapter(FemalePresenter.getFemale());
         recyclerFemale.setAdapter(femaleAdapter);
-    }
-
-    public void showFemale(){
-        listFemale = FemalePresenter.getFemale();
-        FemaleAdapter femaleAdapter = new FemaleAdapter(listFemale);
-        this.recyclerFemale.setAdapter(femaleAdapter);
     }
 }

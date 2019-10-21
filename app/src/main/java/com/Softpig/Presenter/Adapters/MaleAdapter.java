@@ -31,10 +31,9 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMale holder, int position) {
-        holder.tv_idMale.setText(listMales.get(position).getIdMale());
-        holder.tv_raceMale.setText(listMales.get(position).getIdRace());
+        holder.tv_idMale.setText("ID: "+listMales.get(position).getIdMale());
+        holder.tv_raceMale.setText(""+listMales.get(position).getRace());
         holder.tv_conformacionFisica.setText(listMales.get(position).getConformacionFisica());
-        //holder.imagenEmployee.setImageResource('@drawable/');
     }
 
     @Override
@@ -44,7 +43,6 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
 
     public class ViewHolderMale extends RecyclerView.ViewHolder {
 
-        ImageView imagenMale;
         TextView tv_idMale, tv_raceMale, tv_conformacionFisica;
 
         public ViewHolderMale(@NonNull View itemView) {

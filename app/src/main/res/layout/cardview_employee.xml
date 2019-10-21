@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929">
+    android:background="#53292929"
+    android:layout_marginVertical="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_cardview">
@@ -40,26 +41,20 @@
         android:paddingLeft="@dimen/padding_cardview"
         android:paddingBottom="@dimen/padding_cardview">
 
-        <TextView
-            android:id="@+id/tv_nameEmployee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nameEmployee"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_cardview">
-        </TextView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <TextView
-                android:id="@+id/tv_typeEmployee"
+                android:id="@+id/tv_nameEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/type_employee"
+                android:text="@string/nameEmployee"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/textSize_cardview">
+                android:textSize="@dimen/textSize_cardview"
+                android:layout_weight="0.9">
             </TextView>
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -69,14 +64,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/male"
-                    android:layout_marginLeft="20dp">
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0.1">
 
                 </ImageView>
             </RelativeLayout>
-
         </LinearLayout>
 
-
+            <TextView
+                android:id="@+id/tv_typeEmployee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type_employee"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
 

@@ -25,7 +25,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
         @NonNull
         @Override
         public ViewHolderPig onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_employee,null, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_pig,null, false);
             return new ViewHolderPig(view);
         }
 
@@ -35,7 +35,6 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
             holder.tv_etapaPig.setText(listPig.get(position).getGrowthPhase());
             holder.tv_pesoPig.setText(listPig.get(position).getWeigth());
             holder.tv_sexoPig.setText(listPig.get(position).getSex());
-            //holder.imagenEmployee.setImageResource('@drawable/');
         }
 
         @Override

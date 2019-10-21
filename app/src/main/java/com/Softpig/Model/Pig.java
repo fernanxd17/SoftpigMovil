@@ -7,7 +7,7 @@ public class Pig {
     private short idPig;
     private String sex;
     private short weigth;
-    private short idRace;
+    private String race;
     private String growthPhase;
     private String pigState;
     private String health;
@@ -15,12 +15,12 @@ public class Pig {
     private Date birthDate;
     private Date acquisitionDate;
 
-    public Pig(short idPig, String sex, short weigth, short idRace, String growthPhase,
+    public Pig(short idPig, String sex, short weigth, String race, String growthPhase,
                String pigState, String health, short idInstalation, Date birthDate, Date acquisitionDate) {
         this.idPig = idPig;
         this.sex = sex;
         this.weigth = weigth;
-        this.idRace = idRace;
+        this.race = race;
         this.growthPhase = growthPhase;
         this.pigState = pigState;
         this.health = health;
@@ -37,12 +37,10 @@ public class Pig {
         return sex;
     }
 
-    public short getWeigth() {
-        return weigth;
-    }
+    public short getWeigth() { return weigth; }
 
-    public short getIdRace() {
-        return idRace;
+    public String getRace() {
+        return race;
     }
 
     public String getGrowthPhase() {

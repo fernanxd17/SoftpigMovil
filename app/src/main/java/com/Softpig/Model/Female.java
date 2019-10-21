@@ -8,9 +8,9 @@ public class Female extends Pig {
     private boolean virgin;
     private boolean gestation;
 
-    public Female(short idFemale, boolean virgin, boolean gestation, String sex, short weigth, short idRace, String growthPhase,
+    public Female(short idFemale, boolean virgin, boolean gestation, String sex, short weigth, String race, String growthPhase,
                   String pigState, String health, short idInstalation, Date birthDate, Date acquisitionDate) {
-        super(idFemale,sex,weigth,idRace,growthPhase,pigState,health,idInstalation,birthDate,acquisitionDate);
+        super(idFemale,sex,weigth,race,growthPhase,pigState,health,idInstalation,birthDate,acquisitionDate);
         this.idFemale = idFemale;
         this.virgin = virgin;
         this.gestation = gestation;

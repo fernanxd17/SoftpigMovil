@@ -25,14 +25,14 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolderFemale onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_employee,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_female,null, false);
         return new ViewHolderFemale(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderFemale holder, int position) {
         String r= "";
-        holder.tv_idFemale.setText(listFemale.get(position).getIdFemale());
+        holder.tv_idFemale.setText("ID: "+listFemale.get(position).getIdFemale());
         if(listFemale.get(position).isVirgin() || listFemale.get(position).isGestation() ){
             r="si";
         }else {
@@ -40,8 +40,7 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
         }
         holder.tv_nulipara.setText(r);
         holder.tv_gestation.setText(r);
-        holder.tv_pesoFemale.setText(listFemale.get(position).getWeigth());
-        //holder.imagenEmployee.setImageResource('@drawable/');
+        holder.tv_pesoFemale.setText(listFemale.get(position).getWeigth()+" Kg");
     }
 
     @Override

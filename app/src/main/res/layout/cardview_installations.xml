@@ -7,10 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:orientation="horizontal"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginTop="10dp"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929">
+    android:background="#53292929"
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:id="@+id/imageninstallation"
@@ -67,20 +66,21 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Tipo:"
                     android:textColor="@android:color/white"
-                    android:paddingLeft="10dp">
+                    android:textSize="20dp">
                 </TextView>
 
                 <TextView
                     android:id="@+id/tv_typeInstallation"
                     android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/type_installation"
-                    android:textColor="@android:color/white">
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp">
                 </TextView>
 
             </LinearLayout>
@@ -92,19 +92,21 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Medidas:"
-                    android:textColor="@android:color/white">
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp">
                 </TextView>
 
                 <TextView
                     android:id="@+id/tv_measurements"
                     android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/medidas_installations"
-                    android:textColor="@android:color/white">
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp">
                 </TextView>
 
             </LinearLayout>
