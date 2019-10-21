@@ -1,58 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primaryColor"
-    tools:context="com.Softpig.View.MainActivity">
+    android:layout_height="wrap_content"
+    tools:context=".View.fragment.DashBoardFragment">
 
     <LinearLayout
         android:id="@+id/ll_main_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/ll_head_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/secondaryColor"
-            android:layout_weight="0">
-
-            <ImageView
-                android:id="@+id/iv_menu_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_menu"
-                android:layout_marginLeft="15dp"
-                android:layout_gravity="center"
-                android:contentDescription="">
-            </ImageView>
-
-            <TextView
-                android:id="@+id/et_cabezera_main"
-                android:layout_width="wrap_content"
-                android:layout_toRightOf="@id/iv_menu_main"
-                android:layout_height="match_parent"
-                android:text="Granja San Pablo UFPS"
-                android:textSize="@dimen/edittext_textSize_login"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:layout_marginLeft="10dp">
-            </TextView>
-
-        </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:layout_weight="0.8"
-            android:gravity="center">
+            android:layout_weight="0.8">
+
+
 
             <LinearLayout
                 android:id="@+id/ll_home"
@@ -77,8 +43,7 @@
                     android:inputType="number"
                     android:text="Inicio"
                     android:textSize="25sp"
-                    android:textAlignment="textStart"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="start"
                     android:gravity="center"
                     android:layout_marginLeft="10dp">
                 </TextView>
@@ -120,7 +85,7 @@
                     </TextView>
 
                     <TextView
-                        android:layout_gravity="right"
+                        android:layout_gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="50 Empleados registrados"
@@ -218,7 +183,7 @@
                     </TextView>
 
                     <TextView
-                        android:layout_gravity="right"
+                        android:layout_gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Mas Información"
@@ -310,7 +275,7 @@
                     </TextView>
 
                     <TextView
-                        android:layout_gravity="right"
+                        android:layout_gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Mas Información"
@@ -380,112 +345,9 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/ll_pie_main"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:background="@color/secondaryColor"
-            android:layout_weight="0.07"
-            android:weightSum="1">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <ImageView
-                    android:id="@+id/iv_home_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_home_bar"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.8">
-                </ImageView>
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Inicio">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.25"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_pigs_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_pets"
-                    android:layout_gravity="center">
-                </ImageView>
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Porcinos">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_medicine_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_favorite"
-                    android:layout_gravity="center">
-                </ImageView>
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Medicina">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_alarm_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_notifications"
-                    android:layout_gravity="center">
-                </ImageView>
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alarmas">
-                </TextView>
-
-            </LinearLayout>
-
-        </LinearLayout>
 
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

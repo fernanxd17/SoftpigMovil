@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         //JSONObject datos = LoginActivity.this.masterPresenter.login(codeUser, password);
         MasterPresenter.login(codeUser, password);
         Intent i = new Intent();
-        i.setClass(this, MainActivity.class);
+        i.setClass(this, MainMenuActivity.class);
         startActivity(i);
     }
 

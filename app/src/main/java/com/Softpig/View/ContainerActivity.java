@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.Softpig.R;
 import com.Softpig.View.fragment.AlarmFragment;
-import com.Softpig.View.fragment.HomeFragment;
+import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.PigFragment;
 import com.roughike.bottombar.BottomBar;
@@ -27,7 +27,7 @@ public class ContainerActivity extends AppCompatActivity {
             public void onTabReSelected(int tabId) {
                 switch (tabId){
                     case R.id.home:
-                        HomeFragment homeFragment = new HomeFragment();
+                        DashBoardFragment homeFragment = new DashBoardFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment)
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
                         break;
