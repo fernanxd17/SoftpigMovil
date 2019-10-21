@@ -17,7 +17,6 @@ import java.util.Date;
 
 public class EmployeeActivity extends AppCompatActivity {
 
-    private ArrayList<Employee> listEmployee;
     private RecyclerView recyclerEmployee;
     private EmployeePresenter employeePresenter;
     private EmployeeAdapter employeeAdapter;
@@ -27,18 +26,9 @@ public class EmployeeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employees);
         employeePresenter = new EmployeePresenter();
-        listEmployee = new ArrayList<>();
         recyclerEmployee = findViewById(R.id.recyclerEmployee);
         recyclerEmployee.setLayoutManager(new LinearLayoutManager(this));
-        showEmployees();
-        employeeAdapter = new EmployeeAdapter(listEmployee);
+        employeeAdapter = new EmployeeAdapter(employeePresenter.getEmployees());
         recyclerEmployee.setAdapter(employeeAdapter);
     }
-
-    private void showEmployees() {
-        listEmployee = employeePresenter.getEmployees();
-        //employeeAdapter = new EmployeeAdapter(listEmployee);
-        //recyclerEmployee.setAdapter(employeeAdapter);
-   }
-
 }
