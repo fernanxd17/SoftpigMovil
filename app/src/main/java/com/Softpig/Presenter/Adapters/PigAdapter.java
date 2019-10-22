@@ -31,9 +31,9 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolderPig holder, int position) {
-            holder.tv_idPig.setText(listPig.get(position).getIdPig());
+            holder.tv_idPig.setText("ID: "+listPig.get(position).getIdPig());
             holder.tv_etapaPig.setText(listPig.get(position).getGrowthPhase());
-            holder.tv_pesoPig.setText(listPig.get(position).getWeigth());
+            holder.tv_pesoPig.setText(listPig.get(position).getWeigth()+" Kg");
             holder.tv_sexoPig.setText(listPig.get(position).getSex());
         }
 
@@ -49,10 +49,10 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
 
             public ViewHolderPig(@NonNull View itemView) {
                 super(itemView);
-                tv_idPig = (TextView) itemView.findViewById(R.id.tv_idEmployee);
-                tv_etapaPig = (TextView) itemView.findViewById(R.id.tv_etapaPig);
-                tv_pesoPig = (TextView) itemView.findViewById(R.id.tv_pesoPig);
-                tv_sexoPig = (TextView) itemView.findViewById(R.id.tv_sexoPig);
+                tv_idPig = itemView.findViewById(R.id.tv_idPig);
+                tv_etapaPig = itemView.findViewById(R.id.tv_etapaPig);
+                tv_pesoPig = itemView.findViewById(R.id.tv_pesoPig);
+                tv_sexoPig = itemView.findViewById(R.id.tv_sexoPig);
             }
         }
 

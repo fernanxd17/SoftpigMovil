@@ -15,24 +15,19 @@ import java.util.ArrayList;
 
 public class PigActivity extends AppCompatActivity {
 
-    ArrayList<Pig> listPig;
-    RecyclerView recyclerPig;
+    private RecyclerView recyclerPig;
+    private PigPresenter pigPresenter;
+    private PigAdapter pigAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pigs);
-        listPig = new ArrayList<Pig>();
+        pigPresenter = new PigPresenter();
         recyclerPig = findViewById(R.id.recyclerPig);
-        recyclerPig.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        showPigs();
-        PigAdapter PigAdapter = new PigAdapter(listPig);
-        recyclerPig.setAdapter(PigAdapter);
+        recyclerPig.setLayoutManager(new LinearLayoutManager(this));
+        pigAdapter = new PigAdapter(pigPresenter.getPigs());
+        recyclerPig.setAdapter(pigAdapter);
     }
 
-    public void showPigs(){
-        listPig = PigPresenter.getPigs();
-        PigAdapter pigAdapter = new PigAdapter(listPig);
-        this.recyclerPig.setAdapter(pigAdapter);
-    }
 }

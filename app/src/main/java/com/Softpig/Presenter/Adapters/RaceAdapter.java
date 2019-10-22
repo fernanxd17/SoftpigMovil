@@ -31,10 +31,9 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderRace holder, int position) {
-        holder.tv_idRace.setText(listRaces.get(position).getIdRace());
+        holder.tv_idRace.setText("ID: "+listRaces.get(position).getIdRace());
         holder.tv_nameRace.setText(listRaces.get(position).getRace());
         holder.tv_description.setText(listRaces.get(position).getDescription());
-        //holder.imagenEmployee.setImageResource('@drawable/');
     }
 
     @Override
@@ -44,7 +43,6 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace
 
     public class ViewHolderRace extends RecyclerView.ViewHolder {
 
-        ImageView imagenRace;
         TextView tv_idRace, tv_nameRace, tv_description;
 
         public ViewHolderRace(@NonNull View itemView) {

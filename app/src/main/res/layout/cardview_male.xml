@@ -5,8 +5,6 @@
     android:id="@+id/cardview_male"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginTop="10dp"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     android:background="#53292929">
     <RelativeLayout
@@ -16,7 +14,6 @@
             android:id="@+id/imagenMale"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_cardview"
-            android:background="@drawable/male_modificado"
             android:scaleType="centerCrop">
         </ImageView>
     </RelativeLayout>

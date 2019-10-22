@@ -16,24 +16,19 @@ import java.util.ArrayList;
 
 public class RaceActivity extends AppCompatActivity {
 
-    ArrayList<Race> listRaces;
-    RecyclerView recyclerRace;
+    private RecyclerView recyclerRace;
+    private RacePresenter racePresenter;
+    private RaceAdapter raceAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.races);
-        listRaces = new ArrayList<Race>();
+        racePresenter = new RacePresenter();
         recyclerRace = findViewById(R.id.recyclerRace);
-        recyclerRace.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        showRaces();
-        RaceAdapter raceAdapter = new RaceAdapter(listRaces);
+        recyclerRace.setLayoutManager(new LinearLayoutManager(this));
+        raceAdapter = new RaceAdapter(racePresenter.getRaces());
         recyclerRace.setAdapter(raceAdapter);
     }
 
-    private void showRaces() {
-        listRaces = RacePresenter.getRaces();
-        RaceAdapter raceAdapter = new RaceAdapter(listRaces);
-        this.recyclerRace.setAdapter(raceAdapter);
-    }
 }

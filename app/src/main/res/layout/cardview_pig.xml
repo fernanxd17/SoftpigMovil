@@ -5,10 +5,8 @@
     android:id="@+id/cardview_pig"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginTop="10dp"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929">
+    android:background="#000">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_cardview">
@@ -16,7 +14,6 @@
             android:id="@+id/imagenPig"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_cardview"
-            android:background="@drawable/lechon_modificado"
             android:scaleType="centerCrop">
         </ImageView>
     </RelativeLayout>
@@ -25,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/idPig"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/textSize_cardview"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp">
@@ -43,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/etapaPig"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
             <LinearLayout
@@ -56,21 +53,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pesoPig"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/textSize_cardview"
-                    android:layout_weight="0.5"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/custom_button">
+                    android:layout_weight="0.2"
+                    android:textAlignment="center">
                 </TextView>
                 <TextView
                     android:id="@+id/tv_sexoPig"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sexoPig"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/textSize_cardview"
-                    android:layout_weight="0.5"
-                    android:paddingLeft="150dp">
+                    android:layout_weight="0.8"
+                    android:textAlignment="center">
 
                 </TextView>
             </LinearLayout>

@@ -10,15 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".View.MaleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.FemaleActivity">
         </activity>
-        <activity android:name=".View.RaceActivity"></activity>
+        <activity android:name=".View.RaceActivity">
+        </activity>
         <activity android:name=".View.ArticleActivity">
         </activity>
         <activity android:name=".View.EmployeeActivity">
@@ -29,7 +25,12 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.ContainerActivity" />
-        <activity android:name=".View.PigActivity"></activity>
+        <activity android:name=".View.PigActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".View.ForgetPasswordActivity" />
         <activity android:name=".View.InstallationActivity">
         </activity>
