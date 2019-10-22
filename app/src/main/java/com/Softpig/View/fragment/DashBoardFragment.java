@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 
 import com.Softpig.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class DashBoardFragment extends Fragment {
 
 
-    public HomeFragment() {
+    public DashBoardFragment() {
         // Required empty public constructor
     }
 
@@ -25,8 +26,9 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_toolbar, container, false);
+
+        return inflater.inflate(R.layout.fragment_dash_board, container, false);
     }
+
 
 }

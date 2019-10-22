@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".View.MaleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.FemaleActivity">
         </activity>
@@ -23,22 +18,28 @@
         </activity>
         <activity android:name=".View.EmployeeActivity">
         </activity>
+        <activity android:name=".View.PerfilActivity"></activity>
         <activity
             android:name=".Navigation"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.ContainerActivity" />
-        <activity android:name=".View.PigActivity">
-        </activity>
+        <activity android:name=".View.PigActivity"></activity>
         <activity android:name=".View.ForgetPasswordActivity" />
         <activity android:name=".View.InstallationActivity">
         </activity>
-        <activity android:name=".View.MainActivity" />
+        <activity android:name=".View.MainMenuActivity"></activity>
         <activity android:name=".View.AboutActivity" />
         <activity android:name=".View.DictionaryActivity" />
         <activity
             android:name=".View.LoginActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
