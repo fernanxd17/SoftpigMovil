@@ -1,43 +1,55 @@
 package com.Softpig.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import android.util.Log;
+import android.view.View;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
+import com.google.android.material.navigation.NavigationView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 
 import com.Softpig.R;
 import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.MedicineFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.Softpig.View.fragment.PigFragment;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainMenuActivity extends AppCompatActivity  {
 
+    private static final String TAG = "EROR: ";
     private DashBoardFragment dashBoardFragment;
     private AlarmFragment alarmFragment;
     private MedicineFragment medicineFragment;
-    private PigActivity pigActivity;
+    private PigFragment pigFragment;
     private AppBarConfiguration mAppBarConfiguration;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+
+        try {
+            setContentView(R.layout.activity_navigation);
+            // ... rest of body of onCreateView() ...
+        } catch (Exception e) {
+            Log.e(TAG, "onCreateView", e);
+            throw e;
+        }
+
 
         alarmFragment = new AlarmFragment();
         medicineFragment = new MedicineFragment();
-        pigActivity = new PigActivity();
+        pigFragment = new PigFragment();
         dashBoardFragment = new DashBoardFragment();
 
         getSupportFragmentManager().beginTransaction().add(R.id.containerFragments, dashBoardFragment).commit();
@@ -49,7 +61,7 @@ public class MainMenuActivity extends AppCompatActivity  {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
