@@ -7,18 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_navigation">
 
-    <!--<androidx.appcompat.widget.ActionMenuView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <item android:id="@+id/action_search"
-            android:icon="@drawable/search"
-            android:title="@string/action_search"
-            android:showAsAction="ifRoom" />
-        <item android:id="@+id/action_settings"
-            android:title="@string/action_settings"
-            android:showAsAction="never" />
 
-    </androidx.appcompat.widget.ActionMenuView> -->
 
     <fragment
         android:id="@+id/containerFragments"
@@ -31,4 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation"
         />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

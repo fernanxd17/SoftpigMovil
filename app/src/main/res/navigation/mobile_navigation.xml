@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.Softpig.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_home"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment

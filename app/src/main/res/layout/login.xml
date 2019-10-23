@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/background"
     android:layout_height="match_parent"
-    tools:context="com.Softpig.View.LoginActivity">
+    tools:context="com.Softpig.LoginActivity">
 
     <LinearLayout
         android:id="@+id/ll_main_login"
@@ -80,7 +80,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
-                                android:hint="@string/app_codigo">
+                                android:hint="@string/app_codigo"
+                                android:text="0405">
                             </com.google.android.material.textfield.TextInputEditText>
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -120,7 +121,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textPassword"
-                                    android:hint="@string/app_contraseña">
+                                    android:hint="@string/app_contraseña"
+                                    android:text="0405">
 
                                 </com.google.android.material.textfield.TextInputEditText>
                             </com.google.android.material.textfield.TextInputLayout>

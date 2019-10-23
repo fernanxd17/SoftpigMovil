@@ -1,4 +1,4 @@
-package com.Softpig.View;
+package com.Softpig;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.Softpig.Presenter.MasterPresenter;
-import com.Softpig.R;
+import com.Softpig.View.AboutActivity;
+import com.Softpig.View.DictionaryActivity;
+import com.Softpig.View.ForgetPasswordActivity;
+import com.Softpig.View.MainMenuActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

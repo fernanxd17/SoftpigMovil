@@ -22,6 +22,10 @@
 
      <include layout="@layout/content_navigation" />
 
+    <include layout="@layout/bottombar"></include>
+
+
+
 
 
 

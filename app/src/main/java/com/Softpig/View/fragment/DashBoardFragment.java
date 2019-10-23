@@ -18,6 +18,7 @@ import com.Softpig.R;
 public class DashBoardFragment extends Fragment {
 
 
+
     public DashBoardFragment() {
         // Required empty public constructor
     }
@@ -26,6 +27,8 @@ public class DashBoardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
         return inflater.inflate(R.layout.fragment_dash_board, container, false);
     }
