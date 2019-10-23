@@ -27,8 +27,6 @@
 
         </activity>
         <activity android:name=".View.ForgetPasswordActivity" />
-        <activity android:name=".View.InstallationActivity">
-        </activity>
         <activity android:name=".View.MainMenuActivity"></activity>
         <activity android:name=".View.AboutActivity" />
         <activity android:name=".View.DictionaryActivity" />

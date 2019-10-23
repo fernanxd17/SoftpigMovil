@@ -9,7 +9,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
+import com.Softpig.View.fragment.InstallationFragment;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,8 +32,10 @@ public class MainMenuActivity extends AppCompatActivity  {
     private AlarmFragment alarmFragment;
     private MedicineFragment medicineFragment;
     private PigFragment pigFragment;
+    private InstallationFragment installationFragment;
     private EmployeeFragment employeeFragment;
     private AppBarConfiguration mAppBarConfiguration;
+    private ToolFragment articleFragment;
     private Bundle bundle;
 
 
@@ -49,6 +53,9 @@ public class MainMenuActivity extends AppCompatActivity  {
         pigFragment = new PigFragment();
         dashBoardFragment = new DashBoardFragment();
         employeeFragment = new EmployeeFragment();
+        installationFragment = new InstallationFragment();
+        articleFragment = new ToolFragment();
+
         bundle = new Bundle();
 
         getSupportFragmentManager().beginTransaction().add(R.id.containerFragments, dashBoardFragment).commit();
@@ -87,7 +94,15 @@ public class MainMenuActivity extends AppCompatActivity  {
 
     public void inflateEmployeeFragment(){
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
     }
 
+
+    public void inflateFragment(int idFragment) {
+        switch(idFragment){
+            case 0: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit(); break;
+            case 1: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit(); break;
+            case 2: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, installationFragment).commit(); break;
+            case 3: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, articleFragment).commit();
+        }
+    }
 }
