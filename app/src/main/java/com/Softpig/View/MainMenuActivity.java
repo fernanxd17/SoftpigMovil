@@ -8,6 +8,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.Softpig.View.fragment.EmployeeFragment;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity  {
     private AlarmFragment alarmFragment;
     private MedicineFragment medicineFragment;
     private PigFragment pigFragment;
+    private EmployeeFragment employeeFragment;
     private AppBarConfiguration mAppBarConfiguration;
     private Bundle bundle;
 
@@ -45,7 +48,7 @@ public class MainMenuActivity extends AppCompatActivity  {
         medicineFragment = new MedicineFragment();
         pigFragment = new PigFragment();
         dashBoardFragment = new DashBoardFragment();
-
+        employeeFragment = new EmployeeFragment();
         bundle = new Bundle();
 
         getSupportFragmentManager().beginTransaction().add(R.id.containerFragments, dashBoardFragment).commit();
@@ -82,5 +85,9 @@ public class MainMenuActivity extends AppCompatActivity  {
                 || super.onSupportNavigateUp();
     }
 
+    public void inflateEmployeeFragment(){
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
+    }
 
 }

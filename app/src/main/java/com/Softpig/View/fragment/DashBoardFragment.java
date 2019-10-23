@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 public class DashBoardFragment extends Fragment {
 
@@ -25,20 +26,17 @@ public class DashBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_dash_board, container, false);
-        this.tvNumAdmins = getActivity().findViewById(R.id.tv_num_admins);
-        this.tvNumOperators = getActivity().findViewById(R.id.tv_num_operators);
-        this.tvLookEmployees = getActivity().findViewById(R.id.tv_look_employees);
+        this.tvNumAdmins = view.findViewById(R.id.tv_num_admins);
+        this.tvNumOperators = view.findViewById(R.id.tv_num_operators);
+        this.tvLookEmployees = view.findViewById(R.id.tv_look_employees);
 
         this.tvLookEmployees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ((MainMenuActivity)getActivity()).inflateEmployeeFragment();
             }
         });
 
-
         return view;
     }
-
-
 }
