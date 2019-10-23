@@ -1,11 +1,9 @@
 package com.Softpig.View;
 
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
-import android.view.View;
+import com.Softpig.Presenter.MainMenuPresenter;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,7 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.view.Menu;
 import androidx.appcompat.widget.Toolbar;
 
@@ -22,35 +20,33 @@ import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.PigFragment;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainMenuActivity extends AppCompatActivity  {
 
-    private static final String TAG = "EROR: ";
+    private static MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
     private AlarmFragment alarmFragment;
     private MedicineFragment medicineFragment;
     private PigFragment pigFragment;
     private AppBarConfiguration mAppBarConfiguration;
+    private Bundle bundle;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation);
 
-        try {
-            setContentView(R.layout.activity_navigation);
-            // ... rest of body of onCreateView() ...
-        } catch (Exception e) {
-            Log.e(TAG, "onCreateView", e);
-            throw e;
-        }
-
+        mainMenuPresenter = new MainMenuPresenter();
 
         alarmFragment = new AlarmFragment();
         medicineFragment = new MedicineFragment();
         pigFragment = new PigFragment();
         dashBoardFragment = new DashBoardFragment();
+
+        bundle = new Bundle();
 
         getSupportFragmentManager().beginTransaction().add(R.id.containerFragments, dashBoardFragment).commit();
 
