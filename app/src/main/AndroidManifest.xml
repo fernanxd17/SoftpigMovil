@@ -15,8 +15,6 @@
         </activity>
         <activity android:name=".View.RaceActivity">
         </activity>
-        <activity android:name=".View.ArticleActivity">
-        </activity>
         <activity android:name=".View.PerfilActivity"></activity>
         <activity
             android:name=".Navigation"
