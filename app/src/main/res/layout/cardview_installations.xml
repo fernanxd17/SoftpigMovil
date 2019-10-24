@@ -2,27 +2,24 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
-
     android:id="@+id/cardview_installation"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="120dp"
     android:orientation="horizontal"
+    cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929"
-    android:layout_marginBottom="10dp">
+    cardview:cardElevation="0dp"
+    cardview:cardUseCompatPadding="true">
 
     <ImageView
         android:id="@+id/imageninstallation"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/instalacion"
-        android:scaleType="centerCrop">
+        android:layout_height="100dp">
     </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="5dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_weight="0.7"
@@ -39,8 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/name_instalation"
-                    android:paddingLeft="10dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:layout_weight="0.9"
                     android:textSize="@dimen/textSize_cardview">
                 </TextView>
@@ -51,8 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/idInstallation"
-                    android:paddingLeft="10dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:layout_gravity="end"
                     android:textSize="@dimen/textSize_cardview">
                 </TextView>
@@ -69,7 +64,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Tipo:"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="20dp">
                 </TextView>
 
@@ -79,7 +74,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/type_installation"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="20dp">
                 </TextView>
 
@@ -95,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Medidas:"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="20dp">
                 </TextView>
 
@@ -105,7 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/medidas_installations"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="20dp">
                 </TextView>
 

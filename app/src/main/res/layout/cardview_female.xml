@@ -5,17 +5,17 @@
     android:id="@+id/cardview_female"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
+    cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929">
+    cardview:cardElevation="0dp"
+    cardview:cardUseCompatPadding="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_cardview">
         <ImageView
             android:id="@+id/imagenFemale"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_cardview"
-            android:background="@drawable/female_mo"
-            android:scaleType="centerCrop">
+            android:layout_height="@dimen/height_cardview">
         </ImageView>
     </RelativeLayout>
     <TextView

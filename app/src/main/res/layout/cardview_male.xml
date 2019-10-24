@@ -5,16 +5,18 @@
     android:id="@+id/cardview_male"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
+    cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929">
+    cardview:cardElevation="0dp"
+    cardview:cardUseCompatPadding="true">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_cardview">
         <ImageView
             android:id="@+id/imagenMale"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_cardview"
-            android:scaleType="centerCrop">
+            android:layout_height="@dimen/height_cardview">
         </ImageView>
     </RelativeLayout>
     <TextView
@@ -22,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/idPig"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="20dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin">
     </TextView>
@@ -39,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/raceMale"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/textSize_cardview">
         </TextView>
 
@@ -48,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/conformacionfisica"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20dp">
         </TextView>
 

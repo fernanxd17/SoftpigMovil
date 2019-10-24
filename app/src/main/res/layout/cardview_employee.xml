@@ -5,9 +5,10 @@
     android:id="@+id/cardview_employee"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
+    cardview:cardBackgroundColor="#6018182a"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    android:background="#53292929"
-    android:layout_marginVertical="10dp">
+    cardview:cardElevation="0dp"
+    cardview:cardUseCompatPadding="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_cardview">
@@ -15,10 +16,8 @@
             android:id="@+id/imagenEmployee"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_cardview"
-            android:background="@drawable/employee_modificado"
-            android:scaleType="centerCrop">
+>
         </ImageView>
-
     </RelativeLayout>
 
     <TextView
