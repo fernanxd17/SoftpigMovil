@@ -15,11 +15,9 @@
         </activity>
         <activity android:name=".View.RaceActivity">
         </activity>
-        <activity android:name=".View.ArticleActivity">
-        </activity>
         <activity android:name=".View.PerfilActivity"></activity>
         <activity
-            android:name=".Navigation"
+            android:name=".View.NavigationLeft"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.ForgetPasswordActivity" />

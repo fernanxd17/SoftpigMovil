@@ -1,12 +1,13 @@
-package com.Softpig;
+package com.Softpig.View;
 
 import android.os.Bundle;
 
 /**import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.navigation.NavigationLeft;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;**/
 
+import com.Softpig.R;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,7 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-public class Navigation extends AppCompatActivity {
+public class NavigationLeft extends AppCompatActivity {
 
     //private AppBarConfiguration mAppBarConfiguration;
 
@@ -36,7 +37,7 @@ public class Navigation extends AppCompatActivity {
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = NavigationLeft.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);**/
     }
@@ -50,7 +51,7 @@ public class Navigation extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        /**NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        /**NavController navController = NavigationLeft.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();**/
         return false;
