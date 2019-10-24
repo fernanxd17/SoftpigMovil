@@ -122,7 +122,7 @@
 
             <LinearLayout
                 android:layout_below="@id/ll_empleyees"
-                android:id="@+id/ll_instalations"
+                android:id="@+id/ll_installations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -206,8 +206,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_below="@id/ll_instalations"
-                android:id="@+id/ll_email"
+                android:layout_below="@id/ll_installations"
+                android:id="@+id/ll_tool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -274,7 +274,7 @@
                             android:layout_gravity="left">
                         </TextView>
                         <TextView
-                            android:id="@+id/tv_type_tools"
+                            android:id="@+id/tv_num_type_tools"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="# Tipos de Herramientas"
