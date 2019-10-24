@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.Softpig.Presenter.MainMenuPresenter;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,6 +23,9 @@ import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.PigFragment;
+import com.google.android.material.tabs.TabLayout;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabReselectListener;
 
 public class MainMenuActivity extends AppCompatActivity  {
 
@@ -33,6 +37,8 @@ public class MainMenuActivity extends AppCompatActivity  {
     private EmployeeFragment employeeFragment;
     private AppBarConfiguration mAppBarConfiguration;
     private Bundle bundle;
+    BottomBar bottomBar;
+
 
 
 
@@ -40,16 +46,41 @@ public class MainMenuActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
-
-        mainMenuPresenter = new MainMenuPresenter();
-
+        setContentView(R.layout.main_menu);
         alarmFragment = new AlarmFragment();
         medicineFragment = new MedicineFragment();
         pigFragment = new PigFragment();
         dashBoardFragment = new DashBoardFragment();
         employeeFragment = new EmployeeFragment();
         bundle = new Bundle();
+        mainMenuPresenter = new MainMenuPresenter();
+        bottomBar = findViewById(R.id.bottombar);
+        bottomBar.setDefaultTab(R.id.ic_home); //Establecer que imagen aparece de primero
+        bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
+            @Override
+            public void onTabReSelected(int tabId) {
+                switch (tabId){
+                    case R.id.ic_home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
+                        break;
+                    case R.id.ic_pig:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigFragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
+                        break;
+                    case R.id.ic_medicine:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments,medicineFragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
+                        break;
+                    case R.id.ic_alert:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, alarmFragment)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
+                        break;
+
+                }
+            }
+        });
+
 
         getSupportFragmentManager().beginTransaction().add(R.id.containerFragments, dashBoardFragment).commit();
 

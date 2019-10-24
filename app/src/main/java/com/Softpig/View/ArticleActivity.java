@@ -17,19 +17,13 @@ import static com.Softpig.R.id.recyclerArticle;
 
 public class ArticleActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerArticle;
-    private ArticlePresenter articlePresenter;
-    private ArticleAdapter articleAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.articles);
-        articlePresenter = new ArticlePresenter();
-        recyclerArticle = findViewById(R.id.recyclerArticle);
-        recyclerArticle.setLayoutManager(new LinearLayoutManager(this));
-        articleAdapter = new ArticleAdapter(articlePresenter.getArticles());
-        recyclerArticle.setAdapter(articleAdapter);
+        setContentView(R.layout.fragment_tools);
+
     }
 
 }

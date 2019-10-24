@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs xmlns:android="http://schemas.android.com/apk/res/android">
     <tab
-        id="@+id/home"
+        id="@+id/ic_home"
         title="@string/tab_home"
         barColorWhereSelected="@color/primaryColor"
         icon="@drawable/home">
     </tab>
     <tab
-        id="@+id/pig"
+        id="@+id/ic_pig"
         title="@string/tab_pig"
         barColorWhereSelected="@color/primaryColor"
         icon="@drawable/pig">
     </tab>
     <tab
-        id="@+id/medicine"
+        id="@+id/ic_medicine"
         title="@string/tab_medicine"
         barColorWhereSelected="@color/primaryColor"
         icon="@drawable/medicine">
     </tab>
     <tab
-        id="@+id/alert"
+        id="@+id/ic_alert"
         title="@string/tab_alert"
         barColorWhereSelected="@color/primaryColor"
         icon="@drawable/alarm">

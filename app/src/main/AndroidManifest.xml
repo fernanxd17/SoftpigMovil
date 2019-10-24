@@ -22,10 +22,6 @@
             android:name=".Navigation"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".View.ContainerActivity" />
-        <activity android:name=".View.PigActivity">
-
-        </activity>
         <activity android:name=".View.ForgetPasswordActivity" />
         <activity android:name=".View.InstallationActivity">
         </activity>

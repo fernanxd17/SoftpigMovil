@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.Softpig.ui.tools.ToolsFragment"
+        android:name="com.Softpig.View.fragment.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
