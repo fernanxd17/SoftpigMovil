@@ -1,4 +1,4 @@
-package com.Softpig.View.fragment;
+package com.Softpig.View.fragment.Pig;
 
 
 import android.os.Bundle;

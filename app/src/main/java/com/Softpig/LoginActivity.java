@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.Softpig.Presenter.MasterPresenter;
-import com.Softpig.View.AboutActivity;
-import com.Softpig.View.DictionaryActivity;
 import com.Softpig.View.ForgetPasswordActivity;
 import com.Softpig.View.MainMenuActivity;
 
@@ -73,27 +71,9 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    /**
-     * Inicia About activity
-     * @param view, necesario para tener el control del metodo a traves del onClic
-     */
-    public void openAboutView(View view){
-        Intent i = new Intent();
-        i.setClass(this, AboutActivity.class);
-        startActivity(i);
 
 
-    }
 
-    /**
-     * Inicia Dictionary Activity
-     * @param view
-     */
-    public void openDictionaryView(View view){
-        Intent dictionary = new Intent();
-        dictionary.setClass(LoginActivity.this, DictionaryActivity.class);
-        startActivity(dictionary);
-    }
 
     /**
      * Inicia ForgetPassword activity

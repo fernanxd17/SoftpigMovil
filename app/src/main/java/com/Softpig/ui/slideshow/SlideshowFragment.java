@@ -20,7 +20,7 @@ public class SlideshowFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
+        /*slideshowViewModel =
                 ViewModelProviders.of(this).get(SlideshowViewModel.class);
         View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
@@ -29,7 +29,7 @@ public class SlideshowFragment extends Fragment {
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
-        return root;
+        });*/
+        return null;
     }
 }

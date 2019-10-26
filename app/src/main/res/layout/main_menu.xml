@@ -20,7 +20,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_nav_izq"
-        app:menu="@menu/activity_navigation_drawer2" />
+        app:menu="@menu/activity_navigation_drawer" />
 
     
 

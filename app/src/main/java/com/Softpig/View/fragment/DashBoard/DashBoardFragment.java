@@ -1,4 +1,4 @@
-package com.Softpig.View.fragment;
+package com.Softpig.View.fragment.DashBoard;
 
 import android.os.Bundle;
 

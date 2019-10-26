@@ -6,24 +6,28 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_female"
+            android:id="@+id/nav_male"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Reproductores" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_female"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Reproductoras" />
+        <item
+            android:id="@+id/nav_race"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Razas" />
         <item
-            android:id="@+id/nav_tools"
+            android:id="@+id/nav_report"
             android:icon="@drawable/ic_menu_manage"
             android:title="Informes" />
 
         <item
-            android:id="@+id/nav_share"
+            android:id="@+id/nav_dictionary"
             android:icon="@drawable/ic_menu_share"
             android:title="Diccionario Porcino" />
         <item
-            android:id="@+id/nav_send"
+            android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_send"
             android:title="Acerca De" />
 

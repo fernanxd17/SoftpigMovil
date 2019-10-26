@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/idFemale"
-        android:textColor="@android:color/white"
         android:textSize="20dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin">
     </TextView>
@@ -45,7 +44,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Nulipara:"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
             <TextView
@@ -54,7 +52,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/nulipara"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
         </LinearLayout>
@@ -69,7 +66,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Peso:"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
             <TextView
@@ -78,7 +74,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/pesoFemale"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
 
@@ -95,7 +90,6 @@
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:text="Gestación: "
-                   android:textColor="@android:color/white"
                    android:textSize="@dimen/textSize_cardview">
 
                </TextView>
@@ -105,7 +99,6 @@
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:text="@string/gestacion"
-                   android:textColor="@android:color/white"
                    android:textSize="@dimen/textSize_cardview">
 
                </TextView>

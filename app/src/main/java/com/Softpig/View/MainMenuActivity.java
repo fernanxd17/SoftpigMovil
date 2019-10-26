@@ -11,9 +11,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.Softpig.View.fragment.ToolFragment;
-import com.Softpig.View.fragment.EmployeeFragment;
-import com.Softpig.View.fragment.InstallationFragment;
+import com.Softpig.View.fragment.Tool.ToolFragment;
+import com.Softpig.View.fragment.Employee.EmployeeFragment;
+import com.Softpig.View.fragment.Installation.InstallationFragment;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,10 +25,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.Softpig.R;
-import com.Softpig.View.fragment.AlarmFragment;
-import com.Softpig.View.fragment.DashBoardFragment;
-import com.Softpig.View.fragment.MedicineFragment;
-import com.Softpig.View.fragment.PigFragment;
+import com.Softpig.View.fragment.Alarm.AlarmFragment;
+import com.Softpig.View.fragment.DashBoard.DashBoardFragment;
+import com.Softpig.View.fragment.Medicine.MedicineFragment;
+import com.Softpig.View.fragment.Pig.PigFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -73,7 +73,6 @@ public class MainMenuActivity extends AppCompatActivity  {
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId){
                     case R.id.ic_home:
-
                         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment)
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
                         break;
@@ -100,18 +99,15 @@ public class MainMenuActivity extends AppCompatActivity  {
             }
         });
 
-
-        //getSupportFragmentManager().beginTransaction().add(R.id.containerFragments, dashBoardFragment).commit();
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.fragment_dash_board, R.id.fragment_male, R.id.fragment_race, R.id.fragment_reports, R.id.fragment_dictionary,
-                R.id.fragment_about, R.id.fragment_out_login)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_dash_board,
+                R.id.nav_male, R.id.nav_female, R.id.nav_race, R.id.nav_dictionary,
+                R.id.nav_dictionary, R.id.nav_about, R.id.nav_out)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.containerFragments);

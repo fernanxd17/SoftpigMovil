@@ -3,54 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/fragment_dash_board">
+    app:startDestination="@+id/nav_dash_board">
 
     <fragment
-        android:id="@+id/fragment_dash_board"
-        android:name="com.Softpig.View.fragment.DashBoardFragment"
+        android:id="@+id/nav_dash_board"
+        android:name="com.Softpig.View.fragment.DashBoard.DashBoardFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_dash_board" />
 
     <fragment
-        android:id="@+id/fragment_female"
-        android:name="com.Softpig.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_female"
+        android:name="com.Softpig.View.fragment.Female.FemaleFragment"
         android:label="@string/menu_female"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_female" />
 
     <fragment
-        android:id="@+id/fragment_male"
-        android:name="com.Softpig.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_male"
+        android:name="com.Softpig.View.fragment.Male.MaleFragment"
         android:label="@string/menu_male"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_male" />
 
     <fragment
-        android:id="@+id/fragment_race"
-        android:name="com.Softpig.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_race"
+        android:name="com.Softpig.View.fragment.Race.RaceFragment"
         android:label="@string/menu_race"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/fragment_reports"
-        android:name="com.Softpig.ui.share.ShareFragment"
+        android:id="@+id/nav_reports"
+        android:name="com.Softpig.View.fragment.Report.ReportFragment"
         android:label="@string/menu_reports"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_report" />
 
     <fragment
-        android:id="@+id/fragment_dictionary"
-        android:name="com.Softpig.ui.send.SendFragment"
+        android:id="@+id/nav_dictionary"
+        android:name="com.Softpig.View.fragment.Dictionary.DictionaryFragment"
         android:label="@string/menu_dictionary"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_dictionary" />
 
     <fragment
-        android:id="@+id/fragment_about"
-        android:name="com.Softpig.ui.send.SendFragment"
+        android:id="@+id/nav_about"
+        android:name="com.Softpig.View.fragment.About.AboutFragment"
         android:label="@string/menu_about"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_about" />
 
     <fragment
-        android:id="@+id/fragment_out_login"
-        android:label="@string/menu_out"
-        tools:layout="@layout/fragment_send" />
-
+        android:id="@+id/nav_out_login"
+        android:label="@string/menu_out" />
 
 </navigation>
