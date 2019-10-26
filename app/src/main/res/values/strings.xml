@@ -82,12 +82,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Inicio</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_female">Reproductoras</string>
+    <string name="menu_male">Reproductor</string>
+    <string name="menu_race">Razas</string>
+    <string name="menu_reports">Informes</string>
+    <string name="menu_dictionary">Diccionario Porcino</string>
+    <string name="menu_about">Acerca De</string>
+    <string name="menu_out">Cerrar Sesión</string>
     <string name="idInstallation">01</string>
     <string name="name_instalation">Cochera 1</string>
     <string name="type_installation">Partos</string>
@@ -107,4 +108,5 @@
     <string name="gestacion">si</string>
     <string name="raceMale">Duroc</string>
     <string name="conformacionfisica">Conformación fisica del reproductor</string>
+    <string name="menu_home">Inicio</string>
 </resources>
