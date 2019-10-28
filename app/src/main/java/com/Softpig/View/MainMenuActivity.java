@@ -4,16 +4,11 @@ import android.os.Bundle;
 
 import com.Softpig.Presenter.MainMenuPresenter;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.Softpig.View.fragment.About.AboutFragment;
 import com.Softpig.View.fragment.Dictionary.DictionaryFragment;
@@ -72,6 +67,22 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
+
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
             employeeFragment = new EmployeeFragment();
@@ -88,17 +99,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             notificacion = new Toast(this);
         }
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
 
 
@@ -185,6 +187,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     }
 
+    /**
+     * Metodo que controla los controles de la navegación izquierda
+     * @param menuItem Item seleccionado
+     * @return True: acción realizada correctamente
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
@@ -204,16 +211,14 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).commit();
                 break;
             case R.id.nav_report:
-                notificacion.cancel();
-                notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
-                notificacion.show();
-                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
                 break;
             case R.id.nav_out:
-                //Aqui va el metodo de cerrar sesión
+                super.onBackPressed();
                 break;
 
         }
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

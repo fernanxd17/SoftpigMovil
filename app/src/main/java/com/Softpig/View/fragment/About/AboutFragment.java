@@ -28,9 +28,8 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainMenuActivity)getActivity()).setTitleTolbar("Acerca De");
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        return view;
     }
 
 }

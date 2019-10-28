@@ -14,10 +14,13 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.ForgetPasswordActivity" />
-        <activity android:name=".View.MainMenuActivity"></activity>
+        <activity android:name=".View.MainMenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -28,9 +28,8 @@ public class DictionaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainMenuActivity)getActivity()).setTitleTolbar("Diccionario Porcino");
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
+        return view;
     }
 
 }

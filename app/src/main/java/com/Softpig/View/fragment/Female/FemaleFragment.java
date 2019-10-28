@@ -33,12 +33,12 @@ public class FemaleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_female, container, false);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
+        View view =  inflater.inflate(R.layout.fragment_female, container, false);
         femalePresenter = new FemalePresenter();
         recyclerFemale = view.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
-        FemaleAdapter femaleAdapter = new FemaleAdapter(FemalePresenter.getFemale());
+        femaleAdapter = new FemaleAdapter(FemalePresenter.getFemale());
         recyclerFemale.setAdapter(femaleAdapter);
 
         return view;

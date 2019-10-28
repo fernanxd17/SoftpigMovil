@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview_male"
+    android:id="@+id/ll_male"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_cardview"
-    cardview:cardBackgroundColor="#60E4E2E2"
-    cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    cardview:cardElevation="0dp"
-    cardview:cardUseCompatPadding="true">
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardview_male"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_cardview">
-        <ImageView
-            android:id="@+id/imagenMale"
+        android:layout_height="@dimen/height_cardview"
+        cardview:cardBackgroundColor="#60E4E2E2"
+        cardview:cardCornerRadius="@dimen/cornerradius_cardview"
+        cardview:cardUseCompatPadding="true">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_cardview">
-        </ImageView>
-    </RelativeLayout>
-    <TextView
-        android:id="@+id/tv_idMale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/idPig"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin">
-    </TextView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:paddingLeft="@dimen/padding_cardview"
-        android:paddingBottom="@dimen/padding_cardview">
-
+            <ImageView
+                android:id="@+id/imagenMale"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_cardview">
+            </ImageView>
+        </RelativeLayout>
         <TextView
-            android:id="@+id/tv_raceMale"
+            android:id="@+id/tv_idMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/raceMale"
+            android:text="@string/idPig"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/textSize_cardview">
+            android:textSize="20dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
         </TextView>
-
-        <TextView
-            android:id="@+id/tv_conformacionFisica"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/conformacionfisica"
-            android:textColor="@android:color/black"
-            android:textSize="20dp">
-        </TextView>
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:paddingLeft="@dimen/padding_cardview"
+            android:paddingBottom="@dimen/padding_cardview">
 
+            <TextView
+                android:id="@+id/tv_raceMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/raceMale"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
 
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/tv_conformacionFisica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/conformacionfisica"
+                android:textColor="@android:color/black"
+                android:textSize="20dp">
+            </TextView>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+        >
+
+</LinearLayout>
+
 
 
 
