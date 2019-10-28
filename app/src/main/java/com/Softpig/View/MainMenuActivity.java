@@ -64,6 +64,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private BottomNavigationView bottomNavigationView;
     private DrawerLayout drawer;
     private Toast notificacion;
+    private static Toolbar toolbar;
 
 
     @Override
@@ -87,7 +88,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             notificacion = new Toast(this);
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -106,17 +107,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
 
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        /*mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_dash_board,
-                R.id.nav_male, R.id.nav_female, R.id.nav_race, R.id.nav_dictionary,
-                R.id.nav_dictionary, R.id.nav_about, R.id.nav_out)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.containerFragments);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);*/
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener=
@@ -151,11 +141,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);
         return true;
     }
-
 
 
     public void inflateFragment(int idFragment) {
@@ -227,5 +215,14 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         }
         return true;
+    }
+
+    /**
+     * Metodo para cambiar el titulo del toolbar (barra superior) segun el fragment en que
+     * se encuentre
+     * @param title Titulo nuevo
+     */
+    public void setTitleTolbar(String title){
+        this.toolbar.setTitle(title);
     }
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.Softpig.Presenter.Adapters.PigAdapter;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +35,7 @@ public class PigFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_pigs, container, false);
-
+        ((MainMenuActivity)getActivity()).setTitleTolbar("Porcinos");
         pigPresenter = new PigPresenter();
         recyclerPig = view.findViewById(R.id.recyclerPig);
         recyclerPig.setLayoutManager(new LinearLayoutManager(getContext()));

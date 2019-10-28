@@ -37,6 +37,7 @@ public class MaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         maleViewModel = ViewModelProviders.of(this).get(MaleViewModel.class);
         View view = inflater.inflate(R.layout.fragment_male, container, false);
+        ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductores");
         malePresenter = new MalePresenter();
         recyclerMale = view.findViewById(R.id.recyclerMale);
         recyclerMale.setLayoutManager(new LinearLayoutManager(getContext()));

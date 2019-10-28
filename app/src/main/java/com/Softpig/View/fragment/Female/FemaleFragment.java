@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.Softpig.Presenter.Adapters.FemaleAdapter;
 import com.Softpig.Presenter.FemalePresenter;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +34,7 @@ public class FemaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_female, container, false);
+        ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
         femalePresenter = new FemalePresenter();
         recyclerFemale = view.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));

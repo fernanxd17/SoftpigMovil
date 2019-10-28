@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +27,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((MainMenuActivity)getActivity()).setTitleTolbar("Acerca De");
         TextView textView = new TextView(getActivity());
         textView.setText(R.string.hello_blank_fragment);
         return textView;
