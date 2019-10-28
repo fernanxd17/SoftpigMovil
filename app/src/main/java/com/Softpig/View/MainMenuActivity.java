@@ -5,20 +5,31 @@ import android.os.Bundle;
 import com.Softpig.Presenter.MainMenuPresenter;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.Softpig.View.fragment.About.AboutFragment;
+import com.Softpig.View.fragment.Dictionary.DictionaryFragment;
+import com.Softpig.View.fragment.Female.FemaleFragment;
+import com.Softpig.View.fragment.Male.MaleFragment;
+import com.Softpig.View.fragment.Profile.ProfileFragment;
+import com.Softpig.View.fragment.Race.RaceFragment;
+import com.Softpig.View.fragment.Report.ReportFragment;
 import com.Softpig.View.fragment.Tool.ToolFragment;
 import com.Softpig.View.fragment.Employee.EmployeeFragment;
 import com.Softpig.View.fragment.Installation.InstallationFragment;
-import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,94 +40,115 @@ import com.Softpig.View.fragment.Alarm.AlarmFragment;
 import com.Softpig.View.fragment.DashBoard.DashBoardFragment;
 import com.Softpig.View.fragment.Medicine.MedicineFragment;
 import com.Softpig.View.fragment.Pig.PigFragment;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainMenuActivity extends AppCompatActivity  {
+public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{
 
     private static MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
     private AlarmFragment alarmFragment;
+    private FemaleFragment femaleFragment;
+    private MaleFragment maleFragment;
+    private RaceFragment raceFragment;
+    private ReportFragment reportFragment;
+    private DictionaryFragment dictionaryFragment;
     private MedicineFragment medicineFragment;
     private PigFragment pigFragment;
     private InstallationFragment installationFragment;
     private EmployeeFragment employeeFragment;
+    private ProfileFragment profileFragment;
     private AppBarConfiguration mAppBarConfiguration;
     private ToolFragment articleFragment;
     private Bundle bundle;
-    BottomBar bottomBar;
-    Toast toast;
-
-
-
+    private BottomNavigationView bottomNavigationView;
+    private DrawerLayout drawer;
+    private Toast notificacion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-        alarmFragment = new AlarmFragment();
-        medicineFragment = new MedicineFragment();
-        pigFragment = new PigFragment();
-        dashBoardFragment = new DashBoardFragment();
-        employeeFragment = new EmployeeFragment();
-        installationFragment = new InstallationFragment();
-        articleFragment = new ToolFragment();
-        toast = new Toast(MainMenuActivity.this);
 
-        bundle = new Bundle();
-        mainMenuPresenter = new MainMenuPresenter();
-        bottomBar = findViewById(R.id.bottombar);
-        bottomBar.setDefaultTab(R.id.ic_home); //Establecer que imagen aparece de primero
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                switch (tabId){
-                    case R.id.ic_home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
-                        break;
-                    case R.id.ic_pig:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
-                        break;
-                    case R.id.ic_medicine:
-                        toast.cancel();
-                        toast = Toast.makeText(MainMenuActivity.this,"Función no disponible aún...", Toast.LENGTH_LONG);
-                        toast.show();
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments,medicineFragment)
-                          //      .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
-                        break;
-                    case R.id.ic_alert:
-                        toast.cancel();
-                        toast = Toast.makeText(MainMenuActivity.this,"Función no disponible aún...", Toast.LENGTH_LONG);
-                        toast.show();
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, alarmFragment)
-                          //      .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).addToBackStack(null).commit();
-                        break;
-
-                }
-            }
-        });
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
+            employeeFragment = new EmployeeFragment();
+            dashBoardFragment = new DashBoardFragment();
+            installationFragment = new InstallationFragment();
+            articleFragment = new ToolFragment();
+            pigFragment = new PigFragment();
+            femaleFragment = new FemaleFragment();
+            maleFragment = new MaleFragment();
+            profileFragment = new ProfileFragment();
+            raceFragment = new RaceFragment();
+            dictionaryFragment = new DictionaryFragment();
+            mainMenuPresenter = new MainMenuPresenter();
+            notificacion = new Toast(this);
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+
+
+        bottomNavigationView = findViewById(R.id.bottombar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_dash_board,
+        /*mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_dash_board,
                 R.id.nav_male, R.id.nav_female, R.id.nav_race, R.id.nav_dictionary,
                 R.id.nav_dictionary, R.id.nav_about, R.id.nav_out)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.containerFragments);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-
-
+        NavigationUI.setupWithNavController(navigationView, navController);*/
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener=
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    Fragment selectFragment = null;
+                    switch (menuItem.getItemId()){
+                        case R.id.ic_home:
+                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit();
+                            break;
+                        case R.id.ic_pig:
+                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigFragment).commit();
+                            break;
+                        case R.id.ic_medicine:
+                            notificacion.cancel();
+                            notificacion = notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
+                            notificacion.show();
+                            //selectFragment = new MedicineFragment();
+                            break;
+                        case R.id.ic_alert:
+                            notificacion.cancel();
+                            notificacion = notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
+                            notificacion.show();
+                            //selectFragment = new AlarmFragment();
+                            break;
+                        default:
+                            return false;
+                    }
+                    return true;
+                }
+            };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -124,12 +156,7 @@ public class MainMenuActivity extends AppCompatActivity  {
         return true;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.containerFragments);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+
 
     public void inflateFragment(int idFragment) {
         switch(idFragment){
@@ -140,7 +167,7 @@ public class MainMenuActivity extends AppCompatActivity  {
         }
     }
 
-    //código
+    //código para quitar las barras que de navegación de android en algunas versiones
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -158,5 +185,47 @@ public class MainMenuActivity extends AppCompatActivity  {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.nav_female:
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, femaleFragment).commit();
+                break;
+            case R.id.nav_male:
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, maleFragment).commit();
+                break;
+            case R.id.nav_race:
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, raceFragment).commit();
+                break;
+            case R.id.nav_dictionary:
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
+                break;
+            case R.id.nav_about:
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).commit();
+                break;
+            case R.id.nav_report:
+                notificacion.cancel();
+                notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
+                notificacion.show();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
+                break;
+            case R.id.nav_out:
+                //Aqui va el metodo de cerrar sesión
+                break;
+
+        }
+        return true;
     }
 }

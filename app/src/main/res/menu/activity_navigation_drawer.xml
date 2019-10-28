@@ -3,44 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="Mi Perfil"/>
+
     <group android:checkableBehavior="single">
-
-        <item
-            android:id="@+id/nav_male"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Reproductores" />
-        <item
-            android:id="@+id/nav_female"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Reproductoras" />
-        <item
-            android:id="@+id/nav_race"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Razas" />
-        <item
-            android:id="@+id/nav_report"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Informes" />
-
-        <item
-            android:id="@+id/nav_dictionary"
-            android:icon="@drawable/ic_menu_share"
-            android:title="Diccionario Porcino" />
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Acerca De" />
-
-        <item
-            android:id="@+id/nav_out"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Cerrar Sesión" />
+        <item android:title="Información Porcinos">
+            <menu>
+                <item
+                    android:id="@+id/nav_male"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="Reproductores" />
+                <item
+                    android:id="@+id/nav_female"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="Reproductoras" />
+                <item
+                    android:id="@+id/nav_race"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Razas" />
+                <item
+                    android:id="@+id/nav_report"
+                    android:icon="@drawable/ic_menu_manage"
+                    android:title="Informes" />
+            </menu>
+        </item>
     </group>
 
-    <!--<item android:title="Communicate">
-        <menu>
-
-        </menu>
-    </item>-->
-
+    <group android:checkableBehavior="single">
+        <item android:title="Otra Opciones">
+            <menu>
+                <item
+                    android:id="@+id/nav_dictionary"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="Diccionario Porcino" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Acerca De" />
+                <item
+                    android:id="@+id/nav_out"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Cerrar Sesión" />
+            </menu>
+        </item>
+    </group>
 </menu>

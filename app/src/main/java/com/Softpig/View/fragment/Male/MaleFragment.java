@@ -4,6 +4,7 @@ package com.Softpig.View.fragment.Male;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.Softpig.Presenter.Adapters.MaleAdapter;
 import com.Softpig.Presenter.MalePresenter;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,15 +26,17 @@ public class MaleFragment extends Fragment {
     private RecyclerView recyclerMale;
     private MalePresenter malePresenter;
     private MaleAdapter maleAdapter;
+    private MaleViewModel maleViewModel;
+
     public MaleFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_male, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        maleViewModel = ViewModelProviders.of(this).get(MaleViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_male, container, false);
         malePresenter = new MalePresenter();
         recyclerMale = view.findViewById(R.id.recyclerMale);
         recyclerMale.setLayoutManager(new LinearLayoutManager(getContext()));
