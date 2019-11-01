@@ -11,11 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.Softpig.Model.Race;
 import com.Softpig.Presenter.Adapters.RaceAdapter;
 import com.Softpig.Presenter.RacePresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +29,7 @@ public class RaceFragment extends Fragment {
     private RecyclerView recyclerRace;
     private RacePresenter racePresenter;
     private RaceAdapter raceAdapter;
+
     public RaceFragment() {
         // Required empty public constructor
     }
@@ -38,10 +43,14 @@ public class RaceFragment extends Fragment {
         racePresenter = new RacePresenter();
         recyclerRace = view.findViewById(R.id.recyclerRace);
         recyclerRace.setLayoutManager(new LinearLayoutManager(getContext()));
-        raceAdapter = new RaceAdapter(racePresenter.getRaces());
+        raceAdapter = new RaceAdapter(getRaces());
         recyclerRace.setAdapter(raceAdapter);
 
         return view;
+    }
+
+    private ArrayList<Race> getRaces(){
+        return  racePresenter.getRaces(getContext());
     }
 
 }
