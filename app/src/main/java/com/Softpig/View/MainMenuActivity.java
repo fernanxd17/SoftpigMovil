@@ -99,12 +99,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             notificacion = new Toast(this);
         }
 
-
-
-
-
-
-
         bottomNavigationView = findViewById(R.id.bottombar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
