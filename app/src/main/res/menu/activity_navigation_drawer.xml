@@ -17,12 +17,12 @@
                     android:title="Reproductoras" />
                 <item
                     android:id="@+id/nav_race"
-                    android:icon="@drawable/race"
+                    android:icon="@drawable/ic_tonality"
                     android:title="Razas" />
                 <item
                     android:id="@+id/nav_report"
                     android:enabled="false"
-                    android:icon="@drawable/ic_menu_manage"
+                    android:icon="@drawable/ic_timeline"
                     android:title="Informes" />
             </menu>
         </item>
@@ -33,15 +33,15 @@
             <menu>
                 <item
                     android:id="@+id/nav_dictionary"
-                    android:icon="@drawable/ic_menu_share"
+                    android:icon="@drawable/ic_action_book"
                     android:title="Diccionario Porcino" />
                 <item
                     android:id="@+id/nav_about"
-                    android:icon="@drawable/ic_menu_send"
+                    android:icon="@drawable/ic_copyright"
                     android:title="Acerca De" />
                 <item
                     android:id="@+id/nav_out"
-                    android:icon="@drawable/ic_menu_send"
+                    android:icon="@drawable/ic_action_process_end"
                     android:title="Cerrar Sesión" />
             </menu>
         </item>
