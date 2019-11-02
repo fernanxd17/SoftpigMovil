@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    android:orientation="vertical"
+    tools:context="com.Softpig.Activitys.DictionaryActivity">
+
+    <LinearLayout
+        android:id="@+id/llRaza"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_nombre_raza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/app_nombre_raza"
+            android:textAlignment="center"
+            android:textSize="35sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_nombre_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/app_id"
+            android:textSize="15sp">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/ll_desinfeccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="@string/app_descripcion_raza"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_descripcion_raza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_desc_raza"
+                android:textAlignment="inherit">
+
+            </TextView>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_imagen_raza"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher">
+
+        </ImageView>
+    </LinearLayout>
+</LinearLayout>

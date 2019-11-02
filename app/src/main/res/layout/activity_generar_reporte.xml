@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="124dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:src="@drawable/porcino" />
+
+            <Button
+                android:id="@+id/reporte_fertilidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@color/secondaryLightColor"
+                android:gravity="center"
+                android:onClick="btfertilidad"
+                android:text="@string/app_reporteFerti">
+
+            </Button>
+
+            <Button
+                android:id="@+id/reporte_productiva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@color/secondaryLightColor"
+                android:gravity="center"
+                android:onClick="btproductividad"
+                android:text="@string/app_reportePro">
+
+            </Button>
+
+            <Button
+                android:id="@+id/bt_reporte_reproductoras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@color/secondaryLightColor"
+                android:gravity="center"
+                android:onClick="btreproductoras"
+                android:text="@string/app_reporteRepro">
+
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
