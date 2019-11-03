@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/ll_cabezera_main"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:background="@color/secondaryColor">
+
+        <ImageView
+            android:id="@+id/iv_menu_main"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#000"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="15dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/et_cabezera_main"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:text="Granja San Pablo UFPS"
+            android:textSize="25sp"
+            android:textAlignment="textStart"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginLeft="10dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_home"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/iv_home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#000"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="15dp">
+        </ImageView>
+
+
+
+        <TextView
+            android:id="@+id/et_home"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:text="Inicio"
+            android:textSize="25sp"
+            android:textAlignment="textStart"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginLeft="10dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_empleyee"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp"
+        android:background="#fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empleados"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_gravity="left">
+            </TextView>
+
+            <TextView
+                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="50 Empleados registrados"
+                android:textStyle="bold"
+                android:textAlignment="textEnd"
+                android:textSize="15dp">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_email"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center_vertical">
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Empleados Administrativos: 20"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="right">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Empleados operativos 30"
+                    android:layout_gravity="right">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Empleados"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="right">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_instalations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp"
+        android:background="#fff"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instalaciones"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_gravity="left">
+            </TextView>
+
+            <TextView
+                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mas Información"
+                android:textStyle="bold"
+                android:textAlignment="textEnd"
+                android:textSize="15dp">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_email"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center_vertical">
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Instalaciones Registradas"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="right">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mas información"
+                    android:layout_gravity="right">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Instalaciones"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="right">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"
+        android:background="#fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Herramientas de Trabajo"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_gravity="left">
+            </TextView>
+
+            <TextView
+                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mas Información"
+                android:textStyle="bold"
+                android:textAlignment="textEnd"
+                android:textSize="15dp">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_email"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center_vertical">
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 Herramientas de Trabajo"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="right">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mas Información"
+                    android:layout_gravity="right">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Herramientas de Trabajo"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="right">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_pie_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/secondaryColor"
+        android:layout_gravity="end">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp">
+
+            <ImageView
+                android:id="@+id/iv_menu_main"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="45dp">
+
+            <ImageView
+                android:id="@+id/iv_menu_main"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Porcinos">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="45dp">
+
+            <ImageView
+                android:id="@+id/iv_menu_main"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicina">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="45dp">
+
+            <ImageView
+                android:id="@+id/iv_menu_main"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#000"
+                android:layout_gravity="center">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarmas">
+            </TextView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a369b11d328ece14ee8a87d5bf09be70257ac27
+
+</LinearLayout>

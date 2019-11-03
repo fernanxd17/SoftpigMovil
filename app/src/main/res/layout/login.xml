@@ -1,260 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
     android:layout_height="match_parent"
-    tools:context="com.Softpig.LoginActivity">
+    android:background="@color/primaryColor"
+    tools:context="com.Softpig.Activitys.LoginActivity">
 
     <LinearLayout
-        android:id="@+id/ll_main_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
-        android:orientation="vertical">
-
-
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:gravity="bottom">
+            android:layout_weight="0.6"
+            android:paddingHorizontal="20dp">
+
             <ImageView
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/logo_softpig">
-            </ImageView>
-        </RelativeLayout>
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:fillViewport="true"
-            android:fitsSystemWindows="true">
-
-            <LinearLayout
+                android:id="@+id/iv_softpig"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_centerInParent="true"
+                android:background="@drawable/login_softpig" />
+        </RelativeLayout>
 
+        <LinearLayout
 
-                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_code_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="#000">
+
+                </ImageView>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/padding_horizontal_login"
-                    android:layout_weight="0.2"
-                    android:gravity="center">
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:id="@+id/ll_code_user"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_code_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginBottom="15dp"
+                        android:hint="@string/app_codigo"
+                        android:inputType="number">
 
-                        <ImageView
-                            android:id="@+id/iv_user"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                    </com.google.android.material.textfield.TextInputEditText>
 
-                            style="@style/RaisedButtonDark"
-                            android:background="@drawable/ic_person">
-                        </ImageView>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:theme="@style/EditTextWhite"
-                            android:focusableInTouchMode="false">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etCodeUser"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:hint="@string/app_codigo"
-                                android:text="0405">
-                            </com.google.android.material.textfield.TextInputEditText>
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="15dp">
-
-                        <ImageView
-                            android:layout_gravity="center"
-                            android:id="@+id/iv_password"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/ic_lock">
-                        </ImageView>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:weightSum="1"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:theme="@style/EditTextWhite"
-                                android:focusedByDefault="false"
-                                android:layout_weight="0.2">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/etPassword"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:inputType="textPassword"
-                                    android:hint="@string/app_contraseña"
-                                    android:text="0405">
-
-                                </com.google.android.material.textfield.TextInputEditText>
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <ImageView
-                                android:layout_gravity="center"
-                                android:id="@+id/as"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/ic_remove_red_eye"
-                                android:layout_weight="0.8">
-                            </ImageView>
-
-                        </LinearLayout>
-
-
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/etForgetPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_olvidocontraseña"
-                        android:textStyle="bold"
-                        android:textColor="@color/editTextColorWhite"
-                        android:layout_gravity="right">
-                    </TextView>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginTop="45dp">
-                        <Button
-
-                            android:id="@+id/btLoginUp"
-                            android:layout_gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/app_iniciar"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textAllCaps="false"
-                            style="@style/RaisedButtonDark"
-                            android:background="@drawable/custom_button">
-                        </Button>
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_down"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.8"
-                    android:gravity="bottom">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_centerInParent="true">
-
-                        <LinearLayout
-                            android:layout_centerInParent="true"
-                            android:id="@+id/ll_down_first"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center">
-
-                            <TextView
-                                android:id="@+id/tvDictionary"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Diccionario"
-                                android:textStyle="bold"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/textSize_Dictionary">
-                            </TextView>
-                            <TextView
-                                android:id="@+id/divider"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" | "
-                                android:textStyle="bold"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/textSize_Dictionary">
-                            </TextView>
-                            <TextView
-                                android:id="@+id/tvAbout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Acerca De"
-                                android:textStyle="bold"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/textSize_Dictionary">
-                            </TextView>
-                        </LinearLayout>
-
-                        <LinearLayout
-
-                            android:layout_below="@id/ll_down_first"
-                            android:layout_gravity="center"
-                            android:id="@+id/ll_down_second"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:id="@+id/copyrigth"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="TODOS LOS DERECHOS RESERVADOR 2019"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/textSize_Dictionary">
-                            </TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_password"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="#000">
+
+                </ImageView>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
+                        android:layout_width="160dp"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="5dp"
+                        android:hint="@string/app_contraseña"
+                        android:inputType="textPassword">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
+                <ImageView
+                    android:id="@+id/iv_hide_password"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="#000">
 
-        </ScrollView>
+                </ImageView>
+            </LinearLayout>
 
+            <TextView
+                android:id="@+id/et_forget_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="start"
+                android:text="@string/app_olvidocontraseña">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/bt_loginup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_iniciar"
+                android:theme="@style/RaisedButtonDark">
+
+            </Button>
+
+
+            <LinearLayout
+                android:id="@+id/ll_down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_down_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_dictionary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_diccionario_porcino">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/divider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" | ">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_acercade">
+
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_down_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/copyrigth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_derechos_reservados">
+
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

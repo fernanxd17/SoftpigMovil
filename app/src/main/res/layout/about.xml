@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.Softpig.Activitys.AboutActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_logo_about"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:id="@+id/iv_softpig"
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/login_softpig" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="50dp">
+
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:text="Acerca de Softpig"
+            android:textAlignment="center"
+            android:textSize="35sp">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/ll_email"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="#fff"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_email"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="#000">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="290dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:text="gidis@ufps.edu.co"
+                android:textAlignment="textStart"
+                android:textSize="15sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_web"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:background="#fff"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_web"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="#000">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_web"
+                android:layout_width="290dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:text="gidis.ufps.edu.co/softporc/softporc"
+                android:textAlignment="textStart"
+                android:textSize="15sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_down_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="0dp"
+        android:background="@color/secondaryColor"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_loginup_about"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="INICIAR SESIÓN"
+            android:textAlignment="center"
+            android:textSize="35sp">
+
+        </TextView>
+
+    </LinearLayout>
+</LinearLayout>
