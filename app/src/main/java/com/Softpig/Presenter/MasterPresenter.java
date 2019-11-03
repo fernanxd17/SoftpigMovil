@@ -24,7 +24,7 @@ public class MasterPresenter {
 
        } catch (Exception e) {
 
-           //Hubo un error conectandose al servidor
+           //Hubo un fragment_error conectandose al servidor
        }
 
        return null;
@@ -39,7 +39,7 @@ public class MasterPresenter {
 
         }catch(Exception e){
 
-            //Hubo un error conectandose al servidor
+            //Hubo un fragment_error conectandose al servidor
         }
 
        return true;
