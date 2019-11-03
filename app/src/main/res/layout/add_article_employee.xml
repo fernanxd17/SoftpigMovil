@@ -1,55 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/tool_person"
     android:layout_height="match_parent"
-    android:background="@drawable/tool_person">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#40E4E2E2"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+    tools:context="com.Softpig.LoginActivity">
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="agregar">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:layout_gravity="center">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="agregar">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/padding_horizontal_login"
+                    android:layout_gravity="center"
+                    android:background="#60E4E2E2">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_code_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        </Spinner>
-        <Button
 
-            android:id="@+id/btLoginUp"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_iniciar"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            style="@style/RaisedButtonDark"
-            android:background="@drawable/custom_button">
-        </Button>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/EditTextWhite"
+                            android:focusableInTouchMode="false">
 
-    </LinearLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCodeUser"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:hint="@string/app_codigo"
+                                android:text="0405">
+                            </com.google.android.material.textfield.TextInputEditText>
 
-</LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:theme="@style/EditTextWhite"
+                                android:focusedByDefault="false"
+                                android:layout_weight="0.2">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textPassword"
+                                    android:hint="@string/app_contraseña"
+                                    android:text="0405">
+
+                                </com.google.android.material.textfield.TextInputEditText>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="45dp">
+                        <Button
+
+                            android:id="@+id/btLoginUp"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_iniciar"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textAllCaps="false"
+                            style="@style/RaisedButtonDark"
+                            android:background="@drawable/custom_button">
+                        </Button>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+        </ScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

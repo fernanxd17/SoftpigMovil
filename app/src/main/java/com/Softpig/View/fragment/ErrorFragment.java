@@ -1,4 +1,4 @@
 package com.Softpig.View.fragment;
 
-class ErrorFragment {
+public class ErrorFragment {
 }

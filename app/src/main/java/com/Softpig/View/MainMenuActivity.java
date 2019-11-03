@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.Softpig.View.fragment.About.AboutFragment;
 import com.Softpig.View.fragment.Dictionary.DictionaryFragment;
+import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.Female.FemaleFragment;
 import com.Softpig.View.fragment.Male.MaleFragment;
 import com.Softpig.View.fragment.Profile.ProfileFragment;
@@ -53,6 +54,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private InstallationFragment installationFragment;
     private EmployeeFragment employeeFragment;
     private ProfileFragment profileFragment;
+    private ErrorFragment errorFragment;
     private AppBarConfiguration mAppBarConfiguration;
     private ToolFragment articleFragment;
     private Bundle bundle;
@@ -148,6 +150,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             case 1: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit(); break;
             case 2: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, installationFragment).commit(); break;
             case 3: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, articleFragment).commit();
+            case 4: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).commit();
         }
     }
 

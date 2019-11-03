@@ -163,13 +163,41 @@
                         android:text="Estado"
                         android:layout_marginBottom="5dp">
                     </TextView>
+                    <TextView
+                        android:id="@+id/tv_contract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contrato"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salario"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
 
                     <TextView
                         android:id="@+id/tv_installation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="Instalación"></TextView>
+                        android:text="Dependencia"></TextView>
+                    <TextView
+                        android:id="@+id/tv_date_admission"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ingreso: "
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_date_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salida: "
+                        android:layout_marginBottom="5dp">
+                    </TextView>
                     <TextView
                         android:id="@+id/tv_assigned_items"
                         android:layout_width="wrap_content"
