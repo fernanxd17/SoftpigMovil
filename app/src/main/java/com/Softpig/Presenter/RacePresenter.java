@@ -52,7 +52,7 @@ public class RacePresenter {
         progressDialog.show();
 
 
-        String url = "http://c2cc3ab4.ngrok.io/api/race_list";
+        String url = "http://5ff0bac3.ngrok.io/api/race_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
