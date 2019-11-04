@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,35 +19,74 @@ import com.Softpig.View.ProfileActivity;
 import com.Softpig.View.fragment.Employee.EmployeeFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHolderEmployee> {
+public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHolderEmployee> implements Filterable {
 
-    ArrayList<Employee> listEmployee;
+
+    List<Employee> listEmployeeFull;
+    List<Employee> listEmployee;
     private Context context;
 
-    public EmployeeAdapter(ArrayList<Employee> listEmployee, Context context) {
+    public EmployeeAdapter(List<Employee> listEmployee, Context context) {
         this.listEmployee = listEmployee;
+        this.listEmployeeFull = new ArrayList<>(listEmployee);
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolderEmployee onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_employee,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_employee,parent, false);
+
         return new ViewHolderEmployee(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderEmployee holder, int position) {
-        holder.tv_idEmployee.setText("ID: "+listEmployee.get(position).getIdEmployee());
-        holder.tv_nameEmployee.setText(listEmployee.get(position).getName());
-        holder.tv_typeEmployee.setText(listEmployee.get(position).getRole());
+        Employee employee = listEmployee.get(position);
+        holder.tv_idEmployee.setText("ID: "+employee.getIdEmployee());
+        holder.tv_nameEmployee.setText(employee.getFirstName()+ " "+employee.getLastName());
+        holder.tv_typeEmployee.setText(employee.getRole());
     }
 
     @Override
     public int getItemCount() {
         return this.listEmployee.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return employeeFiltrer;
+    }
+
+    private Filter employeeFiltrer = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Employee> listaFiltrada = new ArrayList<>();
+            if(charSequence == null || charSequence.length()==0){
+                listaFiltrada.addAll(listEmployeeFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Employee employee: listEmployeeFull){
+                    if(employee.getFirstName().toLowerCase().contains(filterPattern)){
+                        listaFiltrada.add(employee);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = listaFiltrada;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listEmployee.clear();
+                listEmployee.addAll((List)filterResults.values);
+                notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolderEmployee extends RecyclerView.ViewHolder {
 

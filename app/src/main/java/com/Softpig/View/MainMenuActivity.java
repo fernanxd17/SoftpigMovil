@@ -7,6 +7,7 @@ import com.Softpig.Presenter.MainMenuPresenter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,8 +26,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -61,12 +65,14 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DrawerLayout drawer;
     private Toast notificacion;
     private static Toolbar toolbar;
+    private static String fragmentSearch;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+        fragmentSearch = "dashboard";
 
 
 
@@ -137,7 +143,38 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation, menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.navigation, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        if(fragmentSearch.equalsIgnoreCase("dashboard")){
+            searchItem.setVisible(false);
+            return true;
+        }
+
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        switch (fragmentSearch){
+            case "empleados": searchView.setQueryHint(getText(R.string.searchEmployee)); break;
+        }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                switch (fragmentSearch){
+                    case "empleados": employeeFragment.employeeAdapter.getFilter().filter(newText); break;
+
+
+                }
+
+
+                return  false;
+            }
+        });
         return true;
     }
 
@@ -221,6 +258,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, raceFragment).commit();
                 break;
             case "Empleados":
+                fragmentSearch = "empleados";
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
                 break;
             case "Herramientas":

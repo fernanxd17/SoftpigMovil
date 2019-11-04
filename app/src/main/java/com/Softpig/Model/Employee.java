@@ -79,8 +79,6 @@ public class Employee {
         return motherLastName;
     }
 
-    public String getName(){return firstName+" "+lastName;}
-
     public String getEmail() {
         return email;
     }
