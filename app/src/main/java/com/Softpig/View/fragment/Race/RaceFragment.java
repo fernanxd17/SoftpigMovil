@@ -10,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.Softpig.Model.Race;
 import com.Softpig.Presenter.Adapters.RaceAdapter;
-import com.Softpig.Presenter.RacePresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -26,69 +25,32 @@ import java.util.ArrayList;
 public class RaceFragment extends Fragment {
 
     private RecyclerView recyclerRace;
-    private static RacePresenter racePresenter;
     private static RaceAdapter raceAdapter;
     private ArrayList<Race> listRaces;
     private static View viewRace;
-    private static boolean consultando = true;
+    private TextView tvInfo;
 
-    public RaceFragment() {
-        // Required empty public constructor
+
+    public RaceFragment(ArrayList<Race> listRaces){
+        this.listRaces = listRaces;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainMenuActivity) getActivity()).setTitleTolbar("Razas");
-        racePresenter = new RacePresenter(this);
-        raceAdapter = new RaceAdapter(listRaces);
-
-        racePresenter.getRaces(getContext(), listRaces); //si no funciona, usted es el problema, ok?
-        while(consultando){
-
-        }
-
-
-        if(listRaces == null){
-
-        }
         viewRace =  inflater.inflate(R.layout.fragment_races, container, false);
+        ((MainMenuActivity) getActivity()).setTitleTolbar("Razas");
 
-
+        if(listRaces.isEmpty()){
+            tvInfo = viewRace.findViewById(R.id.tv_info);
+            tvInfo.setText("No existen razas registradas.");
+            return viewRace;
+        }
+        raceAdapter = new RaceAdapter(this.listRaces);
         recyclerRace = viewRace.findViewById(R.id.recyclerRace);
         recyclerRace.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        //recyclerRace.setAdapter(raceAdapter); //cuando ya funcione la api, hay que verificar si carga los cardview sin esta linea, en caso de que no funcione probrar des-comentando a linea
-        llenarDatosAdapter();
-        if(listRaces == null){
-            System.out.println("null");
-            viewRace =  inflater.inflate(R.layout.fragment_error, container, false);
-            return viewRace;
-        }else if(listRaces.size() == 0){
-            //Agregar el dialogBuilder
-            return null;
-        }
+        recyclerRace.setAdapter(raceAdapter); //cuando ya funcione la api, hay que verificar si carga los cardview sin esta linea, en caso de que no funcione probrar des-comentando a linea
 
         return viewRace;
-    }
-
-
-
-    private void inflarVista(int idVista){
-        switch (idVista){
-            case 1: //Vista normal
-
-                break;
-        }
-    }
-
-    public void setConsultado(boolean consultando){
-        this.setConsultado(consultando);
-    }
-
-    public boolean notificarError(){
-        ((MainMenuActivity)getActivity()).inflateFragment(1);
-        return true;
     }
 }

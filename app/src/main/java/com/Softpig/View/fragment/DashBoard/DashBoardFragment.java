@@ -55,7 +55,7 @@ public class DashBoardFragment extends Fragment {
         this.tvLookTools.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).inflateFragment(3);
+                ((MainMenuActivity)getActivity()).inflarFragment("Empleados", null);
             }
         });
 

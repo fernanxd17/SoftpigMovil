@@ -15,7 +15,6 @@ import com.Softpig.View.fragment.Dictionary.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.Female.FemaleFragment;
 import com.Softpig.View.fragment.Male.MaleFragment;
-import com.Softpig.View.fragment.Profile.ProfileFragment;
 import com.Softpig.View.fragment.Race.RaceFragment;
 import com.Softpig.View.fragment.Report.ReportFragment;
 import com.Softpig.View.fragment.Tool.ToolFragment;
@@ -53,7 +52,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private PigFragment pigFragment;
     private InstallationFragment installationFragment;
     private EmployeeFragment employeeFragment;
-    private ProfileFragment profileFragment;
     private ErrorFragment errorFragment;
     private AppBarConfiguration mAppBarConfiguration;
     private ToolFragment articleFragment;
@@ -94,8 +92,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
-            profileFragment = new ProfileFragment();
-            raceFragment = new RaceFragment();
+            errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
             mainMenuPresenter = new MainMenuPresenter();
             notificacion = new Toast(this);
@@ -199,7 +196,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, maleFragment).commit();
                 break;
             case R.id.nav_race:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, raceFragment).commit();
+                mainMenuPresenter.inflarRacesFragment(this);
+
                 break;
             case R.id.nav_dictionary:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
@@ -222,8 +220,25 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     /**
      * Metodo para cambiar el titulo del toolbar (barra superior) segun el fragment en que
      * se encuentre
-     * @param title Titulo nuevo
      */
+    public void inflarFragment(String stringFragment ,Fragment fragment){
+
+        switch (stringFragment){
+            case "Razas":
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, (RaceFragment)fragment).commit();
+                break;
+            case "Empleados":
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, (EmployeeFragment)fragment).commit();
+                break;
+
+            default:
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).commit();
+                break;
+
+        }
+
+
+    }
     public void setTitleTolbar(String title){
         this.toolbar.setTitle(title);
     }

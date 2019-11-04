@@ -78,6 +78,15 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
+
+        <TextView
+            android:id="@+id/tv_infoEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mas información"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_cardview">
+        </TextView>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
 
