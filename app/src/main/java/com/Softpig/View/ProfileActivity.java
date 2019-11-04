@@ -2,26 +2,12 @@ package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
 
-import com.Softpig.Model.Race;
 import com.Softpig.R;
-import com.Softpig.View.fragment.DashBoard.DashBoardFragment;
 import com.Softpig.View.fragment.ProfileFragment;
-import com.Softpig.View.fragment.Race.RaceFragment;
-import com.Softpig.View.fragment.ToolEmployeeFragment;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import com.Softpig.View.fragment.Tool.ToolFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -36,6 +22,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public boolean inflarToolsEmployeeFragment() {
+        boolean toolEmployee = true;
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ToolFragment(toolEmployee)).commit();
         /**
          * final ProgressDialog progressDialog = new ProgressDialog(context);
          *         progressDialog.setMessage("Loading...");
@@ -84,5 +72,30 @@ public class ProfileActivity extends AppCompatActivity {
 
         return true;
 
+    }
+
+    //código para quitar las barras que de navegación de android en algunas versiones
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    public void agregarArticle(String nameArticle) {
+
+        System.out.println("Agregando articulo");
     }
 }

@@ -62,14 +62,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             tvInfoEmployee.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent();
-                    i.setClass(EmployeeAdapter.this.context, ProfileActivity.class);
-                    context.startActivity(i);
+                    ((MainMenuActivity) context).iniciarProfileActivity();
                 }
             });
-        }
 
-        public void iniciarPerfilActivity(View view){
 
         }
     }

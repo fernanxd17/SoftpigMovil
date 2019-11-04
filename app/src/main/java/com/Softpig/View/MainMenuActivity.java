@@ -1,5 +1,6 @@
 package com.Softpig.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.Softpig.Presenter.MainMenuPresenter;
@@ -54,7 +55,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private EmployeeFragment employeeFragment;
     private ErrorFragment errorFragment;
     private AppBarConfiguration mAppBarConfiguration;
-    private ToolFragment articleFragment;
+    private ToolFragment toolFragment;
     private Bundle bundle;
     private BottomNavigationView bottomNavigationView;
     private DrawerLayout drawer;
@@ -88,7 +89,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             employeeFragment = new EmployeeFragment();
             dashBoardFragment = new DashBoardFragment();
             installationFragment = new InstallationFragment();
-            articleFragment = new ToolFragment();
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
@@ -96,6 +96,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             dictionaryFragment = new DictionaryFragment();
             mainMenuPresenter = new MainMenuPresenter();
             notificacion = new Toast(this);
+            toolFragment = new ToolFragment();
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
@@ -141,15 +142,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
 
-    public void inflateFragment(int idFragment) {
-        switch(idFragment){
-            case 0: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit(); break;
-            case 1: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit(); break;
-            case 2: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, installationFragment).commit(); break;
-            case 3: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, articleFragment).commit();
-            case 4: getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).commit();
-        }
-    }
+
 
     //código para quitar las barras que de navegación de android en algunas versiones
     @Override
@@ -225,10 +218,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         switch (stringFragment){
             case "Razas":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, (RaceFragment)fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, raceFragment).commit();
                 break;
             case "Empleados":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, (EmployeeFragment)fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
+                break;
+            case "Herramientas":
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, toolFragment).commit();
                 break;
 
             default:
@@ -241,5 +237,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
     public void setTitleTolbar(String title){
         this.toolbar.setTitle(title);
+    }
+
+    public void iniciarProfileActivity() {
+        Intent i = new Intent();
+        i.setClass(this,ProfileActivity.class);
+        startActivity(i);
     }
 }

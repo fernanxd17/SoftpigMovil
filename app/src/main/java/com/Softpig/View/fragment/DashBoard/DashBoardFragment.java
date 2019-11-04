@@ -41,21 +41,21 @@ public class DashBoardFragment extends Fragment {
         this.tvLookEmployees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainMenuActivity)getActivity()).inflateFragment(1);
+                ((MainMenuActivity)getActivity()).inflarFragment("Empleados", null);
             }
         });
 
         this.tvLookInstallations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).inflateFragment(2);
+                ((MainMenuActivity)getActivity()).inflarFragment("Instalaciones", null);
             }
         });
 
         this.tvLookTools.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).inflarFragment("Empleados", null);
+                ((MainMenuActivity)getActivity()).inflarFragment("Herramientas", null);
             }
         });
 

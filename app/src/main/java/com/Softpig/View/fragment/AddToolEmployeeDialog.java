@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -18,11 +19,12 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.Softpig.Model.Race;
 import com.Softpig.R;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AddToolEmployeeFragment extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener{
+public class AddToolEmployeeDialog extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener{
     private TextView tvNameEmployee;
     private Spinner spArticle;
     private List<String> listNameArticle;
@@ -37,8 +39,7 @@ public class AddToolEmployeeFragment extends AppCompatDialogFragment implements 
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.add_article_employee, null);
-        tvNameEmployee = view.findViewById(R.id.tv_name_add_tool_employee);
-        spArticle = view.findViewById(R.id.sp_article);
+
 
         listNameArticle = new ArrayList<>();
         listNameArticle.add("Seleccione un article");
@@ -51,22 +52,23 @@ public class AddToolEmployeeFragment extends AppCompatDialogFragment implements 
                 android.R.layout.simple_spinner_item, listNameArticle);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        tvNameEmployee = view.findViewById(R.id.tv_name_add_tool_employee);
+        spArticle = view.findViewById(R.id.sp_article);
         spArticle.setAdapter(adapter);
 
         spArticle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                nameArticle = (String) parent.getSelectedItem();
-
+                nameArticle = "";
+                if(position > 0)
+                    nameArticle = (String) parent.getSelectedItem();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                nameArticle="";
             }
         });
-
-
 
         builder.setView(view)
                 .setTitle("Agregar Articulo")
@@ -79,14 +81,15 @@ public class AddToolEmployeeFragment extends AppCompatDialogFragment implements 
                 .setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(nameArticle.isEmpty()){
-
-                        }else{
-
+                        if(nameArticle.isEmpty())
+                            Toast.makeText(AddToolEmployeeDialog.this.getContext(), "Debe seleccionar una herramienta para agregar...", Toast.LENGTH_SHORT).show();
+                        else{
+                            listener.agregarArticulo(nameArticle);
                         }
+
+
                     }
                 });
-
 
 
         return builder.create();
@@ -99,8 +102,7 @@ public class AddToolEmployeeFragment extends AppCompatDialogFragment implements 
         try {
             listener = (AddToolEmployeeListerner) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() +
-                    "must implement ExampleDialogListener");
+
         }
     }
 
@@ -115,6 +117,10 @@ public class AddToolEmployeeFragment extends AppCompatDialogFragment implements 
     }
 
     public interface AddToolEmployeeListerner {
-        void applyTexts(String username, String password);
+        void agregarArticulo(String nameArticle);
     }
+
+
+
+
 }
