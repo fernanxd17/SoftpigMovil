@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.Softpig.Model.Installation;
 import com.Softpig.Presenter.Adapters.InstallationAdapter;
-import com.Softpig.Presenter.InstallationPresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
