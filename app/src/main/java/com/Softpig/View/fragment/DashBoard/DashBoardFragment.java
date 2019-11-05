@@ -51,7 +51,7 @@ public class DashBoardFragment extends Fragment {
         this.llInstallationsDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).inflarFragment("Instalaciones", null);
+                ((MainMenuActivity)getActivity()).inflarFragment("Installations", null);
             }
         });
 

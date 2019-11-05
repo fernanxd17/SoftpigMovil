@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/farm">
+
+    <TextView
+        android:id="@+id/tv_noInstallations"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text=""
+        android:textColor="#fff"
+        android:layout_gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerInstallations"
         android:layout_width="wrap_content"
