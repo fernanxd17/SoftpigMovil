@@ -27,7 +27,6 @@ public class InstallationFragment extends Fragment {
 
 
     private RecyclerView recyclerInstallations;
-    private InstallationPresenter installationPresenter;
     private InstallationAdapter installationAdapter;
     private ArrayList<Installation> listInstallations;
     private static View viewInstallations;
