@@ -113,6 +113,7 @@
     <string name="error">¡Estas viendo un caballo en una aplicación de cerdos!, Debe haber un error, intentalo mas tarde.</string>
     <string name="app_correo">correo</string>
     <string name="searchEmployee">Cedula...</string>
+    <string name="searchTool">Nombre...</string>
 
 
 </resources>

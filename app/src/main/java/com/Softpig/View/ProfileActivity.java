@@ -1,9 +1,14 @@
 package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.R;
 import com.Softpig.View.fragment.ProfileFragment;
@@ -11,19 +16,23 @@ import com.Softpig.View.fragment.Tool.ToolFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private MenuInflater inflater;
+    private MenuItem searchItem;
+    private SearchView searchView;
+    private ToolFragment toolFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        toolFragment = new ToolFragment(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ProfileFragment()).commit();
     }
 
 
 
     public boolean inflarToolsEmployeeFragment() {
-        boolean toolEmployee = true;
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ToolFragment(toolEmployee)).commit();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, toolFragment).addToBackStack(null).commit();
         /**
          * final ProgressDialog progressDialog = new ProgressDialog(context);
          *         progressDialog.setMessage("Loading...");
@@ -73,7 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
         return true;
 
     }
-
+/*
     //código para quitar las barras que de navegación de android en algunas versiones
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -93,9 +102,49 @@ public class ProfileActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-
+*/
     public void agregarArticle(String nameArticle) {
 
         System.out.println("Agregando articulo");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation, menu);
+        searchItem = menu.findItem(R.id.action_search);
+        searchItem.setVisible(false);
+
+
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        return true;
+    }
+
+    public void modificar(final String fragmentSearch) {
+        searchView.setQueryHint(getText(R.string.searchTool));
+        searchItem.setVisible(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                switch (fragmentSearch){
+                    case "tool": toolFragment.toolAdapter.getFilter().filter(newText); break;
+
+                }
+
+                return  false;
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

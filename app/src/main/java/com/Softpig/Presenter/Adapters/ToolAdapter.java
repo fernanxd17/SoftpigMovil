@@ -1,26 +1,31 @@
 package com.Softpig.Presenter.Adapters;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Softpig.Model.Article;
+import com.Softpig.Model.Tool;
+import com.Softpig.Model.Employee;
 import com.Softpig.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolderArticle> {
+public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArticle> implements Filterable {
 
-    ArrayList<Article> listArticle;
+    List<Tool>listToolFull;
+    List<Tool> listTool;
     private static boolean toolEmployee;
-    public ArticleAdapter(ArrayList<Article> listArticle, boolean toolEmployee) {
-        this.listArticle = listArticle;
+    public ToolAdapter(ArrayList<Tool> listTool, boolean toolEmployee) {
+        this.listTool = listTool;
+        this.listToolFull = new ArrayList<>(listTool);
         this.toolEmployee = toolEmployee;
     }
 
@@ -36,12 +41,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderArticle holder, int position) {
-
-            holder.tv_idArticle.setText("ID: "+listArticle.get(position).getIdArticle());
-            holder.tv_nameArticle.setText(listArticle.get(position).getName());
-            holder.tv_typearticle.setText(listArticle.get(position).getTypeArticle());
+            Tool tool = listTool.get(position);
+            holder.tv_idArticle.setText("ID: "+ tool.getIdArticle());
+            holder.tv_nameArticle.setText(tool.getName());
+            holder.tv_typearticle.setText(tool.getTypeArticle());
             if(!toolEmployee)
-                holder.tv_totalarticle.setText(listArticle.get(position).getQuantity()+" unidades");
+                holder.tv_totalarticle.setText(tool.getQuantity()+" unidades");
 
 
 
@@ -52,8 +57,42 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return listArticle.size();
+        return listTool.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return toolFilter;
+    }
+
+
+    private Filter toolFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Tool> listaFiltrada = new ArrayList<>();
+            if(charSequence == null || charSequence.length()==0){
+                listaFiltrada.addAll(listToolFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Tool tool: listToolFull){
+                    if(tool.getName().toLowerCase().contains(filterPattern)){
+                        listaFiltrada.add(tool);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = listaFiltrada;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listTool.clear();
+            listTool.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolderArticle extends RecyclerView.ViewHolder {
 

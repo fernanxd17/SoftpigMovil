@@ -32,7 +32,8 @@ public class MainMenuPresenter {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        String url = "http://5ff0bac3.ngrok.io/api/race_list";
+        String url = "https://fadc03a3.ngrok.io/api/race_list";
+        //String url = "http://5ff0bac3.ngrok.io/api/race_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
