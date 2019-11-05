@@ -3,6 +3,7 @@ package com.Softpig.View;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.Softpig.Model.Installation;
 import com.Softpig.Presenter.MainMenuPresenter;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,8 @@ import com.Softpig.View.fragment.Pig.PigFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{
 
     private static MainMenuPresenter mainMenuPresenter;
@@ -55,7 +58,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DictionaryFragment dictionaryFragment;
     private MedicineFragment medicineFragment;
     private PigFragment pigFragment;
-    private InstallationFragment installationFragment;
+    //private InstallationFragment installationFragment;
     private EmployeeFragment employeeFragment;
     private ErrorFragment errorFragment;
     private AppBarConfiguration mAppBarConfiguration;
@@ -66,6 +69,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private Toast notificacion;
     private static Toolbar toolbar;
     private static String fragmentSearch;
+    //private ArrayList<Installation> listInstallations = new ArrayList<>();
 
 
     @Override
@@ -94,7 +98,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
             employeeFragment = new EmployeeFragment();
             dashBoardFragment = new DashBoardFragment();
-            installationFragment = new InstallationFragment();
+            //installationFragment = new InstallationFragment(listInstallations);
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
@@ -251,10 +255,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
      * Metodo para cambiar el titulo del toolbar (barra superior) segun el fragment en que
      * se encuentre
      */
-    public void inflarFragment(String stringFragment ,Fragment fragment){
+    public void inflarFragment(String stringFragment,Fragment fragment){
 
         switch (stringFragment){
-            case "Razas":
+            case "Races":
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
                 break;
             case "Empleados":
@@ -263,6 +267,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 break;
             case "Herramientas":
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, toolFragment).commit();
+                break;
+
+            case "Installations":
+                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, installationFragment).commit();
+                mainMenuPresenter.inflarInstallationsFragment(this);
                 break;
 
             default:
