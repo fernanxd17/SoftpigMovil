@@ -10,14 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.Softpig.Model.Tool;
 import com.Softpig.Presenter.Adapters.ToolAdapter;
-import com.Softpig.Presenter.ArticlePresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.ProfileActivity;
 import com.Softpig.View.fragment.AddToolEmployeeDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,13 +28,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.AddToolEmployeeListerner{
 
     private RecyclerView recyclerArticle;
-    private ArticlePresenter articlePresenter;
     public ToolAdapter toolAdapter;
     private static boolean toolEmployee = false;
     private FloatingActionButton fbAddArticle;
-    public ToolFragment() {
-        // Required empty public constructor
+    private ArrayList<Tool> listTool;
+    private static View viewTool;
+    private TextView tv_noTool;
 
+    public ToolFragment(ArrayList<Tool> listTool) {
+        this.listTool = listTool;
     }
 
     public ToolFragment(boolean toolEmployee){
@@ -42,14 +47,19 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_tools, container, false);
-        articlePresenter = new ArticlePresenter();
+        viewTool =  inflater.inflate(R.layout.fragment_tools, container, false);
+        ((MainMenuActivity) getActivity()).setTitleTolbar("Herramientas de la granja");
 
-        recyclerArticle = view.findViewById(R.id.recyclerArticle);
+        if (listTool.isEmpty()){
+            tv_noTool = viewTool.findViewById(R.id.tv_noTools);
+            tv_noTool.setText("No hay herramientas en el invetario");
+        }
+        toolAdapter = new ToolAdapter(listTool, toolEmployee);
+        recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
         recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
-        toolAdapter = new ToolAdapter(articlePresenter.getArticles(), toolEmployee);
         recyclerArticle.setAdapter(toolAdapter);
-        fbAddArticle = view.findViewById(R.id.fb_add_tool_employee);
+
+        fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
         if(!toolEmployee) {
             fbAddArticle.hide();
             ((MainMenuActivity) getActivity()).modificar("tool");
@@ -64,7 +74,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
         }
 
-        return view;
+        return viewTool;
     }
 
     public void openDialog() {

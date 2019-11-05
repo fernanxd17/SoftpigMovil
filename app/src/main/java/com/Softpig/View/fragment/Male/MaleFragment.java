@@ -4,7 +4,6 @@ package com.Softpig.View.fragment.Male;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.Softpig.Model.Male;
 import com.Softpig.Presenter.Adapters.MaleAdapter;
-import com.Softpig.Presenter.MalePresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,25 +25,31 @@ import com.Softpig.View.MainMenuActivity;
 public class MaleFragment extends Fragment {
 
     private RecyclerView recyclerMale;
-    private MalePresenter malePresenter;
     private MaleAdapter maleAdapter;
     private MaleViewModel maleViewModel;
+    private ArrayList<Male> listMales;
+    private static View viewMale;
+    private TextView tv_noMales;
 
-    public MaleFragment() {
-        // Required empty public constructor
+    public MaleFragment(ArrayList<Male> listMales) {
+        this.listMales = listMales;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+
+        viewMale = inflater.inflate(R.layout.fragment_male, container, false);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductores");
-        View view = inflater.inflate(R.layout.fragment_male, container, false);
-        malePresenter = new MalePresenter();
-        recyclerMale = view.findViewById(R.id.recyclerMale);
+        if (listMales.isEmpty()){
+            tv_noMales = viewMale.findViewById(R.id.tv_noMales);
+            tv_noMales.setText("No existen reproductores");
+        }
+        maleAdapter = new MaleAdapter(this.listMales);
+        recyclerMale = viewMale.findViewById(R.id.recyclerMale);
         recyclerMale.setLayoutManager(new LinearLayoutManager(getContext()));
-        maleAdapter = new MaleAdapter(malePresenter.getMales());
         recyclerMale.setAdapter(maleAdapter);
-        return view;
+        return viewMale;
     }
 
 }

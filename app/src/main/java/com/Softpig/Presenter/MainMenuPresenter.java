@@ -3,13 +3,23 @@ package com.Softpig.Presenter;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import com.Softpig.Model.Employee;
+import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
+import com.Softpig.Model.Male;
+import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
+import com.Softpig.Model.Tool;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.fragment.Employee.EmployeeFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.Female.FemaleFragment;
 import com.Softpig.View.fragment.Installation.InstallationFragment;
+import com.Softpig.View.fragment.Male.MaleFragment;
+import com.Softpig.View.fragment.Pig.PigFragment;
 import com.Softpig.View.fragment.Race.RaceFragment;
+import com.Softpig.View.fragment.Tool.ToolFragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,12 +30,20 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainMenuPresenter {
 
     private RaceFragment raceFragment;
     private InstallationFragment installationFragment;
+    private FemaleFragment femaleFragment;
+    private MaleFragment maleFragment;
+    private PigFragment pigFragment;
+    private ToolFragment toolFragment;
+    private EmployeeFragment employeeFragment;
+    private ArrayList<Pig> listPig;
 
     public MainMenuPresenter(){
 
@@ -145,5 +163,331 @@ public class MainMenuPresenter {
         return true;
 
     }
+
+    public boolean inflarPigFragment(final MainMenuActivity context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Pig> listPigs = new ArrayList<>();
+                            JSONArray jsonPig = response.getJSONArray("pigs");
+                            for(int i = 0; i < jsonPig.length(); i++) {
+                                JSONObject pigObject = jsonPig.getJSONObject(i);
+                                short id = (short) pigObject.getInt("id");
+                                String state = pigObject.getString("state");
+                                String sex = pigObject.getString("sex");
+                                short weigth = (short) pigObject.getInt("weigth");
+                                String race = pigObject.getString("race");
+                                String growthPhase = pigObject.getString("growthPhase");
+                                String pigState = pigObject.getString("pigState");
+                                String health = pigObject.getString("health");
+                                String installation = pigObject.getString("installation");
+                                String birth = pigObject.getString("birthDate");
+                                Date birthDate = SimpleDateFormat.parse(birth);
+                                String acquisition= pigObject.getString("acquisitionDate");
+                                Date acquisitionDate = SimpleDateFormat.parse(acquisition);
+                                listPigs.add(new Pig(id, sex, weigth, race, growthPhase, pigState,
+                                        health,installation, birthDate, acquisitionDate));
+                            }
+                            pigFragment = new PigFragment(listPigs);
+                            context.inflarFragment(pigFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+        return true;
+
+    }
+
+    public boolean inflarArticlesFragment(final MainMenuActivity context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Tool> listTool = new ArrayList<>();
+                            JSONArray jsonTools = response.getJSONArray("articles");
+                            for(int i = 0; i < jsonTools.length(); i++) {
+                                JSONObject toolObject = jsonTools.getJSONObject(i);
+                                short id = (short) toolObject.getInt("id");
+                                String type = toolObject.getString("type");
+                                String name = toolObject.getString("name");
+                                short quantity = (short) toolObject.getInt("quantity");
+                                short available = (short) toolObject.getInt("available");
+                                short loan = (short) toolObject.getInt("loan");
+                                listTool.add(new Tool(id, type,name, quantity, available, loan));
+                            }
+                            toolFragment = new ToolFragment(listTool);
+                            context.inflarFragment(toolFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+        return true;
+
+    }
+
+    public boolean inflarEmployeesFragment(final MainMenuActivity context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Race> listEmployee = new ArrayList<>();
+                            JSONArray jsonEmployee = response.getJSONArray("employees");
+
+                            for(int i = 0; i < jsonEmployee.length(); i++) {
+                                JSONObject employeeObject = jsonEmployee.getJSONObject(i);
+                                short id = (short) employeeObject.getInt("id");
+                                String status = employeeObject.getString("status");
+                                String contract = employeeObject.getString("contract");
+                                String hoursWorked = employeeObject.getString("hoursWorked");
+                                String dateAdmission = employeeObject.getString("dateAdmission");
+                                String dateOff = employeeObject.getString("dateOff");
+                                String salary = employeeObject.getString("salary");
+                                String document = employeeObject.getString("document");
+                                String firstName = employeeObject.getString("firstName");
+                                String secondName = employeeObject.getString("secondName");
+                                String fatherLastName = employeeObject.getString("fatherLastName");
+                                String motherLastName = employeeObject.getString("motherLastName");
+                                String sex = employeeObject.getString("sex");
+                                String email = employeeObject.getString("email");
+                                String phone = employeeObject.getString("phone");
+                                String celPhone = employeeObject.getString("celPhone");
+                                String role = employeeObject.getString("role");
+                                String instalation = employeeObject.getString("instalation");
+
+                                listEmployee.add(new Employee(id, role,contract, hoursWorked, status, admissionDate, dateOff, document,
+                                        sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone,instalation ));
+                            }
+                            employeeFragment = new EmployeeFragment(listEmployee);
+                            context.inflarFragment(employeeFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+        return true;
+
+    }
+
+    public boolean inflarFemalesFragment(final MainMenuActivity context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Female> listFemales = new ArrayList<>();
+                            JSONArray jsonFemale = response.getJSONArray("females");
+
+                            for(int i = 0; i < jsonFemale.length(); i++) {
+                                JSONObject femaleObject = jsonFemale.getJSONObject(i);
+                                short id = (short) femaleObject.getInt("id");
+                                String virgin = femaleObject.getString("virgin");
+                                String gestation = femaleObject.getString("gestation");
+                                if (listPig.get(i).getIdPig() == id) {
+                                    Pig pigFemale = listPig.get(i);
+                                    listFemales.add(new Female(id, virgin, gestation, pigFemale.getSex(), pigFemale.getWeigth(), pigFemale.getRace(), pigFemale.getGrowthPhase(),
+                                            pigFemale.getPigState(), pigFemale.getHealth(), pigFemale.getInstallation(), pigFemale.getBirthDate(), pigFemale.getAcquisitionDate()));
+                                }
+                            }
+                            femaleFragment = new FemaleFragment(listFemales);
+                            context.inflarFragment(femaleFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+        return true;
+
+    }
+
+    public boolean inflarMalesFragment(final MainMenuActivity context) {
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Male> listMale = new ArrayList<>();
+                            JSONArray jsonMales = response.getJSONArray("males");
+
+                            for(int i = 0; i < jsonMales.length(); i++) {
+                                JSONObject maleObject = jsonMales.getJSONObject(i);
+                                short id = (short) maleObject.getInt("id");
+                                String conformation = maleObject.getString("conformation");
+                                if (listPig.get(i).getIdPig() == id) {
+                                    Pig pigMale = listPig.get(i);
+                                    listMale.add(new Male(id, conformation,pigMale.getSex(),pigMale.getWeigth() , pigMale.getRace(), pigMale.getGrowthPhase(),
+                                            pigMale.getPigState(), pigMale.getHealth(), pigMale.getInstallation(),pigMale.getBirthDate(), pigMale.getAcquisitionDate()));
+                                }
+                            }
+                            maleFragment = new MaleFragment(listMale);
+                            context.inflarFragment(maleFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+        return true;
+
+    }
+
 
 }

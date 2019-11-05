@@ -5,12 +5,12 @@ import java.util.Date;
 public class Female extends Pig {
 
     private short idFemale;
-    private boolean virgin;
-    private boolean gestation;
+    private String virgin;
+    private String gestation;
 
-    public Female(short idFemale, boolean virgin, boolean gestation, String sex, short weigth, String race, String growthPhase,
-                  String pigState, String health, short idInstalation, Date birthDate, Date acquisitionDate) {
-        super(idFemale,sex,weigth,race,growthPhase,pigState,health,idInstalation,birthDate,acquisitionDate);
+    public Female(short idFemale, String virgin, String gestation, String sex, short weigth, String race, String growthPhase,
+                  String pigState, String health, String installation, Date birthDate, Date acquisitionDate) {
+        super(idFemale,sex,weigth,race,growthPhase,pigState,health,installation,birthDate,acquisitionDate);
         this.idFemale = idFemale;
         this.virgin = virgin;
         this.gestation = gestation;
@@ -20,11 +20,11 @@ public class Female extends Pig {
         return idFemale;
     }
 
-    public boolean isVirgin() {
+    public String getVirgin() {
         return virgin;
     }
 
-    public boolean isGestation() {
+    public String getGestation() {
         return gestation;
     }
 

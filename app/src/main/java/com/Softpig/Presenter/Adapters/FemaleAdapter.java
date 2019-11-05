@@ -31,15 +31,10 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderFemale holder, int position) {
-        String r= "";
+
         holder.tv_idFemale.setText("ID: "+listFemale.get(position).getIdFemale());
-        if(listFemale.get(position).isVirgin() || listFemale.get(position).isGestation() ){
-            r="si";
-        }else {
-            r="no";
-        }
-        holder.tv_nulipara.setText(r);
-        holder.tv_gestation.setText(r);
+        holder.tv_nulipara.setText(listFemale.get(position).getVirgin());
+        holder.tv_gestation.setText(listFemale.get(position).getGestation());
         holder.tv_pesoFemale.setText(listFemale.get(position).getWeigth()+" Kg");
     }
 
