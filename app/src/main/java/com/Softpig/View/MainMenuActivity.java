@@ -58,7 +58,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DictionaryFragment dictionaryFragment;
     private MedicineFragment medicineFragment;
     private PigFragment pigFragment;
-    //private InstallationFragment installationFragment;
+    private InstallationFragment installationFragment;
     private EmployeeFragment employeeFragment;
     private ErrorFragment errorFragment;
     private AppBarConfiguration mAppBarConfiguration;
@@ -69,7 +69,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private Toast notificacion;
     private static Toolbar toolbar;
     private static String fragmentSearch;
-    //private ArrayList<Installation> listInstallations = new ArrayList<>();
+    private ArrayList<Installation> listInstallations = new ArrayList<>();
     private MenuItem searchItem;
     private MenuInflater menuInflater;
     private SearchView searchView;
@@ -99,7 +99,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
             employeeFragment = new EmployeeFragment();
             dashBoardFragment = new DashBoardFragment();
-            //installationFragment = new InstallationFragment(listInstallations);
+            installationFragment = new InstallationFragment(listInstallations);
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
@@ -233,12 +233,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
      * Metodo para cambiar el titulo del toolbar (barra superior) segun el fragment en que
      * se encuentre
      */
-    public void inflarFragment(String stringFragment,Fragment fragment){
+    public void controllerFragment(String stringFragment){
 
         switch (stringFragment){
-            case "Races":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
-                break;
+
             case "Empleados":
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
                 break;
@@ -248,7 +246,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 break;
 
             case "Installations":
-                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, installationFragment).commit();
                 mainMenuPresenter.inflarInstallationsFragment(this);
                 break;
 
@@ -260,6 +257,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
     }
+
+    public void inflarFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
+    }
+
     public void setTitleTolbar(String title){
         this.toolbar.setTitle(title);
     }

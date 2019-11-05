@@ -7,6 +7,7 @@ import com.Softpig.Model.Installation;
 import com.Softpig.Model.Race;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.Installation.InstallationFragment;
 import com.Softpig.View.fragment.Race.RaceFragment;
 import com.android.volley.Request;
@@ -36,8 +37,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://fadc03a3.ngrok.io/api/race_list";
-        //String url = "http://5ff0bac3.ngrok.io/api/race_list";
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -59,12 +59,12 @@ public class MainMenuPresenter {
                                     listRaces.add(new Race(idRace, race, description));
                                 }
                                 raceFragment = new RaceFragment(listRaces);
-                                context.inflarFragment("Races", raceFragment);
+                                context.inflarFragment(raceFragment);
                                 progressDialog.dismiss();
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            context.inflarFragment("Error", null);
+                            context.inflarFragment(new ErrorFragment());
                             progressDialog.dismiss();
                         }
                     }
@@ -73,7 +73,7 @@ public class MainMenuPresenter {
             public void onErrorResponse(VolleyError error) {
 
                 try {
-                    context.inflarFragment("Error", null);
+                    context.inflarFragment(new ErrorFragment());
                     progressDialog.dismiss();
 
                 } catch (Exception e) {
@@ -105,23 +105,23 @@ public class MainMenuPresenter {
 
                         try {
                             ArrayList<Installation> listInstallations = new ArrayList<>();
-                            JSONArray jsonRaces = response.getJSONArray("installations");
+                            JSONArray jsonInstallations = response.getJSONArray("installations");
 
-                            for(int i = 0; i < jsonRaces.length(); i++) {
-                                JSONObject raceObject = jsonRaces.getJSONObject(i);
-                                short id = (short) raceObject.getInt("id");
-                                String name = raceObject.getString("name");
-                                String type = raceObject.getString("type");
-                                short capacity = (short) raceObject.getInt("capacity");
+                            for(int i = 0; i < jsonInstallations.length(); i++) {
+                                JSONObject installationObject = jsonInstallations.getJSONObject(i);
+                                short id = (short) installationObject.getInt("id");
+                                String name = installationObject.getString("name");
+                                String type = installationObject.getString("type");
+                                short capacity = (short) installationObject.getInt("capacity");
                                 listInstallations.add(new Installation(id, type, name, capacity));
                             }
                             installationFragment = new InstallationFragment(listInstallations);
-                            context.inflarFragment("Installations", installationFragment);
+                            context.inflarFragment( installationFragment);
                             progressDialog.dismiss();
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            context.inflarFragment("Error", null);
+                            context.inflarFragment(new ErrorFragment());
                             progressDialog.dismiss();
                         }
                     }
@@ -130,7 +130,7 @@ public class MainMenuPresenter {
             public void onErrorResponse(VolleyError error) {
 
                 try {
-                    context.inflarFragment("Error", null);
+                    context.inflarFragment(new ErrorFragment());
                     progressDialog.dismiss();
 
                 } catch (Exception e) {
