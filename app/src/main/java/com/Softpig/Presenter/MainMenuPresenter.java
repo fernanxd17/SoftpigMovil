@@ -32,7 +32,7 @@ public class MainMenuPresenter {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        String url = "http://5ff0bac3.ngrok.io/api/race_list";
+        String url = "https://0df2cb68.ngrok.io/api/race_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -56,7 +56,13 @@ public class MainMenuPresenter {
                                 context.inflarFragment("Razas", raceFragment);
                                 progressDialog.dismiss();
 
-                        } catch (Exception e) { e.printStackTrace(); }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            progressDialog.dismiss();
+                            System.out.println("CATCH 1");
+                            //context.inflarFragment("Error", null);
+                            //progressDialog.dismiss();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -66,7 +72,11 @@ public class MainMenuPresenter {
                     context.inflarFragment("Error", null);
                     progressDialog.dismiss();
 
-                } catch (Exception e) { e.printStackTrace(); }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("CATCH 2");
+                    progressDialog.dismiss();
+                }
             }
         });
 
