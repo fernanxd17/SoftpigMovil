@@ -57,10 +57,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     @Override
     public Filter getFilter() {
-        return employeeFiltrer;
+        return employeeFilter;
     }
 
-    private Filter employeeFiltrer = new Filter() {
+    private Filter employeeFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<Employee> listaFiltrada = new ArrayList<>();

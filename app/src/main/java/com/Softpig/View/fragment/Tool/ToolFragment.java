@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.Softpig.Presenter.Adapters.ArticleAdapter;
+import com.Softpig.Presenter.Adapters.ToolAdapter;
 import com.Softpig.Presenter.ArticlePresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
@@ -26,7 +26,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
     private RecyclerView recyclerArticle;
     private ArticlePresenter articlePresenter;
-    private ArticleAdapter articleAdapter;
+    public ToolAdapter toolAdapter;
     private static boolean toolEmployee = false;
     private FloatingActionButton fbAddArticle;
     public ToolFragment() {
@@ -47,8 +47,8 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
         recyclerArticle = view.findViewById(R.id.recyclerArticle);
         recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
-        articleAdapter = new ArticleAdapter(articlePresenter.getArticles(), toolEmployee);
-        recyclerArticle.setAdapter(articleAdapter);
+        toolAdapter = new ToolAdapter(articlePresenter.getArticles(), toolEmployee);
+        recyclerArticle.setAdapter(toolAdapter);
         fbAddArticle = view.findViewById(R.id.fb_add_tool_employee);
         if(!toolEmployee)
             fbAddArticle.hide();
@@ -61,6 +61,8 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
             });
         }
 
+        ((ProfileActivity)getActivity()).modificar("tool");
+
 
 
 
@@ -72,7 +74,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
     public void openDialog() {
         AddToolEmployeeDialog addToolEmployeeDialog = new AddToolEmployeeDialog();
-        addToolEmployeeDialog.show(getFragmentManager(), "Article Dialog");
+        addToolEmployeeDialog.show(getFragmentManager(), "Tool Dialog");
     }
 
 
