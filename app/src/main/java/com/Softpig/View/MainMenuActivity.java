@@ -239,6 +239,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
                 break;
             case "Herramientas":
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, toolFragment).commit();
                 break;
 

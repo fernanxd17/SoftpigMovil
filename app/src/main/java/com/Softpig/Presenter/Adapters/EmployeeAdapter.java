@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -92,15 +93,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
         TextView tv_idEmployee, tv_nameEmployee, tv_typeEmployee;
         private TextView tvInfoEmployee;
+        private LinearLayout llCardViewEmployee;
 
         public ViewHolderEmployee(@NonNull View itemView) {
             super(itemView);
             tv_idEmployee =  itemView.findViewById(R.id.tv_idEmployee);
             tv_nameEmployee =  itemView.findViewById(R.id.tv_nameEmployee);
             tv_typeEmployee =  itemView.findViewById(R.id.tv_typeEmployee);
-            tvInfoEmployee = itemView.findViewById(R.id.tv_infoEmployee);
+            llCardViewEmployee = itemView.findViewById(R.id.ll_cardview_employee);
 
-            tvInfoEmployee.setOnClickListener(new View.OnClickListener() {
+            llCardViewEmployee.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     ((MainMenuActivity) context).iniciarProfileActivity();

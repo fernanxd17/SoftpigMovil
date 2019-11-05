@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.Softpig.R;
@@ -17,6 +18,7 @@ public class DashBoardFragment extends Fragment {
     private TextView tvNumAdmins, tvNumOperators, tvLookEmployees;
     private TextView tvNumInstallations, tvNumTypeInstallations, tvLookInstallations;
     private TextView tvNumTools, tvNumTypeTools, tvLookTools;
+    private LinearLayout llEmployeeDashboard, llInstallationsDashboard, llToalsDashboard;
 
     public DashBoardFragment() {
 
@@ -29,30 +31,31 @@ public class DashBoardFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_dash_board, container, false);
         this.tvNumAdmins = view.findViewById(R.id.tv_num_admins);
         this.tvNumOperators = view.findViewById(R.id.tv_num_operators);
-        this.tvLookEmployees = view.findViewById(R.id.tv_look_employees);
         this.tvNumInstallations = view.findViewById(R.id.tv_num_installations);
         this.tvNumTypeInstallations = view.findViewById(R.id.tv_num_type_installations);
-        this.tvLookInstallations = view.findViewById(R.id.tv_look_installations);
         this.tvNumTools = view.findViewById(R.id.tv_num_tools);
         this.tvNumTypeTools = view.findViewById(R.id.tv_num_type_tools);
-        this.tvLookTools = view.findViewById(R.id.tv_look_tools);
+        this.llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
+        this.llInstallationsDashboard = view.findViewById(R.id.ll_installations_dashboard);
+        this.llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);
 
 
-        this.tvLookEmployees.setOnClickListener(new View.OnClickListener() {
+
+        this.llEmployeeDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainMenuActivity)getActivity()).inflarFragment("Empleados", null);
             }
         });
 
-        this.tvLookInstallations.setOnClickListener(new View.OnClickListener() {
+        this.llInstallationsDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainMenuActivity)getActivity()).inflarFragment("Instalaciones", null);
             }
         });
 
-        this.tvLookTools.setOnClickListener(new View.OnClickListener() {
+        this.llToalsDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainMenuActivity)getActivity()).inflarFragment("Herramientas", null);

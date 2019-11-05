@@ -9,37 +9,28 @@
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_cardview">
-        <ImageView
-            android:id="@+id/imagenEmployee"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_cardview"
->
-        </ImageView>
-    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_idEmployee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/idEmpleado"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/textSize_cardview"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/primaryColorTrans"
-        android:padding="5dp">
-    </TextView>
+
+
     <LinearLayout
+        android:id="@+id/ll_cardview_employee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="bottom"
         android:paddingLeft="@dimen/padding_cardview"
         android:paddingBottom="@dimen/padding_cardview">
-
+        <TextView
+            android:id="@+id/tv_idEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/idEmpleado"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_cardview"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/primaryColorTrans"
+            android:padding="5dp">
+        </TextView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,14 +70,7 @@
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
 
-        <TextView
-            android:id="@+id/tv_infoEmployee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mas información"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_cardview">
-        </TextView>
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
 

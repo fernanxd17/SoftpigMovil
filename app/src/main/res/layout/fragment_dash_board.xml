@@ -22,7 +22,7 @@
 
             <LinearLayout
 
-                android:id="@+id/ll_empleyees"
+                android:id="@+id/ll_empleyees_dashboard"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,16 +105,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Empleados operativos 30"
-                            android:layout_gravity="left">
+                            android:layout_gravity="left"
+                            android:layout_marginBottom="20dp">
                         </TextView>
-                        <TextView
-                            android:id="@+id/tv_look_employees"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ver Empleados"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="right">
-                        </TextView>
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -124,7 +118,7 @@
 
             <LinearLayout
                 android:layout_below="@id/ll_empleyees"
-                android:id="@+id/ll_installations"
+                android:id="@+id/ll_installations_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -192,24 +186,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="# Tipos de Instalaciones"
-                            android:layout_gravity="left">
+                            android:layout_gravity="left"
+                            android:layout_marginBottom="20dp">
                         </TextView>
-                        <TextView
-                            android:id="@+id/tv_look_installations"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ver Instalaciones"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="right">
-                        </TextView>
+
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_below="@id/ll_installations"
-                android:id="@+id/ll_tool"
+                android:layout_below="@id/ll_installations_dashboard"
+                android:id="@+id/ll_tools_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -280,16 +268,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="# Tipos de Herramientas"
-                            android:layout_gravity="left">
+                            android:layout_gravity="left"
+                            android:layout_marginBottom="20dp">
                         </TextView>
-                        <TextView
-                            android:id="@+id/tv_look_tools"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ver Herramientas de Trabajo"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="right">
-                        </TextView>
+
                     </LinearLayout>
                 </LinearLayout>
 
