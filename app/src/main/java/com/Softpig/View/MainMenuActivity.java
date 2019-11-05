@@ -233,7 +233,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         switch (stringFragment){
             case "Razas":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, raceFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
                 break;
             case "Empleados":
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
