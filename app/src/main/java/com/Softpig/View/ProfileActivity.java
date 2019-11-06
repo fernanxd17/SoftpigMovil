@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.R;
@@ -23,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.container_profile);
         toolFragment = new ToolFragment(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ProfileFragment()).commit();
     }

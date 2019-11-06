@@ -44,6 +44,7 @@ public class MainMenuPresenter {
     private ToolFragment toolFragment;
     private EmployeeFragment employeeFragment;
     private ArrayList<Pig> listPig;
+    private static SimpleDateFormat simpleDateFormat;
 
     public MainMenuPresenter(){
 
@@ -182,6 +183,7 @@ public class MainMenuPresenter {
 
                         try {
                             ArrayList<Pig> listPigs = new ArrayList<>();
+                            simpleDateFormat = new SimpleDateFormat();
                             JSONArray jsonPig = response.getJSONArray("pigs");
                             for(int i = 0; i < jsonPig.length(); i++) {
                                 JSONObject pigObject = jsonPig.getJSONObject(i);
@@ -195,9 +197,9 @@ public class MainMenuPresenter {
                                 String health = pigObject.getString("health");
                                 String installation = pigObject.getString("installation");
                                 String birth = pigObject.getString("birthDate");
-                                Date birthDate = SimpleDateFormat.parse(birth);
+                                Date birthDate = simpleDateFormat.parse(birth);
                                 String acquisition= pigObject.getString("acquisitionDate");
-                                Date acquisitionDate = SimpleDateFormat.parse(acquisition);
+                                Date acquisitionDate = simpleDateFormat.parse(acquisition);
                                 listPigs.add(new Pig(id, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birthDate, acquisitionDate));
                             }
@@ -309,7 +311,8 @@ public class MainMenuPresenter {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            ArrayList<Race> listEmployee = new ArrayList<>();
+                             simpleDateFormat = new SimpleDateFormat();
+                            ArrayList<Employee> listEmployee = new ArrayList<>();
                             JSONArray jsonEmployee = response.getJSONArray("employees");
 
                             for(int i = 0; i < jsonEmployee.length(); i++) {
@@ -318,9 +321,11 @@ public class MainMenuPresenter {
                                 String status = employeeObject.getString("status");
                                 String contract = employeeObject.getString("contract");
                                 String hoursWorked = employeeObject.getString("hoursWorked");
-                                String dateAdmission = employeeObject.getString("dateAdmission");
-                                String dateOff = employeeObject.getString("dateOff");
-                                String salary = employeeObject.getString("salary");
+                                String admission = employeeObject.getString("dateAdmission");
+                                Date admissionDate = simpleDateFormat.parse(admission);
+                                String off = employeeObject.getString("dateOff");
+                                Date dateOff = simpleDateFormat.parse(off);
+                                int salary = employeeObject.getInt("salary");
                                 String document = employeeObject.getString("document");
                                 String firstName = employeeObject.getString("firstName");
                                 String secondName = employeeObject.getString("secondName");
@@ -334,7 +339,7 @@ public class MainMenuPresenter {
                                 String instalation = employeeObject.getString("instalation");
 
                                 listEmployee.add(new Employee(id, role,contract, hoursWorked, status, admissionDate, dateOff, document,
-                                        sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone,instalation ));
+                                        sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone, instalation, salary ));
                             }
                             employeeFragment = new EmployeeFragment(listEmployee);
                             context.inflarFragment(employeeFragment);

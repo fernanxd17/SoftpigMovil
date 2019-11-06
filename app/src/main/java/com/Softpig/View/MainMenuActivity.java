@@ -16,8 +16,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.Softpig.View.fragment.About.AboutFragment;
 import com.Softpig.View.fragment.Dictionary.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.Female.FemaleFragment;
-import com.Softpig.View.fragment.Male.MaleFragment;
 import com.Softpig.View.fragment.Race.RaceFragment;
 import com.Softpig.View.fragment.Report.ReportFragment;
 import com.Softpig.View.fragment.Tool.ToolFragment;
@@ -75,7 +73,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.contaniner_main_menu);
 
 
 

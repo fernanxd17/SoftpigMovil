@@ -59,6 +59,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
         recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerArticle.setAdapter(toolAdapter);
 
+
         fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
         if(!toolEmployee) {
             fbAddArticle.hide();

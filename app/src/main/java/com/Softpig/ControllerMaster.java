@@ -1,4 +1,4 @@
-package com.Softpig.Service;
+package com.Softpig;
 
 import android.view.View;
 
