@@ -20,32 +20,26 @@
             android:orientation="vertical"
             android:layout_weight="0.8">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_empleyees_dashboard"
                 android:layout_marginTop="25dp"
+                android:padding="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginHorizontal="15dp"
                 android:background="#90E4E2E2">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:layout_centerVertical="true"
+                    <ImageView android:id="@+id/iv_pig"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/pig">
+                        android:background="@drawable/pig"
+                        android:layout_marginBottom="10dp">
                     </ImageView>
 
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@id/tv_num_pig"
+
+                    <TextView android:layout_toLeftOf="@id/tv_num_pig"
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -56,10 +50,8 @@
                         android:layout_marginRight="10dp">
                     </TextView>
 
-                    <TextView
-                        android:layout_centerVertical="true"
+                    <TextView android:id="@+id/tv_num_pig"
                         android:layout_alignParentRight="true"
-                        android:id="@+id/tv_num_pig"
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,31 +60,61 @@
                         android:textSize="15dp">
                     </TextView>
 
-                </RelativeLayout>
-                <RelativeLayout
+                    <LinearLayout android:id="@+id/ll_types_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="10dp">
-
+                    android:orientation="vertical"
+                    android:layout_below="@id/iv_pig">
                     <TextView
                         android:id="@+id/tv_macho"
+                        android:layout_below="@id/iv_pig"
                         android:layout_centerVertical="true"
-                        android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="# Machos:"
                         android:textStyle="bold"
-                        android:textAlignment="textEnd"
-                        android:textSize="15dp"
-                        android:layout_marginRight="10dp">
+                        android:textSize="15dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_lechones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="# Lechones:"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
                     </TextView>
 
                     <TextView
-                        android:layout_toRightOf="@id/tv_macho"
-                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_marranos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="# Marranos:"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
+                    </TextView>
+
+                </LinearLayout>
+
+                    <LinearLayout android:id="@+id/ll_num_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/iv_pig"
+                    android:layout_toRightOf="@id/ll_types_left"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:layout_below="@id/iv_pig"
                         android:id="@+id/tv_num_macho"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="15dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_below="@id/tv_num_macho"
+                        android:id="@+id/tv_num_lechones"
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -102,23 +124,75 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/tv_female"
-                        android:layout_toLeftOf="@id/tv_num_female"
-                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_num_marranos"
                         android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
+                    </TextView>
+
+
+
+
+                </LinearLayout>
+
+                    <LinearLayout android:id="@+id/ll_types_right"
+                    android:layout_toLeftOf="@id/ll_num_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/iv_pig">
+                    <TextView
+                        android:id="@+id/tv_hembras"
+                        android:layout_below="@id/iv_pig"
+                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="# Hembras:"
                         android:textStyle="bold"
-                        android:textAlignment="textEnd"
-                        android:textSize="15dp"
-                        android:layout_marginRight="10dp">
+                        android:textSize="15dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_gordos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="# Gordos:"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
                     </TextView>
 
                     <TextView
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/tv_num_female"
+                        android:id="@+id/tv_Primal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="# Primales: "
+                        android:textStyle="bold"
+                        android:textSize="15dp">
+                    </TextView>
+
+                </LinearLayout>
+
+                    <LinearLayout android:id="@+id/ll_num_right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/iv_pig"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:layout_below="@id/iv_pig"
+                        android:id="@+id/tv_num_hembras"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="15dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_num_gordos"
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,17 +201,27 @@
                         android:textSize="15dp">
                     </TextView>
 
-                </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_num_primal"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
+                    </TextView>
+
+
+
+
+                </LinearLayout>
 
 
 
 
 
 
-
-
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_below="@id/ll_empleyees"

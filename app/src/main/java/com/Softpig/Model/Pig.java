@@ -15,6 +15,7 @@ public class Pig {
     private Date birthDate;
     private Date acquisitionDate;
 
+
     public Pig(short idPig, String sex, short weigth, String race, String growthPhase,
                String pigState, String health,String installation, Date birthDate, Date acquisitionDate) {
         this.idPig = idPig;
