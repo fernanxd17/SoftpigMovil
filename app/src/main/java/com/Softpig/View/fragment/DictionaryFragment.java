@@ -1,4 +1,4 @@
-package com.Softpig.View.fragment.About;
+package com.Softpig.View.fragment;
 
 
 import android.os.Bundle;
@@ -16,10 +16,10 @@ import com.Softpig.View.MainMenuActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AboutFragment extends Fragment {
+public class DictionaryFragment extends Fragment {
 
 
-    public AboutFragment() {
+    public DictionaryFragment() {
         // Required empty public constructor
     }
 
@@ -27,8 +27,8 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainMenuActivity)getActivity()).setTitleTolbar("Acerca De");
-        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        ((MainMenuActivity)getActivity()).setTitleTolbar("Diccionario Porcino");
+        View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
         return view;
     }
 

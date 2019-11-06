@@ -1,7 +1,6 @@
 package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
@@ -10,16 +9,15 @@ import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
-import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-import com.Softpig.View.fragment.Employee.EmployeeFragment;
+import com.Softpig.View.fragment.EmployeeFragment;
 import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.Female.FemaleFragment;
-import com.Softpig.View.fragment.Installation.InstallationFragment;
-import com.Softpig.View.fragment.Male.MaleFragment;
-import com.Softpig.View.fragment.Pig.PigFragment;
-import com.Softpig.View.fragment.Race.RaceFragment;
-import com.Softpig.View.fragment.Tool.ToolFragment;
+import com.Softpig.View.fragment.FemaleFragment;
+import com.Softpig.View.fragment.InstallationFragment;
+import com.Softpig.View.fragment.MaleFragment;
+import com.Softpig.View.fragment.PigFragment;
+import com.Softpig.View.fragment.RaceFragment;
+import com.Softpig.View.fragment.ToolFragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

@@ -13,14 +13,14 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
-import com.Softpig.View.fragment.About.AboutFragment;
-import com.Softpig.View.fragment.Dictionary.DictionaryFragment;
+import com.Softpig.View.fragment.AboutFragment;
+import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.Race.RaceFragment;
-import com.Softpig.View.fragment.Report.ReportFragment;
-import com.Softpig.View.fragment.Tool.ToolFragment;
-import com.Softpig.View.fragment.Employee.EmployeeFragment;
-import com.Softpig.View.fragment.Installation.InstallationFragment;
+import com.Softpig.View.fragment.RaceFragment;
+import com.Softpig.View.fragment.ReportFragment;
+import com.Softpig.View.fragment.ToolFragment;
+import com.Softpig.View.fragment.EmployeeFragment;
+import com.Softpig.View.fragment.InstallationFragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,10 +35,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.Softpig.R;
-import com.Softpig.View.fragment.Alarm.AlarmFragment;
-import com.Softpig.View.fragment.DashBoard.DashBoardFragment;
-import com.Softpig.View.fragment.Medicine.MedicineFragment;
-import com.Softpig.View.fragment.Pig.PigFragment;
+import com.Softpig.View.fragment.AlarmFragment;
+import com.Softpig.View.fragment.DashBoardFragment;
+import com.Softpig.View.fragment.MedicineFragment;
+import com.Softpig.View.fragment.PigFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 

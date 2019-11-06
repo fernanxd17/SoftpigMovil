@@ -11,7 +11,7 @@ import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.R;
 import com.Softpig.View.fragment.ProfileFragment;
-import com.Softpig.View.fragment.Tool.ToolFragment;
+import com.Softpig.View.fragment.ToolFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
 package com.Softpig.Presenter.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Softpig.Model.Employee;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-import com.Softpig.View.ProfileActivity;
-import com.Softpig.View.fragment.Employee.EmployeeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

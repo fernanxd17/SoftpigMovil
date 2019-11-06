@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/primaryColor"
     android:layout_height="match_parent"
-    tools:context=".View.fragment.Dictionary.DictionaryFragment"
+    tools:context=".View.fragment.DictionaryFragment"
     android:orientation="vertical"
    >
 

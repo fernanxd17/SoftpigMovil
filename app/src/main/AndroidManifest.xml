@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".View.ProfileActivity"></activity>
-        <activity
-            android:name=".View.NavigationLeft"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.ForgetPasswordActivity" />
         <activity
             android:name=".View.MainMenuActivity"

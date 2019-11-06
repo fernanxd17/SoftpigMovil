@@ -1,4 +1,4 @@
-package com.Softpig.View.fragment.Male;
+package com.Softpig.View.fragment;
 
 
 import android.os.Bundle;
@@ -26,7 +26,6 @@ public class MaleFragment extends Fragment {
 
     private RecyclerView recyclerMale;
     private MaleAdapter maleAdapter;
-    private MaleViewModel maleViewModel;
     private ArrayList<Male> listMales;
     private static View viewMale;
     private TextView tv_noMales;
