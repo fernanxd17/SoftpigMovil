@@ -109,6 +109,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     }
 
+    /**
+     * Este metodo controla las opciones de la barra inferior
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@drawable/pigfondo"
     tools:context=".View.fragment.DashBoard.DashBoardFragment">
 
     <LinearLayout
@@ -22,6 +22,7 @@
             android:layout_weight="0.8">
 
             <RelativeLayout android:id="@+id/ll_pig"
+                android:layout_marginHorizontal="15dp"
                 android:padding="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,16 +64,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_below="@id/iv_pig">
-                    <TextView
-                        android:id="@+id/tv_macho"
-                        android:layout_below="@id/iv_pig"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="# Machos:"
-                        android:textStyle="bold"
-                        android:textSize="15dp">
-                    </TextView>
+
                     <TextView
                         android:id="@+id/tv_lechones"
                         android:layout_width="wrap_content"
@@ -101,17 +93,9 @@
                     android:layout_toRightOf="@id/ll_types_left"
                     android:layout_marginLeft="10dp">
 
-                    <TextView
-                        android:layout_below="@id/iv_pig"
-                        android:id="@+id/tv_num_macho"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="50"
-                        android:textSize="15dp"
-                        android:textStyle="bold"/>
 
                     <TextView
-                        android:layout_below="@id/tv_num_macho"
+
                         android:id="@+id/tv_num_lechones"
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
@@ -142,16 +126,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_below="@id/iv_pig">
-                    <TextView
-                        android:id="@+id/tv_hembras"
-                        android:layout_below="@id/iv_pig"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="# Hembras:"
-                        android:textStyle="bold"
-                        android:textSize="15dp">
-                    </TextView>
+
                     <TextView
                         android:id="@+id/tv_gordos"
                         android:layout_width="wrap_content"
@@ -180,14 +155,6 @@
                     android:layout_below="@id/iv_pig"
                     android:layout_alignParentRight="true">
 
-                    <TextView
-                        android:layout_below="@id/iv_pig"
-                        android:id="@+id/tv_num_hembras"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="50"
-                        android:textSize="15dp"
-                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tv_num_gordos"
