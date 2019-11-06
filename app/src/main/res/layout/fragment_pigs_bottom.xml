@@ -21,7 +21,6 @@
             android:layout_weight="0.8">
 
             <LinearLayout
-
                 android:id="@+id/ll_empleyees_dashboard"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
@@ -30,87 +29,111 @@
                 android:layout_marginHorizontal="15dp"
                 android:background="#90E4E2E2">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pig">
+                    </ImageView>
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/tv_num_pig"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Porcinos registrados:"
+                        android:textStyle="bold"
+                        android:textAlignment="textEnd"
+                        android:textSize="15dp"
+                        android:layout_marginRight="10dp">
+                    </TextView>
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/tv_num_pig"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
+                    </TextView>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp">
 
                     <TextView
+                        android:id="@+id/tv_macho"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Empleados"
+                        android:text="# Machos:"
                         android:textStyle="bold"
+                        android:textAlignment="textEnd"
                         android:textSize="15dp"
-                        android:layout_gravity="left">
+                        android:layout_marginRight="10dp">
                     </TextView>
 
                     <TextView
-                        android:id="@+id/tv_num_employees"
+                        android:layout_toRightOf="@id/tv_macho"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_num_macho"
                         android:layout_gravity="end"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="50 Empleados registrados"
+                        android:text="50"
                         android:textStyle="bold"
-                        android:textAlignment="textEnd"
                         android:textSize="15dp">
                     </TextView>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="0dp"
-                    android:layout_marginTop="10dp">
-
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.2">
-                        <ImageView
-                            android:layout_centerInParent="true"
-                            android:id="@+id/iv_email"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/ic_supervisor_account"
-                            android:layout_gravity="center">
-                        </ImageView>
-                    </RelativeLayout>
-
-
-
-                    <LinearLayout
-                        android:paddingTop="5dp"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tv_female"
+                        android:layout_toLeftOf="@id/tv_num_female"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_weight="0.8">
+                        android:text="# Hembras:"
+                        android:textStyle="bold"
+                        android:textAlignment="textEnd"
+                        android:textSize="15dp"
+                        android:layout_marginRight="10dp">
+                    </TextView>
 
-                        <TextView
-                            android:id="@+id/tv_num_admins"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Empleados Administrativos: 20"
-                            android:layout_marginBottom="5dp"
-                            android:layout_gravity="left">
-                        </TextView>
-                        <TextView
-                            android:id="@+id/tv_num_operators"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Empleados operativos 30"
-                            android:layout_gravity="left"
-                            android:layout_marginBottom="20dp">
-                        </TextView>
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_num_female"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textStyle="bold"
+                        android:textSize="15dp">
+                    </TextView>
 
-                    </LinearLayout>
-                </LinearLayout>
+                </RelativeLayout>
+
+
+
+
+
+
 
 
 
