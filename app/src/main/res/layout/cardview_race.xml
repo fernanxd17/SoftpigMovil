@@ -4,36 +4,34 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_race"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_cardview"
+    android:layout_height="wrap_content"
     cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_cardview">
-        <ImageView
-            android:id="@+id/imagenRace"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_cardview">
-        </ImageView>
-    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp">
+        android:paddingVertical="10dp">
 
-        <TextView
-            android:id="@+id/tv_idRace"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/idRace"
-            android:textSize="15dp"
-            android:layout_gravity="top">
-        </TextView>
-    </LinearLayout>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_idRace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/idRace"
+                android:textSize="15dp"
+                android:layout_gravity="top">
+            </TextView>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,6 +57,9 @@
             </TextView>
 
         </LinearLayout>
+
+    </LinearLayout>
+
 </com.google.android.material.card.MaterialCardView>
 
 

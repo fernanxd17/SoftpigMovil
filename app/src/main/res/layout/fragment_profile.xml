@@ -306,18 +306,37 @@
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/btt_disable"
-        android:layout_marginTop="20dp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INHABILITAR"
-        android:paddingHorizontal="20dp"
-        android:background="@color/secondaryColor"
-        android:layout_gravity="center"
-        android:layout_marginBottom="30dp">
-    </Button>
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/btt_dissmis"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DESPEDIR"
+            android:paddingHorizontal="20dp"
+            android:background="@color/secondaryColor"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="30dp">
+        </Button>
+        <Button
+            android:id="@+id/btt_disable"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INHABILITAR"
+            android:paddingHorizontal="20dp"
+            android:background="@color/secondaryColor"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp">
+        </Button>
+    </LinearLayout>
+
+
 
 </LinearLayout>
 </LinearLayout>
