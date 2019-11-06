@@ -7,7 +7,10 @@ public class Employee {
     private short idEmployee;
     private String role;
     private String status;
+    private String contract;
+    private String hoursWorked;
     private Date admissionDate;
+    private Date dateOff;
     private String document;
     private String gender;
     private String firstName;
@@ -17,17 +20,22 @@ public class Employee {
     private String email;
     private String telephone;
     private String mobile;
+    private String installation;
+    private int salary;
 
     public Employee() {
     }
 
-    public Employee(short idEmployee, String role, String status, Date admissionDate, String document,
+    public Employee(short idEmployee, String role, String contract, String hoursWorked, String status, Date admissionDate, Date dateOff ,String document,
                     String gender, String firstName, String secondName, String lastName,
-                    String motherLastName, String email, String telephone, String mobile) {
+                    String motherLastName, String email, String telephone, String mobile, String installation, int salary) {
         this.idEmployee = idEmployee;
         this.role = role;
+        this.contract = contract;
+        this.hoursWorked = hoursWorked;
         this.status = status;
         this.admissionDate = admissionDate;
+        this.dateOff = dateOff;
         this.document = document;
         this.gender = gender;
         this.firstName = firstName;
@@ -37,6 +45,8 @@ public class Employee {
         this.email = email;
         this.telephone = telephone;
         this.mobile = mobile;
+        this.installation = installation;
+        this.salary = salary;
     }
 
     public int getIdEmployee() {
@@ -47,12 +57,24 @@ public class Employee {
         return role;
     }
 
+    public String getContract() {
+        return contract;
+    }
+
+    public String getHoursWorked() {
+        return hoursWorked;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public Date getAdmissionDate() {
         return admissionDate;
+    }
+
+    public Date getDateOff() {
+        return dateOff;
     }
 
     public String getDocument() {
@@ -90,4 +112,13 @@ public class Employee {
     public String getMobile() {
         return mobile;
     }
+
+    public String getInstallation() {
+        return installation;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
 }

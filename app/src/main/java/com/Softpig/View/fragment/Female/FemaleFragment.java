@@ -12,36 +12,46 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.Softpig.Model.Female;
 import com.Softpig.Presenter.Adapters.FemaleAdapter;
-import com.Softpig.Presenter.FemalePresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FemaleFragment extends Fragment {
-    private RecyclerView recyclerFemale;
-    private FemalePresenter femalePresenter;
-    private FemaleAdapter femaleAdapter;
 
-    public FemaleFragment() {
-        // Required empty public constructor
+    private RecyclerView recyclerFemale;
+    private FemaleAdapter femaleAdapter;
+    private ArrayList<Female> listFemale;
+    private TextView tv_noFemales;
+    View viewFemale;
+
+    public FemaleFragment(ArrayList<Female> lisFemale) {
+        this.listFemale = lisFemale;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        viewFemale =  inflater.inflate(R.layout.fragment_female, container, false);
+
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
-        View view =  inflater.inflate(R.layout.fragment_female, container, false);
-        femalePresenter = new FemalePresenter();
-        recyclerFemale = view.findViewById(R.id.recyclerFemale);
+        if (listFemale.isEmpty()){
+            tv_noFemales = viewFemale.findViewById(R.id.tv_noFemales);
+            tv_noFemales.setText("NO existen reproductoras");
+            return viewFemale;
+        }
+        femaleAdapter = new FemaleAdapter(this.listFemale);
+        recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
-        femaleAdapter = new FemaleAdapter(FemalePresenter.getFemale());
         recyclerFemale.setAdapter(femaleAdapter);
 
-        return view;
+        return viewFemale;
     }
 
 }

@@ -51,8 +51,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private static MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
     private AlarmFragment alarmFragment;
-    private FemaleFragment femaleFragment;
-    private MaleFragment maleFragment;
     private RaceFragment raceFragment;
     private ReportFragment reportFragment;
     private DictionaryFragment dictionaryFragment;
@@ -97,17 +95,14 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
-            employeeFragment = new EmployeeFragment();
+            //employeeFragment = new EmployeeFragment();
             dashBoardFragment = new DashBoardFragment();
             installationFragment = new InstallationFragment(listInstallations);
-            pigFragment = new PigFragment();
-            femaleFragment = new FemaleFragment();
-            maleFragment = new MaleFragment();
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
             mainMenuPresenter = new MainMenuPresenter();
             notificacion = new Toast(this);
-            toolFragment = new ToolFragment();
+           // toolFragment = new ToolFragment();
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
@@ -202,14 +197,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_female:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, femaleFragment).commit();
+                mainMenuPresenter.inflarFemalesFragment(this);
                 break;
             case R.id.nav_male:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, maleFragment).commit();
+                mainMenuPresenter.inflarMalesFragment(this);
                 break;
             case R.id.nav_race:
                 mainMenuPresenter.inflarRacesFragment(this);
-
                 break;
             case R.id.nav_dictionary:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
@@ -237,12 +231,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         switch (stringFragment){
 
-            case "Empleados":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, employeeFragment).commit();
+            case "Employees":
+                mainMenuPresenter.inflarEmployeesFragment(this);
                 break;
-            case "Herramientas":
+            case "Tools":
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, toolFragment).commit();
+                mainMenuPresenter.inflarArticlesFragment(this);
                 break;
 
             case "Installations":
@@ -284,7 +278,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             @Override
             public boolean onQueryTextChange(String newText) {
                 switch (fragmentSearch){
-                    case "empleados": employeeFragment.employeeAdapter.getFilter().filter(newText); break;
+                    case "employee": employeeFragment.employeeAdapter.getFilter().filter(newText); break;
 
                 }
 

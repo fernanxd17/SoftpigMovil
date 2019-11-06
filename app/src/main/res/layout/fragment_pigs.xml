@@ -6,15 +6,23 @@
     android:background="@drawable/pig_images">
 
     <TextView
+<<<<<<< HEAD
+        android:id="@+id/tv_noPigs"
+=======
         android:id="@+id/tv_noInstallations"
+>>>>>>> b63d828d22004db580b5ee0a7240bd01dc8eb23f
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:text=""
         android:textColor="#fff"
+<<<<<<< HEAD
+        android:layout_gravity="center"/>
+=======
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"/>
+>>>>>>> b63d828d22004db580b5ee0a7240bd01dc8eb23f
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPig"

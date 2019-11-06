@@ -11,12 +11,12 @@ public class Pig {
     private String growthPhase;
     private String pigState;
     private String health;
-    private short idInstalation;
+    private String installation;
     private Date birthDate;
     private Date acquisitionDate;
 
     public Pig(short idPig, String sex, short weigth, String race, String growthPhase,
-               String pigState, String health, short idInstalation, Date birthDate, Date acquisitionDate) {
+               String pigState, String health,String installation, Date birthDate, Date acquisitionDate) {
         this.idPig = idPig;
         this.sex = sex;
         this.weigth = weigth;
@@ -24,7 +24,7 @@ public class Pig {
         this.growthPhase = growthPhase;
         this.pigState = pigState;
         this.health = health;
-        this.idInstalation = idInstalation;
+        this.installation = installation;
         this.birthDate = birthDate;
         this.acquisitionDate = acquisitionDate;
     }
@@ -55,8 +55,8 @@ public class Pig {
         return health;
     }
 
-    public short getIdInstalation() {
-        return idInstalation;
+    public String getInstallation() {
+        return installation;
     }
 
     public Date getBirthDate() {
@@ -66,4 +66,5 @@ public class Pig {
     public Date getAcquisitionDate() {
         return acquisitionDate;
     }
+
 }

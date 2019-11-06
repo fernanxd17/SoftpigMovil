@@ -6,6 +6,16 @@
     tools:context=".View.fragment.Employee.EmployeeFragment"
     android:background="@drawable/employee">
 
+    <TextView
+        android:id="@+id/tv_noEmployees"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text=""
+        android:textColor="#fff"
+        android:layout_gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerEmployee"
         android:layout_width="match_parent"

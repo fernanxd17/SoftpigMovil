@@ -6,15 +6,19 @@ public class Tool {
     private String typeArticle;
     private String name;
     private short quantity;
+    private short available;
+    private short loan;
 
     public Tool() {
     }
 
-    public Tool(short idArticle, String typeArticle, String name, short quantity) {
+    public Tool(short idArticle, String typeArticle, String name, short quantity, short available, short loan) {
         this.idArticle = idArticle;
         this.typeArticle = typeArticle;
         this.name = name;
         this.quantity = quantity;
+        this.available = available;
+        this.loan = loan;
     }
 
     public short getIdArticle() {
@@ -31,5 +35,13 @@ public class Tool {
 
     public short getQuantity() {
         return quantity;
+    }
+
+    public short getAvailable() {
+        return available;
+    }
+
+    public short getLoan() {
+        return loan;
     }
 }

@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.Adapters.PigAdapter;
-import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,27 +25,33 @@ import com.Softpig.View.MainMenuActivity;
 public class PigFragment extends Fragment {
 
     private RecyclerView recyclerPig;
-    private PigPresenter pigPresenter;
     private PigAdapter pigAdapter;
+    private ArrayList<Pig> listPigs;
+    private static View viewPigs;
+    private TextView tv_noPigs;
 
-    public PigFragment() {
-        // Required empty public constructor
+    public PigFragment(ArrayList<Pig> listPigs) {
+        this.listPigs = listPigs;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_pigs, container, false);
+
+        viewPigs =  inflater.inflate(R.layout.fragment_pigs, container, false);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Porcinos");
-        pigPresenter = new PigPresenter();
-        recyclerPig = view.findViewById(R.id.recyclerPig);
+        if(listPigs.isEmpty()){
+            tv_noPigs = viewPigs.findViewById(R.id.tv_noPigs);
+            tv_noPigs.setText("No Existen cerditos registrados");
+            return viewPigs;
+        }
+        pigAdapter = new PigAdapter(listPigs);
+        recyclerPig = viewPigs.findViewById(R.id.recyclerPig);
         recyclerPig.setLayoutManager(new LinearLayoutManager(getContext()));
-        pigAdapter = new PigAdapter(pigPresenter.getPigs());
         recyclerPig.setAdapter(pigAdapter);
 
-        return  view;
+        return  viewPigs;
     }
 
 

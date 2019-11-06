@@ -44,7 +44,7 @@ public class DashBoardFragment extends Fragment {
         this.llEmployeeDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainMenuActivity)getActivity()).controllerFragment("Empleados");
+                ((MainMenuActivity)getActivity()).controllerFragment("Employees");
             }
         });
 
@@ -58,7 +58,7 @@ public class DashBoardFragment extends Fragment {
         this.llToalsDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).controllerFragment("Herramientas");
+                ((MainMenuActivity)getActivity()).controllerFragment("Tools");
             }
         });
 
