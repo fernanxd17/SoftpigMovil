@@ -114,6 +114,9 @@
     <string name="app_correo">correo</string>
     <string name="searchEmployee">Cedula...</string>
     <string name="searchTool">Nombre...</string>
+    <string name="change_password">Cambiar Contraseña</string>
+    <string name="app_contraseña_new">Nueva Contraseña</string>
+    <string name="app_contraseña_new_repite">Repitir Contraseña</string>
 
 
 </resources>

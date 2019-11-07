@@ -15,7 +15,7 @@ public class ControllerMaster {
 
         try{
 
-            //Realiza la petion post de login a la API en Python, retorna el jsonObject
+            //Realiza la petion post de fragment_login a la API en Python, retorna el jsonObject
 
         }catch(Exception e){
 
@@ -30,7 +30,7 @@ public class ControllerMaster {
 
         try{
 
-            //Realiza la petion post de login a la API en Python, retorna el jsonObject
+            //Realiza la petion post de fragment_login a la API en Python, retorna el jsonObject
 
         }catch(Exception e){
 

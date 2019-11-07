@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.fragment_login);
         this.masterPresenter = new MasterPresenter();
         this.startFilds();
 
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 if(!codeUser.isEmpty() && !password.isEmpty()){
-                    //Realiza el login
+                    //Realiza el fragment_login
                     login(codeUser, password);
                 }else{
                     //Notifica que no estan los campos completos
@@ -59,12 +59,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Comunica al MasterPresenter la peticion de login
+     * Comunica al MasterPresenter la peticion de fragment_login
      * @param codeUser
      * @param password
      */
     private void login(String codeUser, String password){
-        //JSONObject datos = LoginActivity.this.masterPresenter.login(codeUser, password);
+        //JSONObject datos = LoginActivity.this.masterPresenter.fragment_login(codeUser, password);
         MasterPresenter.login(codeUser, password);
         Intent i = new Intent();
         i.setClass(this, MainMenuActivity.class);
