@@ -38,7 +38,7 @@ public class RaceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewRace =  inflater.inflate(R.layout.fragment_races, container, false);
+        viewRace =  inflater.inflate(R.layout.fragment_list_races, container, false);
         ((MainMenuActivity) getActivity()).setTitleTolbar("Razas");
 
         if(listRaces.isEmpty()){

@@ -38,7 +38,7 @@ public class MaleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-        viewMale = inflater.inflate(R.layout.fragment_male, container, false);
+        viewMale = inflater.inflate(R.layout.fragment_list_male, container, false);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductores");
         if (listMales.isEmpty()){
             tv_noMales = viewMale.findViewById(R.id.tv_noMales);

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 import org.w3c.dom.Text;
 
@@ -46,7 +47,7 @@ public class PigMenuFragment extends Fragment {
         llPig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ((MainMenuActivity)getActivity()).controllerFragment("porcinos");
             }
         });
         return view;

@@ -39,7 +39,7 @@ public class PigFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        viewPigs =  inflater.inflate(R.layout.fragment_pigs, container, false);
+        viewPigs =  inflater.inflate(R.layout.fragment_list_pigs, container, false);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Porcinos");
         if(listPigs.isEmpty()){
             tv_noPigs = viewPigs.findViewById(R.id.tv_noPigs);

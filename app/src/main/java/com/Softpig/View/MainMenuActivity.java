@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.PigMenuFragment;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ReportFragment;
 import com.Softpig.View.fragment.ToolFragment;
@@ -69,6 +70,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuItem searchItem;
     private MenuInflater menuInflater;
     private SearchView searchView;
+    private PigMenuFragment pigMenuFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
             mainMenuPresenter = new MainMenuPresenter();
+            pigMenuFragment = new PigMenuFragment();
             notificacion = new Toast(this);
            // toolFragment = new ToolFragment();
         }
@@ -122,7 +125,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit();
                             break;
                         case R.id.ic_pig:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigFragment).commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigMenuFragment).commit();
                             break;
                         case R.id.ic_medicine:
                             notificacion.cancel();

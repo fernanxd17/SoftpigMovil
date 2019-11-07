@@ -1,25 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/female">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_noFemales"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:text=""
-        android:textColor="#fff"
-        android:layout_gravity="center"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerFemale"
+    <RelativeLayout android:id="@+id/rl_info_female"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"/>
+        android:padding="20dp">
+
+        <TextView android:id="@+id/tv_title_info_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INFORMACIÓN REPRODUCTORA"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"/>
+
+        <LinearLayout android:id="@+id/ll_date_female"
+            android:layout_below="@id/tv_title_info_female"
+            android:gravity="right"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <TextView android:id="@+id/tv_id_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID:"/>
+            <TextView android:id="@+id/tv_state_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado:"/>
+            <TextView android:id="@+id/tv_installation_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instalación:"/>
+            <TextView android:id="@+id/tv_nulipara_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nulipara:"/>
+            <TextView android:id="@+id/tv_gestation_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestación:"/>
+            <TextView android:id="@+id/tv_peso_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Peso:"/>
+            <TextView android:id="@+id/tv_raza_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Raza:"/>
+
+            <TextView android:id="@+id/tv_salud_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salud:"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/ll_valores_female"
+            android:layout_below="@id/tv_title_info_female"
+            android:layout_toRightOf="@id/ll_date_female"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/tv_valor_id_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01"/>
+            <TextView android:id="@+id/tv_valor_state_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vivo"/>
+            <TextView android:id="@+id/tv_valor_installation_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre (IDInst)"/>
+            <TextView android:id="@+id/tv_valor_nulipara_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"/>
+            <TextView android:id="@+id/tv_valor_gestation_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si"/>
+            <TextView android:id="@+id/tv_valor_peso_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="48 Kg"/>
+            <TextView android:id="@+id/tv_valor_raza_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duroc"/>
+
+            <TextView android:id="@+id/tv_valor_salud_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sano"/>
+        </LinearLayout>
+
+        <Button android:id="@+id/bt_desasignar_female"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Des-asignar\nReproductora"/>
+    </RelativeLayout>
+
+
+
 
 </LinearLayout>

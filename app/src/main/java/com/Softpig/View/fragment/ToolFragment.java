@@ -17,7 +17,6 @@ import com.Softpig.Presenter.Adapters.ToolAdapter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.ProfileActivity;
-import com.Softpig.View.fragment.AddToolEmployeeDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewTool =  inflater.inflate(R.layout.fragment_tools, container, false);
+        viewTool =  inflater.inflate(R.layout.fragment_list_tools, container, false);
         ((MainMenuActivity) getActivity()).setTitleTolbar("Herramientas de la granja");
 
         if (listTool.isEmpty()){
