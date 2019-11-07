@@ -43,6 +43,7 @@ public class MainMenuPresenter {
     private EmployeeFragment employeeFragment;
     private ArrayList<Pig> listPig;
     private static SimpleDateFormat simpleDateFormat;
+    private String urlApi = "https://softpig.herokuapp.com/api/";
 
     public MainMenuPresenter(){
 
@@ -54,7 +55,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://0df2cb68.ngrok.io/api/race_list";
+        String url = this.urlApi + "race_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -111,7 +112,7 @@ public class MainMenuPresenter {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        String url = "https://0df2cb68.ngrok.io/api/installation_list";
+        String url = this.urlApi+"installation_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -169,7 +170,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://0df2cb68.ngrok.io/api/race_list";
+        String url = this.urlApi+"pig_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -238,7 +239,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://0df2cb68.ngrok.io/api/race_list";
+        String url = this.urlApi+ "article_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -298,7 +299,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://0df2cb68.ngrok.io/api/race_list";
+        String url = this.urlApi + "employee_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -376,7 +377,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://0df2cb68.ngrok.io/api/race_list";
+        String url = this.urlApi + "female_lis";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -437,7 +438,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://0df2cb68.ngrok.io/api/race_list";
+        String url = this.urlApi + "male_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
