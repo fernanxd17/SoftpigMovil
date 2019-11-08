@@ -43,7 +43,7 @@ public class MainMenuPresenter {
     private EmployeeFragment employeeFragment;
     private ArrayList<Pig> listPig;
     private static SimpleDateFormat simpleDateFormat;
-    private String urlApi = "https://softpig.herokuapp.com/api/";
+    private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
     public MainMenuPresenter(){
 
@@ -55,7 +55,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = this.urlApi + "race_list";
+        String url = URLAPI + "race_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -112,7 +112,7 @@ public class MainMenuPresenter {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        String url = this.urlApi+"installation_list";
+        String url = URLAPI+"installation_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -170,7 +170,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = this.urlApi+"pig_list";
+        String url = URLAPI+"pig_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -239,7 +239,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = this.urlApi+ "article_list";
+        String url = URLAPI+ "article_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -296,10 +296,10 @@ public class MainMenuPresenter {
     public boolean inflarEmployeesFragment(final MainMenuActivity context) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Cargando Empleados...");
         progressDialog.show();
 
-        String url = this.urlApi + "employee_list";
+        String url = URLAPI + "employee_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -308,7 +308,6 @@ public class MainMenuPresenter {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                              simpleDateFormat = new SimpleDateFormat();
                             ArrayList<Employee> listEmployee = new ArrayList<>();
@@ -377,7 +376,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = this.urlApi + "female_lis";
+        String url = URLAPI + "female_lis";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -438,7 +437,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = this.urlApi + "male_list";
+        String url = URLAPI + "male_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
