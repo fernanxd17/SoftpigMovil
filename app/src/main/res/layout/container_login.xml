@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".IndexActivity">
 
 
 
@@ -17,6 +17,7 @@
         android:layout_above="@+id/dic_down"/>
 
     <RelativeLayout
+        android:background="@color/secondaryColor"
         android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/dic_down"
@@ -43,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diccionario"
+                    android:onClick="openDictionary"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/textSize_Dictionary">
@@ -61,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Acerca De"
+                    android:onClick="openAbout"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/textSize_Dictionary">

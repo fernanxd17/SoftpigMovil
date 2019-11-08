@@ -12,12 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".View.ProfileActivity"></activity>
-        <activity android:name=".View.ForgetPasswordActivity" />
         <activity
             android:name=".View.MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".IndexActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

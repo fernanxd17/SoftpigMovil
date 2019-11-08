@@ -27,7 +27,7 @@ public class DictionaryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainMenuActivity)getActivity()).setTitleTolbar("Diccionario Porcino");
+        //((MainMenuActivity)getActivity()).setTitleTolbar("Diccionario Porcino");
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
         return view;
     }

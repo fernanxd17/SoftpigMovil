@@ -11,15 +11,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.Softpig.R;
-import com.Softpig.View.MainMenuActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AboutFragment extends Fragment {
+public class ForgetPassFragment extends Fragment {
 
 
-    public AboutFragment() {
+    public ForgetPassFragment() {
         // Required empty public constructor
     }
 
@@ -27,8 +26,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //((MainMenuActivity)getActivity()).setTitleTolbar("Acerca De");
-        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        View view = inflater.inflate(R.layout.fragment_forget_password, container, false);
         return view;
     }
 
