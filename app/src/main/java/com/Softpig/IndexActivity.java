@@ -1,6 +1,8 @@
 package com.Softpig;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,24 +18,64 @@ import com.Softpig.View.fragment.LoginFragment;
 
 public class IndexActivity extends AppCompatActivity {
 
+    private TextView tvOpc1, tvOpc2;
 
     private MasterPresenter masterPresenter;
+    FragmentManager fragmentManager;
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.container_login);
+        fragmentManager = getSupportFragmentManager();
 
         if(savedInstanceState == null){
+            tvOpc1 = findViewById(R.id.tv_opc_1);
+            tvOpc2 = findViewById(R.id.tv_opc_2);
             masterPresenter = new MasterPresenter();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
         }
 
+        tvOpc1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String txtOpc1 = tvOpc1.getText().toString();
+                switch (txtOpc1){
+                    case "Diccionario":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new DictionaryFragment()).commit();
+                        tvOpc1.setText("Iniciar Sesión");
+                        tvOpc2.setText("Acerca De");
+                        break;
+                     default:
+                         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
+                         tvOpc1.setText("Diccionario");
+                         break;
+                }
 
+            }
+        });
+
+        tvOpc2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String txtOpc2 = tvOpc2.getText().toString();
+                switch (txtOpc2){
+                    case "Acerca De":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new AboutFragment()).commit();
+                        tvOpc2.setText("Iniciar Sesión");
+                        tvOpc1.setText("Diccionario");
+                        break;
+                    default:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
+                        tvOpc2.setText("Acerca De");
+                        break;
+                }
+            }
+        });
 
 
     }
-
 
     /**
      * Comunica al MasterPresenter la peticion de fragment_login
@@ -55,7 +97,6 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     public boolean openDictionary(View view){
-        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new DictionaryFragment()).commit();
         return true;
     }
 
@@ -82,5 +123,9 @@ public class IndexActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    public void backLogin() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
     }
 }
