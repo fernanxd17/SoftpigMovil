@@ -21,7 +21,7 @@
             android:orientation="vertical"
             android:layout_weight="0.8">
 
-            <RelativeLayout android:id="@+id/ll_pig"
+            <RelativeLayout android:id="@+id/rl_pig"
                 android:layout_marginHorizontal="15dp"
                 android:padding="15dp"
                 android:layout_width="match_parent"
@@ -185,7 +185,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout android:id="@+id/ll_female"
+            <RelativeLayout android:id="@+id/rl_female"
                 android:layout_marginTop="25dp"
                 android:padding="15dp"
                 android:layout_width="match_parent"
@@ -277,7 +277,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout android:id="@+id/ll_male"
+            <RelativeLayout android:id="@+id/rl_male"
                 android:layout_marginTop="25dp"
                 android:padding="15dp"
                 android:layout_width="match_parent"

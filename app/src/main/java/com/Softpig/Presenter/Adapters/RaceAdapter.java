@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,12 +45,15 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace
     public class ViewHolderRace extends RecyclerView.ViewHolder {
 
         TextView tv_idRace, tv_nameRace, tv_description;
+        LinearLayout llCardviewRace;
 
         public ViewHolderRace(@NonNull View itemView) {
             super(itemView);
-            tv_idRace = (TextView) itemView.findViewById(R.id.tv_idRace);
-            tv_nameRace = (TextView) itemView.findViewById(R.id.tv_nameRace);
-            tv_description = (TextView) itemView.findViewById(R.id.tv_description);
+            tv_idRace =  itemView.findViewById(R.id.tv_idRace);
+            tv_nameRace =  itemView.findViewById(R.id.tv_nameRace);
+            tv_description =  itemView.findViewById(R.id.tv_description);
+
+            llCardviewRace = itemView.findViewById(R.id.ll_cardview_race);
         }
     }
 }

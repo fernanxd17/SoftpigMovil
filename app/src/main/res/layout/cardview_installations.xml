@@ -11,15 +11,10 @@
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
 
-    <ImageView
-        android:id="@+id/imageninstallation"
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-    </ImageView>
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/ll_cardview_installation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_weight="0.7"

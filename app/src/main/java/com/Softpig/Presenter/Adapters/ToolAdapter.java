@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -97,6 +98,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
 
         TextView tv_nameArticle, tv_totalarticle, tv_typearticle, tv_idArticle;
         ImageView ivRemoveArticleEmployee;
+        LinearLayout ll_cardview_tool;
 
         public ViewHolderArticle(@NonNull View itemView) {
             super(itemView);
@@ -105,11 +107,13 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
                 tv_nameArticle = itemView.findViewById(R.id.tv_nameArticle);
                 tv_typearticle = itemView.findViewById(R.id.tv_typearticle);
                 tv_idArticle = itemView.findViewById(R.id.tv_idArticle);
+                ll_cardview_tool = itemView.findViewById(R.id.ll_cardview_tool);
             }else{
                 tv_idArticle = itemView.findViewById(R.id.tv_id_article_employee);
                 tv_nameArticle = itemView.findViewById(R.id.tv_name_article_employee);
                 tv_typearticle = itemView.findViewById(R.id.tv_type_article_employee);
                 ivRemoveArticleEmployee = itemView.findViewById(R.id.iv_remove_article_employee);
+                ll_cardview_tool = itemView.findViewById(R.id.ll_cardview_tool_employee);
             }
 
 

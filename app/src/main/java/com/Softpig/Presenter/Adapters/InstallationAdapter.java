@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,7 +46,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     public class ViewHolderInstallation extends RecyclerView.ViewHolder {
         TextView tv_idInstallation, tv_nameInstallation, tv_typeInstallation, tv_measurements;
-
+        LinearLayout llCardviewInstallation;
 
         public ViewHolderInstallation(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +54,14 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
             this.tv_nameInstallation = itemView.findViewById(R.id.tv_nameInstallation);
             this.tv_typeInstallation = itemView.findViewById(R.id.tv_typeInstallation);
             this.tv_measurements = itemView.findViewById(R.id.tv_measurements);
+            llCardviewInstallation = itemView.findViewById(R.id.ll_cardview_installation);
+
+            llCardviewInstallation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 }

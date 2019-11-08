@@ -4,7 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,13 +49,22 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
 
         ImageView imagenFemale;
         TextView tv_idFemale, tv_nulipara, tv_pesoFemale,tv_gestation;
+        LinearLayout llCardviewFemale;
 
         public ViewHolderFemale(@NonNull View itemView) {
             super(itemView);
-            tv_idFemale = (TextView) itemView.findViewById(R.id.tv_idFemale);
-            tv_nulipara = (TextView) itemView.findViewById(R.id.tv_nulipara);
-            tv_pesoFemale = (TextView) itemView.findViewById(R.id.tv_pesoFemale);
-            tv_gestation = (TextView) itemView.findViewById(R.id.tv_gestation);
+            tv_idFemale = itemView.findViewById(R.id.tv_idFemale);
+            tv_nulipara = itemView.findViewById(R.id.tv_nulipara);
+            tv_pesoFemale = itemView.findViewById(R.id.tv_pesoFemale);
+            tv_gestation =  itemView.findViewById(R.id.tv_gestation);
+            llCardviewFemale = itemView.findViewById(R.id.ll_cardview_female);
+
+            llCardviewFemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 }

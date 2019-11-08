@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
 
             ImageView imagenPig;
             TextView tv_idPig,tv_etapaPig,tv_pesoPig, tv_sexoPig;
+            RelativeLayout rlCardviewPig;
 
             public ViewHolderPig(@NonNull View itemView) {
                 super(itemView);
@@ -53,6 +55,14 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
                 tv_etapaPig = itemView.findViewById(R.id.tv_etapaPig);
                 tv_pesoPig = itemView.findViewById(R.id.tv_pesoPig);
                 tv_sexoPig = itemView.findViewById(R.id.tv_sexoPig);
+                rlCardviewPig = itemView.findViewById(R.id.rl_cardview_pig);
+
+                rlCardviewPig.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
         }
 

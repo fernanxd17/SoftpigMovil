@@ -15,31 +15,24 @@
         cardview:cardCornerRadius="@dimen/cornerradius_cardview"
         cardview:cardUseCompatPadding="true">
 
-        <RelativeLayout
+
+        <LinearLayout android:id="@+id/ll_cardview_male"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_cardview">
-            <ImageView
-                android:id="@+id/imagenMale"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_cardview">
-            </ImageView>
-        </RelativeLayout>
-        <TextView
-            android:id="@+id/tv_idMale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/idPig"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin">
-        </TextView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="bottom"
             android:paddingLeft="@dimen/padding_cardview"
             android:paddingBottom="@dimen/padding_cardview">
+
+            <TextView
+                android:id="@+id/tv_idMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/idPig"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+            </TextView>
 
             <TextView
                 android:id="@+id/tv_raceMale"

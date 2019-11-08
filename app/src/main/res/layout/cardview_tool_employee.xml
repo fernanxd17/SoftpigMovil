@@ -9,16 +9,8 @@
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-        <ImageView
-            android:id="@+id/iv_article_employee"
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
-        </ImageView>
-    </RelativeLayout>
-    <LinearLayout
+
+    <LinearLayout android:id="@+id/ll_cardview_tool_employee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

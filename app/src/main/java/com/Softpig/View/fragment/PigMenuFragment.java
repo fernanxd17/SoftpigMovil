@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.Softpig.R;
@@ -20,7 +21,7 @@ import org.w3c.dom.Text;
 public class PigMenuFragment extends Fragment {
     private TextView numPig, numLechones, numMarranos, numGordos, numPrimales, numVirgenes;
     private TextView numFemales, numMales, numGestaciones;
-    private LinearLayout llPig;
+    private RelativeLayout rlPig, rlFemale, rlMale;
 
     public PigMenuFragment() {
 
@@ -42,12 +43,28 @@ public class PigMenuFragment extends Fragment {
         numMales = view.findViewById(R.id.tv_num_male);
         numGestaciones = view.findViewById(R.id.tv_num_gestation);
 
-        llPig = view.findViewById(R.id.ll_pig);
+        rlPig = view.findViewById(R.id.rl_pig);
+        rlFemale = view.findViewById(R.id.rl_female);
+        rlMale = view.findViewById(R.id.rl_male);
 
-        llPig.setOnClickListener(new View.OnClickListener() {
+        rlPig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainMenuActivity)getActivity()).controllerFragment("porcinos");
+            }
+        });
+
+        rlFemale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        rlMale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
         return view;

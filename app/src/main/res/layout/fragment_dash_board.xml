@@ -20,9 +20,7 @@
             android:orientation="vertical"
             android:layout_weight="0.8">
 
-            <LinearLayout
-
-                android:id="@+id/ll_empleyees_dashboard"
+            <LinearLayout android:id="@+id/ll_empleyees_dashboard"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,9 +114,8 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:id="@+id/ll_installations_dashboard"
                 android:layout_below="@id/ll_empleyees"
-                android:id="@+id/ll_installations_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -195,9 +192,8 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:id="@+id/ll_tools_dashboard"
                 android:layout_below="@id/ll_installations_dashboard"
-                android:id="@+id/ll_tools_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
