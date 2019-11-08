@@ -1,11 +1,13 @@
 package com.Softpig;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ForgetPassFragment;
 import com.Softpig.View.fragment.LoginFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class IndexActivity extends AppCompatActivity {
 
@@ -23,6 +27,9 @@ public class IndexActivity extends AppCompatActivity {
     private MasterPresenter masterPresenter;
     FragmentManager fragmentManager;
     Fragment fragment;
+    private static  final String  TAG = "LoginActivity";
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +90,42 @@ public class IndexActivity extends AppCompatActivity {
      * @param password
      */
     public void login(String codeUser, String password){
+        masterPresenter.login(codeUser, password);
         //JSONObject datos = IndexActivity.this.masterPresenter.fragment_login(codeUser, password);
-        MasterPresenter.login(codeUser, password);
+       /* MasterPresenter.login(codeUser, password);
         Intent i = new Intent();
         i.setClass(this, MainMenuActivity.class);
-        startActivity(i);
+        startActivity(i);*/
     }
+
+    private void inicialize() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        /*Me ayuda a detectar cuando hay un cambio en a sesión*/
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    Log.w(TAG, "onAuthStateChanged - logeado" + firebaseUser.getEmail());
+                } else {
+                    Log.w(TAG, "onAuthStateChanged - cerro sesion");
+                }
+            }
+        };
+
+    }
+
+    @Override
+        protected void onStart() {
+            super.onStart();
+            firebaseAuth.addAuthStateListener(authStateListener);
+        }
+
+        @Override
+        protected void onStop() {
+            super.onStop();
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
 
 
     public boolean openForgetFragment() {

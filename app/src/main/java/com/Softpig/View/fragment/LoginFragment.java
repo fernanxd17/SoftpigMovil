@@ -3,8 +3,10 @@ package com.Softpig.View.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 
 import com.Softpig.IndexActivity;
 import com.Softpig.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,5 +59,6 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
+
 
 }
