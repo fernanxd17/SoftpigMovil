@@ -49,27 +49,18 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     private static MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
-    private AlarmFragment alarmFragment;
-    private RaceFragment raceFragment;
-    private ReportFragment reportFragment;
     private DictionaryFragment dictionaryFragment;
-    private MedicineFragment medicineFragment;
-    private PigFragment pigFragment;
-    private InstallationFragment installationFragment;
-    private EmployeeFragment employeeFragment;
     private ErrorFragment errorFragment;
-    private AppBarConfiguration mAppBarConfiguration;
-    private ToolFragment toolFragment;
-    private Bundle bundle;
     private BottomNavigationView bottomNavigationView;
     private DrawerLayout drawer;
     private Toast notificacion;
+    private InstallationFragment installationFragment;
     private static Toolbar toolbar;
-    private static String fragmentSearch;
     private ArrayList<Installation> listInstallations = new ArrayList<>();
     private MenuItem searchItem;
     private MenuInflater menuInflater;
     private SearchView searchView;
+    private EmployeeFragment employeeFragment;
     private PigMenuFragment pigMenuFragment;
 
     @Override
@@ -95,7 +86,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
-            //employeeFragment = new EmployeeFragment();
+
             dashBoardFragment = new DashBoardFragment();
             installationFragment = new InstallationFragment(listInstallations);
             errorFragment = new ErrorFragment();
@@ -216,7 +207,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).commit();
                 break;
             case R.id.nav_report:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
                 break;
             case R.id.nav_out:
                 super.onBackPressed();
