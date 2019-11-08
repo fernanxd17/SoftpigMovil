@@ -40,11 +40,10 @@
                 android:layout_gravity="center">
 
                 <TextView
-                    android:id="@+id/tvDictionary"
+                    android:id="@+id/tv_opc_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diccionario"
-                    android:onClick="openDictionary"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/textSize_Dictionary">
@@ -59,11 +58,10 @@
                     android:textSize="@dimen/textSize_Dictionary">
                 </TextView>
                 <TextView
-                    android:id="@+id/tvAbout"
+                    android:id="@+id/tv_opc_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Acerca De"
-                    android:onClick="openAbout"
+                    android:text="Acerca de"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/textSize_Dictionary">
