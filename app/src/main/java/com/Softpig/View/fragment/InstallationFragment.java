@@ -28,8 +28,8 @@ public class InstallationFragment extends Fragment {
     private RecyclerView recyclerInstallations;
     private InstallationAdapter installationAdapter;
     private ArrayList<Installation> listInstallations;
-    private static View viewInstallations;
-    private TextView tv_noInstallations;
+    private  View viewInstallations;
+    private  TextView tv_noInstallations;
 
 
     public InstallationFragment(ArrayList<Installation> listInstallations) {

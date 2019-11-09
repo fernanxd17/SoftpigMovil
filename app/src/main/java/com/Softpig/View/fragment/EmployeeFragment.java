@@ -22,10 +22,10 @@ import java.util.ArrayList;
 public class EmployeeFragment extends Fragment {
 
     private RecyclerView recyclerEmployee;
-    public EmployeeAdapter employeeAdapter;
+    public  EmployeeAdapter employeeAdapter;
     private ArrayList<Employee> listEmployees;
-    private static View viewEmployee;
-    private TextView tv_noEmployees;
+    private  View viewEmployee;
+    private  TextView tv_noEmployees;
 
 
     public EmployeeFragment(ArrayList<Employee> listEmployees) {

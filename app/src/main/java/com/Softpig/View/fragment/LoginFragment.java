@@ -22,9 +22,10 @@ import com.Softpig.R;
  */
 public class LoginFragment extends Fragment {
 
-    private static EditText etCodeUser, etPassword;
-    private static TextView etForgetPass;
-    private static Button btLogin;
+    private EditText etCodeUser, etPassword;
+    private  TextView etForgetPass;
+    private  Button btLogin;
+    private  View viewLogin;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -34,11 +35,11 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_login, container, false);
-        etCodeUser = view.findViewById(R.id.etCodeUser);
-        etPassword = view.findViewById(R.id.etPassword);
-        etForgetPass = view.findViewById(R.id.etForgetPassword);
-        btLogin = view.findViewById(R.id.btLoginUp);
+        viewLogin =  inflater.inflate(R.layout.fragment_login, container, false);
+        etCodeUser = viewLogin.findViewById(R.id.etCodeUser);
+        etPassword = viewLogin.findViewById(R.id.etPassword);
+        etForgetPass = viewLogin.findViewById(R.id.etForgetPassword);
+        btLogin = viewLogin.findViewById(R.id.btLoginUp);
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        return view;
+        return viewLogin;
     }
 
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
 
-        ArrayList<Pig> listPig;
+    private ArrayList<Pig> listPig;
 
     public PigAdapter(ArrayList<Pig> listPig) {
             this.listPig = listPig;

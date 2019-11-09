@@ -7,7 +7,7 @@ public class Birth {
     private short idBirth;
     private short idFemale;
     private short idMale;
-    private Date DataBirth;
+    private Date dataBirth;
     private short noBabies;
     private short noMummy;
     private short noDead;
@@ -16,7 +16,7 @@ public class Birth {
         this.idBirth = idBirth;
         this.idFemale = idFemale;
         this.idMale = idMale;
-        DataBirth = dataBirth;
+        this.dataBirth = dataBirth;
         this.noBabies = noBabies;
         this.noMummy = noMummy;
         this.noDead = noDead;
@@ -35,7 +35,7 @@ public class Birth {
     }
 
     public Date getDataBirth() {
-        return DataBirth;
+        return dataBirth;
     }
 
     public short getNoBabies() {

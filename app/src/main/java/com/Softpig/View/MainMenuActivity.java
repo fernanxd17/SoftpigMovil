@@ -47,7 +47,7 @@ import java.util.ArrayList;
 
 public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{
 
-    private static MainMenuPresenter mainMenuPresenter;
+    private MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
@@ -55,7 +55,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DrawerLayout drawer;
     private Toast notificacion;
     private InstallationFragment installationFragment;
-    private static Toolbar toolbar;
+    private Toolbar toolbar;
     private ArrayList<Installation> listInstallations = new ArrayList<>();
     private MenuItem searchItem;
     private MenuInflater menuInflater;

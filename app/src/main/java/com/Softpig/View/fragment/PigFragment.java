@@ -27,7 +27,7 @@ public class PigFragment extends Fragment {
     private RecyclerView recyclerPig;
     private PigAdapter pigAdapter;
     private ArrayList<Pig> listPigs;
-    private static View viewPigs;
+    private View viewPigs;
     private TextView tv_noPigs;
 
     public PigFragment(ArrayList<Pig> listPigs) {

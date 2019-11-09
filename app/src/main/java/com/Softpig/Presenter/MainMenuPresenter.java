@@ -42,7 +42,7 @@ public class MainMenuPresenter {
     private ToolFragment toolFragment;
     private EmployeeFragment employeeFragment;
     private ArrayList<Pig> listPig;
-    private static SimpleDateFormat simpleDateFormat;
+    private SimpleDateFormat simpleDateFormat;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
     public MainMenuPresenter(){

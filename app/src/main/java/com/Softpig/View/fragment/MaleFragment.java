@@ -27,8 +27,8 @@ public class MaleFragment extends Fragment {
     private RecyclerView recyclerMale;
     private MaleAdapter maleAdapter;
     private ArrayList<Male> listMales;
-    private static View viewMale;
-    private TextView tv_noMales;
+    private  View viewMale;
+    private  TextView tv_noMales;
 
     public MaleFragment(ArrayList<Male> listMales) {
         this.listMales = listMales;

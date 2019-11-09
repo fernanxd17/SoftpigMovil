@@ -27,11 +27,11 @@ import java.util.ArrayList;
 public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.AddToolEmployeeListerner{
 
     private RecyclerView recyclerArticle;
-    public ToolAdapter toolAdapter;
-    private static boolean toolEmployee = false;
+    public  ToolAdapter toolAdapter;
+    private boolean toolEmployee = false;
     private FloatingActionButton fbAddArticle;
     private ArrayList<Tool> listTool;
-    private static View viewTool;
+    private View viewTool;
     private TextView tv_noTool;
 
     public ToolFragment(ArrayList<Tool> listTool) {

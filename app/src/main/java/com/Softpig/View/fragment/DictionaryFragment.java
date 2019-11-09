@@ -19,6 +19,7 @@ import com.Softpig.View.MainMenuActivity;
 public class DictionaryFragment extends Fragment {
 
 
+
     public DictionaryFragment() {
         // Required empty public constructor
     }
@@ -28,8 +29,8 @@ public class DictionaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //((MainMenuActivity)getActivity()).setTitleTolbar("Diccionario Porcino");
-        View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_dictionary, container, false);
+        
     }
 
 }

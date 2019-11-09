@@ -21,6 +21,7 @@ public class ProfileFragment extends Fragment {
 
     private TextView tvAssignedItems;
     private Button btInhabilitar, btDespedir;
+    private View viewProfile;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -30,15 +31,15 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
-        this.tvAssignedItems = view.findViewById(R.id.tv_assigned_items);
+        viewProfile =  inflater.inflate(R.layout.fragment_profile, container, false);
+        this.tvAssignedItems = viewProfile.findViewById(R.id.tv_assigned_items);
         this.tvAssignedItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((ProfileActivity)getContext()).inflarToolsEmployeeFragment();
             }
         });
-        return view;
+        return viewProfile;
     }
 
 

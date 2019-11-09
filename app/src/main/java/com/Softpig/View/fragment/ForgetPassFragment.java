@@ -18,26 +18,27 @@ import com.Softpig.R;
  */
 public class ForgetPassFragment extends Fragment {
 
-    private TextView backLogin;
+    private  TextView backLogin;
+    private  View viewForgetPass;
 
     public ForgetPassFragment() {
-        // Required empty public constructor
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_forget_password, container, false);
+        viewForgetPass = inflater.inflate(R.layout.fragment_forget_password, container, false);
 
-        backLogin = view.findViewById(R.id.backLogin);
+        backLogin = viewForgetPass.findViewById(R.id.backLogin);
         backLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((IndexActivity)getActivity()).backLogin();
                 }
         });
-        return view;
+        return viewForgetPass;
     }
 
 }

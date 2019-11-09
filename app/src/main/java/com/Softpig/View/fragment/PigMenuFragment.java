@@ -19,9 +19,10 @@ import org.w3c.dom.Text;
 
 
 public class PigMenuFragment extends Fragment {
-    private TextView numPig, numLechones, numMarranos, numGordos, numPrimales, numVirgenes;
-    private TextView numFemales, numMales, numGestaciones;
-    private RelativeLayout rlPig, rlFemale, rlMale;
+    private  TextView numPig, numLechones, numMarranos, numGordos, numPrimales, numVirgenes;
+    private  TextView numFemales, numMales, numGestaciones;
+    private  RelativeLayout rlPig, rlFemale, rlMale;
+    private  View viewPigMenu;
 
     public PigMenuFragment() {
 
@@ -31,21 +32,21 @@ public class PigMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_pigs_bottom, container, false);
+        viewPigMenu =  inflater.inflate(R.layout.fragment_pigs_bottom, container, false);
 
-        numPig = view.findViewById(R.id.tv_num_pig);
-        numLechones = view.findViewById(R.id.tv_num_lechones);
-        numMarranos = view.findViewById(R.id.tv_num_marranos);
-        numGordos = view.findViewById(R.id.tv_num_gordos);
-        numPrimales = view.findViewById(R.id.tv_num_primal);
-        numVirgenes = view.findViewById(R.id.tv_num_virgen);
-        numFemales = view.findViewById(R.id.tv_num_female);
-        numMales = view.findViewById(R.id.tv_num_male);
-        numGestaciones = view.findViewById(R.id.tv_num_gestation);
+        numPig = viewPigMenu.findViewById(R.id.tv_num_pig);
+        numLechones = viewPigMenu.findViewById(R.id.tv_num_lechones);
+        numMarranos = viewPigMenu.findViewById(R.id.tv_num_marranos);
+        numGordos = viewPigMenu.findViewById(R.id.tv_num_gordos);
+        numPrimales = viewPigMenu.findViewById(R.id.tv_num_primal);
+        numVirgenes = viewPigMenu.findViewById(R.id.tv_num_virgen);
+        numFemales = viewPigMenu.findViewById(R.id.tv_num_female);
+        numMales = viewPigMenu.findViewById(R.id.tv_num_male);
+        numGestaciones = viewPigMenu.findViewById(R.id.tv_num_gestation);
 
-        rlPig = view.findViewById(R.id.rl_pig);
-        rlFemale = view.findViewById(R.id.rl_female);
-        rlMale = view.findViewById(R.id.rl_male);
+        rlPig = viewPigMenu.findViewById(R.id.rl_pig);
+        rlFemale = viewPigMenu.findViewById(R.id.rl_female);
+        rlMale = viewPigMenu.findViewById(R.id.rl_male);
 
         rlPig.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +68,7 @@ public class PigMenuFragment extends Fragment {
 
             }
         });
-        return view;
+        return viewPigMenu;
     }
 
 }

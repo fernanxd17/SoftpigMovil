@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolderFemale> {
 
-    ArrayList<Female> listFemale;
+    private ArrayList<Female> listFemale;
 
     public FemaleAdapter(ArrayList<Female> listFemale) {
         this.listFemale = listFemale;

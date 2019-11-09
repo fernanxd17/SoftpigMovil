@@ -20,12 +20,12 @@ import java.util.List;
 
 public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArticle> implements Filterable {
 
-    List<Tool>listToolFull;
-    List<Tool> listTool;
-    private static boolean toolEmployee;
+    private List<Tool>listToolFull;
+    private List<Tool> listTool;
+    private boolean toolEmployee;
     public ToolAdapter(ArrayList<Tool> listTool, boolean toolEmployee) {
         this.listTool = listTool;
-        this.listToolFull = new ArrayList<>(listTool);
+        listToolFull = new ArrayList<>(listTool);
         this.toolEmployee = toolEmployee;
     }
 

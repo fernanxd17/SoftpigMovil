@@ -16,7 +16,7 @@ public class MasterPresenter {
    }
 
 
-   public static JSONObject login( final String codeUser, final String password) {
+   public  JSONObject login( final String codeUser, final String password) {
 
        try {
 
@@ -31,7 +31,7 @@ public class MasterPresenter {
 
     }
 
-    public static boolean  changePassword(){
+    public  boolean  changePassword(){
 
         try{
 

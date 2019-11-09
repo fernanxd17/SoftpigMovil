@@ -25,9 +25,9 @@ import java.util.ArrayList;
 public class RaceFragment extends Fragment {
 
     private RecyclerView recyclerRace;
-    private static RaceAdapter raceAdapter;
+    private RaceAdapter raceAdapter;
     private ArrayList<Race> listRaces;
-    private static View viewRace;
+    private View viewRace;
     private TextView tvInfo;
 
 

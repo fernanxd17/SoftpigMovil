@@ -5,13 +5,17 @@ import android.view.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ControllerMaster {
+ public  class  ControllerMaster {
+
+    public ControllerMaster(){
+
+    }
 
 
 
 
 
-   public static JSONObject login( final String codeUser, final String password) {
+   public  JSONObject login( final String codeUser, final String password) {
 
         try{
 
@@ -26,7 +30,7 @@ public class ControllerMaster {
 
     }
 
-    public static boolean  changePassword(){
+    public  boolean  changePassword(){
 
         try{
 

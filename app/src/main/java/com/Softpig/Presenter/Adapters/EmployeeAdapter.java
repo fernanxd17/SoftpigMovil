@@ -22,13 +22,13 @@ import java.util.List;
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHolderEmployee> implements Filterable {
 
 
-    List<Employee> listEmployeeFull;
-    List<Employee> listEmployee;
+    private List<Employee> listEmployeeFull;
+    private List<Employee> listEmployee;
     private Context context;
 
     public EmployeeAdapter(List<Employee> listEmployee, Context context) {
         this.listEmployee = listEmployee;
-        this.listEmployeeFull = new ArrayList<>(listEmployee);
+        listEmployeeFull = new ArrayList<>(listEmployee);
         this.context = context;
     }
 

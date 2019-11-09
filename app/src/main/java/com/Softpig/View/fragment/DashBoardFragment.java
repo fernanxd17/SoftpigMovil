@@ -15,10 +15,10 @@ import com.Softpig.View.MainMenuActivity;
 
 public class DashBoardFragment extends Fragment {
 
-    private TextView tvNumAdmins, tvNumOperators, tvLookEmployees;
-    private TextView tvNumInstallations, tvNumTypeInstallations, tvLookInstallations;
-    private TextView tvNumTools, tvNumTypeTools, tvLookTools;
-    private LinearLayout llEmployeeDashboard, llInstallationsDashboard, llToalsDashboard;
+    private  TextView tvNumAdmins, tvNumOperators, tvLookEmployees;
+    private  TextView tvNumInstallations, tvNumTypeInstallations, tvLookInstallations;
+    private  TextView tvNumTools, tvNumTypeTools, tvLookTools;
+    private  LinearLayout llEmployeeDashboard, llInstallationsDashboard, llToalsDashboard;
 
     public DashBoardFragment() {
 
@@ -29,15 +29,15 @@ public class DashBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_dash_board, container, false);
-        this.tvNumAdmins = view.findViewById(R.id.tv_num_admins);
-        this.tvNumOperators = view.findViewById(R.id.tv_num_operators);
-        this.tvNumInstallations = view.findViewById(R.id.tv_num_installations);
-        this.tvNumTypeInstallations = view.findViewById(R.id.tv_num_type_installations);
-        this.tvNumTools = view.findViewById(R.id.tv_num_tools);
-        this.tvNumTypeTools = view.findViewById(R.id.tv_num_type_tools);
-        this.llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
-        this.llInstallationsDashboard = view.findViewById(R.id.ll_installations_dashboard);
-        this.llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);
+        tvNumAdmins = view.findViewById(R.id.tv_num_admins);
+        tvNumOperators = view.findViewById(R.id.tv_num_operators);
+        tvNumInstallations = view.findViewById(R.id.tv_num_installations);
+        tvNumTypeInstallations = view.findViewById(R.id.tv_num_type_installations);
+        tvNumTools = view.findViewById(R.id.tv_num_tools);
+        tvNumTypeTools = view.findViewById(R.id.tv_num_type_tools);
+        llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
+        llInstallationsDashboard = view.findViewById(R.id.ll_installations_dashboard);
+        llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);
 
 
 

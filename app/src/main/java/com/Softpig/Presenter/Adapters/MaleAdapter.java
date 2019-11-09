@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMale> {
 
-    ArrayList<Male> listMales;
+    private ArrayList<Male> listMales;
 
     public MaleAdapter(ArrayList<Male> listMales) {
         this.listMales = listMales;

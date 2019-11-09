@@ -28,7 +28,7 @@ public class FemaleFragment extends Fragment {
     private FemaleAdapter femaleAdapter;
     private ArrayList<Female> listFemale;
     private TextView tv_noFemales;
-    View viewFemale;
+    private  View viewFemale;
 
     public FemaleFragment(ArrayList<Female> lisFemale) {
         this.listFemale = lisFemale;

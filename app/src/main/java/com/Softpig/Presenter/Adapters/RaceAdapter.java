@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace> {
 
-    ArrayList<Race> listRaces;
+    private ArrayList<Race> listRaces;
 
     public RaceAdapter(ArrayList<Race> listRace) {
         this.listRaces = listRace;
