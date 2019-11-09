@@ -3,6 +3,7 @@ package com.Softpig.View;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.Softpig.Model.Employee;
 import com.Softpig.Model.Installation;
 import com.Softpig.Presenter.MainMenuPresenter;
 
@@ -255,9 +256,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         this.toolbar.setTitle(title);
     }
 
-    public void iniciarProfileActivity() {
+    public void iniciarProfileActivity(Employee employee) {
         Intent i = new Intent();
         i.setClass(this,ProfileActivity.class);
+        i.putExtra("Empleado", employee);
         startActivity(i);
     }
 

@@ -1,8 +1,9 @@
 package com.Softpig.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employee {
+public class Employee implements Serializable {
 
     private short idEmployee;
     private String role;

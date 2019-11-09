@@ -42,10 +42,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderEmployee holder, int position) {
-        Employee employee = listEmployee.get(position);
+        final Employee employee = listEmployee.get(position);
         holder.tv_idEmployee.setText("ID: "+employee.getIdEmployee());
         holder.tv_nameEmployee.setText(employee.getFirstName()+ " "+employee.getLastName());
         holder.tv_typeEmployee.setText(employee.getRole());
+        holder.llCardViewEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainMenuActivity) context).iniciarProfileActivity(employee);
+            }
+        });
     }
 
     @Override
@@ -98,14 +104,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             tv_nameEmployee =  itemView.findViewById(R.id.tv_nameEmployee);
             tv_typeEmployee =  itemView.findViewById(R.id.tv_typeEmployee);
             llCardViewEmployee = itemView.findViewById(R.id.ll_cardview_employee);
-
-            llCardViewEmployee.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((MainMenuActivity) context).iniciarProfileActivity();
-                }
-            });
-
 
         }
     }

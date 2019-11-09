@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 
+import com.Softpig.Model.Employee;
 import com.Softpig.R;
 import com.Softpig.View.fragment.ProfileFragment;
 import com.Softpig.View.fragment.ToolFragment;
@@ -19,12 +20,17 @@ public class ProfileActivity extends AppCompatActivity {
     private MenuItem searchItem;
     private SearchView searchView;
     private ToolFragment toolFragment;
+    private Bundle bundle;
+    private Employee employee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bundle = this.getIntent().getExtras();
+        employee = (Employee) bundle.getSerializable("Empleado");
+
         setContentView(R.layout.container_profile);
         toolFragment = new ToolFragment(true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ProfileFragment(employee)).commit();
     }
 
 
