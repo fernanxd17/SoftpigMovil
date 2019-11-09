@@ -17,8 +17,8 @@ import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ForgetPassFragment;
 import com.Softpig.View.fragment.LoginFragment;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
 
 public class IndexActivity extends AppCompatActivity {
 
@@ -28,8 +28,8 @@ public class IndexActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     Fragment fragment;
     private static  final String  TAG = "LoginActivity";
-    private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
+    //private FirebaseAuth firebaseAuth;
+    //private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +98,10 @@ public class IndexActivity extends AppCompatActivity {
         startActivity(i);*/
     }
 
-    private void inicialize() {
+    /*private void inicialize() {
         firebaseAuth = FirebaseAuth.getInstance();
         /*Me ayuda a detectar cuando hay un cambio en a sesión*/
-        authStateListener = new FirebaseAuth.AuthStateListener() {
+       /* authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -125,7 +125,7 @@ public class IndexActivity extends AppCompatActivity {
         protected void onStop() {
             super.onStop();
             firebaseAuth.removeAuthStateListener(authStateListener);
-        }
+        }*/
 
 
     public boolean openForgetFragment() {

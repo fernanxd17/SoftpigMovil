@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 import com.Softpig.IndexActivity;
 import com.Softpig.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
