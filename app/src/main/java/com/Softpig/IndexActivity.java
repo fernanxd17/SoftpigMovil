@@ -89,12 +89,12 @@ public class IndexActivity extends AppCompatActivity {
      * @param password
      */
     public void login(String codeUser, String password){
-        masterPresenter.login(codeUser, password);
+        //masterPresenter.login(codeUser, password);
         //JSONObject datos = IndexActivity.this.masterPresenter.fragment_login(codeUser, password);
-       /* MasterPresenter.login(codeUser, password);
+       //MasterPresenter.login(codeUser, password);
         Intent i = new Intent();
         i.setClass(this, MainMenuActivity.class);
-        startActivity(i);*/
+        startActivity(i);
     }
 
     /*private void inicialize() {
