@@ -9,7 +9,9 @@ public class Tool {
     private short available;
     private short loan;
 
-    public Tool() {
+    public Tool(short idArticle, String name) {
+        this.idArticle = idArticle;
+        this.name = name;
     }
 
     public Tool(short idArticle, String typeArticle, String name, short quantity, short available, short loan) {

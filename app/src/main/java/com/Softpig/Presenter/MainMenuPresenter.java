@@ -264,7 +264,7 @@ public class MainMenuPresenter {
                                 short loan = (short) toolObject.getInt("loan");
                                 listTool.add(new Tool(id, type,name, quantity, available, loan));
                             }
-                            toolFragment = new ToolFragment(listTool);
+                            toolFragment = new ToolFragment();
                             context.inflarFragment(toolFragment);
                             progressDialog.dismiss();
 
@@ -322,19 +322,17 @@ public class MainMenuPresenter {
                                 String contract = employeeObject.getString("contract");
                                 String hoursWorked = employeeObject.getString("hoursWorked");
                                 String admission = employeeObject.getString("dateAdmission");
-                                Date admissionDate = new Date();
+                                /*Date admissionDate;
                                 if(!admission.equalsIgnoreCase("null")){
                                     admissionDate = simpleDateFormat.parse(admission);
                                 }
-
-
 
                                 String off = employeeObject.getString("dateOff");
                                 Date dateOff = new Date();
                                 if(!off.equalsIgnoreCase("null")){
                                     dateOff = simpleDateFormat.parse(off);
                                 }
-
+                                */
                                 int salary = employeeObject.getInt("salary");
                                 String document = employeeObject.getString("document");
                                 String firstName = employeeObject.getString("firstName");
@@ -348,8 +346,7 @@ public class MainMenuPresenter {
                                 String role = employeeObject.getString("role");
                                 String instalation = employeeObject.getString("instalation");
 
-                                System.out.println("fecha :"+ admissionDate);
-                                listEmployee.add(new Employee(id, role,contract, hoursWorked, status, admissionDate, dateOff, document,
+                                listEmployee.add(new Employee(id, role,contract, hoursWorked, status, null, null, document,
                                         sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone, instalation, salary ));
                             }
                             employeeFragment = new EmployeeFragment(listEmployee);

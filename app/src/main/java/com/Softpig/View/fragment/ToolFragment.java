@@ -34,8 +34,8 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     private View viewTool;
     private TextView tv_noTool;
 
-    public ToolFragment(ArrayList<Tool> listTool) {
-        this.listTool = listTool;
+    public ToolFragment() {
+
     }
 
     public ToolFragment(boolean toolEmployee){
@@ -47,7 +47,11 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewTool =  inflater.inflate(R.layout.fragment_list_tools, container, false);
-        ((MainMenuActivity) getActivity()).setTitleTolbar("Herramientas de la granja");
+        try {
+            ((MainMenuActivity) getActivity()).setTitleTolbar("Herramientas de la granja");
+        }catch (Exception e){
+
+        }
 
         if (listTool.isEmpty()){
             tv_noTool = viewTool.findViewById(R.id.tv_noTools);
@@ -87,5 +91,10 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     @Override
     public void agregarArticulo(String nameArticle) {
         ((ProfileActivity) getActivity()).agregarArticle(nameArticle);
+    }
+
+
+    public void setListTool(ArrayList<Tool> listTool){
+        this.listTool = listTool;
     }
 }

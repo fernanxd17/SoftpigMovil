@@ -49,7 +49,7 @@ public class ProfileFragment extends Fragment {
         this.tvAssignedItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ProfileActivity)getContext()).inflarToolsEmployeeFragment();
+                ((ProfileActivity)getContext()).presentarFragment("ToolsPerson");
             }
         });
         return viewProfile;
@@ -65,8 +65,8 @@ public class ProfileFragment extends Fragment {
         tvContract.setText(employee.getContract());
         tvSalary.setText(String.valueOf(employee.getSalary()));
         tvInstallation.setText(employee.getInstallation());
-        tvDateAdmission.setText(employee.getAdmissionDate().toString());
-        tvDateOff.setText(employee.getDateOff().toString());
+        //tvDateAdmission.setText(employee.getAdmissionDate().toString());
+        //tvDateOff.setText(employee.getDateOff().toString());
         tvEmail.setText(employee.getEmail());
         tvNumPhone.setText(employee.getTelephone());
         tvNumMobile.setText(employee.getMobile());

@@ -50,7 +50,7 @@ public class Employee implements Serializable {
         this.salary = salary;
     }
 
-    public int getIdEmployee() {
+    public short getIdEmployee() {
         return idEmployee;
     }
 

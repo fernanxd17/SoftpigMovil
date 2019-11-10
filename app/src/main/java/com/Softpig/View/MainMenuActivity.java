@@ -196,8 +196,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     /**
-     * Metodo para cambiar el titulo del toolbar (barra superior) segun el fragment en que
-     * se encuentre
+     * metodo que se comunica con el presetador para abrir un fragment
+     * @param stringFragment
      */
     public void controllerFragment(String stringFragment){
 

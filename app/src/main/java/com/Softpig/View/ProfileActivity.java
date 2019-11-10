@@ -10,12 +10,16 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.Model.Employee;
+import com.Softpig.Presenter.ProfilePresenter;
 import com.Softpig.R;
+import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.ProfileFragment;
 import com.Softpig.View.fragment.ToolFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private ProfilePresenter profilePresenter;
+    private ErrorFragment errorFragment;
     private MenuInflater inflater;
     private MenuItem searchItem;
     private SearchView searchView;
@@ -25,68 +29,18 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState == null){
+            profilePresenter = new ProfilePresenter();
+        }
         bundle = this.getIntent().getExtras();
         employee = (Employee) bundle.getSerializable("Empleado");
-
+        errorFragment = new ErrorFragment();
         setContentView(R.layout.container_profile);
         toolFragment = new ToolFragment(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ProfileFragment(employee)).commit();
     }
 
 
-
-    public boolean inflarToolsEmployeeFragment() {
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, toolFragment).addToBackStack(null).commit();
-        /**
-         * final ProgressDialog progressDialog = new ProgressDialog(context);
-         *         progressDialog.setMessage("Loading...");
-         *         progressDialog.show();
-         *         String url = "http://5ff0bac3.ngrok.io/api/race_list";
-         *         JsonObjectRequest json = new JsonObjectRequest(
-         *                 Request.Method.GET,
-         *                 url,
-         *                 null,
-         *                 new Response.Listener<JSONObject>() {
-         *                     @Override
-         *                     public void onResponse(JSONObject response) {
-         *
-         *                         try {
-         *                             ArrayList<Race> listRaces = new ArrayList<>();
-         *                             JSONArray jsonRaces = response.getJSONArray("races");
-         *
-         *                             for(int i = 0; i < jsonRaces.length(); i++) {
-         *                                 JSONObject raceObject = jsonRaces.getJSONObject(i);
-         *                                 short idRace = (short) raceObject.getInt("id");
-         *                                 String race = raceObject.getString("name");
-         *                                 String description = raceObject.getString("description");
-         *                                 listRaces.add(new Race(idRace, race, description));
-         *                             }
-         *                             raceFragment = new RaceFragment(listRaces);
-         *                             context.inflarFragment("Razas", raceFragment);
-         *                             progressDialog.dismiss();
-         *
-         *                         } catch (Exception e) { e.printStackTrace(); }
-         *                     }
-         *                 }, new Response.ErrorListener() {
-         *             @Override
-         *             public void onErrorResponse(VolleyError error) {
-         *
-         *                 try {
-         *                     context.inflarFragment("Error", null);
-         *                     progressDialog.dismiss();
-         *
-         *                 } catch (Exception e) { e.printStackTrace(); }
-         *             }
-         *         });
-         *
-         *         RequestQueue queue = Volley.newRequestQueue(context);
-         *         queue.add(json);
-         */
-
-        return true;
-
-    }
 /*
     //código para quitar las barras que de navegación de android en algunas versiones
     @Override
@@ -151,5 +105,25 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    public void presentarFragment(String toolsPerson) {
+        switch (toolsPerson){
+
+            case "ToolsPerson":
+                profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee());
+                break;
+        }
+    }
+
+    public void inflarFragment(String toolsPerson){
+        switch (toolsPerson){
+            case "ToolPerson":
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, toolFragment).commit();
+                break;
+             default:
+                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, errorFragment).commit();
+                    break;
+        }
     }
 }

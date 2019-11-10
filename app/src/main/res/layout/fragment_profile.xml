@@ -6,6 +6,7 @@
     android:background="@color/primaryColor">
 
 <LinearLayout
+    android:paddingVertical="20sp"
     android:layout_weight="0.9"
     android:layout_gravity="center"
     android:layout_width="match_parent"
@@ -15,7 +16,6 @@
     <LinearLayout
 
         android:id="@+id/ll_info_person"
-        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -450,32 +450,30 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:gravity="center">
         <Button
             android:id="@+id/btt_dissmis"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DESPEDIR"
             android:paddingHorizontal="20dp"
             android:background="@color/secondaryColor"
             android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
             android:layout_marginRight="30dp">
         </Button>
         <Button
             android:id="@+id/btt_disable"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="INHABILITAR"
             android:paddingHorizontal="20dp"
             android:background="@color/secondaryColor"
-            android:layout_gravity="center"
-            android:layout_marginBottom="30dp">
+            android:layout_gravity="center">
         </Button>
     </LinearLayout>
 

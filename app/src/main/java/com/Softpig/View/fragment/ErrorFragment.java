@@ -28,7 +28,7 @@ public class ErrorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewRace =  inflater.inflate(R.layout.fragment_error, container, false);
-        ((MainMenuActivity) getActivity()).setTitleTolbar("Razas");
+        //((MainMenuActivity) getActivity()).setTitleTolbar("Error");
         return viewRace;
     }
 
