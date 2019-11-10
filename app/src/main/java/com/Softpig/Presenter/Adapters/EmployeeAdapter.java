@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,6 +44,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolderEmployee holder, int position) {
         final Employee employee = listEmployee.get(position);
+        if(employee.getGender().equalsIgnoreCase("Mujer"))
+            holder.icSex.setImageResource(R.drawable.gender_female);
         holder.tv_idEmployee.setText("ID: "+employee.getIdEmployee());
         holder.tv_nameEmployee.setText(employee.getFirstName()+ " "+employee.getLastName());
         holder.tv_typeEmployee.setText(employee.getRole());
@@ -94,8 +97,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public class ViewHolderEmployee extends RecyclerView.ViewHolder {
 
-        TextView tv_idEmployee, tv_nameEmployee, tv_typeEmployee;
-        private TextView tvInfoEmployee;
+        private TextView tv_idEmployee, tv_nameEmployee, tv_typeEmployee;
+        private ImageView icSex;
         private LinearLayout llCardViewEmployee;
 
         public ViewHolderEmployee(@NonNull View itemView) {
@@ -104,6 +107,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             tv_nameEmployee =  itemView.findViewById(R.id.tv_nameEmployee);
             tv_typeEmployee =  itemView.findViewById(R.id.tv_typeEmployee);
             llCardViewEmployee = itemView.findViewById(R.id.ll_cardview_employee);
+            icSex = itemView.findViewById(R.id.icon_sex);
 
         }
     }

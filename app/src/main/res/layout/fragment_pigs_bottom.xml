@@ -198,7 +198,7 @@
                 <ImageView android:id="@+id/iv_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/girl"
+                    android:background="@drawable/gender_female"
                     android:layout_marginBottom="10dp">
                 </ImageView>
 

@@ -54,33 +54,88 @@
                 android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="0.8">
 
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Juan Fernando Romero Ortega"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="left">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_num_identification"
+                <LinearLayout android:id="@+id/title_info_person"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C.C 1.090.502.664"
-                    android:layout_marginBottom="5dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_gender"
+                    android:orientation="vertical"
+                    android:gravity="right">
+                    <TextView
+                        android:id="@+id/tv_title_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombres:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_title_last_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apellidos:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_title_num_identification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Identificación:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Genero:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/valores_info_person"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hombre"
-                    android:layout_marginBottom="5dp">
-                </TextView>
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Juan Fernando"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="left">
+                    </TextView>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/tv_lastName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Romero Ortega"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="left">
+                    </TextView>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/tv_num_identification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.090.502.664"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/tv__gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hombre"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                </LinearLayout>
+
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="0dp"
@@ -141,69 +196,120 @@
                 android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="0.8">
 
-                <TextView
-                    android:id="@+id/tv_role"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Rol"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="left">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_state"
+                <LinearLayout android:id="@+id/ll_title_info_empresa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estado"
-                    android:layout_marginBottom="5dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_contract"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Contrato"
-                    android:layout_marginBottom="5dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_salary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salario"
-                    android:layout_marginBottom="5dp">
-                </TextView>
+                    android:gravity="right"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_installation"
+                    <TextView android:id="@+id/tv_title_role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rol:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_title_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_title_contract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contrato:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_title_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salario:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_title_installation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Dependencia:"></TextView>
+                    <TextView android:id="@+id/tv_title_date_admission"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ingreso:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_title_date_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salida:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/ll_valores_info_empresa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Dependencia"></TextView>
-                <TextView
-                    android:id="@+id/tv_date_admission"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ingreso: "
-                    android:layout_marginBottom="5dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_date_off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salida: "
-                    android:layout_marginBottom="5dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_assigned_items"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver articulos asignados"
-                    android:layout_marginBottom="5dp">
-                </TextView>
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left">
+
+                    <TextView android:id="@+id/tv_role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rol"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="left">
+                    </TextView>
+                    <TextView android:id="@+id/tv_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_contract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contrato"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salario"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_installation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Dependencia"></TextView>
+                    <TextView android:id="@+id/tv_date_admission"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ingreso: "
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_date_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salida: "
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                    <TextView android:id="@+id/tv_assigned_items"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver articulos asignados"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                </LinearLayout>
+
+
             </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -262,32 +368,69 @@
                 android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="10dp">
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="match_parent"
+                <LinearLayout android:id="@+id/ll_title_info_contacto"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="juanfernandoro@ufps.edu.co"
-                    android:layout_marginBottom="5dp"
-                    android:layout_gravity="left">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_num_phone"
-                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="right">
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="E-mail:"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="left">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_num_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Telefono:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_num_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Movil:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/ll_valores_info_contacto"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Telefono: 5 475869">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_num_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Movil: 300 371 9983"
-                    android:layout_marginBottom="5dp">
-                </TextView>
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_valor_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="E-mail:"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="left">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_valor_num_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Telefono:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/tv_valor_num_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Movil:"
+                        android:layout_marginBottom="5dp">
+                    </TextView>
+                </LinearLayout>
+
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="0dp"

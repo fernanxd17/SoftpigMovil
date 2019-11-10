@@ -44,12 +44,14 @@
                         android:layout_gravity="left">
                     </TextView>
 
+                  
+
                     <TextView
                         android:id="@+id/tv_num_employees"
                         android:layout_gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="50 Empleados registrados"
+                        android:text="Empleados Registrados: 50"
                         android:textStyle="bold"
                         android:textAlignment="textEnd"
                         android:textSize="15dp">
