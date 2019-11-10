@@ -48,7 +48,7 @@ public class EmployeeFragment extends Fragment {
         recyclerEmployee = viewEmployee.findViewById(R.id.recyclerEmployee);
         recyclerEmployee.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerEmployee.setAdapter(employeeAdapter);
-        ((MainMenuActivity)getActivity()).modificar("employee");
+        //((MainMenuActivity)getActivity()).modificar("employee");
 
 
         return viewEmployee;

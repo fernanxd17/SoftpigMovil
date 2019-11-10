@@ -66,9 +66,9 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
         fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
         if(!toolEmployee) {
             fbAddArticle.hide();
-            ((MainMenuActivity) getActivity()).modificar("tool");
+           // ((MainMenuActivity) getActivity()).modificar("tool");
         }else{
-            ((ProfileActivity)getActivity()).modificar("tool");
+            //((ProfileActivity)getActivity()).modificar("tool");
             fbAddArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

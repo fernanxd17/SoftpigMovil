@@ -3,6 +3,8 @@ package com.Softpig.Presenter;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 
+import com.Softpig.IndexActivity;
+
 import org.json.JSONObject;
 
 public class MasterPresenter {
@@ -16,11 +18,13 @@ public class MasterPresenter {
    }
 
 
-   public  JSONObject login( final String codeUser, final String password) {
+   public  JSONObject login(final IndexActivity context,  final String codeUser, final String password) {
 
        try {
             //volley login
            //Realiza la petion post de fragment_login a la API en Python, retorna el jsonObject
+           //crear empleado = respuesta del voley
+
 
        } catch (Exception e) {
 

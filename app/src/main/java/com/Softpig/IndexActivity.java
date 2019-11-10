@@ -27,6 +27,7 @@ public class IndexActivity extends AppCompatActivity {
     private MasterPresenter masterPresenter;
     private FragmentManager fragmentManager;
     private Fragment fragment;
+    
     private static  final String  TAG = "LoginActivity";
     //private FirebaseAuth firebaseAuth;
     //private FirebaseAuth.AuthStateListener authStateListener;
@@ -90,7 +91,7 @@ public class IndexActivity extends AppCompatActivity {
      * @param password
      */
     public void login(String codeUser, String password){
-        masterPresenter.login(codeUser, password);
+        masterPresenter.login(this, codeUser, password);
         //JSONObject datos = IndexActivity.this.masterPresenter.fragment_login(codeUser, password);
        //MasterPresenter.login(codeUser, password);
         Intent i = new Intent();

@@ -48,6 +48,7 @@ import java.util.ArrayList;
 
 public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{
 
+    private Employee user;
     private MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
     private DictionaryFragment dictionaryFragment;
@@ -154,9 +155,25 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         searchItem.setVisible(false);
 
 
+
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
+        searchView.setQueryHint(getText(R.string.searchEmployee));
+        searchItem.setVisible(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                 employeeFragment.employeeAdapter.getFilter().filter(newText);
+
+                return  false;
+            }
+        });
         return true;
     }
 
@@ -239,7 +256,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         startActivity(i);
     }
 
-    public void modificar(final String fragmentSearch) {
+    /*public void modificar(final String fragmentSearch) {
         searchView.setQueryHint(getText(R.string.searchEmployee));
         searchItem.setVisible(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -258,7 +275,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 return  false;
             }
         });
-    }
+    }*/
 
 
     //código para quitar las barras que de navegación de android en algunas versiones
