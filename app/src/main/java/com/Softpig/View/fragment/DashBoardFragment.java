@@ -15,13 +15,22 @@ import com.Softpig.View.MainMenuActivity;
 
 public class DashBoardFragment extends Fragment {
 
-    private  TextView tvNumAdmins, tvNumOperators, tvLookEmployees;
+    private  TextView tvNumAdmins, tvNumOperators, tvNumEmployees;
     private  TextView tvNumInstallations, tvNumTypeInstallations, tvLookInstallations;
-    private  TextView tvNumTools, tvNumTypeTools, tvLookTools;
+    private  TextView tvNumTools, tvNumToolsDispo, tvToolsPrestamo;
     private  LinearLayout llEmployeeDashboard, llInstallationsDashboard, llToalsDashboard;
+    private  short [] valores;
 
-    public DashBoardFragment() {
+    public DashBoardFragment(short [] valores) {
+        this.valores = valores;
+    }
 
+    public DashBoardFragment(){
+
+    }
+
+    public void setValores(short [] valores){
+        this.valores = valores;
     }
 
 
@@ -30,11 +39,22 @@ public class DashBoardFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_dash_board, container, false);
         tvNumAdmins = view.findViewById(R.id.tv_num_admins);
+        tvNumAdmins.setText("Empleados Administrativos: "+ valores[0]);
         tvNumOperators = view.findViewById(R.id.tv_num_operators);
+        tvNumOperators.setText("Empleados Operativos: "+ valores[1]);
+        tvNumEmployees = view.findViewById(R.id.tv_num_employees);
+        tvNumEmployees.setText("Empleados Registrados: "+ (valores[0] + valores[1]));
+
         tvNumInstallations = view.findViewById(R.id.tv_num_installations);
+        tvNumInstallations.setText("Instalaciones Registradas: " + valores[4]);
         tvNumTypeInstallations = view.findViewById(R.id.tv_num_type_installations);
+        tvNumTypeInstallations.setText("Tipos de Instalaciones: "+ valores[5]);
         tvNumTools = view.findViewById(R.id.tv_num_tools);
-        tvNumTypeTools = view.findViewById(R.id.tv_num_type_tools);
+        tvNumTools.setText("Herramientas de Trabajo: " + valores[3]);
+        tvNumToolsDispo = view.findViewById(R.id.tv_num_tools_disponibles);
+        tvNumToolsDispo.setText("Disponibles: " + (valores[3] - valores[2]));
+        tvToolsPrestamo = view.findViewById(R.id.tv_num_tools_prestamo);
+        tvToolsPrestamo.setText("En prestamo: " + valores[2]);
         llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
         llInstallationsDashboard = view.findViewById(R.id.ll_installations_dashboard);
         llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);

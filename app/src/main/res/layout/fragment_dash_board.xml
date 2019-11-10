@@ -176,7 +176,7 @@
                             android:id="@+id/tv_num_installations"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3 Instalaciones Registradas"
+                            android:text="Instalaciones Registradas: 3"
                             android:layout_marginBottom="5dp"
                             android:layout_gravity="left">
                         </TextView>
@@ -184,7 +184,7 @@
                             android:id="@+id/tv_num_type_installations"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="# Tipos de Instalaciones"
+                            android:text="Tipos de Instalaciones: 3"
                             android:layout_gravity="left"
                             android:layout_marginBottom="20dp">
                         </TextView>
@@ -211,9 +211,10 @@
                     android:layout_marginTop="10dp">
 
                     <TextView
+                        android:id="@+id/tv_num_tools"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Herramientas de Trabajo"
+                        android:text="Herramientas de Trabajo: 5"
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:layout_gravity="left">
@@ -254,18 +255,18 @@
                         android:layout_marginHorizontal="10dp">
 
                         <TextView
-                            android:id="@+id/tv_num_tools"
+                            android:id="@+id/tv_num_tools_disponibles"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="10 Herramientas de Trabajo"
+                            android:text="Disponibles: 10"
                             android:layout_marginBottom="5dp"
                             android:layout_gravity="left">
                         </TextView>
                         <TextView
-                            android:id="@+id/tv_num_type_tools"
+                            android:id="@+id/tv_num_tools_prestamo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="# Tipos de Herramientas"
+                            android:text="En prestamo: 5"
                             android:layout_gravity="left"
                             android:layout_marginBottom="20dp">
                         </TextView>

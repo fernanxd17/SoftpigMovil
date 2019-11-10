@@ -10,6 +10,7 @@ import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
 import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.FemaleFragment;
@@ -124,6 +125,7 @@ public class MainMenuPresenter {
                         try {
                             ArrayList<Installation> listInstallations = new ArrayList<>();
                             JSONArray jsonInstallations = response.getJSONArray("installations");
+
 
                             for(int i = 0; i < jsonInstallations.length(); i++) {
                                 JSONObject installationObject = jsonInstallations.getJSONObject(i);
@@ -504,13 +506,76 @@ public class MainMenuPresenter {
     }
 
 
-    public void traerDatosDashboard() {
 
+
+
+    public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment) {
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = URLAPI + "dasboard";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            JSONArray jsonDataEmployee = response.getJSONArray("dashboard");
+                            JSONObject adminObject = jsonDataEmployee.getJSONObject(0);
+                            short adminNum = (short) adminObject.getInt("administrativos");
+                            JSONObject operaObject = jsonDataEmployee.getJSONObject(1);
+                            short operNum = (short) operaObject.getInt("operativos");
+                            JSONObject toolPersonObject = jsonDataEmployee.getJSONObject(2);
+                            short numToolPerson = (short)toolPersonObject.getInt("article_person");
+                            JSONObject toolInventaryObject = jsonDataEmployee.getJSONObject(3);
+                            short toolInventario =  (short) toolInventaryObject.getInt("items_inventory");
+                            JSONObject numInstallationObject = jsonDataEmployee.getJSONObject(4);
+                            short numInstallation = (short)numInstallationObject.getInt("number_installations");
+                            JSONObject typeInstallationObject = jsonDataEmployee.getJSONObject(5);
+                            short typeInstallation = (short)typeInstallationObject.getInt("installations_type");
+
+                            short [] valores = {adminNum, operNum, numToolPerson, toolInventario, numInstallation, typeInstallation};
+                            dashBoardFragment.setValores(valores);
+                            context.inflarFragment(dashBoardFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
         //Se hace loader
         //volley
         /*Para tarer los datos de la instalación*/
-        String url="https://softpig.herokuapp.com/api/installations";
+
         //employee
         //articles
     }
+
 }

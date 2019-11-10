@@ -86,13 +86,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
         if(savedInstanceState == null){
-            inflarDasboard();
-
-
+            mainMenuPresenter = new MainMenuPresenter();
+            dashBoardFragment = new DashBoardFragment();
+            presentarFragment("dashboard");
             installationFragment = new InstallationFragment(listInstallations);
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
-            mainMenuPresenter = new MainMenuPresenter();
             pigMenuFragment = new PigMenuFragment();
             notificacion = new Toast(this);
            // toolFragment = new ToolFragment();
@@ -104,9 +103,14 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     }
 
-    private void inflarDasboard() {
-        mainMenuPresenter.traerDatosDashboard();
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
+    private void presentarFragment(String titleFragment) {
+        switch (titleFragment){
+            case "dashboard": mainMenuPresenter.presentarDashboard(this, dashBoardFragment);
+                break;
+                default: break;
+
+        }
+
 
     }
 
@@ -117,7 +121,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Fragment selectFragment = null;
+
                     switch (menuItem.getItemId()){
                         case R.id.ic_home:
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit();
@@ -129,13 +133,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             notificacion.cancel();
                             notificacion = notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
                             notificacion.show();
-                            //selectFragment = new MedicineFragment();
                             break;
                         case R.id.ic_alert:
                             notificacion.cancel();
                             notificacion = notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
                             notificacion.show();
-                            //selectFragment = new AlarmFragment();
+
                             break;
                         default:
                             return false;
@@ -155,39 +158,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         return true;
-    }
-
-
-
-
-    //código para quitar las barras que de navegación de android en algunas versiones
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            hideSystemUI();
-        }
-    }
-
-    private void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        }else{
-            super.onBackPressed();
-        }
-
     }
 
     /**
@@ -288,5 +258,36 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 return  false;
             }
         });
+    }
+
+
+    //código para quitar las barras que de navegación de android en algunas versiones
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
+
     }
 }
