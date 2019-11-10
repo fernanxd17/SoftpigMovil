@@ -19,7 +19,7 @@ public class MasterPresenter {
    public  JSONObject login( final String codeUser, final String password) {
 
        try {
-
+            //volley login
            //Realiza la petion post de fragment_login a la API en Python, retorna el jsonObject
 
        } catch (Exception e) {

@@ -44,7 +44,7 @@
                         android:layout_gravity="left">
                     </TextView>
 
-                  
+
 
                     <TextView
                         android:id="@+id/tv_num_employees"

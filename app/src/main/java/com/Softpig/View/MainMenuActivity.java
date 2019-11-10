@@ -86,9 +86,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
         if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
+            inflarDasboard();
 
-            dashBoardFragment = new DashBoardFragment();
+
             installationFragment = new InstallationFragment(listInstallations);
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
@@ -101,6 +101,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         bottomNavigationView = findViewById(R.id.bottombar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
+
+    }
+
+    private void inflarDasboard() {
+        mainMenuPresenter.traerDatosDashboard();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new DashBoardFragment()).commit();
 
     }
 

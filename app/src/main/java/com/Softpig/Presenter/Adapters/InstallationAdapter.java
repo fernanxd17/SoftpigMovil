@@ -50,10 +50,10 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
         public ViewHolderInstallation(@NonNull View itemView) {
             super(itemView);
-            this.tv_idInstallation = itemView.findViewById(R.id.tv_idInstallation);
-            this.tv_nameInstallation = itemView.findViewById(R.id.tv_nameInstallation);
-            this.tv_typeInstallation = itemView.findViewById(R.id.tv_typeInstallation);
-            this.tv_measurements = itemView.findViewById(R.id.tv_measurements);
+            tv_idInstallation = itemView.findViewById(R.id.tv_valor_id_installation);
+            tv_nameInstallation = itemView.findViewById(R.id.tv_valor_name_installation);
+            tv_typeInstallation = itemView.findViewById(R.id.tv_valor_type_installation);
+            tv_measurements = itemView.findViewById(R.id.tv__valor_medidasInstallation);
             llCardviewInstallation = itemView.findViewById(R.id.ll_cardview_installation);
 
             llCardviewInstallation.setOnClickListener(new View.OnClickListener() {

@@ -4,105 +4,106 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_installation"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:orientation="horizontal"
+    android:layout_height="@dimen/height_cardview"
     cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    cardview:cardElevation="0dp"
-    cardview:cardUseCompatPadding="true">
+    cardview:cardElevation="0dp">
 
 
     <LinearLayout android:id="@+id/ll_cardview_installation"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_weight="0.7"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <LinearLayout android:id="@+id/ll_title_installation"
+                android:gravity="right"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/tv_nameInstallation"
+                    android:id="@+id/tv_title_id_installation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name_instalation"
+                    android:text="ID:"
                     android:textColor="@android:color/black"
-                    android:layout_weight="0.9"
                     android:textSize="@dimen/textSize_cardview">
                 </TextView>
 
-                <TextView
-                    android:id="@+id/tv_idInstallation"
-                    android:layout_weight="0.1"
+                <TextView android:id="@+id/tv_title_name_installation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/idInstallation"
+                    android:text="Nombre:"
                     android:textColor="@android:color/black"
-                    android:layout_gravity="end"
-                    android:textSize="@dimen/textSize_cardview">
+                    android:textSize="20sp">
                 </TextView>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
+                <TextView android:id="@+id/tv_title_type_installation"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tipo:"
                     android:textColor="@android:color/black"
                     android:textSize="20dp">
                 </TextView>
 
-                <TextView
-                    android:id="@+id/tv_typeInstallation"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
+                <TextView android:id="@+id/tv_title_medidas_installation"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/type_installation"
+                    android:text="Medidas"
                     android:textColor="@android:color/black"
-                    android:textSize="20dp">
+                    android:textSize="20sp">
                 </TextView>
+
+
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
+            <LinearLayout android:id="@+id/ll_valores_installation"
+            android:layout_marginLeft="20dp"
+            android:gravity="left"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_valor_id_installation"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Medidas:"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp">
-                </TextView>
+                android:text="#"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
 
-                <TextView
-                    android:id="@+id/tv_measurements"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/medidas_installations"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp">
-                </TextView>
+            <TextView
+                android:id="@+id/tv_valor_name_installation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textColor="@android:color/black"
+                android:textSize="20sp">
+            </TextView>
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_valor_type_installation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo"
+                android:textColor="@android:color/black"
+                android:textSize="20dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv__valor_medidasInstallation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medidas"
+                android:textColor="@android:color/black"
+                android:textSize="20sp">
+            </TextView>
+
+
 
         </LinearLayout>
-
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

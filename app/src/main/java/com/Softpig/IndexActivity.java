@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.Softpig.Model.Employee;
 import com.Softpig.Presenter.MasterPresenter;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.fragment.AboutFragment;
@@ -89,12 +90,23 @@ public class IndexActivity extends AppCompatActivity {
      * @param password
      */
     public void login(String codeUser, String password){
-        //masterPresenter.login(codeUser, password);
+        masterPresenter.login(codeUser, password);
         //JSONObject datos = IndexActivity.this.masterPresenter.fragment_login(codeUser, password);
        //MasterPresenter.login(codeUser, password);
         Intent i = new Intent();
         i.setClass(this, MainMenuActivity.class);
         startActivity(i);
+    }
+
+    public void abrirApp(Employee employee){
+        //obtiene los datos del empleado y abre la app
+
+            Intent i = new Intent();
+            i.setClass(this, MainMenuActivity.class);
+            i.putExtra("Empleado", employee);
+            startActivity(i);
+
+
     }
 
     /*private void inicialize() {

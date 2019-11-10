@@ -504,4 +504,13 @@ public class MainMenuPresenter {
     }
 
 
+    public void traerDatosDashboard() {
+
+        //Se hace loader
+        //volley
+        /*Para tarer los datos de la instalación*/
+        String url="https://softpig.herokuapp.com/api/installations";
+        //employee
+        //articles
+    }
 }
