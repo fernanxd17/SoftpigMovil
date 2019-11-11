@@ -64,6 +64,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuInflater menuInflater;
     private SearchView searchView;
     private PigMenuFragment pigMenuFragment;
+    private Bundle datos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         setContentView(R.layout.contaniner_main_menu);
 
 
-
+        datos = this.getIntent().getExtras();
+        user = (Employee) datos.getSerializable("empleado");
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

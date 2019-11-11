@@ -1,38 +1,34 @@
 package com.Softpig;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Softpig.Model.Employee;
-import com.Softpig.Presenter.MasterPresenter;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ForgetPassFragment;
 import com.Softpig.View.fragment.LoginFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class IndexActivity extends AppCompatActivity {
 
     private TextView tvOpc1, tvOpc2;
-    private MasterPresenter masterPresenter;
+    private ControllerMaster controllerMaster;
     private FragmentManager fragmentManager;
     private Fragment fragment;
+    private boolean loginFirebase;
 
-    private static  final String  TAG = "LoginActivity";
+
     private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -45,7 +41,7 @@ public class IndexActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             tvOpc1 = findViewById(R.id.tv_opc_1);
             tvOpc2 = findViewById(R.id.tv_opc_2);
-            masterPresenter = new MasterPresenter();
+            controllerMaster = new ControllerMaster();
             fragmentManager.beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
         }
 
@@ -94,53 +90,16 @@ public class IndexActivity extends AppCompatActivity {
      * @param email
      * @param password
      */
-    public void login(String email, final String password){
-        masterPresenter.login(this, email, password);
-        //JSONObject datos = IndexActivity.this.masterPresenter.fragment_login(codeUser, password);
-       //MasterPresenter.login(codeUser, password);
+    public void login(String email, String password){
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                String name = user.getDisplayName();
-                                String email = user.getEmail();
-
-                                // Check if user's email is verified
-                                boolean emailVerified = user.isEmailVerified();
-
-                                // The user's ID, unique to the Firebase project. Do NOT use this value to
-                                // authenticate with your backend server, if you have one. Use
-                                // FirebaseUser.getIdToken() instead.
-                                String uid = user.getUid();
-                                ControllerMaster controllerMaster = new ControllerMaster();
-                                controllerMaster.login(email,password);
-
-                                //Toast.makeText(IndexActivity.this, "Bienvenido, "+ email,
-                                       // Toast.LENGTH_SHORT).show();
-                            }
-
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(IndexActivity.this, "¡Verifica tus datos!",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
-
-                    }
-                });
-        Intent i = new Intent();
-        i.setClass(this, MainMenuActivity.class);
-        startActivity(i);
+        controllerMaster.login(this,mAuth, loginFirebase, email, password);
 
 
+
+    }
+
+    public void setLoginFirebase(boolean valor){
+        this.loginFirebase = valor;
     }
 
     @Override
@@ -150,14 +109,10 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     public void startApp(Employee employee){
-        //obtiene los datos del empleado y abre la app
-
             Intent i = new Intent();
             i.setClass(this, MainMenuActivity.class);
             i.putExtra("Empleado", employee);
             startActivity(i);
-
-
     }
 
 
