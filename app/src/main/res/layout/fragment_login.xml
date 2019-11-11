@@ -79,7 +79,7 @@
                                 android:id="@+id/etCodeUser"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number"
+                                android:inputType="textEmailAddress"
                                 android:hint="@string/app_codigo"
                                 android:text="0405">
                             </com.google.android.material.textfield.TextInputEditText>

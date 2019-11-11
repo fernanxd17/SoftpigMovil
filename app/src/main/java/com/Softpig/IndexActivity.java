@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.Presenter.MasterPresenter;
@@ -18,8 +19,11 @@ import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ForgetPassFragment;
 import com.Softpig.View.fragment.LoginFragment;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class IndexActivity extends AppCompatActivity {
 
@@ -29,7 +33,7 @@ public class IndexActivity extends AppCompatActivity {
     private Fragment fragment;
     
     private static  final String  TAG = "LoginActivity";
-    //private FirebaseAuth firebaseAuth;
+    private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
@@ -37,7 +41,7 @@ public class IndexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.container_login);
         fragmentManager = getSupportFragmentManager();
-
+        mAuth = FirebaseAuth.getInstance();
         if(savedInstanceState == null){
             tvOpc1 = findViewById(R.id.tv_opc_1);
             tvOpc2 = findViewById(R.id.tv_opc_2);
@@ -87,19 +91,65 @@ public class IndexActivity extends AppCompatActivity {
 
     /**
      * Comunica al MasterPresenter la peticion de fragment_login
-     * @param codeUser
+     * @param email
      * @param password
      */
-    public void login(String codeUser, String password){
-        masterPresenter.login(this, codeUser, password);
+    public void login(String email, final String password){
+        masterPresenter.login(this, email, password);
         //JSONObject datos = IndexActivity.this.masterPresenter.fragment_login(codeUser, password);
        //MasterPresenter.login(codeUser, password);
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                String name = user.getDisplayName();
+                                String email = user.getEmail();
+
+                                // Check if user's email is verified
+                                boolean emailVerified = user.isEmailVerified();
+
+                                // The user's ID, unique to the Firebase project. Do NOT use this value to
+                                // authenticate with your backend server, if you have one. Use
+                                // FirebaseUser.getIdToken() instead.
+                                String uid = user.getUid();
+                                ControllerMaster controllerMaster = new ControllerMaster();
+                                controllerMaster.login(email,password);
+
+                                //Toast.makeText(IndexActivity.this, "Bienvenido, "+ email,
+                                       // Toast.LENGTH_SHORT).show();
+                            }
+
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(IndexActivity.this, "¡Verifica tus datos!",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
+                        }
+
+                    }
+                });
         Intent i = new Intent();
         i.setClass(this, MainMenuActivity.class);
         startActivity(i);
+
+
     }
 
-    public void abrirApp(Employee employee){
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+    }
+
+    public void startApp(Employee employee){
         //obtiene los datos del empleado y abre la app
 
             Intent i = new Intent();
@@ -109,35 +159,6 @@ public class IndexActivity extends AppCompatActivity {
 
 
     }
-
-    /*private void inicialize() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        /*Me ayuda a detectar cuando hay un cambio en a sesión*/
-       /* authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
-                    Log.w(TAG, "onAuthStateChanged - logeado" + firebaseUser.getEmail());
-                } else {
-                    Log.w(TAG, "onAuthStateChanged - cerro sesion");
-                }
-            }
-        };
-
-    }
-
-    @Override
-        protected void onStart() {
-            super.onStart();
-            firebaseAuth.addAuthStateListener(authStateListener);
-        }
-
-        @Override
-        protected void onStop() {
-            super.onStop();
-            firebaseAuth.removeAuthStateListener(authStateListener);
-        }*/
 
 
     public boolean openForgetFragment() {
