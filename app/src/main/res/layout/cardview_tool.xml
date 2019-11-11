@@ -39,7 +39,6 @@
 
 
             <TextView
-                android:visibility="invisible"
                 android:id="@+id/tv_typearticle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,6 +51,7 @@
 
 
                 <TextView
+                    android:visibility="invisible"
                     android:id="@+id/tv_totalarticle"
                     android:layout_below="@id/tv_typearticle"
                     android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.Softpig.View.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
  */
 public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.AddToolEmployeeListerner{
 
+    private Context context;
     private RecyclerView recyclerArticle;
     public  ToolAdapter toolAdapter;
     private boolean toolEmployee = false;
@@ -36,6 +38,10 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
     public ToolFragment() {
 
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 
     public ToolFragment(boolean toolEmployee){
@@ -53,7 +59,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
             tv_noTool = viewTool.findViewById(R.id.tv_noTools);
             tv_noTool.setText("No hay herramientas en el invetario");
         }
-        toolAdapter = new ToolAdapter(listTool, toolEmployee);
+        toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
         recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
         recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerArticle.setAdapter(toolAdapter);

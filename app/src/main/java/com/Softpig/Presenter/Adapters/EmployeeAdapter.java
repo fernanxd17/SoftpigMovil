@@ -49,6 +49,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         holder.tv_idEmployee.setText("ID: "+employee.getIdEmployee());
         holder.tv_nameEmployee.setText(employee.getFirstName()+ " "+employee.getLastName());
         holder.tv_typeEmployee.setText(employee.getRole());
+        holder.stateEmployee.setText(employee.getStatus());
         holder.llCardViewEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +105,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         private TextView tv_idEmployee, tv_nameEmployee, tv_typeEmployee;
         private ImageView icSex;
         private LinearLayout llCardViewEmployee;
+        private TextView stateEmployee;
 
         public ViewHolderEmployee(@NonNull View itemView) {
             super(itemView);
@@ -111,6 +113,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             tv_nameEmployee =  itemView.findViewById(R.id.tv_nameEmployee);
             tv_typeEmployee =  itemView.findViewById(R.id.tv_typeEmployee);
             llCardViewEmployee = itemView.findViewById(R.id.ll_cardview_employee);
+            stateEmployee = itemView.findViewById(R.id.tv_state_Employee);
             icSex = itemView.findViewById(R.id.icon_sex);
 
         }

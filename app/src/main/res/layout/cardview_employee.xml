@@ -4,7 +4,7 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_employee"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_cardview"
+    android:layout_height="wrap_content"
     cardview:cardBackgroundColor="#90E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
@@ -68,6 +68,15 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
+
+        <TextView
+            android:id="@+id/tv_state_Employee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_cardview">
+        </TextView>
 
 
     </LinearLayout>

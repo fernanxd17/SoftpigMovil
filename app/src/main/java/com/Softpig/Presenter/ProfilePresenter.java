@@ -50,11 +50,12 @@ public class ProfilePresenter {
                                           JSONObject toolPersonObject = jsonToolPerson.getJSONObject(i);
                                           short idTool = (short) toolPersonObject.getInt("id");
                                           String name = toolPersonObject.getString("name");
-                                          toolEmployee.add(new Tool(idTool, name));
+                                          String type = toolPersonObject.getString("type");
+                                          toolEmployee.add(new Tool(idTool, name, type));
                                       }
-
+                                      toolPersonFragment.setContext(context);
                                       toolPersonFragment.setListTool(toolEmployee);
-                                      context.inflarFragment("ToolPerson");
+                                      context.inflarFragment(toolPersonFragment);
                                       progressDialog.dismiss();
 
                                   } catch (Exception e) { e.printStackTrace(); }
@@ -65,7 +66,7 @@ public class ProfilePresenter {
 
                           try {
                               System.out.println("error: onErrorResponse");
-                              context.inflarFragment("Error");
+                              context.inflarFragmentError();
                               progressDialog.dismiss();
 
                          } catch (Exception e) { e.printStackTrace(); }
@@ -106,6 +107,54 @@ public class ProfilePresenter {
                                 progressDialog.dismiss();
 
 
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+    public void eliminarArticuloPersona(final ProfileActivity context,final int idTool, final String articlePerson) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Eliminando articulo...");
+        progressDialog.show();
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("article", String.valueOf(idTool));
+            params.put("table", articlePerson);
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/remove_article",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                int respo = response.getInt("status");
+                                System.out.println("respo: "+ respo);
+
+                                progressDialog.dismiss();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

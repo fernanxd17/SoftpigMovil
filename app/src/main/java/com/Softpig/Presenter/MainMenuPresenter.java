@@ -1,6 +1,7 @@
 package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
+import android.widget.Toast;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
@@ -27,11 +28,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MainMenuPresenter {
 
@@ -235,7 +238,7 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarArticlesFragment(final MainMenuActivity context) {
+    public boolean inflarArticlesFragment(final MainMenuActivity context, final ToolFragment toolFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
@@ -257,14 +260,13 @@ public class MainMenuPresenter {
                             for(int i = 0; i < jsonTools.length(); i++) {
                                 JSONObject toolObject = jsonTools.getJSONObject(i);
                                 short id = (short) toolObject.getInt("id");
-                                String type = toolObject.getString("type");
                                 String name = toolObject.getString("name");
                                 short quantity = (short) toolObject.getInt("quantity");
-                                short available = (short) toolObject.getInt("available");
-                                short loan = (short) toolObject.getInt("loan");
-                                listTool.add(new Tool(id, type,name, quantity, available, loan));
+                                String type = toolObject.getString("type");
+                                listTool.add(new Tool(id, type,name, quantity));
                             }
-                            toolFragment = new ToolFragment();
+                            toolFragment.setListTool(listTool);
+                            toolFragment.setContext(context);
                             context.inflarFragment(toolFragment);
                             progressDialog.dismiss();
 
@@ -322,17 +324,11 @@ public class MainMenuPresenter {
                                 String contract = employeeObject.getString("contract");
                                 String hoursWorked = employeeObject.getString("hoursWorked");
                                 String admission = employeeObject.getString("dateAdmission");
-                                /*Date admissionDate;
-                                if(!admission.equalsIgnoreCase("null")){
-                                    admissionDate = simpleDateFormat.parse(admission);
-                                }
+                                //Date admissionDate =  simpleDateFormat.parse(admission);
 
                                 String off = employeeObject.getString("dateOff");
-                                Date dateOff = new Date();
-                                if(!off.equalsIgnoreCase("null")){
-                                    dateOff = simpleDateFormat.parse(off);
-                                }
-                                */
+                                //Date dateOff = simpleDateFormat.parse(off);
+
                                 int salary = employeeObject.getInt("salary");
                                 String document = employeeObject.getString("document");
                                 String firstName = employeeObject.getString("firstName");
@@ -346,7 +342,7 @@ public class MainMenuPresenter {
                                 String role = employeeObject.getString("role");
                                 String instalation = employeeObject.getString("instalation");
 
-                                listEmployee.add(new Employee(id, role,contract, hoursWorked, status, null, null, document,
+                                listEmployee.add(new Employee(id, role,contract, hoursWorked, status, admission, off, document,
                                         sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone, instalation, salary ));
                             }
                             employeeFragment.setListEmployees(listEmployee);
@@ -502,10 +498,6 @@ public class MainMenuPresenter {
 
     }
 
-
-
-
-
     public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment) {
 
 
@@ -575,4 +567,53 @@ public class MainMenuPresenter {
         //articles
     }
 
+    public void eliminarArticulo(final MainMenuActivity context,final int idTool, final String table) {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Eliminando articulo...");
+        progressDialog.show();
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("article", String.valueOf(idTool));
+            params.put("table", table);
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.PUT,
+                    "https://softpig.herokuapp.com//api/remove_article",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                int respo = response.getInt("status");
+                                System.out.println("respo: "+ respo);
+
+                                progressDialog.dismiss();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+
+    }
 }

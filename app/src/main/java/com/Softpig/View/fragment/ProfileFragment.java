@@ -58,14 +58,14 @@ public class ProfileFragment extends Fragment {
         btDespedir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ProfileActivity)getContext()).cambiarEstado("Despedir");
+                ((ProfileActivity)getContext()).cambiarEstado("Despedido");
             }
         });
 
         btInhabilitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ProfileActivity)getContext()).cambiarEstado("Inhabilitar");
+                ((ProfileActivity)getContext()).cambiarEstado("Inhabilitado");
             }
         });
 
@@ -85,8 +85,8 @@ public class ProfileFragment extends Fragment {
         String valorFormateado = decimalFormat.format(employee.getSalary());
         tvSalary.setText("$ " + valorFormateado);
         tvInstallation.setText(employee.getInstallation());
-        //tvDateAdmission.setText(employee.getAdmissionDate().toString());
-        //tvDateOff.setText(employee.getDateOff().toString());
+        tvDateAdmission.setText(employee.getAdmissionDate());
+        tvDateOff.setText(employee.getDateOff());
         tvEmail.setText(employee.getEmail());
         tvNumPhone.setText(employee.getTelephone());
         tvNumMobile.setText(employee.getMobile());
