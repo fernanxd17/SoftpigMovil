@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -152,5 +153,16 @@ public class IndexActivity extends AppCompatActivity {
 
     public void backLogin() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+        {
+            this.moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

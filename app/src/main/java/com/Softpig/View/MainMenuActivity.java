@@ -26,6 +26,7 @@ import com.Softpig.View.fragment.InstallationFragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -312,5 +313,16 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 return  false;
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+        {
+            this.moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
