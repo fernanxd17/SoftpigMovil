@@ -26,7 +26,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
         @NonNull
         @Override
         public ViewHolderPig onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_pig,null, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_pig,parent, false);
             return new ViewHolderPig(view);
         }
 

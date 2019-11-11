@@ -32,9 +32,9 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
     @NonNull
     @Override
     public ViewHolderArticle onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_tool,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_tool,parent, false);
         if(toolEmployee)
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_tool_employee,null, false);
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_tool_employee,parent, false);
 
         return new ViewHolderArticle(view);
     }

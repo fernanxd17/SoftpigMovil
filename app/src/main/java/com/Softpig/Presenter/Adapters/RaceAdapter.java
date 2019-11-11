@@ -26,7 +26,7 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace
     @NonNull
     @Override
     public ViewHolderRace onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_race,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_race,parent, false);
         return new ViewHolderRace(view);
     }
 

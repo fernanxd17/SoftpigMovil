@@ -27,7 +27,7 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolderFemale onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_female,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_female,parent, false);
         return new ViewHolderFemale(view);
     }
 

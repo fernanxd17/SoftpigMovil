@@ -15,6 +15,8 @@ import com.Softpig.Model.Employee;
 import com.Softpig.R;
 import com.Softpig.View.ProfileActivity;
 
+import java.text.DecimalFormat;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -63,7 +65,9 @@ public class ProfileFragment extends Fragment {
         tvRole.setText(employee.getRole());
         tvState.setText(employee.getStatus());
         tvContract.setText(employee.getContract());
-        tvSalary.setText(String.valueOf(employee.getSalary()));
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        String valorFormateado = decimalFormat.format(employee.getSalary());
+        tvSalary.setText("$ " + valorFormateado);
         tvInstallation.setText(employee.getInstallation());
         //tvDateAdmission.setText(employee.getAdmissionDate().toString());
         //tvDateOff.setText(employee.getDateOff().toString());

@@ -26,7 +26,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
     @NonNull
     @Override
     public ViewHolderInstallation onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_installations, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_installations, parent, false);
         return new ViewHolderInstallation(view);
     }
 
@@ -36,7 +36,6 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
             holder.tv_nameInstallation.setText(listInstallations.get(position).getName());
             holder.tv_typeInstallation.setText(listInstallations.get(position).getTypeInstalation());
             holder.tv_measurements.setText(listInstallations.get(position).getCapacity()+" metros");
-
     }
 
     @Override
