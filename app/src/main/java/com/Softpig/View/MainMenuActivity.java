@@ -49,6 +49,7 @@ import java.util.ArrayList;
 public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{
 
     private Employee user;
+    private EmployeeFragment employeeFragment;
     private MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
     private DictionaryFragment dictionaryFragment;
@@ -62,7 +63,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuItem searchItem;
     private MenuInflater menuInflater;
     private SearchView searchView;
-    private EmployeeFragment employeeFragment;
     private PigMenuFragment pigMenuFragment;
 
     @Override
@@ -90,6 +90,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             mainMenuPresenter = new MainMenuPresenter();
             dashBoardFragment = new DashBoardFragment();
             presentarFragment("dashboard");
+            employeeFragment = new EmployeeFragment();
             installationFragment = new InstallationFragment(listInstallations);
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
@@ -109,10 +110,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             case "dashboard": mainMenuPresenter.presentarDashboard(this, dashBoardFragment);
                 break;
                 default: break;
-
         }
-
-
     }
 
     /**
@@ -125,9 +123,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
                     switch (menuItem.getItemId()){
                         case R.id.ic_home:
+                            searchItem.setVisible(false);
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit();
                             break;
                         case R.id.ic_pig:
+                            searchItem.setVisible(false);
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigMenuFragment).commit();
                             break;
                         case R.id.ic_medicine:
@@ -151,29 +151,16 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     public boolean onCreateOptionsMenu(Menu menu) {
         menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.navigation, menu);
+
         searchItem = menu.findItem(R.id.action_search);
         searchItem.setVisible(false);
 
-
-
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-
         searchView.setQueryHint(getText(R.string.searchEmployee));
-        searchItem.setVisible(true);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                 employeeFragment.employeeAdapter.getFilter().filter(newText);
 
-                return  false;
-            }
-        });
+
         return true;
     }
 
@@ -221,7 +208,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         switch (stringFragment){
 
             case "Employees":
-                mainMenuPresenter.inflarEmployeesFragment(this);
+                mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment);
                 break;
             case "Tools":
 
@@ -306,5 +293,22 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             super.onBackPressed();
         }
 
+    }
+
+    public void setSearch(){
+        searchItem.setVisible(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                employeeFragment.employeeAdapter.getFilter().filter(newText);
+
+                return  false;
+            }
+        });
     }
 }

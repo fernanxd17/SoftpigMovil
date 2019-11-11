@@ -376,26 +376,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:gravity="right"
                     android:layout_gravity="right">
 
                     <TextView
                         android:id="@+id/tv_email"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="E-mail:"
-                        android:layout_marginBottom="5dp"
-                        android:layout_gravity="left">
+                        android:layout_marginBottom="5dp">
                     </TextView>
                     <TextView
                         android:id="@+id/tv_num_phone"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="Telefono:">
+                        android:text="       Telefono:">
                     </TextView>
                     <TextView
                         android:id="@+id/tv_num_mobile"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movil:"
                         android:layout_marginBottom="5dp">
