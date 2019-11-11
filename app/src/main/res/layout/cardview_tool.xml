@@ -10,16 +10,11 @@
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
 
-    <LinearLayout android:id="@+id/ll_cardview_tool"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
+        <RelativeLayout
+            android:padding="10dp"
+            android:id="@+id/rl_cardview_tool"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_nameArticle"
                 android:layout_width="wrap_content"
@@ -27,8 +22,7 @@
                 android:text="@string/nombre_article"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"
-                android:layout_weight="0.8"
-                android:paddingLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginBottom="5dp">
             </TextView>
 
             <TextView
@@ -36,68 +30,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/idAriticle"
+                android:layout_alignParentRight="true"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/textSize_cardview"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:textSize="@dimen/textSize_cardview">
 
             </TextView>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="bottom">
+
 
             <TextView
+                android:visibility="invisible"
                 android:id="@+id/tv_typearticle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_article"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_below="@id/tv_nameArticle"
+                android:layout_marginBottom="5dp">
             </TextView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+
 
                 <TextView
-
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:id="@+id/tv_totalarticle"
+                    android:layout_below="@id/tv_typearticle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/totalarticle"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/textSize_cardview"
-                    android:layout_weight="0.2"
-                    android:paddingLeft="@dimen/activity_horizontal_margin">
+                    android:textSize="@dimen/textSize_cardview">
                 </TextView>s
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
+
                     <ImageView
+                        android:layout_below="@id/tv_typearticle"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/iv_remove_article"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/delete"
-                        android:layout_gravity="right"
-                        android:layout_weight="0.5"
-                        android:layout_marginLeft="200dp"
-                        android:layout_marginBottom="10dp">
+                        android:src="@drawable/delete">
                     </ImageView>
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
 
-
-    </LinearLayout>
-
-
-
+        </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

@@ -109,7 +109,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void presentarFragment(String toolsPerson) {
         switch (toolsPerson){
-
             case "ToolsPerson":
                 profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee());
                 break;
@@ -125,5 +124,10 @@ public class ProfileActivity extends AppCompatActivity {
                  getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, errorFragment).commit();
                     break;
         }
+    }
+
+    public void cambiarEstado(String nuevoEstado) {
+        profilePresenter.cambiarEstado(this, employee.getIdEmployee(), nuevoEstado);
+
     }
 }

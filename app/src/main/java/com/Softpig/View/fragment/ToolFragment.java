@@ -47,11 +47,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewTool =  inflater.inflate(R.layout.fragment_list_tools, container, false);
-        try {
-            ((MainMenuActivity) getActivity()).setTitleTolbar("Herramientas de la granja");
-        }catch (Exception e){
 
-        }
 
         if (listTool.isEmpty()){
             tv_noTool = viewTool.findViewById(R.id.tv_noTools);
@@ -64,19 +60,12 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
 
         fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
-        if(!toolEmployee) {
-            fbAddArticle.hide();
-           // ((MainMenuActivity) getActivity()).modificar("tool");
-        }else{
-            //((ProfileActivity)getActivity()).modificar("tool");
-            fbAddArticle.setOnClickListener(new View.OnClickListener() {
+        fbAddArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     openDialog();
                 }
             });
-
-        }
 
         return viewTool;
     }

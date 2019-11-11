@@ -48,12 +48,28 @@ public class ProfileFragment extends Fragment {
         modificarTextCampos();
 
 
-        this.tvAssignedItems.setOnClickListener(new View.OnClickListener() {
+        tvAssignedItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((ProfileActivity)getContext()).presentarFragment("ToolsPerson");
             }
         });
+
+        btDespedir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ProfileActivity)getContext()).cambiarEstado("Despedir");
+            }
+        });
+
+        btInhabilitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ProfileActivity)getContext()).cambiarEstado("Inhabilitar");
+            }
+        });
+
+
         return viewProfile;
     }
 
@@ -91,6 +107,8 @@ public class ProfileFragment extends Fragment {
         tvNumPhone = viewProfile.findViewById(R.id.tv_valor_num_phone);
         tvNumMobile = viewProfile.findViewById(R.id.tv_valor_num_mobile);
         tvAssignedItems = viewProfile.findViewById(R.id.tv_assigned_items);
+        btDespedir = viewProfile.findViewById(R.id.btt_dissmis);
+        btInhabilitar = viewProfile.findViewById(R.id.btt_disable);
     }
 
 
