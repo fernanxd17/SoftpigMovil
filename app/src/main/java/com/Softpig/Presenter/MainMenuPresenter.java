@@ -295,7 +295,7 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarEmployeesFragment(final MainMenuActivity context) {
+    public boolean inflarEmployeesFragment(final MainMenuActivity context,final EmployeeFragment employeeFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Cargando Empleados...");
@@ -349,7 +349,7 @@ public class MainMenuPresenter {
                                 listEmployee.add(new Employee(id, role,contract, hoursWorked, status, null, null, document,
                                         sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone, instalation, salary ));
                             }
-                            employeeFragment = new EmployeeFragment(listEmployee);
+                            employeeFragment.setListEmployees(listEmployee);
                             context.inflarFragment(employeeFragment);
                             progressDialog.dismiss();
 

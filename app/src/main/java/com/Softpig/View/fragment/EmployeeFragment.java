@@ -28,7 +28,11 @@ public class EmployeeFragment extends Fragment {
     private  TextView tv_noEmployees;
 
 
-    public EmployeeFragment(ArrayList<Employee> listEmployees) {
+    public EmployeeFragment() {
+        this.listEmployees = new ArrayList<>();
+    }
+
+    public void setListEmployees(ArrayList<Employee> listEmployees){
         this.listEmployees = listEmployees;
     }
 
@@ -37,6 +41,7 @@ public class EmployeeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewEmployee =  inflater.inflate(R.layout.fragment_list_employees, container, false);
+        ((MainMenuActivity)getActivity()).setSearch();
         ((MainMenuActivity)getActivity()).setTitleTolbar("Empleados");
         if (listEmployees.isEmpty()){
             tv_noEmployees = viewEmployee.findViewById(R.id.tv_noEmployees);

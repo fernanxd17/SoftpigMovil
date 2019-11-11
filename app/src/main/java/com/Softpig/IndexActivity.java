@@ -31,7 +31,7 @@ public class IndexActivity extends AppCompatActivity {
     private MasterPresenter masterPresenter;
     private FragmentManager fragmentManager;
     private Fragment fragment;
-    
+
     private static  final String  TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener authStateListener;

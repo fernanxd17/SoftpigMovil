@@ -83,9 +83,9 @@ public class ProfileFragment extends Fragment {
         tvInstallation = viewProfile.findViewById(R.id.tv_installation);
         tvDateAdmission = viewProfile.findViewById(R.id.tv_date_admission);
         tvDateOff = viewProfile.findViewById(R.id.tv_date_off);
-        tvEmail = viewProfile.findViewById(R.id.tv_email);
-        tvNumPhone = viewProfile.findViewById(R.id.tv_num_phone);
-        tvNumMobile = viewProfile.findViewById(R.id.tv_num_mobile);
+        tvEmail = viewProfile.findViewById(R.id.tv_valor_email);
+        tvNumPhone = viewProfile.findViewById(R.id.tv_valor_num_phone);
+        tvNumMobile = viewProfile.findViewById(R.id.tv_valor_num_mobile);
         tvAssignedItems = viewProfile.findViewById(R.id.tv_assigned_items);
     }
 

@@ -76,9 +76,13 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             }else{
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Employee employee: listEmployeeFull){
-                    if(employee.getFirstName().toLowerCase().contains(filterPattern)){
+                    if(employee.getFirstName().toLowerCase().contains(filterPattern) ||
+                        employee.getSecondName().toLowerCase().contains((filterPattern)) ||
+                        employee.getLastName().toLowerCase().contains((filterPattern)) ||
+                        employee.getMotherLastName().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(employee);
                     }
+
                 }
             }
 
