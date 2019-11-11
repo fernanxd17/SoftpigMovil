@@ -5,7 +5,7 @@
     android:id="@+id/cardview_employee"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_cardview"
-    cardview:cardBackgroundColor="#6018182a"
+    cardview:cardBackgroundColor="#90E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
