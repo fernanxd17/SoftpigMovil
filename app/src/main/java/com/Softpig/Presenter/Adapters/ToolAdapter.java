@@ -47,7 +47,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderArticle holder, final int position) {
-            Tool tool = listTool.get(position);
+            final Tool tool = listTool.get(position);
             holder.tv_idArticle.setText("ID: "+ tool.getIdArticle());
             holder.tv_nameArticle.setText(tool.getName());
             holder.tv_typearticle.setText(tool.getTypeArticle());
@@ -62,9 +62,10 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
                 public void onClick(View view) {
 
                     try{
-                        ((MainMenuActivity)context).eliminarArticulo(position, "Article");
+                        ((MainMenuActivity)context).eliminarArticulo(tool.getIdArticle(), "Article");
                     }catch (Exception e){
-                        ((ProfileActivity)context).eliminarArticuloPersona(position, "ArticlePerson");
+                        System.out.println("Context: profileActivit");
+                        ((ProfileActivity)context).eliminarArticuloPersona(tool.getIdArticle(), "ArticlePerson");
                     }
                 }
             });

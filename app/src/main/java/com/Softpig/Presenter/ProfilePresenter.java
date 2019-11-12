@@ -3,7 +3,6 @@ package com.Softpig.Presenter;
 import android.app.ProgressDialog;
 import android.widget.Toast;
 
-import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.ProfileActivity;
 import com.Softpig.View.fragment.ToolFragment;
@@ -131,6 +130,8 @@ public class ProfilePresenter {
     }
 
     public void eliminarArticuloPersona(final ProfileActivity context,final int idTool, final String articlePerson) {
+        System.out.println("idArt: " + String.valueOf(idTool));
+        System.out.println("\n tabla: " + articlePerson);
         RequestQueue queue = Volley.newRequestQueue(context);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Eliminando articulo...");
@@ -149,11 +150,9 @@ public class ProfilePresenter {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-
                             try {
                                 int respo = response.getInt("status");
                                 System.out.println("respo: "+ respo);
-
                                 progressDialog.dismiss();
 
                             } catch (JSONException e) {

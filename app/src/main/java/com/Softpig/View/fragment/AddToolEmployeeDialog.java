@@ -32,7 +32,11 @@ public class AddToolEmployeeDialog extends AppCompatDialogFragment implements Ad
     private AddToolEmployeeListerner listener;
     private ArrayAdapter<String> comboAdapterArticle;
     private String nameArticle;
+    private String nameEmpleado;
 
+    public AddToolEmployeeDialog(String nameEmpleado){
+        this.nameEmpleado = nameEmpleado;
+    }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -53,6 +57,7 @@ public class AddToolEmployeeDialog extends AppCompatDialogFragment implements Ad
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         tvNameEmployee = view.findViewById(R.id.tv_name_add_tool_employee);
+        tvNameEmployee.setText(nameEmpleado);
         spArticle = view.findViewById(R.id.sp_article);
         spArticle.setAdapter(adapter);
 

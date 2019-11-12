@@ -1,8 +1,14 @@
 package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.Softpig.ConexionBD.ConexionSqlHelper;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
@@ -10,6 +16,7 @@ import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
+import com.Softpig.Utilidades.Util;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
@@ -38,6 +45,8 @@ import java.util.HashMap;
 
 public class MainMenuPresenter {
 
+    private ConexionSqlHelper conn;
+    private static boolean toolsUpdate;
     private RaceFragment raceFragment;
     private InstallationFragment installationFragment;
     private FemaleFragment femaleFragment;
@@ -49,8 +58,9 @@ public class MainMenuPresenter {
     private SimpleDateFormat simpleDateFormat;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
-    public MainMenuPresenter(){
-
+    public MainMenuPresenter(Context context){
+        conn = new ConexionSqlHelper(context, Util.NAME_BD, null,1);
+        toolsUpdate = false;
     }
 
     public boolean inflarRacesFragment(final MainMenuActivity context) {
@@ -244,55 +254,77 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = URLAPI+ "article_list";
+        if(!toolsUpdate){
+            String url = URLAPI+ "article_list";
 
-        JsonObjectRequest json = new JsonObjectRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+            JsonObjectRequest json = new JsonObjectRequest(
+                    Request.Method.GET,
+                    url,
+                    null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-                        try {
-                            ArrayList<Tool> listTool = new ArrayList<>();
-                            JSONArray jsonTools = response.getJSONArray("articles");
-                            for(int i = 0; i < jsonTools.length(); i++) {
-                                JSONObject toolObject = jsonTools.getJSONObject(i);
-                                short id = (short) toolObject.getInt("id");
-                                String name = toolObject.getString("name");
-                                short quantity = (short) toolObject.getInt("quantity");
-                                String type = toolObject.getString("type");
-                                listTool.add(new Tool(id, type,name, quantity));
+                            try {
+                                SQLiteDatabase softporc = conn.getWritableDatabase();
+                                ContentValues contentValues = new ContentValues();
+
+                                ArrayList<Tool> listTool = new ArrayList<>();
+                                JSONArray jsonTools = response.getJSONArray("articles");
+                                for(int i = 0; i < jsonTools.length(); i++) {
+                                    JSONObject toolObject = jsonTools.getJSONObject(i);
+                                    short id = (short) toolObject.getInt("id");
+                                    String name = toolObject.getString("name");
+                                    short quantity = (short) toolObject.getInt("quantity");
+                                    String type = toolObject.getString("type");
+                                    listTool.add(new Tool(id, type,name, quantity));
+
+                                    contentValues.put("ID_ARTICLE", id);
+                                    contentValues.put("type", type);
+                                    contentValues.put("name", name);
+                                    contentValues.put("quantity", quantity);
+
+                                    softporc.insert("Article", "ID_ARTICLE",contentValues);
+                                }
+
+                                softporc.close();
+                                toolFragment.setListTool(listTool);
+                                toolFragment.setContext(context);
+                                context.inflarFragment(toolFragment);
+                                toolsUpdate = true;
+                                progressDialog.dismiss();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                context.inflarFragment(new ErrorFragment());
+                                progressDialog.dismiss();
                             }
-                            toolFragment.setListTool(listTool);
-                            toolFragment.setContext(context);
-                            context.inflarFragment(toolFragment);
-                            progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
                         }
+
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
                 }
-            }
-        });
+            });
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(json);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(json);
+        }else{
+            SQLiteDatabase softporc = conn.getWritableDatabase();
+
+        }
+
+
+
         return true;
 
     }
@@ -581,8 +613,8 @@ public class MainMenuPresenter {
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
-                    Request.Method.PUT,
-                    "https://softpig.herokuapp.com//api/remove_article",
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/remove_article",
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override

@@ -7,10 +7,12 @@
     android:layout_height="@dimen/height_cardview"
     cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
-    cardview:cardElevation="0dp">
+    cardview:cardElevation="0dp"
+    android:layout_marginBottom="10dp">
 
 
     <LinearLayout android:id="@+id/ll_cardview_installation"
+        android:gravity="center"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,7 +63,6 @@
             <LinearLayout android:id="@+id/ll_valores_installation"
             android:layout_marginLeft="20dp"
             android:gravity="left"
-            android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">

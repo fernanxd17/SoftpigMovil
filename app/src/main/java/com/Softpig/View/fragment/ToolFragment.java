@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.Presenter.Adapters.ToolAdapter;
 import com.Softpig.R;
@@ -37,7 +38,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
     private TextView tv_noTool;
 
     public ToolFragment() {
-
+        listTool = new ArrayList<>();
     }
 
     public void setContext(Context context){
@@ -69,15 +70,19 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
         fbAddArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openDialog();
+                    if(toolEmployee){
+                        openDialogAddArticlePerson();
+                    }
                 }
             });
 
         return viewTool;
     }
 
-    public void openDialog() {
-        AddToolEmployeeDialog addToolEmployeeDialog = new AddToolEmployeeDialog();
+    public void openDialogAddArticlePerson() {
+        Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
+        String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
+        AddToolEmployeeDialog addToolEmployeeDialog = new AddToolEmployeeDialog(nombreEmpleado);
         addToolEmployeeDialog.show(getFragmentManager(), "Tool Dialog");
     }
 

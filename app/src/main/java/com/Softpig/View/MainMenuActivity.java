@@ -91,7 +91,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
         if(savedInstanceState == null){
-            mainMenuPresenter = new MainMenuPresenter();
+            mainMenuPresenter = new MainMenuPresenter(this);
             dashBoardFragment = new DashBoardFragment();
             presentarFragment("dashboard");
             employeeFragment = new EmployeeFragment();
@@ -100,7 +100,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             dictionaryFragment = new DictionaryFragment();
             pigMenuFragment = new PigMenuFragment();
             notificacion = new Toast(this);
-           // toolFragment = new ToolFragment();
+            toolFragment = new ToolFragment();
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
