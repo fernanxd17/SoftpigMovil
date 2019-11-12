@@ -53,6 +53,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private PigFragment pigFragment;
     private EmployeeFragment employeeFragment;
     private MainMenuPresenter mainMenuPresenter;
+    private ToolFragment toolFragment;
     private DashBoardFragment dashBoardFragment;
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
@@ -216,7 +217,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 break;
             case "Tools":
 
-                mainMenuPresenter.inflarArticlesFragment(this);
+                mainMenuPresenter.inflarArticlesFragment(this, toolFragment);
                 break;
 
             case "Installations":
@@ -325,5 +326,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void eliminarArticulo(int position, String article) {
+        mainMenuPresenter.eliminarArticulo(this, position, article);
     }
 }

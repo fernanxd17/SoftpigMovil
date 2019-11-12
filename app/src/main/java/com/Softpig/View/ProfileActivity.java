@@ -2,6 +2,8 @@ package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -115,19 +117,20 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void inflarFragment(String toolsPerson){
-        switch (toolsPerson){
-            case "ToolPerson":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, toolFragment).commit();
-                break;
-             default:
-                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, errorFragment).commit();
-                    break;
-        }
+    public void inflarFragment(Fragment fragment){
+       getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, fragment).commit();
     }
 
     public void cambiarEstado(String nuevoEstado) {
         profilePresenter.cambiarEstado(this, employee.getIdEmployee(), nuevoEstado);
 
+    }
+
+    public void inflarFragmentError() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ErrorFragment()).commit();
+    }
+
+    public void eliminarArticuloPersona(int position, String articlePerson) {
+        profilePresenter.eliminarArticuloPersona(this, position, articlePerson);
     }
 }

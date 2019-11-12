@@ -1,5 +1,6 @@
 package com.Softpig.Presenter.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +16,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.Softpig.Model.Tool;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.ProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArticle> implements Filterable {
 
+
     private List<Tool>listToolFull;
     private List<Tool> listTool;
+    private Context context;
     private boolean toolEmployee;
-    public ToolAdapter(ArrayList<Tool> listTool, boolean toolEmployee) {
+    public ToolAdapter(ArrayList<Tool> listTool, boolean toolEmployee, Context context) {
         this.listTool = listTool;
         listToolFull = new ArrayList<>(listTool);
         this.toolEmployee = toolEmployee;
+        this.context = context;
     }
 
     @NonNull
@@ -40,15 +46,28 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderArticle holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderArticle holder, final int position) {
             Tool tool = listTool.get(position);
             holder.tv_idArticle.setText("ID: "+ tool.getIdArticle());
             holder.tv_nameArticle.setText(tool.getName());
             holder.tv_typearticle.setText(tool.getTypeArticle());
+
             if(!toolEmployee){
                 holder.tv_totalarticle.setVisibility(View.VISIBLE);
                 holder.tv_totalarticle.setText(tool.getQuantity()+" Unidades");
             }
+
+            holder.ivRemoveArticleEmployee.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    try{
+                        ((MainMenuActivity)context).eliminarArticulo(position, "Article");
+                    }catch (Exception e){
+                        ((ProfileActivity)context).eliminarArticuloPersona(position, "ArticlePerson");
+                    }
+                }
+            });
     }
 
     @Override
@@ -105,10 +124,6 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
                 tv_idArticle = itemView.findViewById(R.id.tv_idArticle);
                 rl_cardview_tool = itemView.findViewById(R.id.rl_cardview_tool);
                 ivRemoveArticleEmployee = itemView.findViewById(R.id.iv_remove_article);
-
-
-
-
 
         }
     }

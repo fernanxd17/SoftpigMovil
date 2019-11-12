@@ -10,8 +10,8 @@ public class Employee implements Serializable {
     private String status;
     private String contract;
     private String hoursWorked;
-    private Date admissionDate;
-    private Date dateOff;
+    private String admissionDate;
+    private String dateOff;
     private String document;
     private String gender;
     private String firstName;
@@ -27,7 +27,7 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(short idEmployee, String role, String contract, String hoursWorked, String status, Date admissionDate, Date dateOff ,String document,
+    public Employee(short idEmployee, String role, String contract, String hoursWorked, String status, String admissionDate, String dateOff ,String document,
                     String gender, String firstName, String secondName, String lastName,
                     String motherLastName, String email, String telephone, String mobile, String installation, int salary) {
         this.idEmployee = idEmployee;
@@ -70,11 +70,11 @@ public class Employee implements Serializable {
         return status;
     }
 
-    public Date getAdmissionDate() {
+    public String getAdmissionDate() {
         return admissionDate;
     }
 
-    public Date getDateOff() {
+    public String getDateOff() {
         return dateOff;
     }
 
