@@ -197,7 +197,7 @@ public class MainMenuPresenter {
 
                         try {
                             ArrayList<Pig> listPigs = new ArrayList<>();
-                            simpleDateFormat = new SimpleDateFormat();
+                            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                             JSONArray jsonPig = response.getJSONArray("pigs");
                             for(int i = 0; i < jsonPig.length(); i++) {
                                 JSONObject pigObject = jsonPig.getJSONObject(i);
@@ -214,6 +214,7 @@ public class MainMenuPresenter {
                                 Date birthDate = simpleDateFormat.parse(birth);
                                 String acquisition= pigObject.getString("acquisitionDate");
                                 Date acquisitionDate = simpleDateFormat.parse(acquisition);
+                                System.out.println(birthDate.toString()+" "+ acquisitionDate.toString());
                                 listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birthDate, acquisitionDate));
                             }
