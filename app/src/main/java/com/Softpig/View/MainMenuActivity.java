@@ -50,6 +50,7 @@ import java.util.ArrayList;
 public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{
 
     private Employee user;
+    private PigFragment pigFragment;
     private EmployeeFragment employeeFragment;
     private MainMenuPresenter mainMenuPresenter;
     private DashBoardFragment dashBoardFragment;
@@ -130,8 +131,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit();
                             break;
                         case R.id.ic_pig:
-                            searchItem.setVisible(false);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigMenuFragment).commit();
+                            searchItem.setVisible(true);
+                            mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment);
                             break;
                         case R.id.ic_medicine:
                             notificacion.cancel();

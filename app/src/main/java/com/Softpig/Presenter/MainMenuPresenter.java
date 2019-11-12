@@ -166,7 +166,7 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarPigFragment(final MainMenuActivity context) {
+    public boolean inflarPigFragment(final MainMenuActivity context, final PigFragment pigFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
@@ -194,17 +194,17 @@ public class MainMenuPresenter {
                                 short weigth = (short) pigObject.getInt("weigth");
                                 String race = pigObject.getString("race");
                                 String growthPhase = pigObject.getString("growthPhase");
-                                String pigState = pigObject.getString("pigState");
+                                String pigState = pigObject.getString("pigStage");
                                 String health = pigObject.getString("health");
                                 String installation = pigObject.getString("installation");
                                 String birth = pigObject.getString("birthDate");
                                 Date birthDate = simpleDateFormat.parse(birth);
                                 String acquisition= pigObject.getString("acquisitionDate");
                                 Date acquisitionDate = simpleDateFormat.parse(acquisition);
-                                listPigs.add(new Pig(id, sex, weigth, race, growthPhase, pigState,
+                                listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birthDate, acquisitionDate));
                             }
-                            pigFragment = new PigFragment(listPigs);
+                            pigFragment.setListPig(listPigs);
                             context.inflarFragment(pigFragment);
                             progressDialog.dismiss();
 
@@ -407,8 +407,8 @@ public class MainMenuPresenter {
                                 String gestation = femaleObject.getString("gestation");
                                 if (listPig.get(i).getIdPig() == id) {
                                     Pig pigFemale = listPig.get(i);
-                                    listFemales.add(new Female(id, virgin, gestation, pigFemale.getSex(), pigFemale.getWeigth(), pigFemale.getRace(), pigFemale.getGrowthPhase(),
-                                            pigFemale.getPigState(), pigFemale.getHealth(), pigFemale.getInstallation(), pigFemale.getBirthDate(), pigFemale.getAcquisitionDate()));
+                                   /* listFemales.add(new Female(id, virgin, gestation, pigFemale.getSex(), pigFemale.getWeigth(), pigFemale.getRace(), pigFemale.getGrowthPhase(),
+                                            pigFemale.getPigState(), pigFemale.getHealth(), pigFemale.getInstallation(), pigFemale.getBirthDate(), pigFemale.getAcquisitionDate()));*/
                                 }
                             }
                             femaleFragment = new FemaleFragment(listFemales);
@@ -467,8 +467,8 @@ public class MainMenuPresenter {
                                 String conformation = maleObject.getString("conformation");
                                 if (listPig.get(i).getIdPig() == id) {
                                     Pig pigMale = listPig.get(i);
-                                    listMale.add(new Male(id, conformation,pigMale.getSex(),pigMale.getWeigth() , pigMale.getRace(), pigMale.getGrowthPhase(),
-                                            pigMale.getPigState(), pigMale.getHealth(), pigMale.getInstallation(),pigMale.getBirthDate(), pigMale.getAcquisitionDate()));
+                                    /*listMale.add(new Male(id, conformation,pigMale.getSex(),pigMale.getWeigth() , pigMale.getRace(), pigMale.getGrowthPhase(),
+                                            pigMale.getPigState(), pigMale.getHealth(), pigMale.getInstallation(),pigMale.getBirthDate(), pigMale.getAcquisitionDate()));*/
                                 }
                             }
                             maleFragment = new MaleFragment(listMale);
