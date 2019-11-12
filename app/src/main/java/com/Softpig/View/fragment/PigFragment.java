@@ -30,8 +30,8 @@ public class PigFragment extends Fragment {
     private View viewPigs;
     private TextView tv_noPigs;
 
-    public PigFragment(ArrayList<Pig> listPigs) {
-        this.listPigs = listPigs;
+    public PigFragment() {
+
     }
 
 
@@ -55,5 +55,7 @@ public class PigFragment extends Fragment {
     }
 
 
-
+    public void setListPig(ArrayList<Pig> listPigs) {
+        this.listPigs = listPigs;
+    }
 }

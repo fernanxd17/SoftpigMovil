@@ -6,9 +6,9 @@ public class Male extends Pig{
     private short idMale;
     private String conformacionFisica;
 
-    public Male(short idMale, String conformacionFisica, String sex, short weigth, String race, String growthPhase,
+    public Male(short idMale, String conformacionFisica, String state, String sex, short weigth, String race, String growthPhase,
                 String pigState, String health, String installation, Date birthDate, Date acquisitionDate) {
-        super(idMale,sex,weigth,race,growthPhase,pigState,health,installation,birthDate,acquisitionDate);
+        super(idMale,state, sex,weigth,race,growthPhase,pigState,health,installation,birthDate,acquisitionDate);
         this.idMale = idMale;
         this.conformacionFisica = conformacionFisica;
     }

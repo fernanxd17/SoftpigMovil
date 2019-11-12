@@ -5,6 +5,7 @@ import java.util.Date;
 public class Pig {
 
     private short idPig;
+    private String state;
     private String sex;
     private short weigth;
     private String race;
@@ -16,9 +17,10 @@ public class Pig {
     private Date acquisitionDate;
 
 
-    public Pig(short idPig, String sex, short weigth, String race, String growthPhase,
+    public Pig(short idPig, String state, String sex, short weigth, String race, String growthPhase,
                String pigState, String health,String installation, Date birthDate, Date acquisitionDate) {
         this.idPig = idPig;
+        this.state = state;
         this.sex = sex;
         this.weigth = weigth;
         this.race = race;
@@ -33,6 +35,8 @@ public class Pig {
     public short getIdPig() {
         return idPig;
     }
+
+    public String getState(){return state;}
 
     public String getSex() {
         return sex;
