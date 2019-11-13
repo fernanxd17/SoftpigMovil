@@ -9,7 +9,7 @@ public class Female extends Pig {
     private String gestation;
 
     public Female(short idFemale, String virgin, String gestation, String state, String sex, short weigth, String race, String growthPhase,
-                  String pigState, String health, String installation, Date birthDate, Date acquisitionDate) {
+                  String pigState, String health, String installation, String birthDate, String acquisitionDate) {
 
         super(idFemale,state, sex,weigth,race,growthPhase,pigState,health,installation,birthDate,acquisitionDate);
         this.idFemale = idFemale;

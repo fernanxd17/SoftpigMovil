@@ -197,7 +197,6 @@ public class MainMenuPresenter {
 
                         try {
                             ArrayList<Pig> listPigs = new ArrayList<>();
-                            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                             JSONArray jsonPig = response.getJSONArray("pigs");
                             for(int i = 0; i < jsonPig.length(); i++) {
                                 JSONObject pigObject = jsonPig.getJSONObject(i);
@@ -211,12 +210,9 @@ public class MainMenuPresenter {
                                 String health = pigObject.getString("health");
                                 String installation = pigObject.getString("installation");
                                 String birth = pigObject.getString("birthDate");
-                                Date birthDate = simpleDateFormat.parse(birth);
                                 String acquisition= pigObject.getString("acquisitionDate");
-                                Date acquisitionDate = simpleDateFormat.parse(acquisition);
-                                System.out.println(birthDate.toString()+" "+ acquisitionDate.toString());
                                 listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
-                                        health,installation, birthDate, acquisitionDate));
+                                        health,installation, birth, acquisition));
                             }
                             pigFragment.setListPig(listPigs);
                             context.inflarFragment(pigFragment);
@@ -350,7 +346,6 @@ public class MainMenuPresenter {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                             simpleDateFormat = new SimpleDateFormat();
                             ArrayList<Employee> listEmployee = new ArrayList<>();
                             JSONArray jsonEmployee = response.getJSONArray("employees");
 
@@ -365,11 +360,7 @@ public class MainMenuPresenter {
                                 String contract = employeeObject.getString("contract");
                                 String hoursWorked = employeeObject.getString("hoursWorked");
                                 String admission = employeeObject.getString("dateAdmission");
-                                //Date admissionDate =  simpleDateFormat.parse(admission);
-
                                 String off = employeeObject.getString("dateOff");
-                                //Date dateOff = simpleDateFormat.parse(off);
-
                                 int salary = employeeObject.getInt("salary");
                                 String document = employeeObject.getString("document");
                                 String firstName = employeeObject.getString("firstName");

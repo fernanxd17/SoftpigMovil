@@ -13,12 +13,12 @@ public class Pig {
     private String pigState;
     private String health;
     private String installation;
-    private Date birthDate;
-    private Date acquisitionDate;
+    private String birthDate;
+    private String acquisitionDate;
 
 
     public Pig(short idPig, String state, String sex, short weigth, String race, String growthPhase,
-               String pigState, String health,String installation, Date birthDate, Date acquisitionDate) {
+               String pigState, String health,String installation, String birthDate, String acquisitionDate) {
         this.idPig = idPig;
         this.state = state;
         this.sex = sex;
@@ -64,11 +64,11 @@ public class Pig {
         return installation;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public Date getAcquisitionDate() {
+    public String getAcquisitionDate() {
         return acquisitionDate;
     }
 

@@ -7,7 +7,7 @@ public class Male extends Pig{
     private String conformacionFisica;
 
     public Male(short idMale, String conformacionFisica, String state, String sex, short weigth, String race, String growthPhase,
-                String pigState, String health, String installation, Date birthDate, Date acquisitionDate) {
+                String pigState, String health, String installation, String birthDate, String acquisitionDate) {
         super(idMale,state, sex,weigth,race,growthPhase,pigState,health,installation,birthDate,acquisitionDate);
         this.idMale = idMale;
         this.conformacionFisica = conformacionFisica;
