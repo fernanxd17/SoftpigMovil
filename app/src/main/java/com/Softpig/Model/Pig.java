@@ -1,8 +1,9 @@
 package com.Softpig.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Pig {
+public class Pig implements Serializable {
 
     private short idPig;
     private String state;

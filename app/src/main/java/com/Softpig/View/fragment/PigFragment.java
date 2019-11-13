@@ -30,7 +30,9 @@ public class PigFragment extends Fragment {
     private View viewPigs;
     private TextView tv_noPigs;
 
+
     public PigFragment() {
+
 
     }
 
@@ -47,7 +49,7 @@ public class PigFragment extends Fragment {
             tv_noPigs.setText("No Existen cerditos registrados");
             return viewPigs;
         }
-        pigAdapter = new PigAdapter(listPigs);
+        pigAdapter = new PigAdapter(listPigs, getContext());
         recyclerPig = viewPigs.findViewById(R.id.recyclerPig);
         recyclerPig.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerPig.setAdapter(pigAdapter);

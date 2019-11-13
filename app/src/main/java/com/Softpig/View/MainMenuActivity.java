@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Installation;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.MainMenuPresenter;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.FemaleFragment;
 
 import com.Softpig.View.fragment.MaleFragment;
+import com.Softpig.View.fragment.PigActivity;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
@@ -358,5 +360,15 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void eliminarArticulo(int position, String article) {
         mainMenuPresenter.eliminarArticulo(this, position, article);
+    }
+
+    public void iniciarPigActivity(final Pig pig, final String fragment) {
+
+        Intent i = new Intent();
+        i.setClass(this, PigActivity.class);
+        i.putExtra("Pig", pig);
+        i.putExtra("fragment", fragment);
+        startActivity(i);
+
     }
 }

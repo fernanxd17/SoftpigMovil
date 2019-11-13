@@ -1,5 +1,6 @@
 package com.Softpig.Presenter.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +25,12 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
 
     private List<Pig> listPig;
     private List<Pig> listPigFull;
+    private Context context;
 
 
 
 
-    public PigAdapter(List<Pig> listPig) {
+    public PigAdapter(List<Pig> listPig, Context context) {
             this.listPig = listPig;
             listPigFull = new ArrayList<>(this.listPig);
         }
@@ -40,11 +43,18 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolderPig holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolderPig holder, final int position) {
             holder.tv_idPig.setText("ID: "+listPig.get(position).getIdPig());
             holder.tv_etapaPig.setText(listPig.get(position).getGrowthPhase());
             holder.tv_pesoPig.setText(listPig.get(position).getWeigth()+" Kg");
             holder.tv_sexoPig.setText(listPig.get(position).getSex());
+
+            holder.rlCardviewPig.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainMenuActivity)context).iniciarPigActivity(listPig.get(position), "pig");
+                }
+            });
         }
 
         @Override
@@ -101,12 +111,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
                 tv_sexoPig = itemView.findViewById(R.id.tv_sexoPig);
                 rlCardviewPig = itemView.findViewById(R.id.rl_cardview_pig);
 
-                rlCardviewPig.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                    }
-                });
             }
         }
 
