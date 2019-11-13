@@ -3,6 +3,8 @@ package com.Softpig.Presenter.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -10,17 +12,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
+public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> implements Filterable {
 
-    private ArrayList<Pig> listPig;
+    private List<Pig> listPig;
+    private List<Pig> listPigFull;
 
-    public PigAdapter(ArrayList<Pig> listPig) {
+
+
+
+    public PigAdapter(List<Pig> listPig) {
             this.listPig = listPig;
+            listPigFull = new ArrayList<>(this.listPig);
         }
 
         @NonNull
@@ -43,7 +52,42 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> {
             return listPig.size();
         }
 
-        public class ViewHolderPig extends RecyclerView.ViewHolder {
+    @Override
+    public Filter getFilter() {
+        return pigFilter;
+    }
+
+    private Filter pigFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Pig> listaFiltrada = new ArrayList<>();
+            if(charSequence == null || charSequence.length()==0){
+                listaFiltrada.addAll(listPigFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Pig pig: listPigFull){
+                    if(String.valueOf(pig.getIdPig()).toLowerCase().contains(filterPattern) ||
+                       pig.getGrowthPhase().toLowerCase().contains(filterPattern)){
+                        listaFiltrada.add(pig);
+                    }
+
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = listaFiltrada;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listPig.clear();
+            listPig.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    public class ViewHolderPig extends RecyclerView.ViewHolder {
 
             ImageView imagenPig;
             TextView tv_idPig,tv_etapaPig,tv_pesoPig, tv_sexoPig;

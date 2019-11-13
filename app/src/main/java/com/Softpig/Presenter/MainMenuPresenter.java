@@ -174,6 +174,13 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
+        if(listPig != null){
+            pigFragment.setListPig(listPig);
+            context.inflarFragment(pigFragment);
+            progressDialog.dismiss();
+            return  true;
+        }
+
         String url = URLAPI+"pig_list";
 
         JsonObjectRequest json = new JsonObjectRequest(

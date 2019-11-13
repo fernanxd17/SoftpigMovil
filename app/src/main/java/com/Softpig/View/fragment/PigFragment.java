@@ -40,7 +40,8 @@ public class PigFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         viewPigs =  inflater.inflate(R.layout.fragment_list_pigs, container, false);
-        ((MainMenuActivity)getActivity()).setTitleTolbar("Porcinos");
+
+        ((MainMenuActivity)getActivity()).setSearch("Pig");
         if(listPigs.isEmpty()){
             tv_noPigs = viewPigs.findViewById(R.id.tv_noPigs);
             tv_noPigs.setText("No Existen cerditos registrados");
@@ -57,5 +58,9 @@ public class PigFragment extends Fragment {
 
     public void setListPig(ArrayList<Pig> listPigs) {
         this.listPigs = listPigs;
+    }
+
+    public PigAdapter getPigAdapter() {
+        return pigAdapter;
     }
 }
