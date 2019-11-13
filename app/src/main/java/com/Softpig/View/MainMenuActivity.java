@@ -17,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.FemaleFragment;
 import com.Softpig.View.fragment.PigMenuFragment;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ReportFragment;
@@ -51,6 +52,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     private Employee user;
     private PigFragment pigFragment;
+    private FemaleFragment femaleFragment;
     private EmployeeFragment employeeFragment;
     private MainMenuPresenter mainMenuPresenter;
     private ToolFragment toolFragment;
@@ -104,6 +106,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             notificacion = new Toast(this);
             toolFragment = new ToolFragment();
             raceFragment = new RaceFragment();
+            femaleFragment = new FemaleFragment();
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
@@ -180,7 +183,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_female:
-                mainMenuPresenter.inflarFemalesFragment(this);
+                mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
                 break;
             case R.id.nav_male:
                 mainMenuPresenter.inflarMalesFragment(this);

@@ -30,8 +30,7 @@ public class FemaleFragment extends Fragment {
     private TextView tv_noFemales;
     private  View viewFemale;
 
-    public FemaleFragment(ArrayList<Female> lisFemale) {
-        this.listFemale = lisFemale;
+    public FemaleFragment() {
     }
 
 

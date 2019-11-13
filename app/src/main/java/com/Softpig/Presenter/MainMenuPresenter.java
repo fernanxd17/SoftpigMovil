@@ -63,6 +63,8 @@ public class MainMenuPresenter {
         toolsUpdate = false;
     }
 
+
+
     public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
@@ -417,13 +419,17 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarFemalesFragment(final MainMenuActivity context) {
+    public boolean inflarFemalesFragment(final MainMenuActivity context, final FemaleFragment femaleFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = URLAPI + "female_lis";
+        if(listPig == null){
+            traerDatosPorcinos(context);
+        }
+
+        String url = URLAPI + "female_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -443,9 +449,9 @@ public class MainMenuPresenter {
                                 String virgin = femaleObject.getString("virgin");
                                 String gestation = femaleObject.getString("gestation");
                                 if (listPig.get(i).getIdPig() == id) {
-                                    Pig pigFemale = listPig.get(i);
-                                   /* listFemales.add(new Female(id, virgin, gestation, pigFemale.getSex(), pigFemale.getWeigth(), pigFemale.getRace(), pigFemale.getGrowthPhase(),
-                                            pigFemale.getPigState(), pigFemale.getHealth(), pigFemale.getInstallation(), pigFemale.getBirthDate(), pigFemale.getAcquisitionDate()));*/
+                                    Pig pig = listPig.get(i);
+                                   listFemales.add(new Female(id, virgin, gestation, pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
+                                           pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
                             }
                             femaleFragment = new FemaleFragment(listFemales);
@@ -477,6 +483,68 @@ public class MainMenuPresenter {
         queue.add(json);
         return true;
 
+    }
+
+    private void traerDatosPorcinos(final MainMenuActivity context) {
+
+        String url = URLAPI+"pig_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            JSONArray jsonPig = response.getJSONArray("pigs");
+                            for(int i = 0; i < jsonPig.length(); i++) {
+                                JSONObject pigObject = jsonPig.getJSONObject(i);
+                                short id = (short) pigObject.getInt("id");
+                                String state = pigObject.getString("state");
+                                String sex = pigObject.getString("sex");
+                                short weigth = (short) pigObject.getInt("weigth");
+                                String race = pigObject.getString("race");
+                                String growthPhase = pigObject.getString("growthPhase");
+                                String pigState = pigObject.getString("pigStage");
+                                String health = pigObject.getString("health");
+                                String installation = pigObject.getString("installation");
+                                String birth = pigObject.getString("birthDate");
+                                Date birthDate = simpleDateFormat.parse(birth);
+                                String acquisition= pigObject.getString("acquisitionDate");
+                                Date acquisitionDate = simpleDateFormat.parse(acquisition);
+                                System.out.println(birthDate.toString()+" "+ acquisitionDate.toString());
+                                MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
+                                        health,installation, birthDate, acquisitionDate));
+                            }
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
     }
 
     public boolean inflarMalesFragment(final MainMenuActivity context) {
