@@ -327,6 +327,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                     case "Tool": toolFragment.getToolAdapter().getFilter().filter(newText);
                         break;
                     case "Race": raceFragment.getRaceAdapter().getFilter().filter(newText);
+                        break;
+                    case "Male": maleFragment.getMaleAdapter().getFilter().filter(newText);
+
+
 
 
                 }

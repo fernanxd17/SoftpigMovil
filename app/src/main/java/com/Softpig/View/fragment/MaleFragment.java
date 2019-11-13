@@ -38,11 +38,15 @@ public class MaleFragment extends Fragment {
 
     }
 
+    public MaleAdapter getMaleAdapter(){
+        return maleAdapter;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         viewMale = inflater.inflate(R.layout.fragment_list_male, container, false);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductores");
+        ((MainMenuActivity)getActivity()).setSearch("Male");
         if (listMales.isEmpty()){
             tv_noMales = viewMale.findViewById(R.id.tv_noMales);
             tv_noMales.setText("No existen reproductores");
