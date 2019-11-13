@@ -40,6 +40,7 @@ public class FemaleFragment extends Fragment {
         viewFemale =  inflater.inflate(R.layout.fragment_list_female, container, false);
 
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
+        ((MainMenuActivity)getActivity()).setSearch("Female");
         if (listFemale.isEmpty()){
             tv_noFemales = viewFemale.findViewById(R.id.tv_noFemales);
             tv_noFemales.setText("NO existen reproductoras");
@@ -55,5 +56,9 @@ public class FemaleFragment extends Fragment {
 
     public void setListFemale(ArrayList<Female> listFemales) {
         this.listFemale = listFemales;
+    }
+
+    public FemaleAdapter getFemaleAdapter() {
+        return this.femaleAdapter;
     }
 }

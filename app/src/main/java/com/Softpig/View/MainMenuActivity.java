@@ -329,6 +329,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                     case "Race": raceFragment.getRaceAdapter().getFilter().filter(newText);
                         break;
                     case "Male": maleFragment.getMaleAdapter().getFilter().filter(newText);
+                        break;
+                    case "Female": femaleFragment.getFemaleAdapter().getFilter().filter(newText);
+
 
 
 
