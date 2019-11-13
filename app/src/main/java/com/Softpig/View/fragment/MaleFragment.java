@@ -34,6 +34,9 @@ public class MaleFragment extends Fragment {
         this.listMales = listMales;
     }
 
+    public MaleFragment(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -51,4 +54,7 @@ public class MaleFragment extends Fragment {
         return viewMale;
     }
 
+    public void setListMale(ArrayList<Male> listMale) {
+        this.listMales = listMale;
+    }
 }

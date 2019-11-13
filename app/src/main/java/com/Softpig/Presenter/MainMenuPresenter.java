@@ -423,13 +423,9 @@ public class MainMenuPresenter {
                                 short id = (short) femaleObject.getInt("id");
                                 String virgin = femaleObject.getString("virgin");
                                 String gestation = femaleObject.getString("gestation");
-                                if(MainMenuPresenter.this.listPig.size() > i){
-                                    if (MainMenuPresenter.this.listPig.get(i).getIdPig() == id) {
-                                        Pig pig = listPig.get(i);
-                                        listFemales.add(new Female(id, virgin, gestation,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
-                                                pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
-                                    }
-                                }
+                                Pig pig = MainMenuPresenter.this.buscarPig(id);
+                                listFemales.add(new Female(id, virgin, gestation,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
+                                        pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
 
                             }
                             femaleFragment.setListFemale(listFemales);
@@ -461,6 +457,17 @@ public class MainMenuPresenter {
         queue.add(json);
         return true;
 
+    }
+
+    private Pig buscarPig(short id) {
+        for (Pig pig : listPig)
+        {
+          if(pig.getIdPig() == id){
+              return pig;
+          }
+        }
+
+        return null;
     }
 
     private void traerDatosPorcinos(final MainMenuActivity context) {
@@ -496,6 +503,10 @@ public class MainMenuPresenter {
                                 MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
+                            System.out.println("Listando porcinos");
+                            for(Pig pig : MainMenuPresenter.this.listPig){
+                                System.out.println("id: " + pig.getIdPig());
+                            }
 
 
                         } catch (Exception e) {
@@ -524,10 +535,14 @@ public class MainMenuPresenter {
         queue.add(json);
     }
 
-    public boolean inflarMalesFragment(final MainMenuActivity context) {
+    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
+        if(listPig == null){
+            traerDatosPorcinos(context);
+        }
 
         String url = URLAPI + "male_list";
 
@@ -547,16 +562,14 @@ public class MainMenuPresenter {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
                                 String conformation = maleObject.getString("conformation");
-                                if(MainMenuPresenter.this.listPig.size() > i){
-                                    if (MainMenuPresenter.this.listPig.get(i).getIdPig() == id) {
-                                        Pig pigMale = listPig.get(i);
-                                    /*listMale.add(new Male(id, conformation,pigMale.getSex(),pigMale.getWeigth() , pigMale.getRace(), pigMale.getGrowthPhase(),
-                                            pigMale.getPigState(), pigMale.getHealth(), pigMale.getInstallation(),pigMale.getBirthDate(), pigMale.getAcquisitionDate()));*/
-                                    }
+                                Pig pig = buscarPig(id);
+
+                                listMale.add(new Male(id, conformation,pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
+                                        pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
 
-                            }
-                            maleFragment = new MaleFragment(listMale);
+
+                            maleFragment.setListMale(listMale);
                             context.inflarFragment(maleFragment);
                             progressDialog.dismiss();
 

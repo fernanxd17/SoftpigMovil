@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Installation;
+import com.Softpig.Model.Male;
 import com.Softpig.Presenter.MainMenuPresenter;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.Softpig.View.fragment.ErrorFragment;
 
 import com.Softpig.View.fragment.FemaleFragment;
 
+import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
@@ -51,6 +53,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private PigFragment pigFragment;
     private FemaleFragment femaleFragment;
     private EmployeeFragment employeeFragment;
+    private MaleFragment maleFragment;
     private MainMenuPresenter mainMenuPresenter;
     private ToolFragment toolFragment;
     private DashBoardFragment dashBoardFragment;
@@ -102,6 +105,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             raceFragment = new RaceFragment();
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
+            maleFragment = new MaleFragment();
             presentarFragment("dashboard");
 
         }
@@ -184,7 +188,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
                 break;
             case R.id.nav_male:
-                mainMenuPresenter.inflarMalesFragment(this);
+                mainMenuPresenter.inflarMalesFragment(this,maleFragment);
                 break;
             case R.id.nav_race:
                 mainMenuPresenter.inflarRacesFragment(this, raceFragment);
