@@ -12,15 +12,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+
 import com.Softpig.View.fragment.FemaleFragment;
-import com.Softpig.View.fragment.PigMenuFragment;
+
 import com.Softpig.View.fragment.RaceFragment;
-import com.Softpig.View.fragment.ReportFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
 import com.Softpig.View.fragment.InstallationFragment;
@@ -39,9 +38,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.Softpig.R;
-import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DashBoardFragment;
-import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.PigFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -69,7 +66,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuItem searchItem;
     private MenuInflater menuInflater;
     private SearchView searchView;
-    private PigMenuFragment pigMenuFragment;
     private Bundle datos;
 
     @Override
@@ -101,7 +97,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             installationFragment = new InstallationFragment();
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
-            pigMenuFragment = new PigMenuFragment();
             notificacion = new Toast(this);
             toolFragment = new ToolFragment();
             raceFragment = new RaceFragment();
@@ -140,6 +135,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_pig:
                             searchItem.setVisible(true);
+                            //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigFragment).commit();
                             mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment);
                             break;
                         case R.id.ic_medicine:

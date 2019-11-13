@@ -204,6 +204,7 @@ public class MainMenuPresenter {
                                 listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
+                            System.out.println("Size: "+listPigs.size());
                             pigFragment.setListPig(listPigs);
                             context.inflarFragment(pigFragment);
                             progressDialog.dismiss();
