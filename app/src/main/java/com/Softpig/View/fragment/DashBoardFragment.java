@@ -16,7 +16,7 @@ import com.Softpig.View.MainMenuActivity;
 public class DashBoardFragment extends Fragment {
 
     private  TextView tvNumAdmins, tvNumOperators, tvNumEmployees;
-    private  TextView tvNumInstallations, tvNumTypeInstallations, tvLookInstallations;
+    private  TextView tvNumInstallations, tvNumTypeInstallations;
     private  TextView tvNumTools, tvNumToolsDispo, tvToolsPrestamo;
     private  LinearLayout llEmployeeDashboard, llInstallationsDashboard, llToalsDashboard;
     private  short [] valores;

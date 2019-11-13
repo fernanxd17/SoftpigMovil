@@ -417,6 +417,7 @@ public class MainMenuPresenter {
                             ArrayList<Female> listFemales = new ArrayList<>();
                             JSONArray jsonFemale = response.getJSONArray("females");
 
+
                             for(int i = 0; i < jsonFemale.length(); i++) {
                                 JSONObject femaleObject = jsonFemale.getJSONObject(i);
                                 short id = (short) femaleObject.getInt("id");
@@ -476,7 +477,7 @@ public class MainMenuPresenter {
                     public void onResponse(JSONObject response) {
 
                         try {
-
+                            MainMenuPresenter.this.listPig = new ArrayList<>();
                             JSONArray jsonPig = response.getJSONArray("pigs");
                             for(int i = 0; i < jsonPig.length(); i++) {
                                 JSONObject pigObject = jsonPig.getJSONObject(i);
@@ -491,7 +492,7 @@ public class MainMenuPresenter {
                                 String installation = pigObject.getString("installation");
                                 String birth = pigObject.getString("birthDate");
                                 String acquisition= pigObject.getString("acquisitionDate");
-                                MainMenuPresenter.this.listPig = new ArrayList<>();
+
                                 MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
@@ -546,11 +547,14 @@ public class MainMenuPresenter {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
                                 String conformation = maleObject.getString("conformation");
-                                if (MainMenuPresenter.this.listPig.get(i).getIdPig() == id) {
-                                    Pig pigMale = listPig.get(i);
+                                if(MainMenuPresenter.this.listPig.size() > i){
+                                    if (MainMenuPresenter.this.listPig.get(i).getIdPig() == id) {
+                                        Pig pigMale = listPig.get(i);
                                     /*listMale.add(new Male(id, conformation,pigMale.getSex(),pigMale.getWeigth() , pigMale.getRace(), pigMale.getGrowthPhase(),
                                             pigMale.getPigState(), pigMale.getHealth(), pigMale.getInstallation(),pigMale.getBirthDate(), pigMale.getAcquisitionDate()));*/
+                                    }
                                 }
+
                             }
                             maleFragment = new MaleFragment(listMale);
                             context.inflarFragment(maleFragment);
