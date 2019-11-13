@@ -95,9 +95,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
         if(savedInstanceState == null){
-            mainMenuPresenter = new MainMenuPresenter(this);
+            mainMenuPresenter = new MainMenuPresenter();
             dashBoardFragment = new DashBoardFragment();
-            presentarFragment("dashboard");
             employeeFragment = new EmployeeFragment();
             installationFragment = new InstallationFragment();
             errorFragment = new ErrorFragment();
@@ -106,7 +105,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             notificacion = new Toast(this);
             toolFragment = new ToolFragment();
             raceFragment = new RaceFragment();
+            pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
+            presentarFragment("dashboard");
+
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
@@ -239,6 +241,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     public void inflarFragment(Fragment fragment){
+
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
     }
 

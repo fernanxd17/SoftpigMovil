@@ -53,4 +53,7 @@ public class FemaleFragment extends Fragment {
         return viewFemale;
     }
 
+    public void setListFemale(ArrayList<Female> listFemales) {
+        this.listFemale = listFemales;
+    }
 }

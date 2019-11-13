@@ -21,15 +21,14 @@ public class DashBoardFragment extends Fragment {
     private  LinearLayout llEmployeeDashboard, llInstallationsDashboard, llToalsDashboard;
     private  short [] valores;
 
-    public DashBoardFragment(short [] valores) {
-        this.valores = valores;
-    }
 
-    public DashBoardFragment(){
 
-    }
+public DashBoardFragment (){
+    this.valores = new short [6];
+}
 
     public void setValores(short [] valores){
+
         this.valores = valores;
     }
 
@@ -59,7 +58,7 @@ public class DashBoardFragment extends Fragment {
         llInstallationsDashboard = view.findViewById(R.id.ll_installations_dashboard);
         llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);
 
-
+        System.out.println("llena campos");
 
         this.llEmployeeDashboard.setOnClickListener(new View.OnClickListener() {
             @Override

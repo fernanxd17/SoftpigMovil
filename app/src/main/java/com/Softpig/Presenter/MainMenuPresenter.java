@@ -2,13 +2,8 @@ package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import com.Softpig.ConexionBD.ConexionSqlHelper;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
@@ -16,7 +11,6 @@ import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
-import com.Softpig.Utilidades.Util;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
@@ -38,28 +32,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class MainMenuPresenter {
 
-    private ConexionSqlHelper conn;
     private static boolean toolsUpdate;
-    private RaceFragment raceFragment;
-    private InstallationFragment installationFragment;
-    private FemaleFragment femaleFragment;
+
+
     private MaleFragment maleFragment;
-    private PigFragment pigFragment;
-    private ToolFragment toolFragment;
-    private EmployeeFragment employeeFragment;
+
     private ArrayList<Pig> listPig;
-    private SimpleDateFormat simpleDateFormat;
+
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
-    public MainMenuPresenter(Context context){
-        conn = new ConexionSqlHelper(context, Util.NAME_BD, null,1);
+    public MainMenuPresenter(){
         toolsUpdate = false;
     }
 
@@ -213,6 +200,7 @@ public class MainMenuPresenter {
                                 String installation = pigObject.getString("installation");
                                 String birth = pigObject.getString("birthDate");
                                 String acquisition= pigObject.getString("acquisitionDate");
+
                                 listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
@@ -253,7 +241,7 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        if(!toolsUpdate){
+
             String url = URLAPI+ "article_list";
 
             JsonObjectRequest json = new JsonObjectRequest(
@@ -265,7 +253,6 @@ public class MainMenuPresenter {
                         public void onResponse(JSONObject response) {
 
                             try {
-                                SQLiteDatabase softporc = conn.getWritableDatabase();
                                 ContentValues contentValues = new ContentValues();
 
                                 ArrayList<Tool> listTool = new ArrayList<>();
@@ -282,15 +269,8 @@ public class MainMenuPresenter {
                                     String type = toolObject.getString("type");
                                     listTool.add(new Tool(id, type,name, quantity));
 
-                                    contentValues.put("ID_ARTICLE", id);
-                                    contentValues.put("type", type);
-                                    contentValues.put("name", name);
-                                    contentValues.put("quantity", quantity);
-
-                                    softporc.insert("Article", "ID_ARTICLE",contentValues);
                                 }
 
-                                softporc.close();
                                 toolFragment.setListTool(listTool);
                                 toolFragment.setContext(context);
                                 context.inflarFragment(toolFragment);
@@ -321,10 +301,7 @@ public class MainMenuPresenter {
 
             RequestQueue queue = Volley.newRequestQueue(context);
             queue.add(json);
-        }else{
-            SQLiteDatabase softporc = conn.getWritableDatabase();
 
-        }
 
 
 
@@ -348,6 +325,7 @@ public class MainMenuPresenter {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+
                             ArrayList<Employee> listEmployee = new ArrayList<>();
                             JSONArray jsonEmployee = response.getJSONArray("employees");
 
@@ -362,7 +340,11 @@ public class MainMenuPresenter {
                                 String contract = employeeObject.getString("contract");
                                 String hoursWorked = employeeObject.getString("hoursWorked");
                                 String admission = employeeObject.getString("dateAdmission");
+                                //Date admissionDate =  simpleDateFormat.parse(admission);
+
                                 String off = employeeObject.getString("dateOff");
+                                //Date dateOff = simpleDateFormat.parse(off);
+
                                 int salary = employeeObject.getInt("salary");
                                 String document = employeeObject.getString("document");
                                 String firstName = employeeObject.getString("firstName");
@@ -439,13 +421,16 @@ public class MainMenuPresenter {
                                 short id = (short) femaleObject.getInt("id");
                                 String virgin = femaleObject.getString("virgin");
                                 String gestation = femaleObject.getString("gestation");
-                                if (listPig.get(i).getIdPig() == id) {
-                                    Pig pig = listPig.get(i);
-                                   listFemales.add(new Female(id, virgin, gestation, pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
-                                           pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
+                                if(MainMenuPresenter.this.listPig.size() > i){
+                                    if (MainMenuPresenter.this.listPig.get(i).getIdPig() == id) {
+                                        Pig pig = listPig.get(i);
+                                        listFemales.add(new Female(id, virgin, gestation,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
+                                                pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
+                                    }
                                 }
+
                             }
-                            femaleFragment = new FemaleFragment(listFemales);
+                            femaleFragment.setListFemale(listFemales);
                             context.inflarFragment(femaleFragment);
                             progressDialog.dismiss();
 
@@ -478,6 +463,7 @@ public class MainMenuPresenter {
 
     private void traerDatosPorcinos(final MainMenuActivity context) {
 
+
         String url = URLAPI+"pig_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
@@ -490,7 +476,6 @@ public class MainMenuPresenter {
 
                         try {
 
-                            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                             JSONArray jsonPig = response.getJSONArray("pigs");
                             for(int i = 0; i < jsonPig.length(); i++) {
                                 JSONObject pigObject = jsonPig.getJSONObject(i);
@@ -504,12 +489,10 @@ public class MainMenuPresenter {
                                 String health = pigObject.getString("health");
                                 String installation = pigObject.getString("installation");
                                 String birth = pigObject.getString("birthDate");
-                                Date birthDate = simpleDateFormat.parse(birth);
                                 String acquisition= pigObject.getString("acquisitionDate");
-                                Date acquisitionDate = simpleDateFormat.parse(acquisition);
-                                System.out.println(birthDate.toString()+" "+ acquisitionDate.toString());
+                                MainMenuPresenter.this.listPig = new ArrayList<>();
                                 MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
-                                        health,installation, birthDate, acquisitionDate));
+                                        health,installation, birth, acquisition));
                             }
 
 
@@ -524,6 +507,7 @@ public class MainMenuPresenter {
             public void onErrorResponse(VolleyError error) {
 
                 try {
+                    error.printStackTrace();
                     context.inflarFragment(new ErrorFragment());
 
 
@@ -561,7 +545,7 @@ public class MainMenuPresenter {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
                                 String conformation = maleObject.getString("conformation");
-                                if (listPig.get(i).getIdPig() == id) {
+                                if (MainMenuPresenter.this.listPig.get(i).getIdPig() == id) {
                                     Pig pigMale = listPig.get(i);
                                     /*listMale.add(new Male(id, conformation,pigMale.getSex(),pigMale.getWeigth() , pigMale.getRace(), pigMale.getGrowthPhase(),
                                             pigMale.getPigState(), pigMale.getHealth(), pigMale.getInstallation(),pigMale.getBirthDate(), pigMale.getAcquisitionDate()));*/
@@ -631,12 +615,20 @@ public class MainMenuPresenter {
                             JSONObject typeInstallationObject = jsonDataEmployee.getJSONObject(5);
                             short typeInstallation = (short)typeInstallationObject.getInt("installations_type");
 
-                            short [] valores = {adminNum, operNum, numToolPerson, toolInventario, numInstallation, typeInstallation};
+                            short [] valores = new short [6];
+                            valores[0] = adminNum;
+                            valores[1] = operNum;
+                            valores[2] = numToolPerson;
+                            valores[3] = toolInventario;
+                            valores[4] = numInstallation;
+                            valores[5] = typeInstallation;
+
                             dashBoardFragment.setValores(valores);
                             context.inflarFragment(dashBoardFragment);
                             progressDialog.dismiss();
 
                         } catch (Exception e) {
+                            System.out.println("entra 1");
                             e.printStackTrace();
                             context.inflarFragment(new ErrorFragment());
                             progressDialog.dismiss();
@@ -646,11 +638,14 @@ public class MainMenuPresenter {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                try {
+                try { error.printStackTrace();
+
                     context.inflarFragment(new ErrorFragment());
+
                     progressDialog.dismiss();
 
                 } catch (Exception e) {
+                    System.out.println("Entra 2");
                     e.printStackTrace();
                     progressDialog.dismiss();
                 }
@@ -659,12 +654,7 @@ public class MainMenuPresenter {
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
-        //Se hace loader
-        //volley
-        /*Para tarer los datos de la instalación*/
 
-        //employee
-        //articles
     }
 
     public void eliminarArticulo(final MainMenuActivity context,final int idTool, final String table) {
