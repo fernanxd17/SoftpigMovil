@@ -1,18 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SoftPig</string>
-    <string name="app_bienvenida">!Bienvenido a SoftPig¡</string>
+    <string name="app_Bienvenida">!Bienvenido a SoftPig¡</string>
 
-    <string name="app_acercade">Acerca de</string>
-    <string name="app_diccionario_porcino">Diccionario Porcino</string>
-    <string name="app_derechos_reservados">Todos los Derechos Reservados 2019</string>
-
-    <string name="app_correo">correo@example.com</string>
-    <string name="app_url">gidis.ufps.edu.co/softporc/softporc</string>
+    <string name="app_reporteFerti">Reporte de Fertilidad</string>
+    <string name="app_reportePro">Reporte de Productiva</string>
+    <string name="app_reporteRepro">Reporte de Reproductoras</string>
 
 
-    //Usuario
-    <string name="app_recuperar_contraseña">Recuperacion de Contraseña</string>
-    <string name="app_cambiarcontraseña">Cambiar Contraseña</string>
     <string name="app_codigo">Codigo</string>
     <string name="app_contraseña">Contraseña</string>
     <string name="app_olvidocontraseña">¿Olvidaste la Contraseña?</string>
@@ -20,104 +15,14 @@
     <string name="app_cerrar">Cerrar Sesion</string>
     <string name="app_generarpdf">Generar PDF</string>
 
+    <!--    CAMBIO DE CONTRASEÑA     -->
+    <string name="app_recuperar_contraseña">Recuperacion de Contraseña</string>
+    <string name="app_cambiarcontraseña">Cambiar Contraseña</string>
 
-    //perfil
-    <string name="app_infoperso">INFORMACION PERSONAL</string>
-    <string name="app_nombre">Nombre: </string>
-    <string name="app_documento">Documento: </string>
-    <string name="app_genero">Genero: </string>
-    <string name="app_sexo">Sexo: </string>
-    <string name="app_peso">Peso: </string>
-    <string name="app_dardebaja">Dar de Baja </string>
-    <string name="app_raza">Raza: </string>
-    <string name="app_fasecrecimiento">Fase de Crecimiento: </string>
-    <string name="app_etapaporcina">Etapa Porcina: </string>
-    <string name="app_fechanacimiento">Fecha de Nacimiento: </string>
-    <string name="app_fechaadquisicion">Fecha de Adquisicion: </string>
-    <string name="app_reprodutormasinfo">Reproductor(a) click para mas informacion </string>
-    <string name="app_ubicacionporcino">UBICACION DEL PORCINO</string>
-    <string name="app_vacuna">VACUNAS</string>
-    <string name="app_agregarmedicamento">Agregar Medicamentos</string>
-    <string name="app_inhabilitar">INHABILITAR</string>
-    <string name="app_conformacionfisica">Conformacion Fisica</string>
-    <string name="app_desasignarreproductor">DESASIGNAR REPRODUCTOR</string>
-    <string name="app_examen">EXAMENES</string>
-    <string name="app_desasignarreproductora">DESASIGNAR REPRODUCTORA</string>
-    <string name="app_nulipara">Nulipara</string>
-
-    <string name="app_infocontacto">INFORMACION DE CONTACTO</string>
-    <string name="app_email">Email: </string>
-    <string name="app_telefono">Telefono: </string>
-    <string name="app_movil">Movil: </string>
-
-    <string name="app_infocargo">INFORMACION CARGO</string>
-    <string name="app_cargo">Cargo: </string>
-    <string name="app_estado">Estado: </string>
-    <string name="app_fechaingreso">Fecha de Ingreso: </string>
-
-    //alerta
-    <string name="app_propia">Propia</string>
-    <string name="app_asunto">Asunto</string>
-    <string name="app_fecha">DD/MM/AAAA  HH:MM AM</string>
-
-
-    //inforaza
-    <string name="app_nombre_raza">Nombre de la Raza</string>
-    <string name="app_id">ID: </string>
-    <string name="app_descripcion_raza">Descripcion de la Raza</string>
-
-    <string name="app_desc_raza">
-        Raza norteamericana. Desarrollo, conversion y velocidad de crecimiento. Su capa varia del
-        amarillo a las diferentes gamasdel rojo. Orejas medianas, cabeza pequeña, cara ancha, ojos
-        prominentes, cuello corto, pecho amplio. Nueve lechones y lechera.
-    </string>
-
-
-    //informes fertilidad
-    <string name="app_info_fertilidad">Informes de Fertilidad</string>
-    <string name="app_info_productividad_reproductoras">Informes de Productividad de Reproductoras</string>
-    <string name="app_info_produccion">Informes de Produccion</string>
-
-
-    //Diccionario porcino
-
-
-    //listas
-    <string name="app_alerta">ALERTAS</string>
-
-    <string name="app_herramienta_trabajo">HERRAMIENTA DE TRABAJO</string>
-    <string name="app_nombre_articulo">Nombre Articulo</string>
-    <string name="app_tipo_articulo">Tipo Articulo</string>
-    <string name="app_cantidad">Cantidad</string>
-
-    <string name="app_listado_porcino">LISTADO DE PORCINOS</string>
-    <string name="app_id_porcino">01</string>
-    <string name="app_tipo_porcino">Lechon</string>
-    <string name="app_peso_porcino">50 kg</string>
-    <string name="app_genero_porcino">Macho</string>
-
-    <string name="app_raza_registrada">RAZA REGISTRADA</string>
-
-    <string name="app_listado_reproductoras">LISTADO DE REPRODUCTORAS</string>
-    <string name="app_virgen">Virgen: </string>
-    <string name="app_gestacion">Gestacion:</string>
-    <string name="app_parto">Parto:</string>
-    <string name="app_celo">Celo:</string>
-
-    <string name="app_gestaciones">Gestaciones</string>
-    <string name="app_partos">Partos</string>
-    <string name="app_celos">Celos</string>
-    <string name="app_listado_reproductores">LISTADO DE REPRODUCTORES</string>
-
-    <string name="app_listado_medicina">LISTADO DE MEDICINAS</string>
-    <string name="app_id_meidcina">01 Medicina</string>
-    <string name="app_tipo_medicina">Tipo Medicina</string>
-    <string name="app_cantidad_medicina">Cantidad</string>
-
-
-    <string name="app_reporteFerti">Reporte de Fertilidad</string>
-    <string name="app_reportePro">Reporte de Productiva</string>
-    <string name="app_reporteRepro">Reporte de Reproductoras</string>
+    <!--    ACERCA DE, DICCIONARIO, DERECHOS    -->
+    <string name="app_acercade">Acerca de</string>
+    <string name="app_diccionario_porcino">Diccionario Porcino</string>
+    <string name="app_derechos_reservados">Todos los Derechos Reservados 2019</string>
 
     <string name="app_porcino">Porcino</string>
     <string name="app_agregarporcino">Agregar Porcino</string>
@@ -156,4 +61,61 @@
         Es el conjunto de todas las mamas o tetas de la madre. También se denomina línea mamaria,
         porque las mamas se encuentran alineadas formando los complejos mamarios derecho e izquierdo.
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_refence">refence</string>
+    <string name="title_activity_reference">Reference</string>
+    <string name="idEmpleado">ID: 01</string>
+    <string name="idPig">ID: 01</string>
+    <string name="etapaPig">Lechon</string>
+    <string name="pesoPig">50 Kg</string>
+    <string name="sexoPig">Macho</string>
+    <string name="tab_home">Inicio</string>
+    <string name="tab_pig">Porcinos</string>
+    <string name="tab_medicine">Medicinas</string>
+    <string name="tab_alert">Alertas</string>
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_female">Reproductoras</string>
+    <string name="menu_male">Reproductor</string>
+    <string name="menu_race">Razas</string>
+    <string name="menu_reports">Informes</string>
+    <string name="menu_dictionary">Diccionario Porcino</string>
+    <string name="menu_about">Acerca De</string>
+    <string name="menu_out">Cerrar Sesión</string>
+    <string name="idInstallation">01</string>
+    <string name="name_instalation">Cochera 1</string>
+    <string name="type_installation">Partos</string>
+    <string name="medidas_installations">500x500</string>
+    <string name="nameEmployee">William Pajaro Caballero</string>
+    <string name="type_employee">Empleado administrativo</string>
+    <string name="nombre_article">Tijeras</string>
+    <string name="type_article">Cuidado Porcino</string>
+    <string name="totalarticle">10 unidades</string>
+    <string name="idAriticle">ID: 01</string>
+    <string name="name_race">Duroc</string>
+    <string name="description">Pequeña descripcion</string>
+    <string name="idRace">ID:01</string>
+    <string name="idFemale">ID: 01</string>
+    <string name="nulipara"> no</string>
+    <string name="pesoFemale">50 Kg</string>
+    <string name="gestacion">si</string>
+    <string name="raceMale">Duroc</string>
+    <string name="conformacionfisica">Conformación fisica del reproductor</string>
+    <string name="menu_home">Inicio</string>
+    <string name="error">¡Estas viendo un caballo en una aplicación de cerdos!, Debe haber un error, intentalo mas tarde.</string>
+    <string name="app_correo">correo</string>
+    <string name="searchEmployee">Cedula...</string>
+    <string name="searchTool">Nombre...</string>
+    <string name="change_password">Cambiar Contraseña</string>
+    <string name="app_contraseña_new">Nueva Contraseña</string>
+    <string name="app_contraseña_new_repite">Repitir Contraseña</string>
+
 </resources>

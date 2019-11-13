@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.Softpig.Model.Female;
@@ -29,6 +30,8 @@ public class FemaleFragment extends Fragment {
     private ArrayList<Female> listFemale;
     private TextView tv_noFemales;
     private  View viewFemale;
+    private Button bt_desasignar_female;
+    private Female female;
 
     public FemaleFragment() {
     }
@@ -38,6 +41,7 @@ public class FemaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewFemale =  inflater.inflate(R.layout.fragment_list_female, container, false);
+        capturarCampos();
 
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
         ((MainMenuActivity)getActivity()).setSearch("Female");
@@ -60,5 +64,14 @@ public class FemaleFragment extends Fragment {
 
     public FemaleAdapter getFemaleAdapter() {
         return this.femaleAdapter;
+    }
+
+    private void capturarCampos() {
+       bt_desasignar_female = viewFemale.findViewById(R.id.bt_desasignar_female);
+       if (female.getStateFemale().equalsIgnoreCase("Asignada")){
+           bt_desasignar_female.setVisibility(View.VISIBLE);
+           bt_desasignar_female.setEnabled(true);
+       }
+
     }
 }

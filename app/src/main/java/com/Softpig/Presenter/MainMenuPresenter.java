@@ -431,8 +431,9 @@ public class MainMenuPresenter {
                                 short id = (short) femaleObject.getInt("id");
                                 String virgin = femaleObject.getString("virgin");
                                 String gestation = femaleObject.getString("gestation");
+                                String stateFemale = femaleObject.getString("state");
                                 Pig pig = MainMenuPresenter.this.buscarPig(id);
-                                listFemales.add(new Female(id, virgin, gestation,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
+                                listFemales.add(new Female(id, virgin, gestation,stateFemale,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
 
                             }
@@ -570,9 +571,10 @@ public class MainMenuPresenter {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
                                 String conformation = maleObject.getString("conformation");
+                                String stateMale = maleObject.getString("state");
                                 Pig pig = buscarPig(id);
 
-                                listMale.add(new Male(id, conformation,pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
+                                listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
 
