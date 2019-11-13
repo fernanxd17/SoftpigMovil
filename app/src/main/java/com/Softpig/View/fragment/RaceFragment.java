@@ -31,8 +31,12 @@ public class RaceFragment extends Fragment {
     private TextView tvInfo;
 
 
-    public RaceFragment(ArrayList<Race> listRaces){
-        this.listRaces = listRaces;
+    public RaceFragment(){
+
+    }
+
+    public RaceAdapter getRaceAdapter(){
+        return raceAdapter;
     }
 
     @Override
@@ -46,11 +50,16 @@ public class RaceFragment extends Fragment {
             tvInfo.setText("No existen razas registradas.");
             return viewRace;
         }
+        ((MainMenuActivity)getActivity()).setSearch("Race");
         raceAdapter = new RaceAdapter(this.listRaces);
         recyclerRace = viewRace.findViewById(R.id.recyclerRace);
         recyclerRace.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerRace.setAdapter(raceAdapter); //cuando ya funcione la api, hay que verificar si carga los cardview sin esta linea, en caso de que no funcione probrar des-comentando a linea
 
         return viewRace;
+    }
+
+    public void setListRace(ArrayList<Race> listRaces) {
+        this.listRaces = listRaces;
     }
 }

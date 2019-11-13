@@ -63,7 +63,7 @@ public class MainMenuPresenter {
         toolsUpdate = false;
     }
 
-    public boolean inflarRacesFragment(final MainMenuActivity context) {
+    public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
@@ -90,7 +90,7 @@ public class MainMenuPresenter {
                                     String description = raceObject.getString("description");
                                     listRaces.add(new Race(idRace, race, description));
                                 }
-                                raceFragment = new RaceFragment(listRaces);
+                                raceFragment.setListRace(listRaces);
                                 context.inflarFragment(raceFragment);
                                 progressDialog.dismiss();
 
@@ -121,7 +121,7 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarInstallationsFragment(final MainMenuActivity context) {
+    public boolean inflarInstallationsFragment(final MainMenuActivity context, final InstallationFragment installationFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
@@ -148,7 +148,7 @@ public class MainMenuPresenter {
                                 short capacity = (short) installationObject.getInt("capacity");
                                 listInstallations.add(new Installation(id, type, name, capacity));
                             }
-                            installationFragment = new InstallationFragment(listInstallations);
+                            installationFragment.setListInstallations(listInstallations);
                             context.inflarFragment( installationFragment);
                             progressDialog.dismiss();
 
@@ -274,9 +274,13 @@ public class MainMenuPresenter {
                                 JSONArray jsonTools = response.getJSONArray("articles");
                                 for(int i = 0; i < jsonTools.length(); i++) {
                                     JSONObject toolObject = jsonTools.getJSONObject(i);
+                                    short quantity = (short) toolObject.getInt("quantity");
+                                    if(quantity == 0){
+                                        continue;
+                                    }
                                     short id = (short) toolObject.getInt("id");
                                     String name = toolObject.getString("name");
-                                    short quantity = (short) toolObject.getInt("quantity");
+
                                     String type = toolObject.getString("type");
                                     listTool.add(new Tool(id, type,name, quantity));
 
@@ -352,6 +356,10 @@ public class MainMenuPresenter {
 
                             for(int i = 0; i < jsonEmployee.length(); i++) {
                                 JSONObject employeeObject = jsonEmployee.getJSONObject(i);
+                                String role = employeeObject.getString("role");
+                                if(role.equalsIgnoreCase("Administrador")){
+                                    continue;
+                                }
                                 short id = (short) employeeObject.getInt("id");
                                 String status = employeeObject.getString("state");
                                 String contract = employeeObject.getString("contract");
@@ -372,7 +380,7 @@ public class MainMenuPresenter {
                                 String email = employeeObject.getString("email");
                                 String phone = employeeObject.getString("phone");
                                 String celPhone = employeeObject.getString("celPhone");
-                                String role = employeeObject.getString("role");
+
                                 String instalation = employeeObject.getString("instalation");
 
                                 listEmployee.add(new Employee(id, role,contract, hoursWorked, status, admission, off, document,

@@ -29,7 +29,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public EmployeeAdapter(List<Employee> listEmployee, Context context) {
         this.listEmployee = listEmployee;
-        listEmployeeFull = new ArrayList<>(listEmployee);
+        listEmployeeFull = new ArrayList<>(this.listEmployee);
         this.context = context;
     }
 
@@ -44,6 +44,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolderEmployee holder, int position) {
         final Employee employee = listEmployee.get(position);
+
         if(employee.getGender().equalsIgnoreCase("Mujer"))
             holder.icSex.setImageResource(R.drawable.gender_female);
         holder.tv_idEmployee.setText("ID: "+employee.getIdEmployee());

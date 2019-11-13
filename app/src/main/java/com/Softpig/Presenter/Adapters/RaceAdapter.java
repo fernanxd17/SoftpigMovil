@@ -3,6 +3,8 @@ package com.Softpig.Presenter.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -10,17 +12,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.Softpig.Model.Employee;
 import com.Softpig.Model.Race;
 import com.Softpig.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace> {
+public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace> implements Filterable {
 
-    private ArrayList<Race> listRaces;
+    private List<Race> listRaces;
+    private List<Race> listRacesFull;
 
-    public RaceAdapter(ArrayList<Race> listRace) {
+
+    public RaceAdapter(List<Race> listRace) {
         this.listRaces = listRace;
+        listRacesFull = new ArrayList<>(listRace);
     }
 
     @NonNull
@@ -41,6 +48,40 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolderRace
     public int getItemCount() {
         return listRaces.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return raceFilter;
+    }
+
+    private Filter raceFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Race> listaFiltrada = new ArrayList<>();
+            if(charSequence == null || charSequence.length()==0){
+                listaFiltrada.addAll(listRacesFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Race race: listRacesFull){
+                    if(race.getRace().toLowerCase().contains(filterPattern)){
+                        listaFiltrada.add(race);
+                    }
+
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = listaFiltrada;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listRaces.clear();
+            listRaces.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolderRace extends RecyclerView.ViewHolder {
 

@@ -32,8 +32,8 @@ public class InstallationFragment extends Fragment {
     private  TextView tv_noInstallations;
 
 
-    public InstallationFragment(ArrayList<Installation> listInstallations) {
-        this.listInstallations = listInstallations;
+    public InstallationAdapter getInstallationAdapter(){
+        return installationAdapter;
     }
 
 
@@ -47,7 +47,8 @@ public class InstallationFragment extends Fragment {
             tv_noInstallations.setText("No hay instalaciones registradas, entra a la web y crea una");
             return  viewInstallations;
         }
-        installationAdapter = new InstallationAdapter(listInstallations);
+        ((MainMenuActivity)getActivity()).setSearch("Installation");
+        installationAdapter = new InstallationAdapter(listInstallations,getContext());
         recyclerInstallations = viewInstallations.findViewById(R.id.recyclerInstallations);
         recyclerInstallations.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerInstallations.setAdapter(installationAdapter);
@@ -55,4 +56,8 @@ public class InstallationFragment extends Fragment {
         return viewInstallations;
     }
 
+    public void setListInstallations(ArrayList<Installation> listInstallations) {
+
+        this.listInstallations = listInstallations;
+    }
 }

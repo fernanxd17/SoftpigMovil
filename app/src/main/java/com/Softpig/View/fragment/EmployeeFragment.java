@@ -41,7 +41,7 @@ public class EmployeeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewEmployee =  inflater.inflate(R.layout.fragment_list_employees, container, false);
-        ((MainMenuActivity)getActivity()).setSearch();
+        ((MainMenuActivity)getActivity()).setSearch("Employee");
         ((MainMenuActivity)getActivity()).setTitleTolbar("Empleados");
         if (listEmployees.isEmpty()){
             tv_noEmployees = viewEmployee.findViewById(R.id.tv_noEmployees);

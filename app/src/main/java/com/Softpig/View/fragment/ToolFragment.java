@@ -59,15 +59,16 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
         if (listTool.isEmpty()){
             tv_noTool = viewTool.findViewById(R.id.tv_noTools);
             tv_noTool.setText("No hay herramientas en el invetario");
-        }
-        toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
-        recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
-        recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerArticle.setAdapter(toolAdapter);
+        }else{
+            ((MainMenuActivity)getActivity()).setSearch("Tool");
+            toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
+            recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
+            recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerArticle.setAdapter(toolAdapter);
 
 
-        fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
-        fbAddArticle.setOnClickListener(new View.OnClickListener() {
+            fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
+            fbAddArticle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(toolEmployee){
@@ -75,6 +76,8 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
                     }
                 }
             });
+        }
+
 
         return viewTool;
     }
@@ -96,5 +99,9 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
 
     public void setListTool(ArrayList<Tool> listTool){
         this.listTool = listTool;
+    }
+
+    public ToolAdapter getToolAdapter() {
+        return toolAdapter;
     }
 }

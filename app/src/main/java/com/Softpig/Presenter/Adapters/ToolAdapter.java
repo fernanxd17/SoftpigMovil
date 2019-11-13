@@ -91,7 +91,8 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
             }else{
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Tool tool: listToolFull){
-                    if(tool.getName().toLowerCase().contains(filterPattern)){
+                    if(tool.getName().toLowerCase().contains(filterPattern) ||
+                        tool.getTypeArticle().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(tool);
                     }
                 }

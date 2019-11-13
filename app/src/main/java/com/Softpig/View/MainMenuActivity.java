@@ -55,6 +55,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MainMenuPresenter mainMenuPresenter;
     private ToolFragment toolFragment;
     private DashBoardFragment dashBoardFragment;
+    private RaceFragment raceFragment;
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
     private BottomNavigationView bottomNavigationView;
@@ -96,12 +97,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             dashBoardFragment = new DashBoardFragment();
             presentarFragment("dashboard");
             employeeFragment = new EmployeeFragment();
-            installationFragment = new InstallationFragment(listInstallations);
+            installationFragment = new InstallationFragment();
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
             pigMenuFragment = new PigMenuFragment();
             notificacion = new Toast(this);
             toolFragment = new ToolFragment();
+            raceFragment = new RaceFragment();
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
@@ -184,7 +186,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarMalesFragment(this);
                 break;
             case R.id.nav_race:
-                mainMenuPresenter.inflarRacesFragment(this);
+                mainMenuPresenter.inflarRacesFragment(this, raceFragment);
                 break;
             case R.id.nav_dictionary:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
@@ -221,7 +223,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 break;
 
             case "Installations":
-                mainMenuPresenter.inflarInstallationsFragment(this);
+                mainMenuPresenter.inflarInstallationsFragment(this, installationFragment);
                 break;
 
             default:
@@ -300,7 +302,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     }
 
-    public void setSearch(){
+    public void setSearch(final String fragment){
         searchItem.setVisible(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -310,7 +312,18 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                employeeFragment.employeeAdapter.getFilter().filter(newText);
+
+                switch (fragment){
+                    case "Employee": employeeFragment.employeeAdapter.getFilter().filter(newText);
+                        break;
+                    case  "Installation": installationFragment.getInstallationAdapter().getFilter().filter(newText);
+                        break;
+                    case "Tool": toolFragment.getToolAdapter().getFilter().filter(newText);
+                        break;
+                    case "Race": raceFragment.getRaceAdapter().getFilter().filter(newText);
+
+
+                }
 
                 return  false;
             }

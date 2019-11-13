@@ -62,12 +62,22 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btInhabilitar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ProfileActivity)getContext()).cambiarEstado("Inhabilitado");
-            }
-        });
+        if(employee.getStatus().equalsIgnoreCase("En Funciones")){
+            btInhabilitar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((ProfileActivity)getContext()).cambiarEstado("Inhabilitado");
+                }
+            });
+        }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado")){
+            btInhabilitar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((ProfileActivity)getContext()).cambiarEstado("En Funciones");
+                }
+            });
+        }
+
 
 
         return viewProfile;
@@ -109,6 +119,15 @@ public class ProfileFragment extends Fragment {
         tvAssignedItems = viewProfile.findViewById(R.id.tv_assigned_items);
         btDespedir = viewProfile.findViewById(R.id.btt_dissmis);
         btInhabilitar = viewProfile.findViewById(R.id.btt_disable);
+        if(employee.getStatus().equalsIgnoreCase("Despedido")){
+            btInhabilitar.setVisibility(View.INVISIBLE);
+            btInhabilitar.setEnabled(false);
+            btDespedir.setVisibility(View.INVISIBLE);
+            btDespedir.setEnabled(false);
+        }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado")){
+            btInhabilitar.setText("HABILITAR");
+        }
+
     }
 
 
