@@ -68,7 +68,7 @@ public class InfoMaleFragment extends Fragment {
         saludMale.setText(male.getHealth());
         pesoMale.setText(String.valueOf(male.getWeigth()) + "Kg");
         fisicaMale.setText(male.getConformacionFisica());
-        if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operaivo")){
+        if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
             btDesasignarMale.setVisibility(View.INVISIBLE);
         }
     }
