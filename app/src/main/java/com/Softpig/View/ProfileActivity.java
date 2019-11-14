@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import com.Softpig.Model.Employee;
 import com.Softpig.Presenter.ProfilePresenter;
 import com.Softpig.R;
+import com.Softpig.View.fragment.AddToolEmployeeDialog;
 import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.ProfileFragment;
 import com.Softpig.View.fragment.ToolFragment;
@@ -136,5 +137,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     public Employee getEmployee(){
         return employee;
+    }
+
+    public void openDialogAddHoursPerson() {
+       /* Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
+        String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
+        AddToolEmployeeDialog addToolEmployeeDialog = new AddToolEmployeeDialog(nombreEmpleado);
+        addToolEmployeeDialog.show(getFragmentManager(), "Caulcular salario");*/
     }
 }
