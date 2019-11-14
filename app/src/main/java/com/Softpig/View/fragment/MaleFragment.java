@@ -48,14 +48,14 @@ public class MaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         viewMale = inflater.inflate(R.layout.fragment_list_male, container, false);
-        capturarCampos();
+
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductores");
         ((MainMenuActivity)getActivity()).setSearch("Male");
         if (listMales.isEmpty()){
             tv_noMales = viewMale.findViewById(R.id.tv_noMales);
             tv_noMales.setText("No existen reproductores");
         }
-        maleAdapter = new MaleAdapter(this.listMales);
+        maleAdapter = new MaleAdapter(this.listMales, getContext());
         recyclerMale = viewMale.findViewById(R.id.recyclerMale);
         recyclerMale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerMale.setAdapter(maleAdapter);
@@ -66,12 +66,5 @@ public class MaleFragment extends Fragment {
         this.listMales = listMale;
     }
 
-    private void capturarCampos() {
 
-        bt_desasignar_male = viewMale.findViewById(R.id.bt_desasignar_male);
-        if(male.getStateMale().equalsIgnoreCase("Asignado")) {
-            bt_desasignar_male.setVisibility(View.VISIBLE);
-            bt_desasignar_male.setEnabled(true);
-        }
-    }
 }

@@ -33,6 +33,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
     public PigAdapter(List<Pig> listPig, Context context) {
             this.listPig = listPig;
             listPigFull = new ArrayList<>(this.listPig);
+            this.context = context;
         }
 
         @NonNull
@@ -44,6 +45,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolderPig holder, final int position) {
+            final Pig pig = listPig.get(position);
             holder.tv_idPig.setText("ID: "+listPig.get(position).getIdPig());
             holder.tv_etapaPig.setText(listPig.get(position).getGrowthPhase());
             holder.tv_pesoPig.setText(listPig.get(position).getWeigth()+" Kg");
@@ -52,7 +54,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
             holder.rlCardviewPig.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainMenuActivity)context).iniciarPigActivity(listPig.get(position), "pig");
+                    ((MainMenuActivity)context).iniciarPigActivity(pig, "pig");
                 }
             });
         }

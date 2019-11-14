@@ -43,16 +43,18 @@ public class PigFragment extends Fragment {
 
         viewPigs =  inflater.inflate(R.layout.fragment_list_pigs, container, false);
 
-        ((MainMenuActivity)getActivity()).setSearch("Pig");
-        if(listPigs.isEmpty()){
-            tv_noPigs = viewPigs.findViewById(R.id.tv_noPigs);
-            tv_noPigs.setText("No Existen cerditos registrados");
-            return viewPigs;
-        }
-        pigAdapter = new PigAdapter(listPigs, getContext());
-        recyclerPig = viewPigs.findViewById(R.id.recyclerPig);
-        recyclerPig.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerPig.setAdapter(pigAdapter);
+            ((MainMenuActivity)getActivity()).setSearch("Pig");
+            if(listPigs.isEmpty()){
+                tv_noPigs = viewPigs.findViewById(R.id.tv_noPigs);
+                tv_noPigs.setText("No Existen porcinos registrados");
+                return viewPigs;
+            }
+            pigAdapter = new PigAdapter(listPigs, getContext());
+            recyclerPig = viewPigs.findViewById(R.id.recyclerPig);
+            recyclerPig.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerPig.setAdapter(pigAdapter);
+
+
 
         return  viewPigs;
     }

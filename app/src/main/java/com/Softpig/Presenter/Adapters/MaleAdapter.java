@@ -1,5 +1,6 @@
 package com.Softpig.Presenter.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Male;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.fragment.MaleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +26,12 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
 
     private List<Male> listMale;
     private List<Male> listMaleFull;
+    private Context context;
 
-    public MaleAdapter(List<Male> listMale) {
+    public MaleAdapter(List<Male> listMale, Context context) {
         this.listMale = listMale;
         listMaleFull = new ArrayList<>(this.listMale);
+        this.context = context;
     }
 
     @NonNull
@@ -37,10 +42,17 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderMale holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderMale holder, final int position) {
+        final Male male = listMale.get(position);
         holder.tv_idMale.setText("ID: "+listMale.get(position).getIdMale());
         holder.tv_raceMale.setText(""+listMale.get(position).getRace());
         holder.tv_conformacionFisica.setText(listMale.get(position).getConformacionFisica());
+        holder.llCardviewMale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainMenuActivity)context).presentarPigActivity(male);
+            }
+        });
     }
 
     @Override
