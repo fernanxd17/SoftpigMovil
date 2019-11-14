@@ -74,6 +74,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuInflater menuInflater;
     private SearchView searchView;
     private Bundle datos;
+
     public static String rol;
     private TextView tvNameIzq, tvEmailIzq;
 
@@ -97,6 +98,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        tvNameIzq = headerView.findViewById(R.id.name_izq);
+        tvEmailIzq = headerView.findViewById(R.id.email_izq);
+        tvEmailIzq.setText(user.getEmail());
+        tvNameIzq.setText(user.getFirstName() + " "+ user.getLastName());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
@@ -178,6 +184,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         searchItem = menu.findItem(R.id.action_search);
         searchItem.setVisible(false);
 
+
+
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setQueryHint("Buscar...");
@@ -195,7 +203,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-    
+
         switch (menuItem.getItemId()){
             case R.id.nav_female:
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
