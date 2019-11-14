@@ -362,11 +362,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         mainMenuPresenter.eliminarArticulo(this, position, article);
     }
 
-    public void iniciarPigActivity(final Pig pig, final String fragment) {
-        System.out.println("MainMenuActivity dice: sexo: "+pig.getSex());
+    public void iniciarPigActivity(final Male male, final String fragment) {
+        System.out.println("MainMenuActivity dice: sexo: "+male.getSex());
         Intent i = new Intent();
         i.setClass(this, PigActivity.class);
-        i.putExtra("Pig", pig);
+        i.putExtra("Male", male);
         i.putExtra("fragment", fragment);
         startActivity(i);
     }
