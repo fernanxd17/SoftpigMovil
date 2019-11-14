@@ -38,6 +38,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -74,6 +75,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private SearchView searchView;
     private Bundle datos;
     public static String rol;
+    private TextView tvNameIzq, tvEmailIzq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +83,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         setContentView(R.layout.contaniner_main_menu);
 
 
+
+
         datos = this.getIntent().getExtras();
         user = new Employee();
         user = (Employee) datos.getSerializable("Empleado");
         rol = user.getRole();
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -97,6 +102,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+        bottomNavigationView = findViewById(R.id.bottombar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
 
         if(savedInstanceState == null){
@@ -114,9 +123,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             maleFragment = new MaleFragment();
             presentarFragment("dashboard");
         }
-
-        bottomNavigationView = findViewById(R.id.bottombar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
 
     }
@@ -188,6 +194,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+    
         switch (menuItem.getItemId()){
             case R.id.nav_female:
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
