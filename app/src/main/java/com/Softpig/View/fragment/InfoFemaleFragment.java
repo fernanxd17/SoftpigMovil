@@ -64,7 +64,7 @@ public class InfoFemaleFragment extends Fragment {
         tv_valor_installation_female.setText(female.getInstallation());
         tv_valor_nulipara_female.setText(female.getVirgin());
         tv_valor_gestation_female.setText(female.getGestation());
-        tv_valor_peso_female.setText(String.valueOf(female.getWeigth())+ " kg");
+        tv_valor_peso_female.setText(female.getWeigth()+ " kg");
         tv_valor_raza_female.setText(female.getRace());
         tv_valor_salud_female.setText(female.getHealth());
     }
