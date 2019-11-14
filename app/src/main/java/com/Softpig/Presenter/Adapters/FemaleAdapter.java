@@ -1,5 +1,6 @@
 package com.Softpig.Presenter.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +26,12 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
 
     private List<Female> listFemale;
     private List<Female> listFemaleFull;
+    private Context context;
 
-    public FemaleAdapter(ArrayList<Female> listFemale) {
+    public FemaleAdapter(List<Female> listFemale, Context context) {
         this.listFemale = listFemale;
         listFemaleFull  = new ArrayList<>(this.listFemale);
+        this.context = context;
     }
 
     @NonNull
@@ -39,11 +43,18 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderFemale holder, int position) {
+        final Female female = listFemale.get(position);
+        holder.tv_idFemale.setText("ID: "+female.getIdFemale());
+        holder.tv_nulipara.setText(female.getVirgin());
+        holder.tv_gestation.setText(female.getGestation());
+        holder.tv_pesoFemale.setText(female.getWeigth()+" Kg");
 
-        holder.tv_idFemale.setText("ID: "+listFemale.get(position).getIdFemale());
-        holder.tv_nulipara.setText(listFemale.get(position).getVirgin());
-        holder.tv_gestation.setText(listFemale.get(position).getGestation());
-        holder.tv_pesoFemale.setText(listFemale.get(position).getWeigth()+" Kg");
+        holder.llCardviewFemale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainMenuActivity) context).iniciarPigActivityFemale(female);
+            }
+        });
     }
 
     @Override
@@ -99,12 +110,6 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
             tv_gestation =  itemView.findViewById(R.id.tv_gestation);
             llCardviewFemale = itemView.findViewById(R.id.ll_cardview_female);
 
-            llCardviewFemale.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
         }
     }
 }

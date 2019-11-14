@@ -51,12 +51,12 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
             holder.tv_pesoPig.setText(listPig.get(position).getWeigth()+" Kg");
             holder.tv_sexoPig.setText(listPig.get(position).getSex());
 
-            holder.rlCardviewPig.setOnClickListener(new View.OnClickListener() {
+            /*holder.rlCardviewPig.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainMenuActivity)context).iniciarPigActivity(pig, "pig");
+                    ((MainMenuActivity)context).iniciarPigActivity(pig);
                 }
-            });
+            });*/
         }
 
         @Override

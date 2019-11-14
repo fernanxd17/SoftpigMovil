@@ -6,6 +6,12 @@
     android:orientation="vertical"
     android:background="@color/primaryColor">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
 <LinearLayout
     android:paddingVertical="20sp"
     android:layout_weight="0.9"
@@ -476,19 +482,21 @@
             android:background="@color/secondaryColor"
             android:layout_gravity="center">
         </Button>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fb_add_tool_employee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="15sp"
+            android:src="@drawable/add"
+            app:backgroundTint="@color/editTextColorWhite">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
     </LinearLayout>
 
-
-
 </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_add_tool_employee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="15sp"
-        android:src="@drawable/add"
-        app:backgroundTint="@color/editTextColorWhite">
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </ScrollView>
+
 </LinearLayout>

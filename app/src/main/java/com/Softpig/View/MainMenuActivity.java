@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.Softpig.Model.Employee;
+import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
 import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
@@ -368,6 +369,15 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         i.setClass(this, PigActivity.class);
         i.putExtra("Male", male);
         i.putExtra("fragment", fragment);
+        startActivity(i);
+    }
+
+    public void iniciarPigActivityFemale(final Female female) {
+        System.out.println("MainMenuActivity dice: sexo: "+female.getSex());
+        Intent i = new Intent();
+        i.setClass(this, PigActivity.class);
+        i.putExtra("Female", female);
+        i.putExtra("fragment", "Female");
         startActivity(i);
     }
 

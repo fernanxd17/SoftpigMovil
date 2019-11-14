@@ -30,8 +30,6 @@ public class FemaleFragment extends Fragment {
     private ArrayList<Female> listFemale;
     private TextView tv_noFemales;
     private  View viewFemale;
-    private Button bt_desasignar_female;
-    private Female female;
 
     public FemaleFragment() {
     }
@@ -41,7 +39,6 @@ public class FemaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewFemale =  inflater.inflate(R.layout.fragment_list_female, container, false);
-        capturarCampos();
 
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
         ((MainMenuActivity)getActivity()).setSearch("Female");
@@ -50,7 +47,7 @@ public class FemaleFragment extends Fragment {
             tv_noFemales.setText("NO existen reproductoras");
             return viewFemale;
         }
-        femaleAdapter = new FemaleAdapter(this.listFemale);
+        femaleAdapter = new FemaleAdapter(this.listFemale, getContext());
         recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerFemale.setAdapter(femaleAdapter);
@@ -66,12 +63,4 @@ public class FemaleFragment extends Fragment {
         return this.femaleAdapter;
     }
 
-    private void capturarCampos() {
-       bt_desasignar_female = viewFemale.findViewById(R.id.bt_desasignar_female);
-       if (female.getStateFemale().equalsIgnoreCase("Asignada")){
-           bt_desasignar_female.setVisibility(View.VISIBLE);
-           bt_desasignar_female.setEnabled(true);
-       }
-
-    }
 }
