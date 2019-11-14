@@ -58,7 +58,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_width="45dp"
                 android:layout_height="50dp"
-                android:background="#000">
+                android:background="@drawable/ic_email">
             </ImageView>
 
             <TextView
@@ -88,12 +88,12 @@
                 android:id="@+id/iv_web"
                 android:layout_width="45dp"
                 android:layout_height="50dp"
-                android:background="#000">
+                android:background="@drawable/ic_public">
             </ImageView>
 
             <TextView
                 android:id="@+id/tv_web"
-                android:gravity="start|center|bottom"
+                android:gravity="start|center"
                 android:paddingLeft="20dp"
                 android:textAlignment="textStart"
                 android:layout_width="290dp"

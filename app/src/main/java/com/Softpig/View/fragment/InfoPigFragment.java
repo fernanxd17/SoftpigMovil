@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.Softpig.Model.Pig;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +82,9 @@ public class InfoPigFragment extends Fragment {
         tvFeMale = viewInfoPig.findViewById(R.id.tv_is_fe_male);
         tvInstallation = viewInfoPig.findViewById(R.id.tv_valor_pig_installation);
         btBaja = viewInfoPig.findViewById(R.id.bt_baja_pig);
+        if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
+            btBaja.setVisibility(View.INVISIBLE);
+        }
     }
 
 }
