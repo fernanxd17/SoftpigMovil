@@ -50,7 +50,7 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
         holder.llCardviewMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainMenuActivity)context).presentarPigActivity(male);
+                ((MainMenuActivity)context).iniciarPigActivity(male, "Male");
             }
         });
     }

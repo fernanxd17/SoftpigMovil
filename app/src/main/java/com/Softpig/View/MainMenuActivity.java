@@ -371,7 +371,4 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         startActivity(i);
     }
 
-    public void presentarPigActivity(Male male) {
-
-    }
 }
