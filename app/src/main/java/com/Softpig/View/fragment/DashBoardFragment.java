@@ -37,12 +37,18 @@ public DashBoardFragment (){
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View view =  inflater.inflate(R.layout.fragment_dash_board, container, false);
-        tvNumAdmins = view.findViewById(R.id.tv_num_admins);
-        tvNumAdmins.setText("Empleados Administrativos: "+ valores[0]);
-        tvNumOperators = view.findViewById(R.id.tv_num_operators);
-        tvNumOperators.setText("Empleados Operativos: "+ valores[1]);
-        tvNumEmployees = view.findViewById(R.id.tv_num_employees);
-        tvNumEmployees.setText("Empleados Registrados: "+ (valores[0] + valores[1]));
+        llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
+        if(!MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
+            tvNumAdmins = view.findViewById(R.id.tv_num_admins);
+            tvNumAdmins.setText("Empleados Administrativos: "+ valores[0]);
+            tvNumOperators = view.findViewById(R.id.tv_num_operators);
+            tvNumOperators.setText("Empleados Operativos: "+ valores[1]);
+            tvNumEmployees = view.findViewById(R.id.tv_num_employees);
+            tvNumEmployees.setText("Empleados Registrados: "+ (valores[0] + valores[1]));
+        }else{
+            llEmployeeDashboard.setVisibility(View.INVISIBLE);
+        }
+
 
         tvNumInstallations = view.findViewById(R.id.tv_num_installations);
         tvNumInstallations.setText("Instalaciones Registradas: " + valores[4]);
@@ -54,11 +60,10 @@ public DashBoardFragment (){
         tvNumToolsDispo.setText("Disponibles: " + (valores[3] - valores[2]));
         tvToolsPrestamo = view.findViewById(R.id.tv_num_tools_prestamo);
         tvToolsPrestamo.setText("En prestamo: " + valores[2]);
-        llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
+
         llInstallationsDashboard = view.findViewById(R.id.ll_installations_dashboard);
         llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);
 
-        System.out.println("llena campos");
 
         this.llEmployeeDashboard.setOnClickListener(new View.OnClickListener() {
             @Override

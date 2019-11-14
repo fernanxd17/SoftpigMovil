@@ -44,13 +44,13 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMale holder, final int position) {
         final Male male = listMale.get(position);
-        holder.tv_idMale.setText("ID: "+listMale.get(position).getIdMale());
-        holder.tv_raceMale.setText(""+listMale.get(position).getRace());
-        holder.tv_conformacionFisica.setText(listMale.get(position).getConformacionFisica());
+        holder.tv_idMale.setText("ID: "+male.getIdMale());
+        holder.tv_raceMale.setText(""+male.getRace());
+        holder.tv_conformacionFisica.setText(male.getConformacionFisica());
         holder.llCardviewMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainMenuActivity)context).iniciarPigActivity(male, "Male");
+                ((MainMenuActivity)context).iniciarPigActivityMale(male);
             }
         });
     }
@@ -74,7 +74,8 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
             }else{
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Male male: listMaleFull){
-                    if(String.valueOf(male.getIdMale()).toLowerCase().contains(filterPattern)){
+                    if(String.valueOf(male.getIdMale()).toLowerCase().contains(filterPattern) ||
+                            male.getRace().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(male);
                     }
 

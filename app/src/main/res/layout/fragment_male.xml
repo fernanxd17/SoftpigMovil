@@ -86,7 +86,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Duroc"/>
-
+            <TextView android:id="@+id/tv_valor_fisica_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sano"/>
             <TextView android:id="@+id/tv_valor_salud_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

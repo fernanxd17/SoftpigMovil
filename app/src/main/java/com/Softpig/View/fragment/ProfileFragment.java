@@ -26,7 +26,7 @@ public class ProfileFragment extends Fragment {
     private Button btInhabilitar, btDespedir;
     private View viewProfile;
     private Employee employee;
-    private TextView tvName, tvNumIdentification, tvGender;
+    private TextView tvName, tvNumIdentification, tvGender, tvLastName;
     private TextView tvRole, tvState, tvContract, tvSalary, tvInstallation, tvDateAdmission, tvDateOff;
     private TextView tvEmail, tvNumPhone, tvNumMobile;
 
@@ -84,8 +84,10 @@ public class ProfileFragment extends Fragment {
     }
 
     private void modificarTextCampos() {
-        String name = employee.getFirstName() + " " + employee.getSecondName() + " " + employee.getLastName() + " " + employee.getMotherLastName();
+        String name = employee.getFirstName() + " " + employee.getSecondName();
+                String apellidos = employee.getLastName() + " " + employee.getMotherLastName();
         tvName.setText(name);
+        tvLastName.setText(apellidos);
         tvNumIdentification.setText(employee.getDocument());
         tvGender.setText(employee.getGender());
         tvRole.setText(employee.getRole());
@@ -104,6 +106,7 @@ public class ProfileFragment extends Fragment {
 
     private void capturarCampos() {
         tvName = viewProfile.findViewById(R.id.tv_name);
+        tvLastName = viewProfile.findViewById(R.id.tv_lastName);
         tvNumIdentification = viewProfile.findViewById(R.id.tv_num_identification);
         tvGender = viewProfile.findViewById(R.id.tv_gender);
         tvRole = viewProfile.findViewById(R.id.tv_role);

@@ -38,6 +38,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -74,14 +75,22 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private SearchView searchView;
     private Bundle datos;
 
+    public static String rol;
+    private TextView tvNameIzq, tvEmailIzq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contaniner_main_menu);
 
 
+
+
         datos = this.getIntent().getExtras();
-        user = (Employee) datos.getSerializable("empleado");
+        user = new Employee();
+        user = (Employee) datos.getSerializable("Empleado");
+        rol = user.getRole();
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -89,11 +98,20 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        tvNameIzq = headerView.findViewById(R.id.name_izq);
+        tvEmailIzq = headerView.findViewById(R.id.email_izq);
+        tvEmailIzq.setText(user.getEmail());
+        tvNameIzq.setText(user.getFirstName() + " "+ user.getLastName());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+        bottomNavigationView = findViewById(R.id.bottombar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
 
         if(savedInstanceState == null){
@@ -110,11 +128,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
             presentarFragment("dashboard");
-
         }
-
-        bottomNavigationView = findViewById(R.id.bottombar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
 
     }
@@ -170,9 +184,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         searchItem = menu.findItem(R.id.action_search);
         searchItem.setVisible(false);
 
+
+
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        searchView.setQueryHint(getText(R.string.searchEmployee));
+        searchView.setQueryHint("Buscar...");
 
 
 
@@ -186,6 +202,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+
         switch (menuItem.getItemId()){
             case R.id.nav_female:
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
@@ -363,12 +381,19 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         mainMenuPresenter.eliminarArticulo(this, position, article);
     }
 
-    public void iniciarPigActivity(final Male male, final String fragment) {
-        System.out.println("MainMenuActivity dice: sexo: "+male.getSex());
+    public void iniciarPigActivityMale(final Male male) {
         Intent i = new Intent();
         i.setClass(this, PigActivity.class);
         i.putExtra("Male", male);
-        i.putExtra("fragment", fragment);
+        i.putExtra("fragment", "Male");
+        startActivity(i);
+    }
+
+    public void iniciarPigActivityPig(final Pig pig){
+        Intent i = new Intent();
+        i.setClass(this, PigActivity.class);
+        i.putExtra("Pig", pig);
+        i.putExtra("fragment", "Pig");
         startActivity(i);
     }
 

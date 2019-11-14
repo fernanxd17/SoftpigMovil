@@ -40,6 +40,7 @@ public class FemaleFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewFemale =  inflater.inflate(R.layout.fragment_list_female, container, false);
 
+
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
         ((MainMenuActivity)getActivity()).setSearch("Female");
         if (listFemale.isEmpty()){
