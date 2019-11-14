@@ -74,21 +74,23 @@ public class PigPresenter {
         }
     }
 
-    public void desasignarMale(final short idMale, final PigActivity context) {
-
+    public void desasignarFemale(final short idFemale, final PigActivity context) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Des-asignado Reproductor...");
+        progressDialog.setMessage("Des-asignando reporductora...");
+
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
         try{
+
             HashMap<String, String> params = new HashMap();
-            params.put("id", String.valueOf(idMale));
+            params.put("id", String.valueOf(idFemale));
+
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.PUT,
-                    "https://softpig.herokuapp.com/api/remove_male/"+ idMale,
+                    "https://softpig.herokuapp.com/api/remove_female/"+ idFemale,
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -120,4 +122,67 @@ public class PigPresenter {
             progressDialog.dismiss();
         }
     }
+
+
+
+    public void desasignarMale(final short idMale, final PigActivity context) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Des-asignado Reproductor...");
+
+
+
+        progressDialog.show();
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("id", String.valueOf(idMale));
+
+
+
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.PUT,
+
+                    "https://softpig.herokuapp.com/api/remove_male/"+ idMale,
+
+
+
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                int respo = response.getInt("status");
+
+                                System.out.println("respo: "+ respo);
+
+                                progressDialog.dismiss();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
 }

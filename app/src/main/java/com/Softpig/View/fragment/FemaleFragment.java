@@ -30,8 +30,6 @@ public class FemaleFragment extends Fragment {
     private ArrayList<Female> listFemale;
     private TextView tv_noFemales;
     private  View viewFemale;
-    private Button bt_desasignar_female;
-    private Female female;
 
     public FemaleFragment() {
     }
@@ -50,7 +48,7 @@ public class FemaleFragment extends Fragment {
             tv_noFemales.setText("NO existen reproductoras");
             return viewFemale;
         }
-        femaleAdapter = new FemaleAdapter(this.listFemale);
+        femaleAdapter = new FemaleAdapter(this.listFemale, getContext());
         recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerFemale.setAdapter(femaleAdapter);
@@ -65,6 +63,5 @@ public class FemaleFragment extends Fragment {
     public FemaleAdapter getFemaleAdapter() {
         return this.femaleAdapter;
     }
-
 
 }

@@ -176,4 +176,53 @@ public class ProfilePresenter {
             progressDialog.dismiss();
         }
     }
+
+    public void addHoursWorked(final ProfileActivity context,final int idEmployee, final int hours){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Agregando horas...");
+        progressDialog.show();
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("person", String.valueOf(idEmployee));
+            params.put("hours", String.valueOf(hours));
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/hours_employee",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int respo = response.getInt("status");
+                                System.out.println("respo: "+ respo);
+                                progressDialog.dismiss();
+                                if (respo !=200)
+                                    Toast.makeText(context, "Error, intentalo mas tarde...", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Horas agregadas con exito", Toast.LENGTH_LONG).show();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
 }
