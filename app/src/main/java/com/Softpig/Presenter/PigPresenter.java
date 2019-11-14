@@ -75,6 +75,7 @@ public class PigPresenter {
     }
 
     public void desasignarFemale(final short idFemale, final PigActivity context) {
+        System.out.println("idFemale PigPresenter: "+ idFemale);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Des-asignando reporductora...");
 
@@ -85,7 +86,6 @@ public class PigPresenter {
 
             HashMap<String, String> params = new HashMap();
             params.put("id", String.valueOf(idFemale));
-
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
@@ -129,28 +129,17 @@ public class PigPresenter {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Des-asignado Reproductor...");
-
-
-
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
         try{
-
             HashMap<String, String> params = new HashMap();
             params.put("id", String.valueOf(idMale));
-
-
-
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.PUT,
-
                     "https://softpig.herokuapp.com/api/remove_male/"+ idMale,
-
-
-
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
