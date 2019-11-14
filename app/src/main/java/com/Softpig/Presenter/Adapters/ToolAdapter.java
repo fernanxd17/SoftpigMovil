@@ -126,6 +126,9 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
                 tv_idArticle = itemView.findViewById(R.id.tv_idArticle);
                 rl_cardview_tool = itemView.findViewById(R.id.rl_cardview_tool);
                 ivRemoveArticleEmployee = itemView.findViewById(R.id.iv_remove_article);
+                if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
+                    ivRemoveArticleEmployee.setVisibility(View.INVISIBLE);
+                }
 
         }
     }

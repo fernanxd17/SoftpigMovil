@@ -65,7 +65,8 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
             }else{
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Female female: listFemaleFull){
-                    if(String.valueOf(female.getIdFemale()).toLowerCase().contains(filterPattern)){
+                    if(String.valueOf(female.getIdFemale()).toLowerCase().contains(filterPattern)
+                        || female.getRace().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(female);
                     }
 

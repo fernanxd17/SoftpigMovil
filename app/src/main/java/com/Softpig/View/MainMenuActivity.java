@@ -72,6 +72,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuInflater menuInflater;
     private SearchView searchView;
     private Bundle datos;
+    public static String rol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
         datos = this.getIntent().getExtras();
-        user = (Employee) datos.getSerializable("empleado");
+        user = new Employee();
+        user = (Employee) datos.getSerializable("Empleado");
+        rol = user.getRole();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -109,7 +112,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
             presentarFragment("dashboard");
-
         }
 
         bottomNavigationView = findViewById(R.id.bottombar);
@@ -171,7 +173,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        searchView.setQueryHint(getText(R.string.searchEmployee));
+        searchView.setQueryHint("Buscar...");
 
 
 
@@ -362,12 +364,19 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         mainMenuPresenter.eliminarArticulo(this, position, article);
     }
 
-    public void iniciarPigActivity(final Male male, final String fragment) {
-        System.out.println("MainMenuActivity dice: sexo: "+male.getSex());
+    public void iniciarPigActivityMale(final Male male) {
         Intent i = new Intent();
         i.setClass(this, PigActivity.class);
         i.putExtra("Male", male);
-        i.putExtra("fragment", fragment);
+        i.putExtra("fragment", "Male");
+        startActivity(i);
+    }
+
+    public void iniciarPigActivityPig(final Pig pig){
+        Intent i = new Intent();
+        i.setClass(this, PigActivity.class);
+        i.putExtra("Pig", pig);
+        i.putExtra("fragment", "Pig");
         startActivity(i);
     }
 

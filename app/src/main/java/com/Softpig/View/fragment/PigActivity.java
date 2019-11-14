@@ -44,21 +44,24 @@ public class PigActivity extends AppCompatActivity {
 
 
         pigPresenter = new PigPresenter();
-
-
         inflarFragment();
-
-
     }
 
     private void inflarFragment() {
         switch (fragment){
-            case "pig": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoPigFragment).commit();
+            case "Pig": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoPigFragment).commit();
+                break;
+            case "Male": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoMaleFragment).commit();
                 break;
         }
     }
 
     public void darBajaPig(short idPig) {
         pigPresenter.darDeBajaPig(idPig, this);
+    }
+
+    public void desasignarMale(short idMale) {
+        System.out.println("des - pig activity");
+        pigPresenter.desasignarMale(idMale, this);
     }
 }
