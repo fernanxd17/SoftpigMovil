@@ -22,6 +22,7 @@ import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.PigFragment;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ToolFragment;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -44,6 +45,7 @@ public class MainMenuPresenter {
     private MaleFragment maleFragment;
 
     private ArrayList<Pig> listPig;
+    public static final int MY_DEFAULT_TIMEOUT = 15000;
 
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
@@ -681,6 +683,10 @@ public class MainMenuPresenter {
         });
 
         RequestQueue queue = Volley.newRequestQueue(context);
+        json.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(json);
 
     }

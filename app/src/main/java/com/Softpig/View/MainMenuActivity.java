@@ -363,12 +363,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     public void iniciarPigActivity(final Pig pig, final String fragment) {
-
+        System.out.println("MainMenuActivity dice: sexo: "+pig.getSex());
         Intent i = new Intent();
         i.setClass(this, PigActivity.class);
         i.putExtra("Pig", pig);
         i.putExtra("fragment", fragment);
         startActivity(i);
-
     }
+
 }
