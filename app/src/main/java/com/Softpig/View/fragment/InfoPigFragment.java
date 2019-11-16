@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,9 +14,6 @@ import com.Softpig.Model.Pig;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class InfoPigFragment extends Fragment {
 
     private View viewInfoPig;

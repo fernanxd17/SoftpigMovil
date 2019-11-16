@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,13 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.Softpig.Model.Male;
-import com.Softpig.Model.Pig;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class InfoMaleFragment extends Fragment {
 
     private TextView idMale, stateMale, installationMale, razaMale, saludMale, pesoMale, fisicaMale;

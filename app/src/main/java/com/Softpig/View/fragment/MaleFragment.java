@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,9 +19,6 @@ import com.Softpig.View.MainMenuActivity;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MaleFragment extends Fragment {
 
     private RecyclerView recyclerMale;

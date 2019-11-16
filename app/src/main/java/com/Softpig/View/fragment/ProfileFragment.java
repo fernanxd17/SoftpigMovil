@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,9 +16,6 @@ import com.Softpig.View.ProfileActivity;
 
 import java.text.DecimalFormat;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ProfileFragment extends Fragment {
 
     private TextView tvAssignedItems;

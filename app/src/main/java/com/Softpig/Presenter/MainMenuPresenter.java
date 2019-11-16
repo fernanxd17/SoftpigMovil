@@ -40,20 +40,14 @@ import java.util.HashMap;
 public class MainMenuPresenter {
 
     private static boolean toolsUpdate;
-
-
     private MaleFragment maleFragment;
-
     private ArrayList<Pig> listPig;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
-
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
     public MainMenuPresenter(){
         toolsUpdate = false;
     }
-
-
 
     public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
 
@@ -477,12 +471,10 @@ public class MainMenuPresenter {
               return pig;
           }
         }
-
         return null;
     }
 
     private void traerDatosPorcinos(final MainMenuActivity context) {
-
 
         String url = URLAPI+"pig_list";
 
@@ -547,6 +539,7 @@ public class MainMenuPresenter {
     }
 
     public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment) {
+
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -613,7 +606,6 @@ public class MainMenuPresenter {
     }
 
     public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment) {
-
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");

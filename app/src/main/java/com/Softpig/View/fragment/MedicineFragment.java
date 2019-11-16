@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,9 +10,6 @@ import android.view.ViewGroup;
 
 import com.Softpig.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MedicineFragment extends Fragment {
 
 

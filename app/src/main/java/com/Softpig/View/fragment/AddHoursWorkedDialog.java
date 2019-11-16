@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,23 +15,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.Softpig.R;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 
 public class AddHoursWorkedDialog extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener {
 
     private TextView tvNameEmployee;
-    //private AddHoursWorkedListerner listener;
     private ArrayAdapter<String> comboAdapterArticle;
     private String nameArticle;
     private String nameEmpleado;
@@ -46,7 +32,6 @@ public class AddHoursWorkedDialog extends AppCompatDialogFragment implements Ada
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.add_hours_worked, null);
-
 
         tvNameEmployee = view.findViewById(R.id.tv_name_add_tool_employee);
         tvNameEmployee.setText(nameEmpleado);

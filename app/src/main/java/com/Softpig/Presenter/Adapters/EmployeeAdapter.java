@@ -29,7 +29,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public EmployeeAdapter(List<Employee> listEmployee, Context context) {
         this.listEmployee = listEmployee;
-        listEmployeeFull = new ArrayList<>(this.listEmployee);
+        listEmployeeFull = new ArrayList<>(listEmployee);
         this.context = context;
     }
 

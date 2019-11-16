@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,15 +16,11 @@ import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.Presenter.Adapters.ToolAdapter;
 import com.Softpig.R;
-import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.ProfileActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.AddToolEmployeeListerner{
 
     private Context context;
