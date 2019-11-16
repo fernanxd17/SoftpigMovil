@@ -60,7 +60,7 @@ public class ToolFragment extends Fragment  implements AddToolEmployeeDialog.Add
             tv_noTool = viewTool.findViewById(R.id.tv_noTools);
             tv_noTool.setText("No hay herramientas en el invetario");
         }else{
-            ((MainMenuActivity)getActivity()).setSearch("Tool");
+
             toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
             recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
             recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
