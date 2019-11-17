@@ -242,8 +242,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment);
                 break;
             case "Tools":
-
-                mainMenuPresenter.inflarArticlesFragment(this, toolFragment);
+                mainMenuPresenter.inflarToolsFragment(this, toolFragment);
                 break;
 
             case "Installations":

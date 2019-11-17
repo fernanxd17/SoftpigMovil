@@ -240,72 +240,72 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarArticlesFragment(final MainMenuActivity context, final ToolFragment toolFragment) {
+    public boolean inflarToolsFragment(final MainMenuActivity context, final ToolFragment toolFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
+        String url = URLAPI+ "article_list";
 
-            String url = URLAPI+ "article_list";
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-            JsonObjectRequest json = new JsonObjectRequest(
-                    Request.Method.GET,
-                    url,
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                        try {
+                            ContentValues contentValues = new ContentValues();
 
-                            try {
-                                ContentValues contentValues = new ContentValues();
-
-                                ArrayList<Tool> listTool = new ArrayList<>();
-                                JSONArray jsonTools = response.getJSONArray("articles");
-                                for(int i = 0; i < jsonTools.length(); i++) {
-                                    JSONObject toolObject = jsonTools.getJSONObject(i);
-                                    short quantity = (short) toolObject.getInt("quantity");
-                                    if(quantity == 0){
-                                        continue;
-                                    }
-                                    short id = (short) toolObject.getInt("id");
-                                    String name = toolObject.getString("name");
-
-                                    String type = toolObject.getString("type");
-                                    listTool.add(new Tool(id, type,name, quantity));
-
+                            ArrayList<Tool> listTool = new ArrayList<>();
+                            JSONArray jsonTools = response.getJSONArray("articles");
+                            for(int i = 0; i < jsonTools.length(); i++) {
+                                JSONObject toolObject = jsonTools.getJSONObject(i);
+                                short quantity = (short) toolObject.getInt("quantity");
+                                if(quantity == 0){
+                                    continue;
                                 }
+                                short loan = (short)toolObject.getInt("loan");
+                                short id = (short) toolObject.getInt("id");
+                                String name = toolObject.getString("name");
 
-                                toolFragment.setListTool(listTool);
-                                toolFragment.setContext(context);
-                                context.inflarFragment(toolFragment);
-                                toolsUpdate = true;
-                                progressDialog.dismiss();
+                                String type = toolObject.getString("type");
+                                listTool.add(new Tool(id, type,name, quantity, loan));
 
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                context.inflarFragment(new ErrorFragment());
-                                progressDialog.dismiss();
                             }
+
+                            toolFragment.setListTool(listTool);
+                            toolFragment.setContext(context);
+                            context.inflarFragment(toolFragment);
+                            toolsUpdate = true;
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
                         }
-
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
                     }
-                }
-            });
 
-            RequestQueue queue = Volley.newRequestQueue(context);
-            queue.add(json);
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
 
 
 
