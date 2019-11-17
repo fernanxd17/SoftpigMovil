@@ -18,11 +18,10 @@ import java.util.HashMap;
 
 public class PigPresenter {
 
+    public PigPresenter (){ }
 
-    public PigPresenter (){
-
-    }
     public void darDeBajaPig(short idPig, final PigActivity context) {
+
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Realizando Baja...");
         progressDialog.show();
@@ -75,7 +74,7 @@ public class PigPresenter {
     }
 
     public void desasignarFemale(final short idFemale, final PigActivity context) {
-        System.out.println("idFemale PigPresenter: "+ idFemale);
+
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Des-asignando reporductora...");
 
@@ -122,8 +121,6 @@ public class PigPresenter {
             progressDialog.dismiss();
         }
     }
-
-
 
     public void desasignarMale(final short idMale, final PigActivity context) {
 

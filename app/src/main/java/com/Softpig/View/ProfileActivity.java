@@ -3,7 +3,6 @@ package com.Softpig.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +13,6 @@ import android.view.inputmethod.EditorInfo;
 import com.Softpig.Model.Employee;
 import com.Softpig.Presenter.ProfilePresenter;
 import com.Softpig.R;
-import com.Softpig.View.fragment.AddToolEmployeeDialog;
 import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.ProfileFragment;
 import com.Softpig.View.fragment.ToolFragment;

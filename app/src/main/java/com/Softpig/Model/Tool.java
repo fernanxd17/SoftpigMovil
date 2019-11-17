@@ -2,11 +2,9 @@ package com.Softpig.Model;
 
 public class Tool {
 
-    private short idArticle;
     private String typeArticle;
     private String name;
-    private short quantity;
-
+    private short quantity, loan, idArticle;
 
     public Tool(short idArticle, String name, String typeArticle) {
         this.idArticle = idArticle;
@@ -14,11 +12,12 @@ public class Tool {
         this.name = name;
     }
 
-    public Tool(short idArticle, String typeArticle, String name, short quantity) {
+    public Tool(short idArticle, String typeArticle, String name, short quantity, short loan) {
         this.idArticle = idArticle;
         this.typeArticle = typeArticle;
         this.name = name;
         this.quantity = quantity;
+        this.loan = loan;
 
     }
 
@@ -38,4 +37,7 @@ public class Tool {
         return quantity;
     }
 
+    public short getLoan(){
+        return loan;
+    }
 }

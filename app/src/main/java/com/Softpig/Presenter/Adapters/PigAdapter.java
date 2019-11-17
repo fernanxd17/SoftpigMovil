@@ -32,7 +32,7 @@ public class PigAdapter extends RecyclerView.Adapter<PigAdapter.ViewHolderPig> i
 
     public PigAdapter(List<Pig> listPig, Context context) {
             this.listPig = listPig;
-            listPigFull = new ArrayList<>(this.listPig);
+            listPigFull = new ArrayList<>(listPig);
             this.context = context;
         }
 

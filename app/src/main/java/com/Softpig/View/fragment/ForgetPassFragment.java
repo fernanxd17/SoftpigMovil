@@ -1,6 +1,5 @@
 package com.Softpig.View.fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,6 @@ import android.widget.TextView;
 import com.Softpig.IndexActivity;
 import com.Softpig.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ForgetPassFragment extends Fragment {
 
     private  TextView backLogin;
@@ -24,7 +20,6 @@ public class ForgetPassFragment extends Fragment {
     public ForgetPassFragment() {
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,5 +35,4 @@ public class ForgetPassFragment extends Fragment {
         });
         return viewForgetPass;
     }
-
 }

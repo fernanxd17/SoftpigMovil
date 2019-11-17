@@ -30,7 +30,7 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
 
     public MaleAdapter(List<Male> listMale, Context context) {
         this.listMale = listMale;
-        listMaleFull = new ArrayList<>(this.listMale);
+        listMaleFull = new ArrayList<>(listMale);
         this.context = context;
     }
 

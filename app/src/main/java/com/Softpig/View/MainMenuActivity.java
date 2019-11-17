@@ -19,9 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
-
 import com.Softpig.View.fragment.FemaleFragment;
-
 import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.PigActivity;
 import com.Softpig.View.fragment.RaceFragment;
@@ -244,8 +242,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment);
                 break;
             case "Tools":
-
-                mainMenuPresenter.inflarArticlesFragment(this, toolFragment);
+                mainMenuPresenter.inflarToolsFragment(this, toolFragment);
                 break;
 
             case "Installations":

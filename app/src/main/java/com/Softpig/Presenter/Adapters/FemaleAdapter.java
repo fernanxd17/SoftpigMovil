@@ -30,7 +30,7 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
 
     public FemaleAdapter(List<Female> listFemale, Context context) {
         this.listFemale = listFemale;
-        listFemaleFull  = new ArrayList<>(this.listFemale);
+        listFemaleFull  = new ArrayList<>(listFemale);
         this.context = context;
     }
 

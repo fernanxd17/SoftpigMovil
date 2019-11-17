@@ -29,7 +29,7 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     public InstallationAdapter(List<Installation> listInstallations, Context context) {
         this.listInstallations = listInstallations;
-        listInstallationsFull = new ArrayList<>(this.listInstallations);
+        listInstallationsFull = new ArrayList<>(listInstallations);
         this.context = context;
     }
 

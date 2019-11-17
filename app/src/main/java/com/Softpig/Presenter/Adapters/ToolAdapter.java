@@ -54,7 +54,11 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
 
             if(!toolEmployee){
                 holder.tv_totalarticle.setVisibility(View.VISIBLE);
-                holder.tv_totalarticle.setText(tool.getQuantity()+" Unidades");
+                holder.tv_totalarticle.setText(String.valueOf(tool.getQuantity()));
+                holder.tvToolsAvailable.setVisibility(View.VISIBLE);
+                holder.tvToolsAvailable.setText(String.valueOf(tool.getQuantity()- tool.getLoan()));
+                holder.tvToolsLoan.setVisibility(View.VISIBLE);
+                holder.tvToolsLoan.setText(String.valueOf(tool.getLoan()));
             }
 
             holder.ivRemoveArticleEmployee.setOnClickListener(new View.OnClickListener() {
@@ -113,20 +117,25 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
 
     public class ViewHolderArticle extends RecyclerView.ViewHolder {
 
-        TextView tv_nameArticle, tv_totalarticle, tv_typearticle, tv_idArticle;
-        ImageView ivRemoveArticleEmployee;
-        RelativeLayout rl_cardview_tool;
+        private TextView tv_nameArticle, tv_totalarticle, tv_typearticle, tv_idArticle;
+        private TextView tvToolsAvailable, tvToolsLoan;
+        private ImageView ivRemoveArticleEmployee;
+        private RelativeLayout rl_cardview_tool;
 
         public ViewHolderArticle(@NonNull View itemView) {
             super(itemView);
 
-                tv_totalarticle = itemView.findViewById(R.id.tv_totalarticle);
+                tv_totalarticle = itemView.findViewById(R.id.tv_valor_totalarticle);
+                tvToolsAvailable = itemView.findViewById(R.id.tv_valor_available_article);
+                tvToolsLoan = itemView.findViewById(R.id.tv_valor_loan_article);
                 tv_nameArticle = itemView.findViewById(R.id.tv_nameArticle);
                 tv_typearticle = itemView.findViewById(R.id.tv_typearticle);
                 tv_idArticle = itemView.findViewById(R.id.tv_idArticle);
                 rl_cardview_tool = itemView.findViewById(R.id.rl_cardview_tool);
                 ivRemoveArticleEmployee = itemView.findViewById(R.id.iv_remove_article);
                 if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
+                    tvToolsAvailable.setVisibility(View.INVISIBLE);
+                    tvToolsLoan.setVisibility(View.INVISIBLE);
                     ivRemoveArticleEmployee.setVisibility(View.INVISIBLE);
                 }
 
