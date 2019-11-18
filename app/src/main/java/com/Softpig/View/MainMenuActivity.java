@@ -182,14 +182,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         searchItem = menu.findItem(R.id.action_search);
         searchItem.setVisible(false);
 
-
-
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setQueryHint("Buscar...");
-
-
-
         return true;
     }
 
@@ -252,10 +247,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             default:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).commit();
                 break;
-
         }
-
-
     }
 
     public void inflarFragment(Fragment fragment){
