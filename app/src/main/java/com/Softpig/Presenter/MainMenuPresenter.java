@@ -42,6 +42,7 @@ public class MainMenuPresenter {
     private static boolean toolsUpdate;
     private MaleFragment maleFragment;
     private ArrayList<Pig> listPig;
+    private String [][] typeTool;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
@@ -246,7 +247,11 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = URLAPI+ "article_list";
+        if(typeTool == null){
+            traerDatosTiposTool(context);
+        }
+
+        String url = URLAPI + "article_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -270,10 +275,8 @@ public class MainMenuPresenter {
                                 short loan = (short)toolObject.getInt("loan");
                                 short id = (short) toolObject.getInt("id");
                                 String name = toolObject.getString("name");
-
                                 String type = toolObject.getString("type");
                                 listTool.add(new Tool(id, type,name, quantity, loan));
-
                             }
 
                             toolFragment.setListTool(listTool);
@@ -407,6 +410,8 @@ public class MainMenuPresenter {
             traerDatosPorcinos(context);
         }
 
+        System.out.println("\n CONTINUA..");
+
         String url = URLAPI + "female_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
@@ -462,80 +467,6 @@ public class MainMenuPresenter {
         queue.add(json);
         return true;
 
-    }
-
-    private Pig buscarPig(short id) {
-        for (Pig pig : listPig)
-        {
-          if(pig.getIdPig() == id){
-              return pig;
-          }
-        }
-        return null;
-    }
-
-    private void traerDatosPorcinos(final MainMenuActivity context) {
-
-        String url = URLAPI+"pig_list";
-
-        JsonObjectRequest json = new JsonObjectRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            MainMenuPresenter.this.listPig = new ArrayList<>();
-                            JSONArray jsonPig = response.getJSONArray("pigs");
-                            for(int i = 0; i < jsonPig.length(); i++) {
-                                JSONObject pigObject = jsonPig.getJSONObject(i);
-                                short id = (short) pigObject.getInt("id");
-                                String state = pigObject.getString("state");
-                                String sex = pigObject.getString("sex");
-                                short weigth = (short) pigObject.getInt("weigth");
-                                String race = pigObject.getString("race");
-                                String growthPhase = pigObject.getString("growthPhase");
-                                String pigState = pigObject.getString("pigStage");
-                                String health = pigObject.getString("health");
-                                String installation = pigObject.getString("installation");
-                                String birth = pigObject.getString("birthDate");
-                                String acquisition= pigObject.getString("acquisitionDate");
-
-                                MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
-                                        health,installation, birth, acquisition));
-                            }
-                            System.out.println("Listando porcinos");
-                            for(Pig pig : MainMenuPresenter.this.listPig){
-                                System.out.println("id: " + pig.getIdPig());
-                            }
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                try {
-                    error.printStackTrace();
-                    context.inflarFragment(new ErrorFragment());
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                }
-            }
-        });
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(json);
     }
 
     public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment) {
@@ -731,5 +662,132 @@ public class MainMenuPresenter {
             progressDialog.dismiss();
         }
 
+    }
+
+    private void traerDatosPorcinos(final MainMenuActivity context) {
+
+        String url = URLAPI+"pig_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            MainMenuPresenter.this.listPig = new ArrayList<>();
+                            JSONArray jsonPig = response.getJSONArray("pigs");
+                            for(int i = 0; i < jsonPig.length(); i++) {
+                                JSONObject pigObject = jsonPig.getJSONObject(i);
+                                short id = (short) pigObject.getInt("id");
+                                String state = pigObject.getString("state");
+                                String sex = pigObject.getString("sex");
+                                short weigth = (short) pigObject.getInt("weigth");
+                                String race = pigObject.getString("race");
+                                String growthPhase = pigObject.getString("growthPhase");
+                                String pigState = pigObject.getString("pigStage");
+                                String health = pigObject.getString("health");
+                                String installation = pigObject.getString("installation");
+                                String birth = pigObject.getString("birthDate");
+                                String acquisition= pigObject.getString("acquisitionDate");
+
+                                MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
+                                        health,installation, birth, acquisition));
+                            }
+                            System.out.println("Listando porcinos");
+                            for(Pig pig : MainMenuPresenter.this.listPig){
+                                System.out.println("id: " + pig.getIdPig());
+                            }
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    error.printStackTrace();
+                    context.inflarFragment(new ErrorFragment());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
+
+    private Pig buscarPig(short id) {
+        for (Pig pig : listPig)
+        {
+            if(pig.getIdPig() == id){
+                return pig;
+            }
+        }
+        return null;
+    }
+
+    private void traerDatosTiposTool(final MainMenuActivity context) {
+        String url = URLAPI + "tool_type";
+
+        final JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            System.out.println("Listando type tool");
+                            JSONArray jsonPig = response.getJSONArray("articles_Type");
+                            short lengthType = (short) jsonPig.length();
+                            MainMenuPresenter.this.typeTool = new String [lengthType][lengthType];
+                            for(int i = 0; i < lengthType; i++) {
+                                JSONObject typeToolObject = jsonPig.getJSONObject(i);
+                                short id = (short) typeToolObject.getInt("id");
+                                String type = typeToolObject.getString("type");
+                                MainMenuPresenter.this.typeTool[i][0] = String.valueOf(id);
+                                MainMenuPresenter.this.typeTool[i][1] = type;
+                            }
+
+
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    error.printStackTrace();
+                    context.inflarFragment(new ErrorFragment());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
     }
 }

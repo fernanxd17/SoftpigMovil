@@ -29,7 +29,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
     private List<Tool> listTool;
     private Context context;
     private boolean toolEmployee;
-    public ToolAdapter(ArrayList<Tool> listTool, boolean toolEmployee, Context context) {
+    public ToolAdapter(List<Tool> listTool, boolean toolEmployee, Context context) {
         this.listTool = listTool;
         listToolFull = new ArrayList<>(listTool);
         this.toolEmployee = toolEmployee;

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,9 +22,10 @@ import com.Softpig.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddToolEmployeeDialog extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener{
+public class AddToolDialog extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener{
     private TextView tvNameEmployee;
     private Spinner spArticle;
+    private EditText etCopias;
     private List<Tool> listTool;
     private List<String> listNameArticle;
     private AddToolEmployeeListerner listener;
@@ -31,19 +33,19 @@ public class AddToolEmployeeDialog extends AppCompatDialogFragment implements Ad
     private String nameArticle;
     private String nameEmpleado;
 
-    public AddToolEmployeeDialog(String nameEmpleado){
+    public AddToolDialog(String nameEmpleado){
         this.nameEmpleado = nameEmpleado;
     }
 
-    public AddToolEmployeeDialog(List<Tool> listTool){
-
+    public AddToolDialog(List<Tool> listTool){
+        this.listTool = listTool;
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.add_article_employee, null);
+        View view = inflater.inflate(R.layout.add_tool, null);
 
         llenarListaConNombres();
 
@@ -53,6 +55,7 @@ public class AddToolEmployeeDialog extends AppCompatDialogFragment implements Ad
                 android.R.layout.simple_spinner_item, listNameArticle);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        etCopias = view.findViewById(R.id.tv_num_copias);
         tvNameEmployee = view.findViewById(R.id.tv_name_add_tool_employee);
         tvNameEmployee.setText(nameEmpleado);
         spArticle = view.findViewById(R.id.sp_article);
@@ -83,13 +86,13 @@ public class AddToolEmployeeDialog extends AppCompatDialogFragment implements Ad
                 .setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(nameArticle.isEmpty())
-                            Toast.makeText(AddToolEmployeeDialog.this.getContext(), "Debe seleccionar una herramienta para agregar...", Toast.LENGTH_SHORT).show();
-                        else{
-                            listener.agregarArticulo(nameArticle);
+                        if(nameArticle.isEmpty() || etCopias.getText().toString().isEmpty())
+                            Toast.makeText(AddToolDialog.this.getContext(), "Complete los campos...", Toast.LENGTH_SHORT).show();
+                        else if(Integer.parseInt(etCopias.getText().toString()) < 0) {
+                            Toast.makeText(AddToolDialog.this.getContext(), "Cantidad debe ser mayor a 0...", Toast.LENGTH_SHORT).show();
+                        }else{
+                                listener.agregarArticulo(nameArticle);
                         }
-
-
                     }
                 });
 

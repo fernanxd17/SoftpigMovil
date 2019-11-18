@@ -140,7 +140,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void openDialogAddHoursPerson() {
        /* Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
         String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
-        AddToolEmployeeDialog addToolEmployeeDialog = new AddToolEmployeeDialog(nombreEmpleado);
+        AddToolDialog addToolEmployeeDialog = new AddToolDialog(nombreEmpleado);
         addToolEmployeeDialog.show(getFragmentManager(), "Caulcular salario");*/
     }
 }
