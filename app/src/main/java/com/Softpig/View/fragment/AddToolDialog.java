@@ -10,36 +10,34 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.Softpig.Model.Tool;
 import com.Softpig.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class AddToolDialog extends AppCompatDialogFragment implements AdapterView.OnItemSelectedListener{
-    private TextView tvNameEmployee;
-    private Spinner spArticle;
+    private EditText etNameTool;
+    private Spinner spTypeTool;
     private EditText etCopias;
-    private List<Tool> listTool;
     private List<String> listNameArticle;
-    private AddToolEmployeeListerner listener;
-    private ArrayAdapter<String> comboAdapterArticle;
-    private String nameArticle;
-    private String nameEmpleado;
+    private HashMap<String, Short> hmTypeTool;
+    private AddToolListerner listener;
+    private String typeArticle;
 
-    public AddToolDialog(String nameEmpleado){
-        this.nameEmpleado = nameEmpleado;
+    public AddToolDialog(){ }
+
+    public AddToolDialog(HashMap<String, Short> hmTypeTool){
+        this.hmTypeTool = hmTypeTool;
     }
 
-    public AddToolDialog(List<Tool> listTool){
-        this.listTool = listTool;
-    }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -47,31 +45,26 @@ public class AddToolDialog extends AppCompatDialogFragment implements AdapterVie
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.add_tool, null);
 
-        llenarListaConNombres();
-
-
+        llenarListaConTipos();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, listNameArticle);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        etNameTool = view.findViewById(R.id.et_name_add_tool);
         etCopias = view.findViewById(R.id.tv_num_copias);
-        tvNameEmployee = view.findViewById(R.id.tv_name_add_tool_employee);
-        tvNameEmployee.setText(nameEmpleado);
-        spArticle = view.findViewById(R.id.sp_article);
-        spArticle.setAdapter(adapter);
+        spTypeTool = view.findViewById(R.id.sp_article);
+        spTypeTool.setAdapter(adapter);
 
-        spArticle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spTypeTool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                nameArticle = "";
+                typeArticle = "";
                 if(position > 0)
-                    nameArticle = (String) parent.getSelectedItem();
+                    typeArticle = (String) parent.getSelectedItem();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                nameArticle="";
+                typeArticle="";
             }
         });
 
@@ -86,27 +79,38 @@ public class AddToolDialog extends AppCompatDialogFragment implements AdapterVie
                 .setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if(nameArticle.isEmpty() || etCopias.getText().toString().isEmpty())
-                            Toast.makeText(AddToolDialog.this.getContext(), "Complete los campos...", Toast.LENGTH_SHORT).show();
-                        else if(Integer.parseInt(etCopias.getText().toString()) < 0) {
+                        String nameTool = etNameTool.getText().toString();
+                        String copias =  etCopias.getText().toString();
+                        if(nameTool.isEmpty() || copias.isEmpty() || typeArticle.isEmpty())
+                            Toast.makeText(AddToolDialog.this.getContext(), "Complete o seleccione todos los campos...", Toast.LENGTH_SHORT).show();
+                        else if(Integer.parseInt(copias) < 1) {
                             Toast.makeText(AddToolDialog.this.getContext(), "Cantidad debe ser mayor a 0...", Toast.LENGTH_SHORT).show();
                         }else{
-                                listener.agregarArticulo(nameArticle);
+                            agregarArticulo(nameTool, copias);
+
                         }
                     }
+
+
                 });
 
 
         return builder.create();
     }
 
-    private void llenarListaConNombres() {
-        listNameArticle = new ArrayList<>();
-        listNameArticle.add("Seleccione un article");
-        for(Tool tool: listTool){
-            listNameArticle.add(tool.getName());
-        }
+    private void agregarArticulo(String nameTool, String copias) {
+        listener.addTool(nameTool, copias, typeArticle);
+    }
 
+    private void llenarListaConTipos() {
+        listNameArticle = new ArrayList<>();
+        listNameArticle.add("Seleccione categoria");
+        Iterator<Map.Entry<String,Short>> it = hmTypeTool.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String,Short> e = it.next();
+            listNameArticle.add(e.getKey());
+        }
     }
 
     @Override
@@ -114,9 +118,9 @@ public class AddToolDialog extends AppCompatDialogFragment implements AdapterVie
         super.onAttach(context);
 
         try {
-            listener = (AddToolEmployeeListerner) context;
+            listener = (AddToolListerner) context;
         } catch (ClassCastException e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -130,8 +134,8 @@ public class AddToolDialog extends AppCompatDialogFragment implements AdapterVie
 
     }
 
-    public interface AddToolEmployeeListerner {
-        void agregarArticulo(String nameArticle);
+    public interface AddToolListerner {
+        void addTool(String nameTool, String copias, String typeTool);
     }
 
 

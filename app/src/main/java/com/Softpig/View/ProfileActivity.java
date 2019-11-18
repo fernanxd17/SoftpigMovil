@@ -63,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 */
-    public void agregarArticle(String nameArticle) {
+    public void agregarArticle(String nameArticle, String copias, int typeArticle) {
 
         System.out.println("Agregando articulo");
     }

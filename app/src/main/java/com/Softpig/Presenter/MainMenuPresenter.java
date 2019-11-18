@@ -42,7 +42,7 @@ public class MainMenuPresenter {
     private static boolean toolsUpdate;
     private MaleFragment maleFragment;
     private ArrayList<Pig> listPig;
-    private String [][] typeTool;
+    private HashMap<String, Short> hmTypeTool;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
@@ -244,11 +244,11 @@ public class MainMenuPresenter {
     public boolean inflarToolsFragment(final MainMenuActivity context, final ToolFragment toolFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Cargando Herramientas...");
         progressDialog.show();
 
-        if(typeTool == null){
-            traerDatosTiposTool(context);
+        if(hmTypeTool == null){
+            traerDatosTiposTool(context, toolFragment);
         }
 
         String url = URLAPI + "article_list";
@@ -269,16 +269,13 @@ public class MainMenuPresenter {
                             for(int i = 0; i < jsonTools.length(); i++) {
                                 JSONObject toolObject = jsonTools.getJSONObject(i);
                                 short quantity = (short) toolObject.getInt("quantity");
-                                if(quantity == 0){
-                                    continue;
-                                }
+                                if(quantity == 0){ continue; }
                                 short loan = (short)toolObject.getInt("loan");
                                 short id = (short) toolObject.getInt("id");
                                 String name = toolObject.getString("name");
                                 String type = toolObject.getString("type");
                                 listTool.add(new Tool(id, type,name, quantity, loan));
                             }
-
                             toolFragment.setListTool(listTool);
                             toolFragment.setContext(context);
                             context.inflarFragment(toolFragment);
@@ -738,7 +735,7 @@ public class MainMenuPresenter {
         return null;
     }
 
-    private void traerDatosTiposTool(final MainMenuActivity context) {
+    private void traerDatosTiposTool(final MainMenuActivity context, final ToolFragment toolFragment) {
         String url = URLAPI + "tool_type";
 
         final JsonObjectRequest json = new JsonObjectRequest(
@@ -753,17 +750,14 @@ public class MainMenuPresenter {
                             System.out.println("Listando type tool");
                             JSONArray jsonPig = response.getJSONArray("articles_Type");
                             short lengthType = (short) jsonPig.length();
-                            MainMenuPresenter.this.typeTool = new String [lengthType][lengthType];
+                            MainMenuPresenter.this.hmTypeTool = new HashMap<>();
                             for(int i = 0; i < lengthType; i++) {
                                 JSONObject typeToolObject = jsonPig.getJSONObject(i);
                                 short id = (short) typeToolObject.getInt("id");
                                 String type = typeToolObject.getString("type");
-                                MainMenuPresenter.this.typeTool[i][0] = String.valueOf(id);
-                                MainMenuPresenter.this.typeTool[i][1] = type;
+                                MainMenuPresenter.this.hmTypeTool.put(type, id);
                             }
-
-
-
+                            toolFragment.setHsTypeTool(hmTypeTool);
 
                         } catch (Exception e) {
                             e.printStackTrace();

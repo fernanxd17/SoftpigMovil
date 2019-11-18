@@ -20,9 +20,10 @@ import com.Softpig.View.ProfileActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class ToolFragment extends Fragment  implements AddToolDialog.AddToolEmployeeListerner{
+public class ToolFragment extends Fragment  implements AddToolDialog.AddToolListerner{
 
     private Context context;
     private RecyclerView recyclerArticle;
@@ -31,6 +32,7 @@ public class ToolFragment extends Fragment  implements AddToolDialog.AddToolEmpl
     private FloatingActionButton fbAddArticle;
     private List<Tool> listTool;
     private String [] typeTool;
+    private HashMap<String, Short> hmTypeTool;
     private Short [] idTypeTool;
     private View viewTool;
     private TextView tv_noTool;
@@ -45,6 +47,7 @@ public class ToolFragment extends Fragment  implements AddToolDialog.AddToolEmpl
 
     public ToolFragment(boolean toolEmployee){
         this.toolEmployee = toolEmployee;
+        this.hmTypeTool = new HashMap<String, Short>();
     }
 
     @Override
@@ -67,7 +70,7 @@ public class ToolFragment extends Fragment  implements AddToolDialog.AddToolEmpl
                     if(toolEmployee)
                         openDialogAddArticlePerson();
                     else
-                        openDialogAddArticle();
+                        openDialogAddTool();
                 }
             });
         }
@@ -78,23 +81,25 @@ public class ToolFragment extends Fragment  implements AddToolDialog.AddToolEmpl
     public void openDialogAddArticlePerson() {
         Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
         String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
-        AddToolDialog addToolDialog = new AddToolDialog(nombreEmpleado);
-        addToolDialog.show(getFragmentManager(), "Tool Dialog");
+        AddToolDialog addToolDialog = new AddToolDialog();
+        addToolDialog.show(getActivity().getSupportFragmentManager(), "Tool Dialog");
     }
 
-    public void openDialogAddArticle(){
-        AddToolDialog addToolDialog = new AddToolDialog(listTool);
-        addToolDialog.show(getFragmentManager(), "Tool Dialog");
+    public void openDialogAddTool(){
+        AddToolDialog addToolDialog = new AddToolDialog(hmTypeTool);
+        addToolDialog.show(getActivity().getSupportFragmentManager(), "Tool Dialog");
     }
 
     @Override
-    public void agregarArticulo(String nameArticle) {
-        ((ProfileActivity) getActivity()).agregarArticle(nameArticle);
+    public void addTool(String nameTool, String copias, String typeArticle) {
+        ((ProfileActivity) getActivity()).agregarArticle(nameTool, copias, Integer.parseInt(typeArticle));
     }
 
     public void setListTool(ArrayList<Tool> listTool){
         this.listTool = listTool;
     }
+
+    public void setHsTypeTool(HashMap<String, Short> hmTypeTool){ this.hmTypeTool = hmTypeTool; }
 
     public ToolAdapter getToolAdapter() {
         return toolAdapter;
