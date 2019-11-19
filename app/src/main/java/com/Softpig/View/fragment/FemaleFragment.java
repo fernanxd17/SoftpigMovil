@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.Softpig.Model.Female;
@@ -25,6 +26,7 @@ public class FemaleFragment extends Fragment {
     private ArrayList<Female> listFemale;
     private TextView tv_noFemales;
     private  View viewFemale;
+    private LinearLayout ll_heats_female;
 
     public FemaleFragment() {
     }
@@ -34,8 +36,7 @@ public class FemaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewFemale =  inflater.inflate(R.layout.fragment_list_female, container, false);
-
-
+        ll_heats_female = viewFemale.findViewById(R.id.ll_heats_female);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
         ((MainMenuActivity)getActivity()).setSearch("Female");
         if (listFemale.isEmpty()){
@@ -47,6 +48,14 @@ public class FemaleFragment extends Fragment {
         recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerFemale.setAdapter(femaleAdapter);
+
+
+        /*this.ll_heats_female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainMenuActivity)getActivity()).controllerFragment("Heats");
+            }
+        });*/
 
         return viewFemale;
     }

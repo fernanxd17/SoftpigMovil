@@ -117,5 +117,10 @@
     <string name="change_password">Cambiar Contraseña</string>
     <string name="app_contraseña_new">Nueva Contraseña</string>
     <string name="app_contraseña_new_repite">Repitir Contraseña</string>
+    <string name="idHeat">01</string>
+    <string name="typeMating">Natural</string>
+    <string name="sincrony">Si</string>
+    <string name="dateStart">2019-05-04</string>
+    <string name="dateEnd">2019-05-08</string>
 
 </resources>

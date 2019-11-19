@@ -20,6 +20,7 @@ import com.Softpig.View.fragment.AboutFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.FemaleFragment;
+import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.PigActivity;
 import com.Softpig.View.fragment.RaceFragment;
@@ -62,6 +63,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private RaceFragment raceFragment;
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
+    private HeatFragment heatFragment;
     private BottomNavigationView bottomNavigationView;
     private DrawerLayout drawer;
     private Toast notificacion;
@@ -242,6 +244,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
             case "Installations":
                 mainMenuPresenter.inflarInstallationsFragment(this, installationFragment);
+                break;
+
+            case "Heats":
+                mainMenuPresenter.inflarHeatsFragment(this, heatFragment);
                 break;
 
             default:
