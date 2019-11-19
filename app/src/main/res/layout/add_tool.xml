@@ -65,5 +65,25 @@
             android:hint="Cantidad..." />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_below="@id/ll_copias_tool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/bt_cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar">
+        </Button>
+
+        <Button android:id="@+id/bt_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar">
+        </Button>
+    </LinearLayout>
+
 
 </RelativeLayout>
