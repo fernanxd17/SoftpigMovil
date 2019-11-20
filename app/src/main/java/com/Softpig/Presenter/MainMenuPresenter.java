@@ -35,8 +35,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainMenuPresenter {
 
@@ -265,7 +267,9 @@ public class MainMenuPresenter {
                         try {
                             ContentValues contentValues = new ContentValues();
 
-                            ArrayList<Tool> listTool = new ArrayList<>();
+                            HashMap<String, Tool> hmListTool = new HashMap<>();
+                            List <String> listNameTool = new ArrayList<>();
+                            listNameTool.add("Seleccione una herramienta");
                             JSONArray jsonTools = response.getJSONArray("articles");
                             for(int i = 0; i < jsonTools.length(); i++) {
                                 JSONObject toolObject = jsonTools.getJSONObject(i);
@@ -275,9 +279,11 @@ public class MainMenuPresenter {
                                 short id = (short) toolObject.getInt("id");
                                 String name = toolObject.getString("name");
                                 String type = toolObject.getString("type");
-                                listTool.add(new Tool(id, type,name, quantity, loan));
+                                hmListTool.put(name,new Tool(id, type, name, quantity, loan));
+                                listNameTool.add(name);
                             }
-                            toolFragment.setListTool(listTool);
+                            toolFragment.setHmListTool(hmListTool);
+                            toolFragment.setListNameTool(listNameTool);
                             toolFragment.setContext(context);
                             context.inflarFragment(toolFragment);
                             toolsUpdate = true;
@@ -813,17 +819,21 @@ public class MainMenuPresenter {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            System.out.println("Listando type tool");
+                            List<String> listTypeTool = new ArrayList<>();
+                            listTypeTool.add("Seleccione Categoria");
                             JSONArray jsonPig = response.getJSONArray("articles_Type");
                             short lengthType = (short) jsonPig.length();
-                            MainMenuPresenter.this.hmTypeTool = new HashMap<>();
+                            HashMap<String, Short> hmTypeTool = new HashMap<>();
                             for(int i = 0; i < lengthType; i++) {
                                 JSONObject typeToolObject = jsonPig.getJSONObject(i);
                                 short id = (short) typeToolObject.getInt("id");
                                 String type = typeToolObject.getString("type");
-                                MainMenuPresenter.this.hmTypeTool.put(type, id);
+                                hmTypeTool.put(type, id);
+                                listTypeTool.add(type);
                             }
+
                             toolFragment.setHsTypeTool(hmTypeTool);
+                            toolFragment.setListTypeTool(listTypeTool);
 
                         } catch (Exception e) {
                             e.printStackTrace();

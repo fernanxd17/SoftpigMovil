@@ -21,12 +21,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.Presenter.Adapters.ToolAdapter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-import com.Softpig.View.ProfileActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -48,25 +46,30 @@ public class ToolFragment extends Fragment {
     private List<Tool> listTool;
     private String [] typeTool;
     private HashMap<String, Short> hmTypeTool;
+    private HashMap<String, Tool> hmListTool;
     private Short [] idTypeTool;
     private View viewTool;
     private TextView tv_noTool;
-    private List<String> listNameArticle;
+    private List<String> listTypeTool;
+    private List<String> listNameTool;
     private String typeArticle;
     private Button btCancelar, btAgregar;
+    private ArrayAdapter<String> adapter;
+    private View viewDialog;
 
-    public ToolFragment() {
-        listTool = new ArrayList<>();
+
+
+
+    public ToolFragment(boolean toolEmployee){
+        this.toolEmployee = toolEmployee;
+        this.hmTypeTool = new HashMap<>();
+        this.hmListTool = new HashMap<>();
     }
 
     public void setContext(Context context){
         this.context = context;
     }
 
-    public ToolFragment(boolean toolEmployee){
-        this.toolEmployee = toolEmployee;
-        this.hmTypeTool = new HashMap<String, Short>();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,16 +90,21 @@ public class ToolFragment extends Fragment {
             public void onClick(View view) {
 
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                View mView = getLayoutInflater().inflate(R.layout.add_tool, null);
-                llenarListaConTipos();
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_spinner_item, listNameArticle);
+                if(!toolEmployee){
+                    View viewDialog = getLayoutInflater().inflate(R.layout.add_tool, null);
+
+                    adapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item, listNameTool);
+                    etNameTool = viewDialog.findViewById(R.id.et_name_add_tool);
+                    spTypeTool = viewDialog.findViewById(R.id.sp_type_article);
+                }
+
+                adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item, listNameTool);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                etNameTool = mView.findViewById(R.id.et_name_add_tool);
-                etCopias = mView.findViewById(R.id.tv_num_copias);
-                spTypeTool = mView.findViewById(R.id.sp_article);
-                btAgregar = mView.findViewById(R.id.bt_agregar);
-                btCancelar = mView.findViewById(R.id.bt_cancelar);
+                etCopias = viewDialog.findViewById(R.id.tv_num_copias);
+                btAgregar = viewDialog.findViewById(R.id.bt_agregar);
+                btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
 
                 spTypeTool.setAdapter(adapter);
 
@@ -113,7 +121,7 @@ public class ToolFragment extends Fragment {
                     }
                 });
 
-                alert.setView(mView);
+                alert.setView(viewDialog);
 
                 final AlertDialog alertDialog = alert.create();
                 alertDialog.setCanceledOnTouchOutside(false);
@@ -156,23 +164,24 @@ public class ToolFragment extends Fragment {
         ((MainMenuActivity)getActivity()).agregarTool(nameTool, (short) hmTypeTool.get(nameTool), copias);
     }
 
-    private void llenarListaConTipos() {
-        listNameArticle = new ArrayList<>();
-        listNameArticle.add("Seleccione categoria");
-        Iterator<Map.Entry<String,Short>> it = hmTypeTool.entrySet().iterator();
-
-        while (it.hasNext()) {
-            Map.Entry<String,Short> e = it.next();
-            listNameArticle.add(e.getKey());
-        }
+    public void setListTypeTool(List <String> listTypeTool){
+        this.listTypeTool = listTypeTool;
     }
+
+    public void setListNameTool(List <String> listNameTool){
+        this.listNameTool = listNameTool;
+    }
+
 
     public void setListTool(ArrayList<Tool> listTool){
         this.listTool = listTool;
     }
 
-    public void setHsTypeTool(HashMap<String, Short> hmTypeTool){ this.hmTypeTool = hmTypeTool; }
-
+    public void setHsTypeTool(HashMap<String, Short> hmTypeTool){
+        this.hmTypeTool = hmTypeTool; }
+    public void setHmListTool(HashMap<String, Tool> hmListTool){
+        this.hmListTool = hmListTool;
+    }
     public ToolAdapter getToolAdapter() {
         return toolAdapter;
     }

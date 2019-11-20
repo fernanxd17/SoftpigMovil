@@ -122,7 +122,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             errorFragment = new ErrorFragment();
             dictionaryFragment = new DictionaryFragment();
             notificacion = new Toast(this);
-            toolFragment = new ToolFragment();
+            toolFragment = new ToolFragment(false);
             raceFragment = new RaceFragment();
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
