@@ -401,4 +401,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         startActivity(i);
     }
 
+    public void agregarTool(String nameTool, short idType, String copias) {
+        mainMenuPresenter.agregarArticulo(nameTool, idType, copias);
+    }
 }

@@ -852,4 +852,7 @@ public class MainMenuPresenter {
     }
 
 
+    public void agregarArticulo(String nameTool, short idType, String copias) {
+
+    }
 }

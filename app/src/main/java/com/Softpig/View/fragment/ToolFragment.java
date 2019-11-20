@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
@@ -62,7 +63,6 @@ public class ToolFragment extends Fragment {
         this.context = context;
     }
 
-
     public ToolFragment(boolean toolEmployee){
         this.toolEmployee = toolEmployee;
         this.hmTypeTool = new HashMap<String, Short>();
@@ -83,66 +83,77 @@ public class ToolFragment extends Fragment {
             recyclerArticle.setAdapter(toolAdapter);
             fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
             fbAddArticle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    /*if(toolEmployee)
-                        openDialogAddArticlePerson();
-                    else
-                        openDialogAddTool();*/
+            @Override
+            public void onClick(View view) {
 
-                    final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                    View mView = getLayoutInflater().inflate(R.layout.add_tool, null);
-                    llenarListaConTipos();
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_spinner_item, listNameArticle);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    etNameTool = mView.findViewById(R.id.et_name_add_tool);
-                    etCopias = mView.findViewById(R.id.tv_num_copias);
-                    spTypeTool = mView.findViewById(R.id.sp_article);
-                    btAgregar = mView.findViewById(R.id.bt_agregar);
-                    btCancelar = mView.findViewById(R.id.bt_cancelar);
+                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                View mView = getLayoutInflater().inflate(R.layout.add_tool, null);
+                llenarListaConTipos();
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item, listNameArticle);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                etNameTool = mView.findViewById(R.id.et_name_add_tool);
+                etCopias = mView.findViewById(R.id.tv_num_copias);
+                spTypeTool = mView.findViewById(R.id.sp_article);
+                btAgregar = mView.findViewById(R.id.bt_agregar);
+                btCancelar = mView.findViewById(R.id.bt_cancelar);
 
+                spTypeTool.setAdapter(adapter);
 
-                    spTypeTool.setAdapter(adapter);
+                spTypeTool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        typeArticle = "";
+                        if(position > 0)
+                            typeArticle = (String) parent.getSelectedItem();
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        typeArticle="";
+                    }
+                });
 
-                    spTypeTool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            typeArticle = "";
-                            if(position > 0)
-                                typeArticle = (String) parent.getSelectedItem();
+                alert.setView(mView);
+
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.setCanceledOnTouchOutside(false);
+
+                btCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                btAgregar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String nameTool = etNameTool.getText().toString();
+                        String copias =  etCopias.getText().toString();
+                        if(nameTool.isEmpty() || copias.isEmpty() || typeArticle.isEmpty())
+                            Toast.makeText(getContext(), "Complete o seleccione todos los campos...", Toast.LENGTH_SHORT).show();
+                        else if(Integer.parseInt(copias) < 1) {
+                            Toast.makeText(getContext(), "Cantidad debe ser mayor a 0...", Toast.LENGTH_SHORT).show();
+                        }else{
+                            agregarTool(nameTool, copias);
                         }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-                            typeArticle="";
-                        }
-                    });
 
-                    alert.setView(mView);
+                        alertDialog.dismiss();
+                    }
+                });
 
-                    final AlertDialog alertDialog = alert.create();
-                    alertDialog.setCanceledOnTouchOutside(false);
+                alertDialog.show();
 
-                    btCancelar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            System.out.println("No agregado");
-                        }
-                    });
-
-                    btAgregar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            System.out.println("Agregado");
-                        }
-                    });
-
-
-                }
+            }
             });
         }
 
         return viewTool;
+    }
+
+    private void agregarTool(String nameTool, String copias) {
+
+        ((MainMenuActivity)getActivity()).agregarTool(nameTool, (short) hmTypeTool.get(nameTool), copias);
     }
 
     private void llenarListaConTipos() {
@@ -155,22 +166,6 @@ public class ToolFragment extends Fragment {
             listNameArticle.add(e.getKey());
         }
     }
-
-    public void openDialogAddArticlePerson() {
-        Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
-        String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
-        AddToolDialog addToolDialog = new AddToolDialog();
-    }
-
-    public void openDialogAddTool(){
-        AddToolDialog addToolDialog = new AddToolDialog(hmTypeTool);
-       // addToolDialog.show(this, "sss");
-    }
-
-   /* @Override
-    public void addTool(String nameTool, String copias, String typeArticle) {
-        ((ProfileActivity) getActivity()).agregarArticle(nameTool, copias, Integer.parseInt(typeArticle));
-    }*/
 
     public void setListTool(ArrayList<Tool> listTool){
         this.listTool = listTool;
