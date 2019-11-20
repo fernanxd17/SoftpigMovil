@@ -267,9 +267,7 @@ public class MainMenuPresenter {
                         try {
                             ContentValues contentValues = new ContentValues();
 
-                            HashMap<String, Tool> hmListTool = new HashMap<>();
-                            List <String> listNameTool = new ArrayList<>();
-                            listNameTool.add("Seleccione una herramienta");
+                            List<Tool> listTool = new ArrayList<>();
                             JSONArray jsonTools = response.getJSONArray("articles");
                             for(int i = 0; i < jsonTools.length(); i++) {
                                 JSONObject toolObject = jsonTools.getJSONObject(i);
@@ -279,11 +277,11 @@ public class MainMenuPresenter {
                                 short id = (short) toolObject.getInt("id");
                                 String name = toolObject.getString("name");
                                 String type = toolObject.getString("type");
-                                hmListTool.put(name,new Tool(id, type, name, quantity, loan));
-                                listNameTool.add(name);
+                                listTool.add(new Tool(id, type, name, quantity, loan));
+
                             }
-                            toolFragment.setHmListTool(hmListTool);
-                            toolFragment.setListNameTool(listNameTool);
+
+                            toolFragment.setListTool(listTool);
                             toolFragment.setContext(context);
                             context.inflarFragment(toolFragment);
                             toolsUpdate = true;
