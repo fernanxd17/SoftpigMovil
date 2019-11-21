@@ -19,7 +19,7 @@
             android:text="Empleado: " />
 
         <TextView
-            android:id="@+id/tv_name_add_tool_employee"
+            android:id="@+id/tv_name_employee_add_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Fernando Romero" />
@@ -39,9 +39,10 @@
             android:layout_height="wrap_content"
             android:text="Horas Trabajadas: "/>
 
-        <EditText
+        <EditText android:id="@+id/etHourWorked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="ingrese..."
             android:inputType="number"/>
 
     </LinearLayout>
@@ -52,13 +53,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <Button android:id="@+id/btCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancelar"
             android:layout_marginRight="10sp"/>
 
-        <Button
+        <Button android:id="@+id/btAgregar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aceptar"/>

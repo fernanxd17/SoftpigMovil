@@ -243,7 +243,7 @@ public class ProfilePresenter {
         }
     }
 
-    public void addHoursWorked(final ProfileActivity context,final int idEmployee, final int hours){
+    public void addHoursWorked(final ProfileActivity context,final int idEmployee, final String hours){
         RequestQueue queue = Volley.newRequestQueue(context);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Agregando horas...");
@@ -252,11 +252,11 @@ public class ProfilePresenter {
 
             HashMap<String, String> params = new HashMap();
             params.put("person", String.valueOf(idEmployee));
-            params.put("hours", String.valueOf(hours));
+            params.put("hours",  hours);
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
-                    Request.Method.POST,
+                    Request.Method.PUT,
                     "https://softpig.herokuapp.com/api/hours_employee",
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
@@ -268,7 +268,8 @@ public class ProfilePresenter {
                                 progressDialog.dismiss();
                                 if (respo !=200)
                                     Toast.makeText(context, "Error, intentalo mas tarde...", Toast.LENGTH_LONG).show();
-                                Toast.makeText(context, "Horas agregadas con exito", Toast.LENGTH_LONG).show();
+                                else
+                                    Toast.makeText(context, "Horas agregadas con exito", Toast.LENGTH_LONG).show();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

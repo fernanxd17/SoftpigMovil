@@ -2,13 +2,16 @@ package com.Softpig.View.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.R;
@@ -25,6 +28,7 @@ public class ProfileFragment extends Fragment {
     private TextView tvName, tvNumIdentification, tvGender, tvLastName;
     private TextView tvRole, tvState, tvContract, tvSalary, tvInstallation, tvDateAdmission, tvDateOff;
     private TextView tvEmail, tvNumPhone, tvNumMobile;
+    private TextView tvAddHoursWorked;
 
 
     public ProfileFragment() {
@@ -73,6 +77,52 @@ public class ProfileFragment extends Fragment {
             });
         }
 
+        tvAddHoursWorked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                View viewDialog = getLayoutInflater().inflate(R.layout.add_hours_worked, null);
+
+                TextView tvNameEmployeeAddHour = viewDialog.findViewById(R.id.tv_name_employee_add_hour);
+                String nameEmployee = employee.getFirstName() + " " + employee.getLastName();
+                tvNameEmployeeAddHour.setText(nameEmployee);
+
+                final EditText etHourWorked = viewDialog.findViewById(R.id.etHourWorked);
+                Button btAgregar =  viewDialog.findViewById(R.id.btAgregar);
+                Button btCancelar = viewDialog.findViewById(R.id.btCancelar);
+
+                alert.setView(viewDialog);
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.setCanceledOnTouchOutside(false);
+
+                btAgregar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       String hoursAdd = etHourWorked.getText().toString();
+                       if(hoursAdd.isEmpty() || Integer.parseInt(hoursAdd) == 0){
+                           Toast.makeText(getContext(), "Debe agregar un numero de horas", Toast.LENGTH_SHORT);
+                       }else{
+                           ((ProfileActivity)getContext()).addWorkedHours(hoursAdd);
+                           int horas = Integer.parseInt(hoursAdd) * 3450;
+                           tvContract.setText(String.valueOf(horas));
+                       }
+
+                        alertDialog.dismiss();
+
+                    }
+                });
+
+                btCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+               alertDialog.show();
+            }
+        });
+
 
 
         return viewProfile;
@@ -97,6 +147,18 @@ public class ProfileFragment extends Fragment {
         tvEmail.setText(employee.getEmail());
         tvNumPhone.setText(employee.getTelephone());
         tvNumMobile.setText(employee.getMobile());
+        if(employee.getStatus().equalsIgnoreCase("Despedido")){
+            btInhabilitar.setVisibility(View.INVISIBLE);
+            btInhabilitar.setEnabled(false);
+            btDespedir.setVisibility(View.INVISIBLE);
+            btDespedir.setEnabled(false);
+        }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado")){
+            btInhabilitar.setText("HABILITAR");
+        }
+
+        if(!employee.getContract().equalsIgnoreCase("Servicio"))
+            tvAddHoursWorked.setVisibility(View.INVISIBLE);
+
     }
 
     private void capturarCampos() {
@@ -117,15 +179,7 @@ public class ProfileFragment extends Fragment {
         tvAssignedItems = viewProfile.findViewById(R.id.tv_assigned_items);
         btDespedir = viewProfile.findViewById(R.id.btt_dissmis);
         btInhabilitar = viewProfile.findViewById(R.id.btt_disable);
-        if(employee.getStatus().equalsIgnoreCase("Despedido")){
-            btInhabilitar.setVisibility(View.INVISIBLE);
-            btInhabilitar.setEnabled(false);
-            btDespedir.setVisibility(View.INVISIBLE);
-            btDespedir.setEnabled(false);
-        }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado")){
-            btInhabilitar.setText("HABILITAR");
-        }
-
+        tvAddHoursWorked = viewProfile.findViewById(R.id.addHoursWorked);
     }
 
 

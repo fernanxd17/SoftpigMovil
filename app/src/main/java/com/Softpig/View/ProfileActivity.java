@@ -147,4 +147,8 @@ public class ProfileActivity extends AppCompatActivity {
     public void agregarTool(short idTool, String copias) {
         profilePresenter.addToolEmployee(this, employee.getIdEmployee(), idTool, copias);
     }
+
+    public void addWorkedHours(String workedHours) {
+        profilePresenter.addHoursWorked(this, employee.getIdEmployee(), workedHours);
+    }
 }
