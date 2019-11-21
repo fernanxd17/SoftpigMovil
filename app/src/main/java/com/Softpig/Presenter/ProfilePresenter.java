@@ -1,10 +1,12 @@
 package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.widget.Toast;
 
 import com.Softpig.Model.Tool;
 import com.Softpig.View.ProfileActivity;
+import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,6 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ProfilePresenter {
 
@@ -29,6 +32,7 @@ public class ProfilePresenter {
       final ProgressDialog progressDialog = new ProgressDialog(context);
       progressDialog.setMessage("Loading...");
       progressDialog.show();
+      getNameTools(context, toolPersonFragment);
       String url = URLAPI + "article-person_list/" +idEmployee;
       if(idEmployee < 10)
           url = URLAPI + "article-person_list/0" +idEmployee;
@@ -46,12 +50,15 @@ public class ProfilePresenter {
                           ArrayList<Tool> toolEmployee = new ArrayList<>();
                           for(int i = 0; i < jsonToolPerson.length(); i++) {
                               JSONObject toolPersonObject = jsonToolPerson.getJSONObject(i);
+                              short loan = (short) toolPersonObject.getInt("loan");
+                              if (loan == 0)
+                                  continue;
                               short idTool = (short) toolPersonObject.getInt("id");
                               String name = toolPersonObject.getString("name");
                               String type = toolPersonObject.getString("type");
-                              toolEmployee.add(new Tool(idTool, name, type));
+                              toolEmployee.add(new Tool(idTool, name, type, loan));
                           }
-                          toolPersonFragment.setContext(context);
+
                           toolPersonFragment.setListTool(toolEmployee);
                           context.inflarFragment(toolPersonFragment);
                           progressDialog.dismiss();
@@ -74,6 +81,66 @@ public class ProfilePresenter {
       RequestQueue queue = Volley.newRequestQueue(context);
      queue.add(json);
              }
+
+    private void getNameTools(final ProfileActivity context, final ToolFragment toolPersonFragment){
+
+        String url = URLAPI + "article_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ContentValues contentValues = new ContentValues();
+
+                            HashMap<String, Short> listNameTool = new HashMap<>();
+                            JSONArray jsonTools = response.getJSONArray("articles");
+                            for(int i = 0; i < jsonTools.length(); i++) {
+                                JSONObject toolObject = jsonTools.getJSONObject(i);
+                                short quantity = (short) toolObject.getInt("quantity");
+                                int loan = (int) toolObject.get("loan");
+
+                                if((quantity - (short)loan)  == 0){ continue; }
+                                short id = (short) toolObject.getInt("id");
+                                String name = toolObject.getString("name");
+                                listNameTool.put(name, id);
+
+                            }
+
+                            toolPersonFragment.setHmListNameTool(listNameTool);
+                            toolPersonFragment.setContext(context);
+                            context.inflarFragment(toolPersonFragment);
+
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
 
     public void cambiarEstado(final ProfileActivity context,final short idEmployee, final String estadoNuevo) {
 
@@ -202,6 +269,56 @@ public class ProfilePresenter {
                                 if (respo !=200)
                                     Toast.makeText(context, "Error, intentalo mas tarde...", Toast.LENGTH_LONG).show();
                                 Toast.makeText(context, "Horas agregadas con exito", Toast.LENGTH_LONG).show();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+
+    public void addToolEmployee(final ProfileActivity context, final short idEmployee, final short idTool, final String copias) {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Agregando herramienta...");
+        progressDialog.show();
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("person", String.valueOf(idEmployee));
+            params.put("article", String.valueOf(idTool));
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/add_aritcle-employee",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                int respo = response.getInt("status");
+                                System.out.println("respo: "+ respo);
+
+                                progressDialog.dismiss();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

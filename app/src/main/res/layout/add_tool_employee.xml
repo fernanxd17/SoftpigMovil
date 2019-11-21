@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Empleado: " />
 
-        <TextView android:id="@+id/et_name_add_tool"
+        <TextView android:id="@+id/et_name_employee"
             android:layout_marginLeft="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
