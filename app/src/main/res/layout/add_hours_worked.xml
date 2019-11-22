@@ -19,7 +19,7 @@
             android:text="Empleado: " />
 
         <TextView
-            android:id="@+id/tv_name_add_tool_employee"
+            android:id="@+id/tv_name_employee_add_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Fernando Romero" />
@@ -27,21 +27,44 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_horas"
         android:layout_below="@id/ll_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horas Trabajadas: "/>
+
+        <EditText android:id="@+id/etHourWorked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="ingrese..."
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/ll_horas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText android:id="@+id/txt_hours"
-            android:layout_width="match_parent"
+        <Button android:id="@+id/btCancelar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="Cancelar"
+            android:layout_marginRight="10sp"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <Button android:id="@+id/btAgregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"/>
 
     </LinearLayout>
+
 
 </RelativeLayout>

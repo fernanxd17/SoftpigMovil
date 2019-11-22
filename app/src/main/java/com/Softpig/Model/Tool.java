@@ -6,10 +6,11 @@ public class Tool {
     private String name;
     private short quantity, loan, idArticle;
 
-    public Tool(short idArticle, String name, String typeArticle) {
+    public Tool(short idArticle, String name, String typeArticle, short loan) {
         this.idArticle = idArticle;
         this.typeArticle = typeArticle;
         this.name = name;
+        this.loan  = loan;
     }
 
     public Tool(short idArticle, String typeArticle, String name, short quantity, short loan) {

@@ -19,6 +19,8 @@ import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.ProfileActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,12 +55,13 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
             holder.tv_typearticle.setText(tool.getTypeArticle());
 
             if(!toolEmployee){
-                holder.tv_totalarticle.setVisibility(View.VISIBLE);
                 holder.tv_totalarticle.setText(String.valueOf(tool.getQuantity()));
-                holder.tvToolsAvailable.setVisibility(View.VISIBLE);
-                holder.tvToolsAvailable.setText(String.valueOf(tool.getQuantity()- tool.getLoan()));
-                holder.tvToolsLoan.setVisibility(View.VISIBLE);
-                holder.tvToolsLoan.setText(String.valueOf(tool.getLoan()));
+                holder.tvValorToolsAvailable.setText(String.valueOf(tool.getQuantity()- tool.getLoan()));
+                holder.tvValorToolsLoan.setText(String.valueOf(tool.getLoan()));
+            }else{
+                holder.tv_totalarticle.setText("# Prestadas: ");
+                holder.tvValorTotalTool.setText(tool.getLoan() + " Unds.");
+
             }
 
             holder.ivRemoveArticleEmployee.setOnClickListener(new View.OnClickListener() {
@@ -117,26 +120,40 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
 
     public class ViewHolderArticle extends RecyclerView.ViewHolder {
 
-        private TextView tv_nameArticle, tv_totalarticle, tv_typearticle, tv_idArticle;
-        private TextView tvToolsAvailable, tvToolsLoan;
+        private TextView tv_nameArticle, tv_idArticle, tv_typearticle;
+        private TextView tv_totalarticle, tvAvailableTool, tvLoanTool;
+        private TextView tvValorToolsAvailable, tvValorToolsLoan, tvValorTotalTool;
         private ImageView ivRemoveArticleEmployee;
         private RelativeLayout rl_cardview_tool;
 
         public ViewHolderArticle(@NonNull View itemView) {
             super(itemView);
 
-                tv_totalarticle = itemView.findViewById(R.id.tv_valor_totalarticle);
-                tvToolsAvailable = itemView.findViewById(R.id.tv_valor_available_article);
-                tvToolsLoan = itemView.findViewById(R.id.tv_valor_loan_article);
                 tv_nameArticle = itemView.findViewById(R.id.tv_nameArticle);
                 tv_typearticle = itemView.findViewById(R.id.tv_typearticle);
                 tv_idArticle = itemView.findViewById(R.id.tv_idArticle);
+
+                tv_totalarticle = itemView.findViewById(R.id.tv_totalarticle);
+                tvAvailableTool = itemView.findViewById(R.id.tv_available_article);
+                tvLoanTool = itemView.findViewById(R.id.tv_loan_article);
+
+                tvValorTotalTool = itemView.findViewById(R.id.tv_valor_totalarticle);
+                tvValorToolsAvailable = itemView.findViewById(R.id.tv_valor_available_article);
+                tvValorToolsLoan = itemView.findViewById(R.id.tv_valor_loan_article);
+
                 rl_cardview_tool = itemView.findViewById(R.id.rl_cardview_tool);
                 ivRemoveArticleEmployee = itemView.findViewById(R.id.iv_remove_article);
                 if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
-                    tvToolsAvailable.setVisibility(View.INVISIBLE);
-                    tvToolsLoan.setVisibility(View.INVISIBLE);
+                    tvValorToolsAvailable.setVisibility(View.INVISIBLE);
+                    tvValorToolsLoan.setVisibility(View.INVISIBLE);
                     ivRemoveArticleEmployee.setVisibility(View.INVISIBLE);
+                }
+
+                if(toolEmployee){
+                    tvAvailableTool.setVisibility(View.INVISIBLE);
+                    tvLoanTool.setVisibility(View.INVISIBLE);
+                    tvValorToolsAvailable.setVisibility(View.INVISIBLE);
+                    tvValorToolsLoan.setVisibility(View.INVISIBLE);
                 }
 
         }

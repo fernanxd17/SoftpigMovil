@@ -143,4 +143,12 @@ public class ProfileActivity extends AppCompatActivity {
         AddToolDialog addToolEmployeeDialog = new AddToolDialog(nombreEmpleado);
         addToolEmployeeDialog.show(getFragmentManager(), "Caulcular salario");*/
     }
+
+    public void agregarTool(short idTool, String copias) {
+        profilePresenter.addToolEmployee(this, employee.getIdEmployee(), idTool, copias);
+    }
+
+    public void addWorkedHours(String workedHours) {
+        profilePresenter.addHoursWorked(this, employee.getIdEmployee(), workedHours);
+    }
 }
