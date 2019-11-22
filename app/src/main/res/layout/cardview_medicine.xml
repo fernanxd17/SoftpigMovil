@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_medicine"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    cardview:cardBackgroundColor="#90E4E2E2"
+    cardview:cardCornerRadius="@dimen/cornerradius_cardview"
+    cardview:cardElevation="0dp"
+    cardview:cardUseCompatPadding="true">
+
+
+
+    <LinearLayout android:id="@+id/ll_cardview_medicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:paddingLeft="@dimen/padding_cardview"
+        android:paddingBottom="@dimen/padding_cardview">
+
+        <TextView android:id="@+id/tv_idMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID: 01"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_cardview"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/primaryColorTrans"
+            android:padding="5dp">
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView android:id="@+id/tv_nameMedicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NombreMedicina"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview"
+                android:layout_weight="0.9">
+            </TextView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView android:id="@+id/icon_remove_medicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/delete"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0.1">
+                </ImageView>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tv_typeMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TipoMedicina"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_cardview">
+        </TextView>
+
+        <TextView android:id="@+id/tv_cantidad_medicina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cantidad"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_cardview">
+        </TextView>
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+
+

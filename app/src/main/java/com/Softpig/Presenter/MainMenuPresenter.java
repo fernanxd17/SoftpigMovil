@@ -20,6 +20,7 @@ import com.Softpig.View.fragment.FemaleFragment;
 import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.InstallationFragment;
 import com.Softpig.View.fragment.MaleFragment;
+import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.PigFragment;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ToolFragment;
@@ -603,6 +604,74 @@ public class MainMenuPresenter {
         return true;
     }
 
+    public void inflarMedicineFragment(final MainMenuActivity context, final MedicineFragment medicineFragment) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Cargando Medicinas...");
+        progressDialog.show();
+
+
+        String url = URLAPI+"pig_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Pig> listPigs = new ArrayList<>();
+                            JSONArray jsonPig = response.getJSONArray("pigs");
+                            for(int i = 0; i < jsonPig.length(); i++) {
+                                JSONObject pigObject = jsonPig.getJSONObject(i);
+                                short id = (short) pigObject.getInt("id");
+                                String state = pigObject.getString("state");
+                                String sex = pigObject.getString("sex");
+                                short weigth = (short) pigObject.getInt("weigth");
+                                String race = pigObject.getString("race");
+                                String growthPhase = pigObject.getString("growthPhase");
+                                String pigState = pigObject.getString("pigStage");
+                                String health = pigObject.getString("health");
+                                String installation = pigObject.getString("installation");
+                                String birth = pigObject.getString("birthDate");
+                                String acquisition= pigObject.getString("acquisitionDate");
+
+                                listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
+                                        health,installation, birth, acquisition));
+                            }
+                            System.out.println("Size: "+listPigs.size());
+                           // medicineFragment.setListPig(listPigs);
+                            //context.inflarFragment(medicineFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+
+    }
+
     public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
@@ -862,4 +931,6 @@ public class MainMenuPresenter {
     public void agregarArticulo(String nameTool, short idType, String copias) {
 
     }
+
+
 }

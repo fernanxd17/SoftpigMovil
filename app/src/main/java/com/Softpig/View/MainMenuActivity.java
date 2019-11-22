@@ -22,6 +22,7 @@ import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.FemaleFragment;
 import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.MaleFragment;
+import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.PigActivity;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ToolFragment;
@@ -63,6 +64,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private RaceFragment raceFragment;
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
+    private MedicineFragment medicineFragment;
     private HeatFragment heatFragment;
     private BottomNavigationView bottomNavigationView;
     private DrawerLayout drawer;
@@ -127,6 +129,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             pigFragment = new PigFragment();
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
+            medicineFragment = new MedicineFragment();
             presentarFragment("dashboard");
         }
 
@@ -156,13 +159,11 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_pig:
                             searchItem.setVisible(true);
-                            //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pigFragment).commit();
                             mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment);
                             break;
                         case R.id.ic_medicine:
-                            notificacion.cancel();
-                            notificacion = notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
-                            notificacion.show();
+                            searchItem.setVisible(true);
+                            mainMenuPresenter.inflarMedicineFragment(MainMenuActivity.this, medicineFragment);
                             break;
                         case R.id.ic_alert:
                             notificacion.cancel();
