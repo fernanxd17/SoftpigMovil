@@ -2,16 +2,16 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview_heat"
+    android:id="@+id/cardview_gestation"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="150dp"
     cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
 
 
-    <LinearLayout android:id="@+id/ll_cardview_heat"
+    <LinearLayout android:id="@+id/ll_cardview_gestation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -20,10 +20,10 @@
         android:paddingBottom="@dimen/padding_cardview">
 
         <TextView
-            android:id="@+id/tv_idHeat"
+            android:id="@+id/tv_idGestation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/idHeat"
+            android:text="@string/idGestation"
             android:textSize="20dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin">
         </TextView>
@@ -33,44 +33,21 @@
             android:orientation="horizontal"
             android:weightSum="1">
             <TextView
-                android:id="@+id/type"
+                android:id="@+id/idMale"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Reproducción: "
+                android:text="Id Reproductor: "
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
             <TextView
-                android:id="@+id/tv_type"
+                android:id="@+id/tv_male_gestation"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/typeMating"
+                android:text="@string/maleGestation"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <TextView
-                android:id="@+id/sincrony"
-                android:layout_weight="0.5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="¿Sincronia?"
-                android:textSize="@dimen/textSize_cardview">
-            </TextView>
-            <TextView
-                android:id="@+id/tv_sincrony"
-                android:layout_weight="0.5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/sincrony"
-                android:textSize="@dimen/textSize_cardview">
-            </TextView>
-
         </LinearLayout>
 
         <LinearLayout
@@ -79,7 +56,7 @@
             android:orientation="horizontal"
             android:weightSum="1">
             <TextView
-                android:id="@+id/date_start"
+                android:id="@+id/dateStart"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,39 +65,14 @@
 
             </TextView>
             <TextView
-                android:id="@+id/tv_date_start"
+                android:id="@+id/tv_date_start_gestation"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/dateStart"
+                android:text="@string/dateStartGestation"
                 android:textSize="@dimen/textSize_cardview">
 
             </TextView>
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
-        <TextView
-            android:id="@+id/date_end"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Fecha fin: "
-            android:textSize="@dimen/textSize_cardview">
-
-        </TextView>
-        <TextView
-            android:id="@+id/tv_date_end"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/dateEnd"
-            android:textSize="@dimen/textSize_cardview">
-
-        </TextView>
-    </LinearLayout>b
-
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

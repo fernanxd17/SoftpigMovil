@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical"
+    style="@style/AppTheme.NoActionBar">
+
+
+    <LinearLayout android:id="@+id/ll_heat_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de reproducción: " />
+
+        <EditText android:id="@+id/et_typeMating"
+            android:layout_marginLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Natural/sincronia..." />
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/ll_sincrony"
+        android:layout_below="@id/ll_heat_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de inicio:" />
+
+        <EditText android:id="@+id/et_sincrony"
+            android:layout_marginLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Si/no..." />
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/ll_date_start"
+        android:layout_below="@id/ll_sincrony"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de inicio: " />
+
+        <EditText
+            android:layout_marginLeft="10sp"
+            android:id="@+id/et_date_start"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_below="@id/ll_date_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/bt_cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_radius"
+            android:text="Cancelar">
+        </Button>
+
+        <Button android:id="@+id/bt_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_radius"
+            android:text="Agregar">
+        </Button>
+    </LinearLayout>
+
+
+</RelativeLayout>

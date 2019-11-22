@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview_heat"
+    android:id="@+id/cardview_birth"
     android:layout_width="match_parent"
     android:layout_height="250dp"
     cardview:cardBackgroundColor="#60E4E2E2"
@@ -11,7 +11,7 @@
     cardview:cardUseCompatPadding="true">
 
 
-    <LinearLayout android:id="@+id/ll_cardview_heat"
+    <LinearLayout android:id="@+id/ll_cardview_birth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -20,10 +20,10 @@
         android:paddingBottom="@dimen/padding_cardview">
 
         <TextView
-            android:id="@+id/tv_idHeat"
+            android:id="@+id/tv_idBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/idHeat"
+            android:text="@string/idBirth"
             android:textSize="20dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin">
         </TextView>
@@ -33,19 +33,19 @@
             android:orientation="horizontal"
             android:weightSum="1">
             <TextView
-                android:id="@+id/type"
+                android:id="@+id/male"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Reproducción: "
+                android:text="Id Reproductor "
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
             <TextView
-                android:id="@+id/tv_type"
+                android:id="@+id/tv_male_dad"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/typeMating"
+                android:text="@string/idMaleDad"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
         </LinearLayout>
@@ -55,19 +55,19 @@
             android:orientation="horizontal"
             android:weightSum="1">
             <TextView
-                android:id="@+id/sincrony"
+                android:id="@+id/date"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="¿Sincronia?"
+                android:text="Fecha:"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
             <TextView
-                android:id="@+id/tv_sincrony"
+                android:id="@+id/tv_date"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/sincrony"
+                android:text="@string/dateBirth"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
 
@@ -79,48 +79,72 @@
             android:orientation="horizontal"
             android:weightSum="1">
             <TextView
-                android:id="@+id/date_start"
+                android:id="@+id/noBabies"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Fecha inicio:"
+                android:text="Total lechines:"
                 android:textSize="@dimen/textSize_cardview">
 
             </TextView>
             <TextView
-                android:id="@+id/tv_date_start"
+                android:id="@+id/tv_num_babies"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/dateStart"
+                android:text="@string/numLechones"
                 android:textSize="@dimen/textSize_cardview">
 
             </TextView>
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
-        <TextView
-            android:id="@+id/date_end"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha fin: "
-            android:textSize="@dimen/textSize_cardview">
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/numMummy"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Total momias:"
+                android:textSize="@dimen/textSize_cardview">
 
-        </TextView>
-        <TextView
-            android:id="@+id/tv_date_end"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
+            </TextView>
+            <TextView
+                android:id="@+id/tv_num_mummy"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/numMummy"
+                android:textSize="@dimen/textSize_cardview">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dateEnd"
-            android:textSize="@dimen/textSize_cardview">
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/numDead"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Total muertos:"
+                android:textSize="@dimen/textSize_cardview">
 
-        </TextView>
-    </LinearLayout>b
+            </TextView>
+            <TextView
+                android:id="@+id/tv_num_dead"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/numDead"
+                android:textSize="@dimen/textSize_cardview">
+
+            </TextView>
+        </LinearLayout>
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
