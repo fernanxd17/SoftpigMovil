@@ -34,6 +34,18 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {
     }
 
+    public void setTvState(String estadoNuevo){
+        tvState.setText(estadoNuevo);
+        if(estadoNuevo.equalsIgnoreCase("Inhabilitado"))
+            btInhabilitar.setText("Habilitar");
+        else if(estadoNuevo.equalsIgnoreCase("En Funciones"))
+            btInhabilitar.setText("Inhabilitar");
+        else if(estadoNuevo.equalsIgnoreCase("Despedido")){
+            btInhabilitar.setVisibility(View.INVISIBLE);
+            btDespedir.setVisibility(View.INVISIBLE);
+        }
+    }
+
     public ProfileFragment(Employee employee){
         this.employee = employee;
     }

@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ToolFragment toolFragment;
     private Bundle bundle;
     private Employee employee;
+    private ProfileFragment profileFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
         errorFragment = new ErrorFragment();
         setContentView(R.layout.container_profile);
         toolFragment = new ToolFragment(true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ProfileFragment(employee)).commit();
+        profileFragment = new ProfileFragment(employee);
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, profileFragment).commit();
     }
 
 
@@ -63,10 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 */
-    public void agregarArticle(String nameArticle, String copias, int typeArticle) {
 
-        System.out.println("Agregando articulo");
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -150,5 +149,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void addWorkedHours(String workedHours) {
         profilePresenter.addHoursWorked(this, employee.getIdEmployee(), workedHours);
+    }
+
+    public void cambiarEstadoEmpleado(String nuevoEstado){
+        profileFragment.setTvState(nuevoEstado);
     }
 }

@@ -145,7 +145,7 @@ public class ProfilePresenter {
     public void cambiarEstado(final ProfileActivity context,final short idEmployee, final String estadoNuevo) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Realizando despido...");
+        progressDialog.setMessage("Cambiando estado...");
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -163,17 +163,11 @@ public class ProfilePresenter {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-
                             try {
                                 int respo = response.getInt("status");
                                 System.out.println("respo: "+ respo);
-
-
-
+                                context.cambiarEstadoEmpleado(estadoNuevo);
                                 progressDialog.dismiss();
-
-
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
