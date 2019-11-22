@@ -7,9 +7,9 @@ public class Medicine {
     private String name;
     private short quantity;
 
-    public Medicine(short idMedicine, String typeMedicine, String name, short quantity) {
+    public Medicine(short idMedicine, String name, String type, short quantity) {
         this.idMedicine = idMedicine;
-        this.typeMedicine = typeMedicine;
+        this.typeMedicine = type;
         this.name = name;
         this.quantity = quantity;
     }

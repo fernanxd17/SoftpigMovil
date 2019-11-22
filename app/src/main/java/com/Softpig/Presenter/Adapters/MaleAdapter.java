@@ -6,18 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Softpig.Model.Employee;
 import com.Softpig.Model.Male;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-import com.Softpig.View.fragment.MaleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,8 +94,8 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
 
     public class ViewHolderMale extends RecyclerView.ViewHolder {
 
-        TextView tv_idMale, tv_raceMale, tv_conformacionFisica;
-        LinearLayout llCardviewMale;
+        private TextView tv_idMale, tv_raceMale, tv_conformacionFisica;
+        private LinearLayout llCardviewMale;
 
         public ViewHolderMale(@NonNull View itemView) {
             super(itemView);
@@ -107,5 +104,8 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
             tv_conformacionFisica = itemView.findViewById(R.id.tv_conformacionFisica);
             llCardviewMale = itemView.findViewById(R.id.ll_cardview_male);
         }
+    }
+
+    public class ViewHolderMedicine {
     }
 }

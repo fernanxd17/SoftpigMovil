@@ -9,6 +9,7 @@ import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.Medicine;
 import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
@@ -611,7 +612,7 @@ public class MainMenuPresenter {
         progressDialog.show();
 
 
-        String url = URLAPI+"pig_list";
+        String url = URLAPI+"inventary_medicine";
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -622,28 +623,22 @@ public class MainMenuPresenter {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            ArrayList<Pig> listPigs = new ArrayList<>();
-                            JSONArray jsonPig = response.getJSONArray("pigs");
-                            for(int i = 0; i < jsonPig.length(); i++) {
-                                JSONObject pigObject = jsonPig.getJSONObject(i);
-                                short id = (short) pigObject.getInt("id");
-                                String state = pigObject.getString("state");
-                                String sex = pigObject.getString("sex");
-                                short weigth = (short) pigObject.getInt("weigth");
-                                String race = pigObject.getString("race");
-                                String growthPhase = pigObject.getString("growthPhase");
-                                String pigState = pigObject.getString("pigStage");
-                                String health = pigObject.getString("health");
-                                String installation = pigObject.getString("installation");
-                                String birth = pigObject.getString("birthDate");
-                                String acquisition= pigObject.getString("acquisitionDate");
+                            ArrayList<Medicine> listMedicine = new ArrayList<>();
+                            JSONArray jsonMedicine = response.getJSONArray("medicines");
+                            for(int i = 0; i < jsonMedicine.length(); i++) {
+                                JSONObject medicineObject = jsonMedicine.getJSONObject(i);
+                                short quantity = (short) medicineObject.getInt("quantity");
+                                if(quantity == 0)
+                                    continue;
+                                short id = (short) medicineObject.getInt("id");
+                                String name = medicineObject.getString("name");
+                                String type = medicineObject.getString("type");
 
-                                listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
-                                        health,installation, birth, acquisition));
+                                listMedicine.add(new Medicine(id, name, type, quantity));
                             }
-                            System.out.println("Size: "+listPigs.size());
-                           // medicineFragment.setListPig(listPigs);
-                            //context.inflarFragment(medicineFragment);
+                            System.out.println("Size: "+listMedicine.size());
+                            medicineFragment.setListMedicine(listMedicine);
+                            context.inflarFragment(medicineFragment);
                             progressDialog.dismiss();
 
                         } catch (Exception e) {

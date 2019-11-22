@@ -258,7 +258,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     public void inflarFragment(Fragment fragment){
-
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
     }
 
@@ -351,6 +350,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                         break;
                     case "Pig": pigFragment.getPigAdapter().getFilter().filter(newText);
                         break;
+                    case "Medicine": medicineFragment.getMedicineAdapter().getFilter().filter(newText);
+
 
 
 

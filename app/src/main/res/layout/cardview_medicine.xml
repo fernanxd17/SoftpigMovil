@@ -10,8 +10,6 @@
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
 
-
-
     <LinearLayout android:id="@+id/ll_cardview_medicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,49 +28,86 @@
             android:background="@color/primaryColorTrans"
             android:padding="5dp">
         </TextView>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:orientation="horizontal">
 
             <TextView android:id="@+id/tv_nameMedicine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NombreMedicina"
+                android:text="Nombre:"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/textSize_cardview"
-                android:layout_weight="0.9">
+                android:textSize="@dimen/textSize_cardview">
             </TextView>
 
-            <RelativeLayout
+            <TextView android:id="@+id/tv_valor_nameMedicine"
+                android:layout_toRightOf="@id/tv_nameMedicine"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView android:id="@+id/icon_remove_medicine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/delete"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="0.1">
-                </ImageView>
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:text="Medicina"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview"
+                android:layout_marginLeft="10sp">
+            </TextView>
+
+
+            <ImageView android:id="@+id/icon_remove_medicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete"
+                android:layout_alignParentRight="true">
+            </ImageView>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/tv_typeMedicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ctg: "
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
+
+            <TextView android:id="@+id/tv_valor_typeMedicine"
+                android:layout_marginLeft="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Ctg"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
+
         </LinearLayout>
 
-        <TextView android:id="@+id/tv_typeMedicine"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TipoMedicina"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_cardview">
-        </TextView>
+            android:orientation="horizontal">
 
-        <TextView android:id="@+id/tv_cantidad_medicina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cantidad"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_cardview">
-        </TextView>
+            <TextView android:id="@+id/tv_cantidad_medicina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cantidad"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
+
+            <TextView android:id="@+id/tv_valor_cantidad_medicina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="# Und."
+                android:layout_marginLeft="10sp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_cardview">
+            </TextView>
+        </LinearLayout>
+
+
 
 
     </LinearLayout>
