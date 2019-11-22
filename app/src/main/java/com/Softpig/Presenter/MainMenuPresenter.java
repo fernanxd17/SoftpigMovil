@@ -620,7 +620,6 @@ public class MainMenuPresenter {
                     public void onResponse(JSONObject response) {
 
                         try {
-
                             JSONArray jsonDataEmployee = response.getJSONArray("dashboard");
                             JSONObject adminObject = jsonDataEmployee.getJSONObject(0);
                             short adminNum = (short) adminObject.getInt("administrativos");

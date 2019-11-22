@@ -103,8 +103,12 @@ public class ProfileFragment extends Fragment {
                            Toast.makeText(getContext(), "Debe agregar un numero de horas", Toast.LENGTH_SHORT);
                        }else{
                            ((ProfileActivity)getContext()).addWorkedHours(hoursAdd);
-                           int horas = Integer.parseInt(hoursAdd) * 3450;
-                           tvContract.setText(String.valueOf(horas));
+
+
+                           int salario = Integer.parseInt(hoursAdd) * 3450;
+                           DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+                           String valorFormateado = decimalFormat.format(salario);
+                           ProfileFragment.this.tvSalary.setText("$ "+valorFormateado);
                        }
 
                         alertDialog.dismiss();

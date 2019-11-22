@@ -487,17 +487,7 @@
             android:background="@color/secondaryColor"
             android:layout_gravity="center">
         </Button>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fb_add_tool_employee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="15sp"
-            android:src="@drawable/add"
-            app:backgroundTint="@color/editTextColorWhite">
-
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
+        
     </LinearLayout>
 
 </LinearLayout>

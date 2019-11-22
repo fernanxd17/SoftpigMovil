@@ -305,6 +305,7 @@ public class ProfilePresenter {
             HashMap<String, String> params = new HashMap();
             params.put("person", String.valueOf(idEmployee));
             params.put("article", String.valueOf(idTool));
+            params.put("copies", copias);
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
