@@ -83,7 +83,8 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Medicine medicine: listMedicineFull){
                     if(String.valueOf(medicine.getIdMedicine()).toLowerCase().contains(filterPattern) ||
-                            medicine.getName().toLowerCase().contains(filterPattern)){
+                            medicine.getName().toLowerCase().contains(filterPattern)  ||
+                            medicine.getQuantity() >= Integer.parseInt(filterPattern)){
                         listaFiltrada.add(medicine);
                     }
 
