@@ -122,5 +122,14 @@
     <string name="sincrony">Si</string>
     <string name="dateStart">2019-05-04</string>
     <string name="dateEnd">2019-05-08</string>
+    <string name="idMaleDad">01</string>
+    <string name="idBirth">01</string>
+    <string name="dateBirth">2019/05/04</string>
+    <string name="numLechones">14</string>
+    <string name="numMummy">2</string>
+    <string name="numDead">0</string>
+    <string name="idGestation">01</string>
+    <string name="maleGestation">01</string>
+    <string name="dateStartGestation">2019-05-04</string>
 
 </resources>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:orientation="vertical"
+    style="@style/AppTheme.NoActionBar">
+
+
+    <LinearLayout android:id="@+id/ll_birth_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Id reproductor: " />
+
+        <Spinner android:id="@+id/sp_male"
+            android:layout_marginLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_date_birth"
+        android:layout_below="@id/ll_birth_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de nacimiento:" />
+
+        <EditText android:id="@+id/et_date_birth"
+            android:layout_marginLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="" />
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_babies_number"
+        android:layout_below="@id/ll_date_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero de lechones:" />
+
+        <EditText
+            android:layout_marginLeft="10sp"
+            android:id="@+id/et_babies_number"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad..." />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_mummy_number"
+        android:layout_below="@id/ll_babies_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero de momias:" />
+
+        <EditText
+            android:layout_marginLeft="10sp"
+            android:id="@+id/et_mummy_number"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad..." />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_dead_number"
+        android:layout_below="@id/ll_mummy_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero de muertos:" />
+
+        <EditText
+            android:layout_marginLeft="10sp"
+            android:id="@+id/et_number_dead"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_below="@id/ll_dead_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/bt_cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_radius"
+            android:text="Cancelar">
+        </Button>
+
+        <Button android:id="@+id/bt_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_radius"
+            android:text="Agregar">
+        </Button>
+    </LinearLayout>
+
+
+</RelativeLayout>
