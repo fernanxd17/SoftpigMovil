@@ -8,10 +8,10 @@ public class Heat {
     private short idFemale;
     private String typeMating;
     private boolean sincrony;
-    private Date dateStart;
-    private Date dateEnd;
+    private String dateStart;
+    private String dateEnd;
 
-    public Heat(short idHeat, short idFemale, String typeMating, boolean sincrony, Date dateStart, Date dateEnd) {
+    public Heat(short idHeat, short idFemale, String typeMating, boolean sincrony, String dateStart, String dateEnd) {
         this.idHeat = idHeat;
         this.idFemale = idFemale;
         this.typeMating = typeMating;
@@ -36,11 +36,11 @@ public class Heat {
         return sincrony;
     }
 
-    public Date getDateStart() {
+    public String getDateStart() {
         return dateStart;
     }
 
-    public Date getDateEnd() {
+    public String getDateEnd() {
         return dateEnd;
     }
 }

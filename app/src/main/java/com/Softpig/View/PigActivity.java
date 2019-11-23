@@ -15,12 +15,14 @@ import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.Female;
+import com.Softpig.Model.Heat;
 import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
 import com.Softpig.View.fragment.BirthFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.InfoFemaleFragment;
 import com.Softpig.View.fragment.InfoMaleFragment;
 import com.Softpig.View.fragment.InfoPigFragment;
@@ -40,6 +42,7 @@ public class PigActivity extends AppCompatActivity{
     private InfoMaleFragment infoMaleFragment;
     private InfoFemaleFragment infoFemaleFragment;
     private BirthFragment birthFragment;
+    private HeatFragment heatFragment;
     private PigPresenter pigPresenter;
     private MenuItem searchItem;
     private SearchView searchView;
@@ -67,6 +70,7 @@ public class PigActivity extends AppCompatActivity{
                 break;
         }
 
+        heatFragment = new HeatFragment();
         birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
         inflarFragment(fragment);
@@ -81,6 +85,8 @@ public class PigActivity extends AppCompatActivity{
             case "Female": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).commit();
                 break;
             case "Birth": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
+                break;
+            case "Heat": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, heatFragment).commit();
                 break;
             case "Error": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, new ErrorFragment()).commit();
                 break;
@@ -116,6 +122,9 @@ public class PigActivity extends AppCompatActivity{
         birthFragment.setListBirth(listBirth);
     }
 
+    public void setListHeat(List<Heat> listHeat) {
+        heatFragment.setListHeat(listHeat);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,9 +154,12 @@ public class PigActivity extends AppCompatActivity{
                 switch (fragment){
                     case "Birth": birthFragment.getBirthAdapter().getFilter().filter(newText);
                         break;
+                    case "Heat": heatFragment.getHeatAdapter().getFilter().filter(newText);
                 }
                 return  false;
             }
         });
     }
+
+
 }
