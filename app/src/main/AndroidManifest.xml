@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.fragment.PigActivity"></activity>
-        <activity android:name=".View.ProfileActivity" />
+        <activity
+            android:name=".View.PigActivity">
+        </activity>
+        <activity
+            android:name=".View.ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".View.MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar" />

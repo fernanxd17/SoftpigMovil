@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.Softpig.Model.Male;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.PigActivity;
 
 public class InfoMaleFragment extends Fragment {
 

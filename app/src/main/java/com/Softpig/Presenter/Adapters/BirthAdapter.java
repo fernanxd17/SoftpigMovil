@@ -25,7 +25,8 @@ public class BirthAdapter extends RecyclerView.Adapter<BirthAdapter.ViewHolderBi
     private Context context;
 
     public BirthAdapter(List<Birth> listBirth, Context context) {
-        this.listBirth = new ArrayList<>(listBirth);
+        this.listBirth = listBirth;
+        listBirthFull = new ArrayList<>(listBirth);
         this.context = context;
     }
 
@@ -68,10 +69,9 @@ public class BirthAdapter extends RecyclerView.Adapter<BirthAdapter.ViewHolderBi
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Birth birth: listBirthFull){
                     if(String.valueOf(birth.getIdBirth()).toLowerCase().contains(filterPattern) ||
-                            String.valueOf(birth.getIdFemale()).toLowerCase().contains(filterPattern)){
+                            String.valueOf(birth.getIdMale()).toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(birth);
                     }
-
                 }
             }
 

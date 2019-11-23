@@ -23,7 +23,6 @@ import com.Softpig.View.fragment.FemaleFragment;
 import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.MedicineFragment;
-import com.Softpig.View.fragment.PigActivity;
 import com.Softpig.View.fragment.RaceFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
@@ -84,8 +83,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contaniner_main_menu);
-
-
 
 
         datos = this.getIntent().getExtras();
@@ -222,7 +219,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             case R.id.nav_out:
                 super.onBackPressed();
                 break;
-
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -242,15 +238,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             case "Tools":
                 mainMenuPresenter.inflarToolsFragment(this, toolFragment);
                 break;
-
             case "Installations":
                 mainMenuPresenter.inflarInstallationsFragment(this, installationFragment);
                 break;
-
             case "Heats":
                 mainMenuPresenter.inflarHeatsFragment(this, heatFragment);
                 break;
-
             default:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).commit();
                 break;
@@ -351,13 +344,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                     case "Pig": pigFragment.getPigAdapter().getFilter().filter(newText);
                         break;
                     case "Medicine": medicineFragment.getMedicineAdapter().getFilter().filter(newText);
-
-
-
-
-
                 }
-
                 return  false;
             }
         });
@@ -402,8 +389,4 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         startActivity(i);
     }
 
-
-    public void inflarFragmentPartos() {
-
-    }
 }

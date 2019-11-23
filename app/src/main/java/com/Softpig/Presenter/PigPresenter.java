@@ -4,10 +4,7 @@ import android.app.ProgressDialog;
 import android.widget.Toast;
 
 import com.Softpig.Model.Birth;
-import com.Softpig.Model.Medicine;
-import com.Softpig.View.fragment.BirthFragment;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.PigActivity;
+import com.Softpig.View.PigActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

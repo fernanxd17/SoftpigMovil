@@ -15,6 +15,7 @@ import com.Softpig.Model.Birth;
 import com.Softpig.Presenter.Adapters.BirthAdapter;
 import com.Softpig.Presenter.Adapters.MaleAdapter;
 import com.Softpig.R;
+import com.Softpig.View.PigActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +31,15 @@ public class BirthFragment extends Fragment {
 
     }
 
+    public BirthAdapter getBirthAdapter(){
+        return birthAdapter;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View viewBirth = inflater.inflate(R.layout.fragment_list_birth, container, false);
-
+        ((PigActivity)getActivity()).setSearch("Birth");
         noBirth = viewBirth.findViewById(R.id.tv_nobirth);
         if(listBirth.size() == 0){
             noBirth.setText("No existen registros de partos");

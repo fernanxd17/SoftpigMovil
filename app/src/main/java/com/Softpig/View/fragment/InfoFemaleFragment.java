@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.Softpig.Model.Female;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.PigActivity;
 
 public class InfoFemaleFragment extends Fragment {
 

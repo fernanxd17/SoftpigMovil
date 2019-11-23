@@ -1,8 +1,17 @@
-package com.Softpig.View.fragment;
+package com.Softpig.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.Female;
@@ -10,25 +19,37 @@ import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
+import com.Softpig.View.fragment.BirthFragment;
+import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.InfoFemaleFragment;
+import com.Softpig.View.fragment.InfoMaleFragment;
+import com.Softpig.View.fragment.InfoPigFragment;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-public class PigActivity extends AppCompatActivity {
+public class PigActivity extends AppCompatActivity{
 
     private Bundle bundle;
     private Pig pig;
     private Male male;
     private Female female;
     private String fragment;
+    private MenuInflater menuInflater;
     private InfoPigFragment infoPigFragment;
     private InfoMaleFragment infoMaleFragment;
     private InfoFemaleFragment infoFemaleFragment;
     private BirthFragment birthFragment;
     private PigPresenter pigPresenter;
+    private MenuItem searchItem;
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.container_pig);
+
+
         bundle = this.getIntent().getExtras();
         this.fragment = bundle.getString("fragment");
         switch (fragment){
@@ -72,12 +93,11 @@ public class PigActivity extends AppCompatActivity {
 
 
     public void desasignarMale(short idMale) {
-        System.out.println("des - pig activity");
         pigPresenter.desasignarMale(idMale, this);
     }
+
     public void desasignarFemale(short idFemale) {
         pigPresenter.desasignarFemale(idFemale, this);
-
     }
 
     public void inflarFragmentPartos(short idFemale) {
@@ -97,4 +117,37 @@ public class PigActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.navigation, menu);
+
+        searchItem = menu.findItem(R.id.action_search);
+
+        searchItem.setVisible(false);
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setQueryHint("Buscar...");
+        return true;
+    }
+
+    public void setSearch(final String fragment){
+        searchItem.setVisible(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                switch (fragment){
+                    case "Birth": birthFragment.getBirthAdapter().getFilter().filter(newText);
+                        break;
+                }
+                return  false;
+            }
+        });
+    }
 }
