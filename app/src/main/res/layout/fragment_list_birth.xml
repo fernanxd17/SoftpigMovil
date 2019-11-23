@@ -22,9 +22,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerBirth"
+            android:layout_below="@id/tv_nobirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp" />
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp" />
 
     </RelativeLayout>
 

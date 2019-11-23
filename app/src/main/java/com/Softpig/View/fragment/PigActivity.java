@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.Softpig.Model.Birth;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
+
+import java.util.List;
 
 public class PigActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class PigActivity extends AppCompatActivity {
     private InfoPigFragment infoPigFragment;
     private InfoMaleFragment infoMaleFragment;
     private InfoFemaleFragment infoFemaleFragment;
+    private BirthFragment birthFragment;
     private PigPresenter pigPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,22 +46,23 @@ public class PigActivity extends AppCompatActivity {
                 break;
         }
 
-
+        birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
-        inflarFragment();
+        inflarFragment(fragment);
     }
 
-    private void inflarFragment() {
+    public void inflarFragment(String fragment) {
         switch (fragment){
             case "Pig": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoPigFragment).commit();
-
                 break;
             case "Male": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoMaleFragment).commit();
-
-
                 break;
             case "Female": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).commit();
-            break;
+                break;
+            case "Birth": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
+                break;
+            case "Error": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, new ErrorFragment()).commit();
+                break;
         }
     }
 
@@ -74,4 +79,22 @@ public class PigActivity extends AppCompatActivity {
         pigPresenter.desasignarFemale(idFemale, this);
 
     }
+
+    public void inflarFragmentPartos(short idFemale) {
+        pigPresenter.presentarBirthFragment(this, idFemale);
+    }
+
+    public void inflarFragmentGestacion(short idFemale) {
+        pigPresenter.presentarGestacionFragment(this, idFemale);
+    }
+
+    public void inflarFragmentCelos(short idFemale) {
+        pigPresenter.presentarCelosFragment(this, idFemale);
+    }
+
+    public void setListBirth(List<Birth> listBirth) {
+        birthFragment.setListBirth(listBirth);
+    }
+
+
 }

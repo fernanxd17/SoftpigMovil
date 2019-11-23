@@ -395,7 +395,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     public void iniciarPigActivityFemale(final Female female) {
-        System.out.println("MainMenuActivity dice: sexo: "+female.getSex());
         Intent i = new Intent();
         i.setClass(this, PigActivity.class);
         i.putExtra("Female", female);
@@ -404,4 +403,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
 
+    public void inflarFragmentPartos() {
+
+    }
 }

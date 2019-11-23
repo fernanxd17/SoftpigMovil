@@ -333,7 +333,7 @@
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/ll_tools_dashboard"
+            <LinearLayout android:id="@+id/ll_partos"
                 android:layout_below="@id/ll_installations_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

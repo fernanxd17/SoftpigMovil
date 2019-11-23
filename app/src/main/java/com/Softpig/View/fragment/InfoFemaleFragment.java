@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.Softpig.Model.Female;
@@ -19,7 +20,11 @@ public class InfoFemaleFragment extends Fragment {
 
     private Female female;
     private View viewInfoFemale;
-    private TextView tv_valor_id_female, tv_valor_state_female, tv_valor_installation_female, tv_valor_nulipara_female, tv_valor_gestation_female, tv_valor_peso_female, tv_valor_raza_female, tv_valor_salud_female;
+    private TextView tv_valor_id_female, tv_valor_state_female, tv_valor_installation_female,
+            tv_valor_nulipara_female, tv_valor_gestation_female, tv_valor_peso_female,
+            tv_valor_raza_female, tv_valor_salud_female;
+    private LinearLayout llPartos, llGestacion, llCelos;
+
     private Button bt_desasignar_female;
 
     public InfoFemaleFragment(Female female) {
@@ -40,6 +45,27 @@ public class InfoFemaleFragment extends Fragment {
             }
         });
 
+        llPartos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((PigActivity) getContext()).inflarFragmentPartos(female.getIdFemale());
+            }
+        });
+
+        llGestacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((PigActivity)getContext()).inflarFragmentGestacion(female.getIdFemale());
+            }
+        });
+
+        llCelos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((PigActivity)getContext()).inflarFragmentCelos(female.getIdFemale());
+            }
+        });
+
         return viewInfoFemale;
     }
 
@@ -53,6 +79,9 @@ public class InfoFemaleFragment extends Fragment {
        tv_valor_raza_female = viewInfoFemale.findViewById(R.id.tv_valor_raza_female);
        tv_valor_salud_female = viewInfoFemale.findViewById(R.id.tv_valor_salud_female);
        bt_desasignar_female = viewInfoFemale.findViewById(R.id.bt_desasignar_female);
+       llPartos = viewInfoFemale.findViewById(R.id.ll_partos);
+       llGestacion = viewInfoFemale.findViewById(R.id.ll_gestation);
+       llCelos = viewInfoFemale.findViewById(R.id.ll_heats_female);
     }
 
     private void modificarCampos() {

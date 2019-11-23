@@ -7,12 +7,12 @@ public class Birth {
     private short idBirth;
     private short idFemale;
     private short idMale;
-    private Date dataBirth;
+    private String dataBirth;
     private short noBabies;
     private short noMummy;
     private short noDead;
 
-    public Birth(short idBirth, short idFemale, short idMale, Date dataBirth, short noBabies, short noMummy, short noDead) {
+    public Birth(short idBirth, short idFemale, short idMale, String dataBirth, short noBabies, short noMummy, short noDead) {
         this.idBirth = idBirth;
         this.idFemale = idFemale;
         this.idMale = idMale;
@@ -34,7 +34,7 @@ public class Birth {
         return idMale;
     }
 
-    public Date getDataBirth() {
+    public String getDataBirth() {
         return dataBirth;
     }
 
