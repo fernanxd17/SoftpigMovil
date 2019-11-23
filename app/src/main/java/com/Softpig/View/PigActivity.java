@@ -17,11 +17,13 @@ import com.Softpig.Model.Birth;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.PeriodGestation;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
 import com.Softpig.View.fragment.BirthFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.GestationFragment;
 import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.InfoFemaleFragment;
 import com.Softpig.View.fragment.InfoMaleFragment;
@@ -44,6 +46,7 @@ public class PigActivity extends AppCompatActivity{
     private BirthFragment birthFragment;
     private HeatFragment heatFragment;
     private PigPresenter pigPresenter;
+    private GestationFragment gestationFragment;
     private MenuItem searchItem;
     private SearchView searchView;
 
@@ -71,6 +74,7 @@ public class PigActivity extends AppCompatActivity{
         }
 
         heatFragment = new HeatFragment();
+        gestationFragment = new GestationFragment();
         birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
         inflarFragment(fragment);
@@ -87,6 +91,8 @@ public class PigActivity extends AppCompatActivity{
             case "Birth": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
                 break;
             case "Heat": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, heatFragment).commit();
+                break;
+            case "Gestation": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, gestationFragment).commit();
                 break;
             case "Error": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, new ErrorFragment()).commit();
                 break;
@@ -126,6 +132,10 @@ public class PigActivity extends AppCompatActivity{
         heatFragment.setListHeat(listHeat);
     }
 
+    public void setListGestation(List<PeriodGestation> listGestation) {
+        gestationFragment.setListGestation(listGestation);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menuInflater = getMenuInflater();
@@ -155,11 +165,15 @@ public class PigActivity extends AppCompatActivity{
                     case "Birth": birthFragment.getBirthAdapter().getFilter().filter(newText);
                         break;
                     case "Heat": heatFragment.getHeatAdapter().getFilter().filter(newText);
+                        break;
+                    case "Gestation": gestationFragment.getGestationAdapter().getFilter().filter(newText);
+                        break;
                 }
                 return  false;
             }
         });
     }
+
 
 
 }

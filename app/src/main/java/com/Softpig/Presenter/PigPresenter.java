@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.Heat;
+import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -240,7 +241,57 @@ public class PigPresenter {
     }
 
     public void presentarGestacionFragment(final PigActivity context, final short idFemale) {
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Cargando Celos...");
+        progressDialog.show();
 
+        String url = URLAPI+"period_gestation_list/"+ idFemale;
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            List<PeriodGestation> listGestation = new ArrayList<>();
+                            JSONArray jsonGestation = response.getJSONArray("gestations");
+                            for(int i = 0; i < jsonGestation.length(); i++) {
+                                JSONObject gestationObject = jsonGestation.getJSONObject(i);
+                                short idGestation = (short) gestationObject.getInt("id");
+                                short idMale = (short) gestationObject.getInt("male");
+                                String dateStart = gestationObject.getString("date_start");
+
+                                listGestation.add(new PeriodGestation(idGestation, idFemale, idMale, dateStart));
+                            }
+                            context.setListGestation(listGestation);
+                            context.inflarFragment("Gestation");
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment("Error");
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment("Error");
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
     }
 
     public void presentarCelosFragment(final PigActivity context, final short idFemale) {

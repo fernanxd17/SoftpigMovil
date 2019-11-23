@@ -7,9 +7,9 @@ public class PeriodGestation {
     private short idPeriodGestation;
     private short idFemale;
     private short idMale;
-    private Date dateStart;
+    private String dateStart;
 
-    public PeriodGestation(short idPeriodGestation, short idFemale, short idMale, Date dateStart) {
+    public PeriodGestation(short idPeriodGestation, short idFemale, short idMale, String dateStart) {
         this.idPeriodGestation = idPeriodGestation;
         this.idFemale = idFemale;
         this.idMale = idMale;
@@ -28,7 +28,7 @@ public class PeriodGestation {
         return idMale;
     }
 
-    public Date getDateStart() {
+    public String getDateStart() {
         return dateStart;
     }
 }

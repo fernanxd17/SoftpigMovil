@@ -31,9 +31,7 @@ public class BirthFragment extends Fragment {
 
     }
 
-    public BirthAdapter getBirthAdapter(){
-        return birthAdapter;
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,4 +55,7 @@ public class BirthFragment extends Fragment {
         this.listBirth = new ArrayList<>(listBirth);
     }
 
+    public BirthAdapter getBirthAdapter(){
+        return birthAdapter;
+    }
 }
