@@ -3,6 +3,7 @@ package com.Softpig.View;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
@@ -17,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.Softpig.View.fragment.AboutFragment;
+import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DictionaryFragment;
 import com.Softpig.View.fragment.ErrorFragment;
 import com.Softpig.View.fragment.FemaleFragment;
@@ -64,6 +66,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
     private MedicineFragment medicineFragment;
+    private AlarmFragment alarmFragment;
     private HeatFragment heatFragment;
     private BottomNavigationView bottomNavigationView;
     private DrawerLayout drawer;
@@ -114,6 +117,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
 
         if(savedInstanceState == null){
+            alarmFragment = new AlarmFragment();
             mainMenuPresenter = new MainMenuPresenter();
             dashBoardFragment = new DashBoardFragment();
             employeeFragment = new EmployeeFragment();
@@ -163,9 +167,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             mainMenuPresenter.inflarMedicineFragment(MainMenuActivity.this, medicineFragment);
                             break;
                         case R.id.ic_alert:
-                            notificacion.cancel();
-                            notificacion = notificacion.makeText(MainMenuActivity.this, "Función aún no disponible...", Toast.LENGTH_SHORT);
-                            notificacion.show();
+                            searchItem.setVisible(true);
+                            inflarFragment(alarmFragment);
 
                             break;
                         default:
@@ -389,4 +392,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         startActivity(i);
     }
 
+    public void eliminarExistenciaMedicina(short idMedicine) {
+        mainMenuPresenter.eliminarExistenciasMedicina(this, idMedicine);
+    }
 }

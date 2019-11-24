@@ -14,6 +14,7 @@ import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
 import com.Softpig.View.fragment.ErrorFragment;
@@ -924,6 +925,51 @@ public class MainMenuPresenter {
 
 
     public void agregarArticulo(String nameTool, short idType, String copias) {
+
+    }
+
+    public void eliminarExistenciasMedicina(final MainMenuActivity context, final short idMedicine) {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Eliminando existencias...");
+        progressDialog.show();
+        try{
+
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.PUT,
+                    "https://softpig.herokuapp.com/api/remove_medicine/"+ idMedicine,
+                    null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                int respo = response.getInt("status");
+                                Toast.makeText(context, "Existencias eliminadas", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
 
     }
 

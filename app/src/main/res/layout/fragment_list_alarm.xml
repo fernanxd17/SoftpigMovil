@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_dash_board"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.fragment.AlarmFragment">
+    android:background="@drawable/dashboard"
+    tools:context=".View.fragment.DashBoardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_gravity="center"
+        android:id="@+id/ll_dashboard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Pertenece a la cuarta iteraicón" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="0.8">
+
+            <LinearLayout android:id="@+id/ll_alarm_person"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="15dp"
+                android:background="#90E4E2E2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALARMAS PERSONALES"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:layout_gravity="left">
+                    </TextView>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/ll_alarm_birth"
+                android:layout_marginTop="25dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="15dp"
+                android:background="#90E4E2E2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ALARMAS DE PARTOS"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_gravity="left">
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/ll_alarm_gestation"
+                android:layout_marginTop="25dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="15dp"
+                android:background="#90E4E2E2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ALARMAS DE PERIODOS DE GESTACIÓN"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_gravity="left">
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/ll_alarm_heat"
+                android:layout_marginTop="25dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="15dp"
+                android:background="#90E4E2E2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ALARMAS DE PERIODOS DE CELOS"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_gravity="left">
+                </TextView>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

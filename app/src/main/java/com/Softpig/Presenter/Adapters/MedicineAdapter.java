@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.Softpig.Model.Medicine;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.ivEliminarMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Implementar metodo", Toast.LENGTH_SHORT).show();
+                ((MainMenuActivity)context).eliminarExistenciaMedicina(medicine.getIdMedicine());
             }
         });
 

@@ -16,6 +16,7 @@ import com.Softpig.Model.PeriodGestation;
 import com.Softpig.Presenter.Adapters.BirthAdapter;
 import com.Softpig.Presenter.Adapters.GestationAdapter;
 import com.Softpig.R;
+import com.Softpig.View.PigActivity;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class GestationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewGestation =  inflater.inflate(R.layout.fragment_list_gestation, container, false);
+        ((PigActivity)getActivity()).setSearch("Gestation");
         noGestation = viewGestation.findViewById(R.id.tv_noGestationPeriod);
 
         if(listPeriodGestation.isEmpty()){
