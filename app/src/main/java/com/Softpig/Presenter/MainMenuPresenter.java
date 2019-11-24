@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
@@ -974,4 +975,61 @@ public class MainMenuPresenter {
     }
 
 
+    public void inflarAlarmFragment(final MainMenuActivity context, final AlarmFragment alarmFragment, final short idEmployee) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        String url = URLAPI+"alarm_list/"+ idEmployee;
+       if(idEmployee < 10)
+           url = URLAPI+"alarm_list/0"+ idEmployee;
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Alarm> listAlarms = new ArrayList<>();
+                            JSONArray jsonAlarm = response.getJSONArray("alarms");
+                            for(int i = 0; i < jsonAlarm.length(); i++) {
+                                JSONObject alarmObject = jsonAlarm.getJSONObject(i);
+                                short idAlarm = (short) alarmObject.getInt("id");
+                                String date = alarmObject.getString("date");
+                                String hour = alarmObject.getString("hour");
+                                String issue = alarmObject.getString("issue");
+
+                                listAlarms.add(new Alarm(idAlarm, idEmployee, date, hour, issue));
+                            }
+                            alarmFragment.setListAlarm(listAlarms);
+                            context.inflarFragment(alarmFragment);
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
 }

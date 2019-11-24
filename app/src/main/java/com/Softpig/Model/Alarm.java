@@ -6,14 +6,16 @@ public class Alarm {
 
     private short idAlarm;
     private short idEmployee;
-    private Date dateStart;
+    private String date;
+    private String hour;
     private String issue;
 
-    public Alarm(short idAlarm, short idEmployee, Date dateStart, String issue) {
+    public Alarm(short idAlarm, short idEmployee, String date, String hour,  String issue) {
         this.idAlarm = idAlarm;
         this.idEmployee = idEmployee;
-        this.dateStart = dateStart;
+        this.date = date;
         this.issue = issue;
+        this.hour = hour;
     }
 
     public short getIdAlarm() {
@@ -24,8 +26,12 @@ public class Alarm {
         return idEmployee;
     }
 
-    public Date getDateStart() {
-        return dateStart;
+    public String getDate() {
+        return date;
+    }
+
+    public String getHour() {
+        return hour;
     }
 
     public String getIssue() {

@@ -106,6 +106,5 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
         }
     }
 
-    public class ViewHolderMedicine {
-    }
+
 }

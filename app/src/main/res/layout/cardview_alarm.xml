@@ -16,19 +16,6 @@
         android:orientation="vertical"
         android:paddingVertical="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/tv_tipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:text="Propia"
-                android:textSize="15dp"/>
 
             <Switch android:id="@+id/sw_activado"
                 android:soundEffectsEnabled="true"
@@ -36,7 +23,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/tv_asunto"
@@ -59,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha: "/>
 
-            <TextView
+            <TextView android:id="@+id/tv_valor_fecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tv_fecha"
@@ -79,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hora: "/>
 
-            <TextView
+            <TextView android:id="@+id/tv_valor_hora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tv_hora"

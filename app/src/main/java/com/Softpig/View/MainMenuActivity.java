@@ -168,7 +168,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_alert:
                             searchItem.setVisible(true);
-                            inflarFragment(alarmFragment);
+                            mainMenuPresenter.inflarAlarmFragment(MainMenuActivity.this, alarmFragment, user.getIdEmployee());
 
                             break;
                         default:
@@ -348,6 +348,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                         break;
                     case "Medicine": medicineFragment.getMedicineAdapter().getFilter().filter(newText);
                         break;
+                    case "Alarm": alarmFragment.getAlarmAdapter().getFilter().filter(newText);
                 }
                 return  false;
             }
