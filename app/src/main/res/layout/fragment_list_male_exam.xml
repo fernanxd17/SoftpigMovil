@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/primaryColor">
-    <TextView android:id="@+id/tv_noAlarms"
+    android:background="@drawable/male_modificado">
+    <TextView
+        android:id="@+id/tv_noExamMale"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,8 +14,9 @@
         android:textColor="#fff"
         android:layout_gravity="center"/>
 
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerAlarms"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
+        android:id="@+id/recyclerListExamMale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

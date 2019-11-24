@@ -347,6 +347,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                     case "Pig": pigFragment.getPigAdapter().getFilter().filter(newText);
                         break;
                     case "Medicine": medicineFragment.getMedicineAdapter().getFilter().filter(newText);
+                        break;
                 }
                 return  false;
             }

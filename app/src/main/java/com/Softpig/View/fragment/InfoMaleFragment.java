@@ -18,6 +18,7 @@ import com.Softpig.View.PigActivity;
 public class InfoMaleFragment extends Fragment {
 
     private TextView idMale, stateMale, installationMale, razaMale, saludMale, pesoMale, fisicaMale;
+    private TextView tvVerExamanes;
     private Button btDesasignarMale;
     private View viewInfoMale;
     private Male male;
@@ -40,6 +41,13 @@ public class InfoMaleFragment extends Fragment {
             }
         });
 
+        tvVerExamanes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((PigActivity)getContext()).verExamanesMale(male.getIdMale());
+            }
+        });
+
         return viewInfoMale;
     }
 
@@ -52,7 +60,7 @@ public class InfoMaleFragment extends Fragment {
         pesoMale = viewInfoMale.findViewById(R.id.tv_valor_peso_male);
         fisicaMale = viewInfoMale.findViewById(R.id.tv_valor_fisica_male);
         btDesasignarMale = viewInfoMale.findViewById(R.id.bt_desasignar_male);
-
+        tvVerExamanes = viewInfoMale.findViewById(R.id.tv_ver_examanes);
     }
 
 

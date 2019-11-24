@@ -94,6 +94,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sano"/>
+
+            <TextView android:id="@+id/tv_ver_examanes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver examenes"/>
         </LinearLayout>
 
         <Button android:id="@+id/bt_desasignar_male"

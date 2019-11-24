@@ -1,11 +1,7 @@
 package com.Softpig.View;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +10,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.Model.Birth;
+import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.Male;
@@ -23,12 +20,13 @@ import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
 import com.Softpig.View.fragment.BirthFragment;
 import com.Softpig.View.fragment.ErrorFragment;
+import com.Softpig.View.fragment.ExamMaleListFragment;
 import com.Softpig.View.fragment.GestationFragment;
 import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.InfoFemaleFragment;
 import com.Softpig.View.fragment.InfoMaleFragment;
 import com.Softpig.View.fragment.InfoPigFragment;
-import com.google.android.material.navigation.NavigationView;
+import com.Softpig.View.fragment.MaleExamFragment;
 
 import java.util.List;
 
@@ -40,12 +38,14 @@ public class PigActivity extends AppCompatActivity{
     private Female female;
     private String fragment;
     private MenuInflater menuInflater;
+    private MaleExamFragment maleExamFragment;
     private InfoPigFragment infoPigFragment;
     private InfoMaleFragment infoMaleFragment;
     private InfoFemaleFragment infoFemaleFragment;
     private BirthFragment birthFragment;
     private HeatFragment heatFragment;
     private PigPresenter pigPresenter;
+    private ExamMaleListFragment examMaleListFragment;
     private GestationFragment gestationFragment;
     private MenuItem searchItem;
     private SearchView searchView;
@@ -77,6 +77,8 @@ public class PigActivity extends AppCompatActivity{
         gestationFragment = new GestationFragment();
         birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
+        maleExamFragment = new MaleExamFragment();
+        examMaleListFragment = new ExamMaleListFragment();
         inflarFragment(fragment);
     }
 
@@ -93,6 +95,10 @@ public class PigActivity extends AppCompatActivity{
             case "Heat": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, heatFragment).commit();
                 break;
             case "Gestation": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, gestationFragment).commit();
+                break;
+            case "ExamMaleList": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, examMaleListFragment).commit();
+                break;
+            case "MaleExam": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, maleExamFragment).commit();
                 break;
             case "Error": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, new ErrorFragment()).commit();
                 break;
@@ -136,6 +142,14 @@ public class PigActivity extends AppCompatActivity{
         gestationFragment.setListGestation(listGestation);
     }
 
+    public void setListExamMale(List<ExamMale> listExamMale) {
+        examMaleListFragment.setListExamMale(listExamMale);
+    }
+
+    public void verExamanesMale(short idMale) {
+        pigPresenter.presentarExamanesFragment(this, idMale);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menuInflater = getMenuInflater();
@@ -168,6 +182,7 @@ public class PigActivity extends AppCompatActivity{
                         break;
                     case "Gestation": gestationFragment.getGestationAdapter().getFilter().filter(newText);
                         break;
+                    case "MaleExam": examMaleListFragment.getMaleExamAdapter().getFilter().filter(newText);
                 }
                 return  false;
             }
@@ -175,5 +190,8 @@ public class PigActivity extends AppCompatActivity{
     }
 
 
-
+    public void inflarMaleExam(ExamMale examMale) {
+        maleExamFragment.setMaleExamFragment(examMale);
+        inflarFragment("MaleExam");
+    }
 }

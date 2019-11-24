@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.widget.Toast;
 
 import com.Softpig.Model.Birth;
+import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
@@ -326,6 +327,64 @@ public class PigPresenter {
                             }
                             context.setListHeat(listHeat);
                             context.inflarFragment("Heat");
+                            progressDialog.dismiss();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment("Error");
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment("Error");
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
+
+    public void presentarExamanesFragment(final PigActivity context, final  short idMale) {
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Cargando Examenes...");
+        progressDialog.show();
+
+
+        String url = URLAPI+"male_exam_list/"+ idMale;
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            List<ExamMale> listExamMale = new ArrayList<>();
+                            JSONArray jsonExamMale = response.getJSONArray("exams");
+                            for(int i = 0; i < jsonExamMale.length(); i++) {
+                                JSONObject examMaleObject = jsonExamMale.getJSONObject(i);
+                                short idExam = (short) examMaleObject.getInt("id");
+                                String date = examMaleObject.getString("date");
+                                String name = examMaleObject.getString("name");
+                                String result = examMaleObject.getString("result");
+                                String descripcion = examMaleObject.getString("description");
+
+                                listExamMale.add(new ExamMale(idMale, idExam, date, name, descripcion, result));
+                            }
+                            context.setListExamMale(listExamMale);
+                            context.inflarFragment("ExamMaleList");
                             progressDialog.dismiss();
 
                         } catch (Exception e) {
