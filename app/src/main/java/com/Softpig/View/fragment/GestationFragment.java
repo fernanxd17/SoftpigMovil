@@ -46,7 +46,7 @@ public class GestationFragment extends Fragment {
             noGestation.setText("No existen registros de Periodos de Gestación");
         }else{
             gestationAdapter = new GestationAdapter(listPeriodGestation, getContext());
-            recyclerGestation = viewGestation.findViewById(R.id.recyclerBirth);
+            recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
             recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerGestation.setAdapter(gestationAdapter);
         }
