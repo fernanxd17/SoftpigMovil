@@ -32,33 +32,41 @@
             <TextView android:id="@+id/tv_id_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID:"/>
+                android:text="ID:"
+                android:textSize="18dp"/>
+
             <TextView android:id="@+id/tv_state_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estado:"/>
+                android:text="Estado:"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_installation_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Instalación:"/>
+                android:text="Instalación:"
+                android:textSize="18dp"/>
 
             <TextView android:id="@+id/tv_peso_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Peso:"/>
+                android:text="Peso:"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_raza_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Raza:"/>
+                android:text="Raza:"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_fisica_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Conformación Fsc.:"/>
+                android:text="Conformación Fsc.:"
+                android:textSize="18dp"/>
 
             <TextView android:id="@+id/tv_salud_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Salud:"/>
+                android:text="Salud:"
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/ll_valores_male"
@@ -72,36 +80,44 @@
             <TextView android:id="@+id/tv_valor_id_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01"/>
+                android:text="01"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_valor_state_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vivo"/>
+                android:text="Vivo"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_valor_installation_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre (IDInst)"/>
+                android:text="Nombre (IDInst)"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_valor_peso_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="48 Kg"/>
+                android:text="48 Kg"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_valor_raza_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Duroc"/>
+                android:text="Duroc"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_valor_fisica_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sano"/>
+                android:text="Sano"
+                android:textSize="18dp"/>
             <TextView android:id="@+id/tv_valor_salud_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sano"/>
+                android:text="Sano"
+                android:textSize="18dp"/>
 
             <TextView android:id="@+id/tv_ver_examanes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ver examenes"/>
+                android:text="Ver examenes"
+                android:textSize="18dp"/>
         </LinearLayout>
 
     </RelativeLayout>
