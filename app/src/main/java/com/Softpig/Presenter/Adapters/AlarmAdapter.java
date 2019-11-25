@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Male;
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,12 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolderAl
         holder.tvAsunto.setText(alarm.getIssue());
         holder.tvFecha.setText(alarm.getDate());
         holder.tvHora.setText(alarm.getHour());
+        holder.ivRemoveAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainMenuActivity)context).eliminarAlarma();
+            }
+        });
     }
 
     @Override
@@ -90,12 +98,14 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolderAl
     public class ViewHolderAlarm extends RecyclerView.ViewHolder {
 
         private TextView tvAsunto, tvFecha, tvHora;
+        private ImageView ivRemoveAlarm;
 
         public ViewHolderAlarm(@NonNull View itemView) {
             super(itemView);
             tvAsunto = itemView.findViewById(R.id.tv_asunto);
             tvFecha = itemView.findViewById(R.id.tv_valor_fecha);
             tvHora = itemView.findViewById(R.id.tv_valor_hora);
+            ivRemoveAlarm = itemView.findViewById(R.id.iv_remove_alarm);
          }
 
         }

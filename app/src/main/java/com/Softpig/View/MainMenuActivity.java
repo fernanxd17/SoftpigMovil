@@ -397,4 +397,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     public void eliminarExistenciaMedicina(short idMedicine) {
         mainMenuPresenter.eliminarExistenciasMedicina(this, idMedicine);
     }
+
+    public void eliminarAlarma() {
+        mainMenuPresenter.eliminarAlarmPerson(this, user.getIdEmployee());
+    }
 }

@@ -127,7 +127,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"/>
 
-
                     <ImageView
                         android:layout_below="@id/tv_typearticle"
                         android:layout_alignParentRight="true"
