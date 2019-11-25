@@ -49,6 +49,7 @@ public class MainMenuPresenter {
     private static boolean toolsUpdate;
     private MaleFragment maleFragment;
     private ArrayList<Pig> listPig;
+    private String [] listIdMale;
     private HashMap<String, Short> hmTypeTool;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
@@ -498,19 +499,19 @@ public class MainMenuPresenter {
                         try {
                             ArrayList<Male> listMale = new ArrayList<>();
                             JSONArray jsonMales = response.getJSONArray("males");
-
+                            listIdMale = new String [jsonMales.length()];
                             for(int i = 0; i < jsonMales.length(); i++) {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
                                 String conformation = maleObject.getString("conformation");
                                 String stateMale = maleObject.getString("state");
                                 Pig pig = buscarPig(id);
-
+                                listIdMale[i] = String.valueOf(id);
                                 listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
 
-
+                            maleFragment.setListIdMale(listIdMale);
                             maleFragment.setListMale(listMale);
                             context.inflarFragment(maleFragment);
                             progressDialog.dismiss();

@@ -18,6 +18,7 @@ import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MaleFragment extends Fragment {
 
@@ -27,6 +28,7 @@ public class MaleFragment extends Fragment {
     private  View viewMale;
     private  TextView tv_noMales;
     private Button bt_desasignar_male;
+    private String [] listIdMale;
     private Male male;
 
     public MaleFragment(ArrayList<Male> listMales) {
@@ -58,9 +60,14 @@ public class MaleFragment extends Fragment {
         return viewMale;
     }
 
+
+
+
+    public void setListIdMale(String [] listIdMale) {
+        this.listIdMale = listIdMale;
+    }
+
     public void setListMale(ArrayList<Male> listMale) {
         this.listMales = listMale;
     }
-
-
 }

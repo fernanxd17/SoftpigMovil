@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Id reproductor: " />
 
-        <Spinner android:id="@+id/sp_id_reproductor"
+        <Spinner android:id="@+id/sp_id_male"
             android:layout_marginLeft="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

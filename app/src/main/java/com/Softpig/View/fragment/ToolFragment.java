@@ -97,6 +97,7 @@ public class ToolFragment extends Fragment {
                     llenarListName();
                     adapter = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_spinner_item, listNameTool);
+
                     tvNameEmployee = viewDialog.findViewById(R.id.et_name_employee);
                     String nameEmployee = ((ProfileActivity)getContext()).getEmployee().getFirstName() + " "
                                             + ((ProfileActivity)getContext()).getEmployee().getLastName();

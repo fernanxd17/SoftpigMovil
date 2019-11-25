@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Softpig.Model.Birth;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.R;
 
@@ -43,8 +42,6 @@ public class GestationAdapter extends  RecyclerView.Adapter<GestationAdapter.Vie
         holder.tvIdGestation.setText(String.valueOf(gestation.getIdPeriodGestation()));
         holder.tvMaleGestation.setText(String.valueOf(gestation.getIdMale()));
         holder.tvDateStartGestation.setText(gestation.getDateStart());
-
-
     }
 
     @Override
