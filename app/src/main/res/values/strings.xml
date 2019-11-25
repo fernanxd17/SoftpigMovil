@@ -131,5 +131,6 @@
     <string name="idGestation">01</string>
     <string name="maleGestation">01</string>
     <string name="dateStartGestation">2019-05-04</string>
+    <string name="date_format">dd/mm/yyyy</string>
 
 </resources>
