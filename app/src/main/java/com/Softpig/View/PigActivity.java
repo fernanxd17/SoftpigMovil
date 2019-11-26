@@ -74,7 +74,7 @@ public class PigActivity extends AppCompatActivity{
         }
 
         heatFragment = new HeatFragment();
-        gestationFragment = new GestationFragment();
+        gestationFragment = new GestationFragment((String[]) bundle.get("listIdMale"));
         birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
         maleExamFragment = new MaleExamFragment();
