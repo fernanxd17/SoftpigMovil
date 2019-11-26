@@ -5,7 +5,7 @@
     android:id="@+id/cardview_medicine"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    cardview:cardBackgroundColor="#90E4E2E2"
+    cardview:cardBackgroundColor="#60E4E2E2"
     cardview:cardCornerRadius="@dimen/cornerradius_cardview"
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
@@ -56,7 +56,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/delete"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentRight="true"
+                android:paddingRight="40dp">
             </ImageView>
         </RelativeLayout>
 
@@ -68,7 +69,7 @@
             <TextView android:id="@+id/tv_typeMedicine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ctg: "
+                android:text="Categoria: "
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>
@@ -92,7 +93,7 @@
             <TextView android:id="@+id/tv_cantidad_medicina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cantidad"
+                android:text="Cantidad: "
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_cardview">
             </TextView>

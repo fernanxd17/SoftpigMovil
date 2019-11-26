@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/primaryColor">
+    android:background="@drawable/medicine_fragment">
     <TextView
         android:id="@+id/tv_noMedicine"
         android:layout_marginTop="10dp"
