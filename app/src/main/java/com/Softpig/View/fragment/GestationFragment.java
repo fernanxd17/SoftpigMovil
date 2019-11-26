@@ -1,6 +1,7 @@
 package com.Softpig.View.fragment;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -14,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,8 +28,7 @@ import com.Softpig.View.PigActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -39,13 +42,26 @@ public class GestationFragment extends Fragment {
     private ArrayAdapter<String> adapterSpinnerGestation;
     private Spinner spIdMale;
     private Button btCancelar, btAgregar;
+    private ImageButton ibFechaGestacion;
+    private EditText etFechaGestacion;
     private String idMale;
     private List<String> listIdMale;
+    private static final String CERO = "0";
+    private static final String BARRA = "/";
+
+    //Calendario para obtener fecha & hora
+    public final Calendar c = Calendar.getInstance();
+
+    //Variables para obtener la fecha
+    final int mes = c.get(Calendar.MONTH);
+    final int dia = c.get(Calendar.DAY_OF_MONTH);
+    final int anio = c.get(Calendar.YEAR);
 
     public GestationFragment(String [] listIdMale) {
-        idMale = "";
-        this.listIdMale = new ArrayList<>();
+        this.listIdMale = new ArrayList<String>();
         llenarListaId(listIdMale);
+        idMale = "";
+
     }
 
     private void llenarListaId(String[] listIdMale) {
@@ -102,6 +118,34 @@ public class GestationFragment extends Fragment {
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) { }
+                });
+
+
+                etFechaGestacion = viewDialog.findViewById(R.id.et_mostrar_fecha);
+                ibFechaGestacion = viewDialog.findViewById(R.id.ib_obtener_fecha);
+                ibFechaGestacion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog recogerFecha = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                                final int mesActual = month + 1;
+                                //Formateo el día obtenido: antepone el 0 si son menores de 10
+                                String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                                //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                                //Muestro la fecha con el formato deseado
+                                etFechaGestacion.setText(year + BARRA + diaFormateado + BARRA + mesFormateado);
+                            }
+                            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+                            /**
+                             *También puede cargar los valores que usted desee
+                             */
+                        },anio, mes, dia);
+                        //Muestro el widget
+                        recogerFecha.show();
+                    }
                 });
 
                 alert.setView(viewDialog);

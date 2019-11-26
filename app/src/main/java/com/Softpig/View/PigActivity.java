@@ -69,12 +69,13 @@ public class PigActivity extends AppCompatActivity{
                 break;
             case "Female": 
                 this.female = (Female)bundle.get("Female");
-                this.infoFemaleFragment = new InfoFemaleFragment(female);
+                String [] listIdMale = (String[]) bundle.get("listIdMale");
+                this.infoFemaleFragment = new InfoFemaleFragment(female, listIdMale);
                 break;
         }
 
         heatFragment = new HeatFragment();
-        gestationFragment = new GestationFragment((String[]) bundle.get("listIdMale"));
+
         birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
         maleExamFragment = new MaleExamFragment();
@@ -88,7 +89,9 @@ public class PigActivity extends AppCompatActivity{
                 break;
             case "Male": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoMaleFragment).commit();
                 break;
-            case "Female": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).commit();
+            case "Female":
+                gestationFragment = new GestationFragment((String [])bundle.get("listIdMale"));
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).commit();
                 break;
             case "Birth": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
                 break;

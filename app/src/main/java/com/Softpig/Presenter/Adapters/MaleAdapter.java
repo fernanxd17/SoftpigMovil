@@ -78,7 +78,6 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
 
                 }
             }
-
             FilterResults filterResults = new FilterResults();
             filterResults.values = listaFiltrada;
             return filterResults;
@@ -105,6 +104,4 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
             llCardviewMale = itemView.findViewById(R.id.ll_cardview_male);
         }
     }
-
-
 }

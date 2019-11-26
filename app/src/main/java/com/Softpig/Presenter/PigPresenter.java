@@ -26,6 +26,7 @@ import java.util.List;
 public class PigPresenter {
 
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
+    private String [] listIdMale;
 
     public PigPresenter (){ }
 
@@ -88,8 +89,8 @@ public class PigPresenter {
         progressDialog.setMessage("Des-asignando reporductora...");
 
         progressDialog.show();
-
         RequestQueue queue = Volley.newRequestQueue(context);
+
         try{
 
             HashMap<String, String> params = new HashMap();
@@ -247,6 +248,8 @@ public class PigPresenter {
         progressDialog.show();
 
         String url = URLAPI+"period_gestation_list/"+ idFemale;
+
+
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
