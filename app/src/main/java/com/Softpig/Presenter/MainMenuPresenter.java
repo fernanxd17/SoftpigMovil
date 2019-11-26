@@ -3,6 +3,7 @@ package com.Softpig.Presenter;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.Softpig.Model.Alarm;
@@ -15,6 +16,7 @@ import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.MainMenuActivity;
+import com.Softpig.View.PigActivity;
 import com.Softpig.View.fragment.AlarmFragment;
 import com.Softpig.View.fragment.DashBoardFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
@@ -49,14 +51,16 @@ public class MainMenuPresenter {
     private static boolean toolsUpdate;
     private MaleFragment maleFragment;
     private ArrayList<Pig> listPig;
-    private String [] listIdMale;
     private HashMap<String, Short> hmTypeTool;
+    private String [] listIdMale;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
     public MainMenuPresenter(){
         toolsUpdate = false;
     }
+
+
 
     public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
 
@@ -417,12 +421,6 @@ public class MainMenuPresenter {
             traerDatosPorcinos(context);
         }
 
-        if(listIdMale == null){
-            inflarMalesFragment(context, null, false);
-        }
-
-        System.out.println("\n CONTINUA..");
-
         String url = URLAPI + "female_list";
 
         JsonObjectRequest json = new JsonObjectRequest(
@@ -449,7 +447,8 @@ public class MainMenuPresenter {
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
 
                             }
-                            femaleFragment.setListIdMale(listIdMale);
+
+
                             femaleFragment.setListFemale(listFemales);
                             context.inflarFragment(femaleFragment);
                             progressDialog.dismiss();
@@ -504,11 +503,9 @@ public class MainMenuPresenter {
                         try {
                             ArrayList<Male> listMale = new ArrayList<>();
                             JSONArray jsonMales = response.getJSONArray("males");
-                            listIdMale = new String [jsonMales.length()];
                             for(int i = 0; i < jsonMales.length(); i++) {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
-                                listIdMale[i] = String.valueOf(id);
                                 String conformation = maleObject.getString("conformation");
                                 String stateMale = maleObject.getString("state");
                                 Pig pig = buscarPig(id);
@@ -521,6 +518,7 @@ public class MainMenuPresenter {
                                 maleFragment.setListMale(listMale);
                                 context.inflarFragment(maleFragment);
                             }
+
                             progressDialog.dismiss();
 
                         } catch (Exception e) {
@@ -836,11 +834,6 @@ public class MainMenuPresenter {
                                 MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
-                            System.out.println("Listando porcinos");
-                            for(Pig pig : MainMenuPresenter.this.listPig){
-                                System.out.println("id: " + pig.getIdPig());
-                            }
-
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -1089,6 +1082,67 @@ public class MainMenuPresenter {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
+
+    }
+
+    public boolean iniciarPigActivityFemale(final MainMenuActivity context,final  Female female) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+
+
+        String url = URLAPI + "male_list";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            JSONArray jsonMales = response.getJSONArray("males");
+                            MainMenuPresenter.this.listIdMale = new String [jsonMales.length()];
+                            for(int i = 0; i < jsonMales.length(); i++) {
+                                JSONObject maleObject = jsonMales.getJSONObject(i);
+                                short id = (short) maleObject.getInt("id");
+                                MainMenuPresenter.this.listIdMale[i] = String.valueOf(id);
+                            }
+                            Intent i = new Intent();
+                            i.setClass(context, PigActivity.class);
+                            i.putExtra("Female", female);
+                            i.putExtra("fragment", "Female");
+                            i.putExtra("listIdMale", MainMenuPresenter.this.listIdMale);
+                            context.startActivity(i);
+                            progressDialog.dismiss();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+        return true;
 
     }
 }

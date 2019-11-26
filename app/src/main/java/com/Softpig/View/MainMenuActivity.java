@@ -387,12 +387,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     public void iniciarPigActivityFemale(final Female female) {
-        Intent i = new Intent();
-        i.setClass(this, PigActivity.class);
-        i.putExtra("Female", female);
-        i.putExtra("fragment", "Female");
-        i.putExtra("listIdMale", femaleFragment.getListIdMale());
-        startActivity(i);
+        mainMenuPresenter.iniciarPigActivityFemale(this, female);
+
     }
 
     public void eliminarExistenciaMedicina(short idMedicine) {

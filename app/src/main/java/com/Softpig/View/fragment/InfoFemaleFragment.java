@@ -24,14 +24,15 @@ public class InfoFemaleFragment extends Fragment {
     private TextView tv_valor_id_female, tv_valor_state_female, tv_valor_installation_female,
             tv_valor_nulipara_female, tv_valor_gestation_female, tv_valor_peso_female,
             tv_valor_raza_female, tv_valor_salud_female;
+    private String [] listIdMale;
     private LinearLayout llPartos, llGestacion, llCelos;
 
     private Button bt_desasignar_female;
 
-    public InfoFemaleFragment(Female female) {
+    public InfoFemaleFragment(Female female, String [] listIdMale) {
+        this.listIdMale = listIdMale;
         this.female = female;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
