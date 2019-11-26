@@ -20,7 +20,7 @@ public class InfoPigFragment extends Fragment {
     private View viewInfoPig;
     private Pig pig;
     private TextView tvID, tvStat, tvSalud, tvSex, tvPeso, tvRaza, tvCreci, tvEtapa, tvBirth;
-    private TextView tvBuy, tvFeMale, tvInstallation;
+    private TextView tvBuy, tvInstallation;
     private Button btBaja;
     public InfoPigFragment(Pig pig) {
         // Required empty public constructor
@@ -49,7 +49,7 @@ public class InfoPigFragment extends Fragment {
         tvStat.setText(pig.getState());
         tvSalud.setText(pig.getHealth());
         tvSex.setText(pig.getSex());
-        tvPeso.setText(String.valueOf(pig.getWeigth()));
+        tvPeso.setText(String.valueOf(pig.getWeigth())+ " Kg");
         tvRaza.setText(pig.getRace());
         tvCreci.setText(pig.getGrowthPhase());
         tvEtapa.setText(pig.getPigState());
@@ -76,7 +76,6 @@ public class InfoPigFragment extends Fragment {
         tvEtapa = viewInfoPig.findViewById(R.id.tv_valor_etapa_pig);
         tvBirth = viewInfoPig.findViewById(R.id.tv_valor_birth_pig);
         tvBuy = viewInfoPig.findViewById(R.id.tv_valor_buy_pig);
-        tvFeMale = viewInfoPig.findViewById(R.id.tv_is_fe_male);
         tvInstallation = viewInfoPig.findViewById(R.id.tv_valor_pig_installation);
         btBaja = viewInfoPig.findViewById(R.id.bt_baja_pig);
         if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){

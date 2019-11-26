@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@drawable/pig_info">
 
 
     <TextView android:id="@+id/tv_title_info_pig"
@@ -13,16 +14,18 @@
         android:text="INFORMACIÓN DEL PORCINO"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/editTextColorWhite"
         android:layout_centerHorizontal="true"/>
 
     <RelativeLayout android:id="@+id/rl_info_female"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="#30090c08">
 
         <LinearLayout android:id="@+id/ll_date_pig"
-            android:gravity="right"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -30,55 +33,81 @@
             <TextView android:id="@+id/tv_id_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID:"/>
+                android:text="ID:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_state_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estado:"/>
+                android:text="Estado:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_salud_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Salud:"/>
+                android:text="Salud:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite" />
+
+            <TextView android:id="@+id/tv_installation_pig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instalación:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite" />
+
             <TextView android:id="@+id/tv_sex_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sexo:"/>
-
+                android:text="Sexo:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
 
             <TextView android:id="@+id/tv_peso_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Peso:"/>
+                android:text="Peso:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_raza_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Raza:"/>
+                android:text="Raza:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_fase_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fs. Crec.:"/>
+                android:text="Fase: "
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_etapa_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Etp. Porcina:"/>
+                android:text="Etapa: "
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_birth_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="F. Nacimiento:"/>
+                android:text="Nacimiento:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_buy_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="F. Compra:"/>
-
+                android:text="Compra:"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
 
         </LinearLayout>
-
-        <TextView android:id="@+id/tv_is_fe_male"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/ll_date_pig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reproductor(a), click para mas información."/>
 
         <LinearLayout android:id="@+id/ll_valores_pig"
             android:layout_toRightOf="@id/ll_date_pig"
@@ -90,81 +119,91 @@
             <TextView android:id="@+id/tv_valor_id_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01"/>
+                android:text="01"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_state_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vivo"/>
+                android:text="Vivo"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_salud_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sano"/>
+                android:text="Sano"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
+            <TextView android:id="@+id/tv_valor_pig_installation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre (ID)"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_sex_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Si"/>
+                android:text="Si"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_peso_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Si"/>
+                android:text="Si"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_raza_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="48 Kg"/>
+                android:text="48 Kg"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_creci_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Duroc"/>
+                android:text="Duroc"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_etapa_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lechón"/>
+                android:text="Lechón"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_birth_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DD/MM/AAAA"/>
+                android:text="DD/MM/AAAA"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
+
             <TextView android:id="@+id/tv_valor_buy_pig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DD/MM/AAAA"/>
+                android:text="DD/MM/AAAA"
+                android:textSize="18dp"
+                android:textColor="@color/editTextColorWhite"/>
 
         </LinearLayout>
 
-        <Button android:id="@+id/bt_baja_pig"
-            android:layout_toRightOf="@id/ll_valores_pig"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dar de\nBaja"/>
-
-        <TextView android:id="@+id/tv_title_info_pig_installation"
-            android:layout_below="@id/tv_is_fe_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UBICACIÓN DEL PORCINO"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"/>
-
-        <TextView android:id="@+id/tv_date_pig_installation"
-            android:layout_below="@id/tv_title_info_pig_installation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Instalación"
-            android:layout_marginBottom="20dp"/>
-        <TextView android:id="@+id/tv_valor_pig_installation"
-            android:layout_below="@id/tv_title_info_pig_installation"
-            android:layout_toRightOf="@id/tv_date_pig_installation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre (ID)"
-            android:layout_marginBottom="20dp"/>
     </RelativeLayout>
 
-
-
-
-
-
+    <Button android:id="@+id/bt_baja_pig"
+        android:layout_marginTop="10dp"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dar de\nBaja"
+        android:background="@drawable/custom_button"
+        android:layout_marginHorizontal="40dp"/>
 
 </LinearLayout>

@@ -53,15 +53,6 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
                 ((MainMenuActivity)context).eliminarExistenciaMedicina(medicine.getIdMedicine());
             }
         });
-
-        holder.llCardviewMedicine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "Implementar metodo", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
     }
 
     @Override
