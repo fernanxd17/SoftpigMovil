@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.Softpig.Model.ExamMale;
@@ -31,6 +32,7 @@ public class ExamMaleListFragment extends Fragment {
     private RecyclerView recyclerMaleExam;
     private ExamMaleAdapter examMaleAdapter;
     private TextView tvNoMaleExam;
+
 
     public ExamMaleListFragment() {
         // Required empty public constructor
@@ -61,4 +63,5 @@ public class ExamMaleListFragment extends Fragment {
     public ExamMaleAdapter getMaleExamAdapter() {
         return examMaleAdapter;
     }
+
 }
