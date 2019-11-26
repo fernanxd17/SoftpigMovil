@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -411,4 +412,150 @@ public class PigPresenter {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
     }
+
+    public void agregarBirth(final PigActivity context, final short idFemale, final short idMale, final Date dateBirth, final short noBabies,final short noMummy, final short noDead){
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Registrando parto...");
+        progressDialog.show();
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("ID_FEMALE", String.valueOf(idFemale));
+            params.put("idMale", String.valueOf(idMale));
+            params.put("DATE_BIRTH", String.valueOf(dateBirth));
+            params.put("noBabies", String.valueOf(noBabies));
+            params.put("noMummy", String.valueOf(noMummy));
+            params.put("noDead", String.valueOf(noDead));
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/add_birth",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int respo = response.getInt("status");
+                                progressDialog.dismiss();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+
+    }
+
+    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final Date date){
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Registrando gestación...");
+        progressDialog.show();
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("ID_FEMALE", String.valueOf(idFemale));
+            params.put("idMale", String.valueOf(idMale));
+            params.put("DATE_START", String.valueOf(date));
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/add_gestation",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int respo = response.getInt("status");
+                                progressDialog.dismiss();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+    public void agregarHeat(final PigActivity context, final short idFemale, final String typeMating, final String sincrony, final Date dateStart, final Date dateEnd){
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Registrando celo...");
+        progressDialog.show();
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("ID_FEMALE", String.valueOf(idFemale));
+            params.put("typeMating", typeMating);
+            params.put("sincrony", sincrony);
+            params.put("DATE_START", String.valueOf(dateStart));
+            params.put("dateEnd", String.valueOf(dateEnd));
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/add_gestation",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int respo = response.getInt("status");
+                                progressDialog.dismiss();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+
 }

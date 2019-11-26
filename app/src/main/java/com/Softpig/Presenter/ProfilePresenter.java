@@ -165,7 +165,6 @@ public class ProfilePresenter {
                         public void onResponse(JSONObject response) {
                             try {
                                 int respo = response.getInt("status");
-                                System.out.println("respo: "+ respo);
                                 context.cambiarEstadoEmpleado(estadoNuevo);
                                 progressDialog.dismiss();
                             } catch (JSONException e) {
@@ -312,7 +311,6 @@ public class ProfilePresenter {
 
                             try {
                                 int respo = response.getInt("status");
-                                System.out.println("respo: "+ respo);
 
                                 progressDialog.dismiss();
 
