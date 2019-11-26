@@ -205,7 +205,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
                 break;
             case R.id.nav_male:
-                mainMenuPresenter.inflarMalesFragment(this,maleFragment);
+                mainMenuPresenter.inflarMalesFragment(this,maleFragment, true);
                 break;
             case R.id.nav_race:
                 mainMenuPresenter.inflarRacesFragment(this, raceFragment);
@@ -391,6 +391,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         i.setClass(this, PigActivity.class);
         i.putExtra("Female", female);
         i.putExtra("fragment", "Female");
+        i.putExtra("listIdMale", femaleFragment.getListIdMale());
         startActivity(i);
     }
 

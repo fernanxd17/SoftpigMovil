@@ -63,10 +63,6 @@ public class MaleFragment extends Fragment {
 
 
 
-    public void setListIdMale(String [] listIdMale) {
-        this.listIdMale = listIdMale;
-    }
-
     public void setListMale(ArrayList<Male> listMale) {
         this.listMales = listMale;
     }

@@ -27,6 +27,7 @@ public class FemaleFragment extends Fragment {
     private TextView tv_noFemales;
     private  View viewFemale;
     private LinearLayout ll_heats_female;
+    private String[] listIdMale;
 
     public FemaleFragment() {
     }
@@ -68,4 +69,11 @@ public class FemaleFragment extends Fragment {
         return this.femaleAdapter;
     }
 
+    public void setListIdMale(String[] listIdMale) { 
+        this.listIdMale = listIdMale;
+    }
+
+    public String [] getListIdMale(){
+        return listIdMale;
+    }
 }

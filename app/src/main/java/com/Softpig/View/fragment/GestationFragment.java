@@ -24,6 +24,7 @@ import com.Softpig.View.PigActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,9 +42,17 @@ public class GestationFragment extends Fragment {
     private String idMale;
     private List<String> listIdMale;
 
-    public GestationFragment() {
-        listIdMale = new ArrayList<>();
+    public GestationFragment(String [] listIdMale) {
         idMale = "";
+        this.listIdMale = new ArrayList<>();
+        llenarListaId(listIdMale);
+    }
+
+    private void llenarListaId(String[] listIdMale) {
+        this.listIdMale.add("Elija ID Reproductor");
+        for (int i = 0; i < listIdMale.length; i++){
+            this.listIdMale.add(listIdMale[i]);
+        }
     }
 
 
@@ -137,7 +146,4 @@ public class GestationFragment extends Fragment {
         return gestationAdapter;
     }
 
-    public void setListIdMale(List<String> listIdMale){
-        this.listIdMale = listIdMale;
-    }
 }

@@ -417,6 +417,10 @@ public class MainMenuPresenter {
             traerDatosPorcinos(context);
         }
 
+        if(listIdMale == null){
+            inflarMalesFragment(context, null, false);
+        }
+
         System.out.println("\n CONTINUA..");
 
         String url = URLAPI + "female_list";
@@ -445,6 +449,7 @@ public class MainMenuPresenter {
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
 
                             }
+                            femaleFragment.setListIdMale(listIdMale);
                             femaleFragment.setListFemale(listFemales);
                             context.inflarFragment(femaleFragment);
                             progressDialog.dismiss();
@@ -476,7 +481,7 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment) {
+    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment, final Boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
@@ -503,17 +508,19 @@ public class MainMenuPresenter {
                             for(int i = 0; i < jsonMales.length(); i++) {
                                 JSONObject maleObject = jsonMales.getJSONObject(i);
                                 short id = (short) maleObject.getInt("id");
+                                listIdMale[i] = String.valueOf(id);
                                 String conformation = maleObject.getString("conformation");
                                 String stateMale = maleObject.getString("state");
                                 Pig pig = buscarPig(id);
-                                listIdMale[i] = String.valueOf(id);
+
                                 listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
 
-                            maleFragment.setListIdMale(listIdMale);
-                            maleFragment.setListMale(listMale);
-                            context.inflarFragment(maleFragment);
+                            if(inflar){
+                                maleFragment.setListMale(listMale);
+                                context.inflarFragment(maleFragment);
+                            }
                             progressDialog.dismiss();
 
                         } catch (Exception e) {
