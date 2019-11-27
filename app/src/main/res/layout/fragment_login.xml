@@ -81,7 +81,7 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="textEmailAddress"
                                 android:hint="@string/app_codigo"
-                                android:text="yindypaolapu@ufps.edu.co">
+                                android:text="diegoaliriogm@ufps.edu.co">
                             </com.google.android.material.textfield.TextInputEditText>
 
                         </com.google.android.material.textfield.TextInputLayout>

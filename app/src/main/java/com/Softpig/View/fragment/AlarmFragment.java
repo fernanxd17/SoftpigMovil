@@ -16,6 +16,7 @@ import com.Softpig.Presenter.Adapters.AlarmAdapter;
 import com.Softpig.Presenter.Adapters.MaleAdapter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class AlarmFragment extends Fragment {
     private List<Alarm> listAlarm;
     private View viewAlarm;
     private TextView tvNoAlarm;
+    private FloatingActionButton fbAddGestation;
     public AlarmFragment() {
 
     }
@@ -47,6 +49,10 @@ public class AlarmFragment extends Fragment {
         recyclerAlarm = viewAlarm.findViewById(R.id.recyclerAlarms);
         recyclerAlarm.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerAlarm.setAdapter(alarmAdapter);
+
+        fbAddGestation = viewAlarm.findViewById(R.id.fb_add_alarm);
+        fbAddGestation.show();
+
         return viewAlarm;
     }
 
