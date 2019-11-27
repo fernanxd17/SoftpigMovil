@@ -286,7 +286,6 @@ public class ProfilePresenter {
         }
     }
 
-
     public void addToolEmployee(final ProfileActivity context, final short idEmployee, final short idTool, final String copias) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -304,6 +303,55 @@ public class ProfilePresenter {
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/add_aritcle-employee",
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                int respo = response.getInt("status");
+
+                                progressDialog.dismiss();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            queue.add(arrayRequest);
+        }catch(Exception e){
+            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
+        }
+    }
+
+    public void addAlarm(final ProfileActivity context, final short id_employee, final String date, final String hour, final String issue){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Agregando alarma...");
+        progressDialog.show();
+        try{
+
+            HashMap<String, String> params = new HashMap();
+            params.put("id_Employee", String.valueOf(id_employee));
+            params.put("date", date);
+            params.put("hour", hour);
+            params.put("issue", issue);
+            params.put("Content-Type","application/json");
+
+            JsonObjectRequest arrayRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "https://softpig.herokuapp.com/api/add_alarm",
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
