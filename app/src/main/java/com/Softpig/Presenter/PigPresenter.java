@@ -567,7 +567,7 @@ public class PigPresenter {
         }
     }
 
-    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String date) {
+    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String result) {
         RequestQueue queue = Volley.newRequestQueue(context);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Subiendo reporte...");
@@ -577,7 +577,7 @@ public class PigPresenter {
             HashMap<String, String> params = new HashMap();
             params.put("ID_MALE", String.valueOf(idMale));
             params.put("ID_EXAM", String.valueOf(idExam));
-            params.put("examResult", date);
+            params.put("examResult", result);
             params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(

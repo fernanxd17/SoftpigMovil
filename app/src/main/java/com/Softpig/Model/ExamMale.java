@@ -7,6 +7,7 @@ public class ExamMale {
     private String descripcion;
     private String  examDate;
     private String result;
+    private boolean expanded;
 
     public ExamMale(short idMale, short idExam, String examDate, String name, String descripcion, String result){
         this.idMale = idMale;
@@ -39,5 +40,13 @@ public class ExamMale {
 
     public String getName(){
         return name;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
     }
 }
