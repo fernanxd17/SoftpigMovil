@@ -11,12 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".View.PigActivity">
-        </activity>
+        <service
+            android:name=".Services.FirebaseService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".View.PigActivity" />
         <activity
             android:name=".View.ProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -30,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
