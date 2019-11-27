@@ -42,7 +42,7 @@
         <LinearLayout
             android:id="@+id/ll_sub_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:orientation="vertical">
 
@@ -51,14 +51,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                tools:text="Resultado:  Crime, Drama, Thriller" />
+                android:text="Agregar o Modificar Resultado" />
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/sub_item_modificar_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                tools:text="Agregar o Modificar Resultado" />
+                android:text="Agregar o Modificar Resultado" />
 
         </LinearLayout>
     </LinearLayout>

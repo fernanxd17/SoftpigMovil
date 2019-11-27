@@ -56,8 +56,8 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
 
         holder.itemView.setOnClickListener(v -> {
             boolean expanded = examMale.isExpanded();
-            examMale.setExpanded(!expanded);
             notifyItemChanged(position);
+            examMale.setExpanded(!expanded);
         });
     }
 
@@ -105,13 +105,13 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
 
     public class ViewHolderMaleExam extends RecyclerView.ViewHolder {
 
-        private TextView tvResult, tvNameExam, tvDateExam, tvModificarResultado;
+        private TextView tvResult, tvNameExam, tvDateExam;
+        private TextView tvModificarResultado;
         private View subItem;
         private EditText et_resultado;
         private Button btCancelar, btAgregar;
         public ViewHolderMaleExam(@NonNull View itemView) {
             super(itemView);
-
             tvNameExam = itemView.findViewById(R.id.nameExamMale);
             tvDateExam = itemView.findViewById(R.id.tv_date_exam_male);
             subItem = itemView.findViewById(R.id.ll_sub_item);
@@ -124,49 +124,39 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
             // Get the state
             boolean expanded = examMale.isExpanded();
             // Set the visibility based on state
-            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
-            tvModificarResultado.setVisibility(expanded ? View.VISIBLE : View.GONE);
-
 
             tvResult.setText(examMale.getResult());
             tvDateExam.setText(examMale.getExamDate());
             tvNameExam.setText(examMale.getName());
-
-            tvModificarResultado.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    final AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    View viewDialog = ((PigActivity)context).getLayoutInflater().inflate(R.layout.report_exam, null);
-                    et_resultado = viewDialog.findViewById(R.id.et_resultado);
-                    btAgregar = viewDialog.findViewById(R.id.bt_agregar);
-                    btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
-
-                    alert.setView(viewDialog);
-
-                    final AlertDialog alertDialog = alert.create();
-                    alertDialog.setCanceledOnTouchOutside(false);
+            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
 
-                    btCancelar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            alertDialog.dismiss();
-                        }
-                    });
+            tvModificarResultado.setOnClickListener(view -> {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                View viewDialog = ((PigActivity)context).getLayoutInflater().inflate(R.layout.report_exam, null);
+                et_resultado = viewDialog.findViewById(R.id.et_resultado);
+                btAgregar = viewDialog.findViewById(R.id.bt_agregar);
+                btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
 
-                    btAgregar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ((PigActivity)context).modificarExamMale(examMale.getIdExam(),et_resultado.getText().toString());
-                            alertDialog.dismiss();
-                        }
-                    });
+                alert.setView(viewDialog);
 
-                    alertDialog.show();
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.setCanceledOnTouchOutside(false);
 
 
-                }
+                btCancelar.setOnClickListener(v -> alertDialog.dismiss());
+
+                btAgregar.setOnClickListener(v -> {
+                    ((PigActivity)context).modificarExamMale(examMale.getIdExam(),et_resultado.getText().toString());
+                    alertDialog.dismiss();
+                });
+
+                alertDialog.show();
             });
+
+
+
+
         }
 
 
