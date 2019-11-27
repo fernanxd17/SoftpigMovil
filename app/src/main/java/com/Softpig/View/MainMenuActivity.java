@@ -398,4 +398,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     public void eliminarAlarma() {
         mainMenuPresenter.eliminarAlarmPerson(this, user.getIdEmployee());
     }
+
+    public void crearAlerta(String fecha, String hora, String etiq) {
+        mainMenuPresenter.addAlarm(this,user.getIdEmployee(), fecha, hora, etiq);
+    }
 }

@@ -134,5 +134,6 @@
     <string name="date_format">dd/mm/yyyy</string>
     <string name="examDescription">Esta es una descripción del examen</string>
     <string name="formato_fecha">yyyy/mm/dd</string>
+    <string name="formato_hora">hh:mm</string>
 
 </resources>

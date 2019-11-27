@@ -166,6 +166,7 @@ public class GestationFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString());
+                        alertDialog.dismiss();
                     }
                 });
 

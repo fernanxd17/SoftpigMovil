@@ -28,10 +28,11 @@ import java.util.List;
 public class PigPresenter {
 
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
-    private String [] listIdMale;
+    private String[] listIdMale;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
 
-    public PigPresenter (){ }
+    public PigPresenter() {
+    }
 
     public void darDeBajaPig(short idPig, final PigActivity context) {
 
@@ -40,15 +41,15 @@ public class PigPresenter {
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        try{
+        try {
 
             HashMap<String, String> params = new HashMap();
             params.put("id", String.valueOf(idPig));
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.PUT,
-                    "https://softpig.herokuapp.com/api/inactivate_pig/"+ idPig,
+                    "https://softpig.herokuapp.com/api/inactivate_pig/" + idPig,
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -56,12 +57,10 @@ public class PigPresenter {
 
                             try {
                                 int respo = response.getInt("status");
-                                System.out.println("respo: "+ respo);
-
+                                System.out.println("respo: " + respo);
 
 
                                 progressDialog.dismiss();
-
 
 
                             } catch (JSONException e) {
@@ -80,7 +79,7 @@ public class PigPresenter {
                         }
                     });
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
@@ -94,15 +93,15 @@ public class PigPresenter {
         progressDialog.show();
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        try{
+        try {
 
             HashMap<String, String> params = new HashMap();
             params.put("id", String.valueOf(idFemale));
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.PUT,
-                    "https://softpig.herokuapp.com/api/remove_female/"+ idFemale,
+                    "https://softpig.herokuapp.com/api/remove_female/" + idFemale,
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -110,7 +109,7 @@ public class PigPresenter {
 
                             try {
                                 int respo = response.getInt("status");
-                                System.out.println("respo: "+ respo);
+                                System.out.println("respo: " + respo);
                                 progressDialog.dismiss();
 
                             } catch (JSONException e) {
@@ -129,7 +128,7 @@ public class PigPresenter {
                         }
                     });
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
@@ -142,14 +141,14 @@ public class PigPresenter {
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        try{
+        try {
             HashMap<String, String> params = new HashMap();
             params.put("id", String.valueOf(idMale));
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.PUT,
-                    "https://softpig.herokuapp.com/api/remove_male/"+ idMale,
+                    "https://softpig.herokuapp.com/api/remove_male/" + idMale,
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -158,7 +157,7 @@ public class PigPresenter {
                             try {
                                 int respo = response.getInt("status");
 
-                                System.out.println("respo: "+ respo);
+                                System.out.println("respo: " + respo);
 
                                 progressDialog.dismiss();
 
@@ -178,7 +177,7 @@ public class PigPresenter {
                         }
                     });
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
@@ -191,7 +190,7 @@ public class PigPresenter {
         progressDialog.show();
 
 
-        String url = URLAPI+"birth_list/"+ idFemale;
+        String url = URLAPI + "birth_list/" + idFemale;
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -204,14 +203,14 @@ public class PigPresenter {
                         try {
                             List<Birth> listBirth = new ArrayList<>();
                             JSONArray jsonBirth = response.getJSONArray("births");
-                            for(int i = 0; i < jsonBirth.length(); i++) {
+                            for (int i = 0; i < jsonBirth.length(); i++) {
                                 JSONObject birthObject = jsonBirth.getJSONObject(i);
                                 short idBirth = (short) birthObject.getInt("id");
                                 short idMale = (short) birthObject.getInt("male");
                                 String dateBirth = birthObject.getString("date");
-                                short babies = (short)birthObject.getInt("babies");
-                                short mummy = (short)birthObject.getInt("mummy");
-                                short dead = (short)birthObject.getInt("dead");
+                                short babies = (short) birthObject.getInt("babies");
+                                short mummy = (short) birthObject.getInt("mummy");
+                                short dead = (short) birthObject.getInt("dead");
 
 
                                 listBirth.add(new Birth(idBirth, idFemale, idMale, dateBirth, babies, mummy, dead));
@@ -250,8 +249,7 @@ public class PigPresenter {
         progressDialog.setMessage("Cargando Celos...");
         progressDialog.show();
 
-        String url = URLAPI+"period_gestation_list/"+ idFemale;
-
+        String url = URLAPI + "period_gestation_list/" + idFemale;
 
 
         JsonObjectRequest json = new JsonObjectRequest(
@@ -264,7 +262,7 @@ public class PigPresenter {
                         try {
                             List<PeriodGestation> listGestation = new ArrayList<>();
                             JSONArray jsonGestation = response.getJSONArray("gestations");
-                            for(int i = 0; i < jsonGestation.length(); i++) {
+                            for (int i = 0; i < jsonGestation.length(); i++) {
                                 JSONObject gestationObject = jsonGestation.getJSONObject(i);
                                 short idGestation = (short) gestationObject.getInt("id");
                                 short idMale = (short) gestationObject.getInt("male");
@@ -308,7 +306,7 @@ public class PigPresenter {
         progressDialog.show();
 
 
-        String url = URLAPI+"heat_list/"+ idFemale;
+        String url = URLAPI + "heat_list/" + idFemale;
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -321,7 +319,7 @@ public class PigPresenter {
                         try {
                             List<Heat> listHeat = new ArrayList<>();
                             JSONArray jsonHeat = response.getJSONArray("heats");
-                            for(int i = 0; i < jsonHeat.length(); i++) {
+                            for (int i = 0; i < jsonHeat.length(); i++) {
                                 JSONObject heatObject = jsonHeat.getJSONObject(i);
                                 short idHeat = (short) heatObject.getInt("id");
                                 String typeMating = heatObject.getString("type");
@@ -360,13 +358,13 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void presentarExamanesFragment(final PigActivity context, final  short idMale) {
+    public void presentarExamanesFragment(final PigActivity context, final short idMale) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Cargando Examenes...");
         progressDialog.show();
 
 
-        String url = URLAPI+"male_exam_list/"+ idMale;
+        String url = URLAPI + "male_exam_list/" + idMale;
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -379,7 +377,7 @@ public class PigPresenter {
                         try {
                             List<ExamMale> listExamMale = new ArrayList<>();
                             JSONArray jsonExamMale = response.getJSONArray("exams");
-                            for(int i = 0; i < jsonExamMale.length(); i++) {
+                            for (int i = 0; i < jsonExamMale.length(); i++) {
                                 JSONObject examMaleObject = jsonExamMale.getJSONObject(i);
                                 short idExam = (short) examMaleObject.getInt("id");
                                 String date = examMaleObject.getString("date");
@@ -418,13 +416,13 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void agregarBirth(final PigActivity context, final short idFemale, final short idMale, final Date dateBirth, final short noBabies,final short noMummy, final short noDead){
+    public void agregarBirth(final PigActivity context, final short idFemale, final short idMale, final Date dateBirth, final short noBabies, final short noMummy, final short noDead) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando parto...");
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        try{
+        try {
 
             HashMap<String, String> params = new HashMap();
             params.put("ID_FEMALE", String.valueOf(idFemale));
@@ -433,7 +431,7 @@ public class PigPresenter {
             params.put("noBabies", String.valueOf(noBabies));
             params.put("noMummy", String.valueOf(noMummy));
             params.put("noDead", String.valueOf(noDead));
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -461,28 +459,28 @@ public class PigPresenter {
                         }
                     });
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
 
     }
 
-    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final String fechaGestacion){
+    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final String fechaGestacion) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando gestación...");
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        try{
+        try {
             System.out.println("idfemale:" + idFemale);
-            System.out.println("idMale: "+idMale);
-            System.out.println("date:" +fechaGestacion);
+            System.out.println("idMale: " + idMale);
+            System.out.println("date:" + fechaGestacion);
             HashMap<String, String> params = new HashMap();
             params.put("ID_FEMALE", String.valueOf(idFemale));
             params.put("idMale", String.valueOf(idMale));
             params.put("DATE_START", fechaGestacion);
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -515,19 +513,19 @@ public class PigPresenter {
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }
 
-    public void agregarHeat(final PigActivity context, final short idFemale, final String typeMating, final String sincrony, final Date dateStart, final Date dateEnd){
+    public void agregarHeat(final PigActivity context, final short idFemale, final String typeMating, final String sincrony, final Date dateStart, final Date dateEnd) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando celo...");
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        try{
+        try {
 
             HashMap<String, String> params = new HashMap();
             params.put("ID_FEMALE", String.valueOf(idFemale));
@@ -535,7 +533,7 @@ public class PigPresenter {
             params.put("sincrony", sincrony);
             params.put("DATE_START", String.valueOf(dateStart));
             params.put("dateEnd", String.valueOf(dateEnd));
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
@@ -563,24 +561,24 @@ public class PigPresenter {
                         }
                     });
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }
 
-    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String date){
+    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String date) {
         RequestQueue queue = Volley.newRequestQueue(context);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Subiendo reporte...");
         progressDialog.show();
-        try{
+        try {
 
             HashMap<String, String> params = new HashMap();
             params.put("ID_MALE", String.valueOf(idMale));
             params.put("ID_EXAM", String.valueOf(idExam));
             params.put("examResult", date);
-            params.put("Content-Type","application/json");
+            params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.PUT,
@@ -611,11 +609,10 @@ public class PigPresenter {
                         }
                     });
             queue.add(arrayRequest);
-        }catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }
-
 
 }
