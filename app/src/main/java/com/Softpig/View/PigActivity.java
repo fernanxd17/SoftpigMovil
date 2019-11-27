@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -196,5 +197,9 @@ public class PigActivity extends AppCompatActivity{
     public void inflarMaleExam(ExamMale examMale) {
         maleExamFragment.setMaleExamFragment(examMale);
         inflarFragment("MaleExam");
+    }
+
+    public void agregarGestacion(String idMale, String fechaGestacion) {
+        pigPresenter.agregarGestation(this,female.getIdFemale(),Short.valueOf(idMale), fechaGestacion);
     }
 }

@@ -8,6 +8,7 @@ import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +29,7 @@ public class PigPresenter {
 
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
     private String [] listIdMale;
+    public static final int MY_DEFAULT_TIMEOUT = 15000;
 
     public PigPresenter (){ }
 
@@ -466,18 +468,20 @@ public class PigPresenter {
 
     }
 
-    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final Date date){
+    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final String fechaGestacion){
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando gestación...");
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(context);
         try{
-
+            System.out.println("idfemale:" + idFemale);
+            System.out.println("idMale: "+idMale);
+            System.out.println("date:" +fechaGestacion);
             HashMap<String, String> params = new HashMap();
             params.put("ID_FEMALE", String.valueOf(idFemale));
             params.put("idMale", String.valueOf(idMale));
-            params.put("DATE_START", String.valueOf(date));
+            params.put("DATE_START", fechaGestacion);
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
@@ -505,6 +509,11 @@ public class PigPresenter {
                             Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                         }
                     });
+
+            arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    MY_DEFAULT_TIMEOUT,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(arrayRequest);
         }catch(Exception e){
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();

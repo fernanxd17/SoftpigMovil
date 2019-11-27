@@ -60,8 +60,6 @@ public class MainMenuPresenter {
         toolsUpdate = false;
     }
 
-
-
     public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
@@ -925,11 +923,6 @@ public class MainMenuPresenter {
         queue.add(json);
     }
 
-
-    public void agregarArticulo(String nameTool, short idType, String copias) {
-
-    }
-
     public void eliminarExistenciasMedicina(final MainMenuActivity context, final short idMedicine) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -974,7 +967,6 @@ public class MainMenuPresenter {
         }
 
     }
-
 
     public void inflarAlarmFragment(final MainMenuActivity context, final AlarmFragment alarmFragment, final short idEmployee) {
 

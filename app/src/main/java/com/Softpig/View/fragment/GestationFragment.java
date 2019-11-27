@@ -47,7 +47,7 @@ public class GestationFragment extends Fragment {
     private String idMale;
     private List<String> listIdMale;
     private static final String CERO = "0";
-    private static final String BARRA = "/";
+    private static final String RAYA = "-";
 
     //Calendario para obtener fecha & hora
     public final Calendar c = Calendar.getInstance();
@@ -136,7 +136,7 @@ public class GestationFragment extends Fragment {
                                 //Formateo el mes obtenido: antepone el 0 si son menores de 10
                                 String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
                                 //Muestro la fecha con el formato deseado
-                                etFechaGestacion.setText(year + BARRA + diaFormateado + BARRA + mesFormateado);
+                                etFechaGestacion.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
                             }
                             //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
                             /**
@@ -165,7 +165,7 @@ public class GestationFragment extends Fragment {
                 btAgregar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString());
                     }
                 });
 
