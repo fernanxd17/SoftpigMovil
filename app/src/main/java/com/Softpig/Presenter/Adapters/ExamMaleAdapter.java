@@ -55,11 +55,12 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
                     ((PigActivity) context).inflarMaleExam(examMale);
                 }
             });
-            /*holder.imageViewExpand.setOnClickListener(new View.OnClickListener() {
+
+            holder.imageViewExpand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (holder.linearLayoutDetails.getVisibility() == View.GONE) {
-                       // ExpandAndCollapseViewUtil.expand(holder.linearLayoutDetails, DURATION);
+                        //ExpandAndCollapseViewUtil.expand(holder.linearLayoutDetails, DURATION);
                         holder.imageViewExpand.setImageResource(R.drawable.up);
                         Animation animation = new RotateAnimation(0.0f, -180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
                                 Animation.RELATIVE_TO_SELF, 0.5f);
@@ -76,7 +77,7 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
                         holder.imageViewExpand.startAnimation(animation);
                     }
                 }
-            });*/
+            });
     }
 
     @Override
