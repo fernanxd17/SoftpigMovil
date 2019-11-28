@@ -56,8 +56,8 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
 
         holder.itemView.setOnClickListener(v -> {
             boolean expanded = examMale.isExpanded();
-            notifyItemChanged(position);
             examMale.setExpanded(!expanded);
+            notifyItemChanged(position);
         });
     }
 
@@ -147,7 +147,7 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
                 btCancelar.setOnClickListener(v -> alertDialog.dismiss());
 
                 btAgregar.setOnClickListener(v -> {
-                    ((PigActivity)context).modificarExamMale(examMale.getIdExam(),et_resultado.getText().toString());
+                    ((PigActivity)context).modificarExamMale(examMale.getIdExam(),et_resultado.getText().toString(), examMale.getExamDate());
                     alertDialog.dismiss();
                 });
 

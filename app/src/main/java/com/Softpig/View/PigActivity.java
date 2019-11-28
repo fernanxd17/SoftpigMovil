@@ -203,7 +203,7 @@ public class PigActivity extends AppCompatActivity{
         pigPresenter.agregarGestation(this,female.getIdFemale(),Short.valueOf(idMale), fechaGestacion);
     }
 
-    public void modificarExamMale(short idExamMale, String result) {
-        pigPresenter.addExamReport(this, male.getIdMale(), idExamMale, result);
+    public void modificarExamMale(short idExamMale, String result, String date) {
+        pigPresenter.addExamReport(this, male.getIdMale(), idExamMale, result, date);
     }
 }

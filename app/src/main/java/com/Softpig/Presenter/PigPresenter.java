@@ -567,16 +567,19 @@ public class PigPresenter {
         }
     }
 
-    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String result) {
+    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String result, final String date) {
         RequestQueue queue = Volley.newRequestQueue(context);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Subiendo reporte...");
         progressDialog.show();
         try {
 
+            String [] datosFecha = date.split("/");
+            String fechaEditada = datosFecha[2] + "-" + datosFecha[1] + "-" + datosFecha[0];
             HashMap<String, String> params = new HashMap();
             params.put("ID_MALE", String.valueOf(idMale));
             params.put("ID_EXAM", String.valueOf(idExam));
+            params.put("EXAM_DATE", fechaEditada);
             params.put("examResult", result);
             params.put("Content-Type", "application/json");
 
@@ -590,6 +593,7 @@ public class PigPresenter {
 
                             try {
                                 int respo = response.getInt("status");
+                                System.out.println("respo :" + respo);
 
                                 progressDialog.dismiss();
 
@@ -608,6 +612,11 @@ public class PigPresenter {
                             Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                         }
                     });
+
+            arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    MY_DEFAULT_TIMEOUT,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(arrayRequest);
         } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
