@@ -135,5 +135,6 @@
     <string name="examDescription">Esta es una descripción del examen</string>
     <string name="formato_fecha">yyyy/mm/dd</string>
     <string name="formato_hora">hh:mm</string>
+    <string name="default_notification_channel_id">Hola, bievenido</string>
 
 </resources>
