@@ -523,7 +523,7 @@ public class PigPresenter {
         }
     }
 
-    public void agregarHeat(final PigActivity context, final short idFemale, final String typeMating, final String sincrony, final Date dateStart, final Date dateEnd) {
+    public void agregarHeat(final PigActivity context, final Heat heat, final AlertDialog alertDialog) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando celo...");
         progressDialog.show();
@@ -531,17 +531,23 @@ public class PigPresenter {
         RequestQueue queue = Volley.newRequestQueue(context);
         try {
 
+            System.out.println("datos");
+            System.out.println(heat.getIdFemale());
+            System.out.println(heat.getTypeMating());
+            System.out.println(heat.isSincrony() ? "Si" : "No");
+            System.out.println(heat.getDateStart());
+            System.out.println(heat.getDateEnd());
             HashMap<String, String> params = new HashMap();
-            params.put("ID_FEMALE", String.valueOf(idFemale));
-            params.put("typeMating", typeMating);
-            params.put("sincrony", sincrony);
-            params.put("DATE_START", String.valueOf(dateStart));
-            params.put("dateEnd", String.valueOf(dateEnd));
+            params.put("ID_FEMALE", String.valueOf(heat.getIdFemale()));
+            params.put("typeMating", heat.getTypeMating());
+            params.put("sincrony", heat.isSincrony() ? "Si" : "No");
+            params.put("DATE_START", heat.getDateStart());
+            params.put("dateEnd", heat.getDateEnd());
             params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
-                    "https://softpig.herokuapp.com/api/add_gestation",
+                    "https://softpig.herokuapp.com/api/add_heat",
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -549,10 +555,12 @@ public class PigPresenter {
                             try {
                                 int respo = response.getInt("status");
                                 progressDialog.dismiss();
+                                alertDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
+                                alertDialog.dismiss();
                             }
                         }
                     },
@@ -561,6 +569,7 @@ public class PigPresenter {
                         public void onErrorResponse(VolleyError error) {
                             error.printStackTrace();
                             progressDialog.dismiss();
+                            alertDialog.dismiss();
                             Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                         }
                     });

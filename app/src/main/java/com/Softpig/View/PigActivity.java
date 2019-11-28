@@ -2,6 +2,7 @@ package com.Softpig.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.appcompat.widget.SearchView;
 
 import android.os.Bundle;
@@ -214,5 +215,10 @@ public class PigActivity extends AppCompatActivity{
     public void agregarParto(Birth birth, final AlertDialog alertDialog) {
         birth.setIdFemale(female.getIdFemale());
         pigPresenter.agregarBirth(this, birth, alertDialog);
+    }
+
+    public void agregarCelo(final Heat heat, final AlertDialog alertDialog) {
+        heat.setIdFemale(female.getIdFemale());
+        pigPresenter.agregarHeat(this, heat, alertDialog);
     }
 }
