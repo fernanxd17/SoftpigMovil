@@ -1084,8 +1084,6 @@ public class MainMenuPresenter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-
-
         String url = URLAPI + "male_list";
 
         JsonObjectRequest json = new JsonObjectRequest(

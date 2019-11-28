@@ -18,7 +18,9 @@ import com.Softpig.Presenter.Adapters.BirthAdapter;
 import com.Softpig.Presenter.Adapters.HeatAdapter;
 import com.Softpig.R;
 import com.Softpig.View.PigActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,10 +33,13 @@ public class HeatFragment extends Fragment {
     private HeatAdapter heatAdapter;
     private List<Heat> listHeat;
     private TextView tvNoHeat;
+    private FloatingActionButton fbAddHeat;
 
     public HeatFragment() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -51,7 +56,12 @@ public class HeatFragment extends Fragment {
             recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerHeat.setAdapter(heatAdapter);
         }
+        fbAddHeat = viewHeat.findViewById(R.id.fb_add_heat_female);
+        fbAddHeat.setOnClickListener(view -> {
 
+
+
+        });
 
         return viewHeat;
     }

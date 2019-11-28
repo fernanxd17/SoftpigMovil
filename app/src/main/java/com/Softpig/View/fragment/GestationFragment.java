@@ -165,7 +165,7 @@ public class GestationFragment extends Fragment {
                 btAgregar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString());
+                        ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString(), alertDialog);
                         alertDialog.dismiss();
                     }
                 });

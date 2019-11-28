@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.Softpig.Model.Female;
 import com.Softpig.Model.Male;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
@@ -22,6 +23,9 @@ public class InfoMaleFragment extends Fragment {
     private Button btDesasignarMale;
     private View viewInfoMale;
     private Male male;
+    private String [] listIdMale;
+
+
     public InfoMaleFragment(Male male) {
         this.male = male;
     }
