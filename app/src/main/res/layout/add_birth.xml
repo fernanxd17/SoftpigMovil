@@ -24,7 +24,8 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-    <LinearLayout android:id="@+id/ll_date_birth"
+
+    <LinearLayout android:id="@+id/ll_date_gestation"
         android:layout_below="@id/ll_birth_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,17 +35,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de nacimiento:" />
+            android:text="Fecha: " />
 
-        <EditText android:id="@+id/et_date_birth"
-            android:layout_marginLeft="10sp"
+        <EditText
+            android:id="@+id/et_mostrar_fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="" />
+            android:inputType="time"
+            android:hint="@string/formato_fecha"/>
+
+        <ImageButton
+            android:id="@+id/ib_obtener_fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp" />
 
     </LinearLayout>
+
     <LinearLayout android:id="@+id/ll_babies_number"
-        android:layout_below="@id/ll_date_birth"
+        android:layout_below="@id/ll_date_gestation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -119,7 +130,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/border_radius"
-            android:text="Agregar">
+            android:text="Agregar"
+            android:layout_marginLeft="10sp">
         </Button>
     </LinearLayout>
 

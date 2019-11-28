@@ -3,6 +3,8 @@ package com.Softpig.Presenter;
 import android.app.ProgressDialog;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
@@ -416,7 +418,7 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void agregarBirth(final PigActivity context, final short idFemale, final short idMale, final Date dateBirth, final short noBabies, final short noMummy, final short noDead) {
+    public void agregarBirth(final PigActivity context, final Birth birth, final AlertDialog alertDialog) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando parto...");
         progressDialog.show();
@@ -425,12 +427,12 @@ public class PigPresenter {
         try {
 
             HashMap<String, String> params = new HashMap();
-            params.put("ID_FEMALE", String.valueOf(idFemale));
-            params.put("idMale", String.valueOf(idMale));
-            params.put("DATE_BIRTH", String.valueOf(dateBirth));
-            params.put("noBabies", String.valueOf(noBabies));
-            params.put("noMummy", String.valueOf(noMummy));
-            params.put("noDead", String.valueOf(noDead));
+            params.put("ID_FEMALE", String.valueOf(birth.getIdFemale()));
+            params.put("idMale", String.valueOf(birth.getIdMale()));
+            params.put("DATE_BIRTH", birth.getDataBirth());
+            params.put("noBabies", String.valueOf(birth.getNoBabies()));
+            params.put("noMummy", String.valueOf(birth.getNoMummy()));
+            params.put("noDead", String.valueOf(birth.getNoDead()));
             params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
@@ -443,6 +445,7 @@ public class PigPresenter {
                             try {
                                 int respo = response.getInt("status");
                                 progressDialog.dismiss();
+                                alertDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
@@ -466,7 +469,7 @@ public class PigPresenter {
 
     }
 
-    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final String fechaGestacion) {
+    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final String fechaGestacion, final AlertDialog alertDialog) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando gestación...");
         progressDialog.show();
@@ -492,6 +495,7 @@ public class PigPresenter {
                             try {
                                 int respo = response.getInt("status");
                                 progressDialog.dismiss();
+                                alertDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
@@ -567,17 +571,20 @@ public class PigPresenter {
         }
     }
 
-    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String date) {
+    public void addExamReport(final PigActivity context, final short idMale, final short idExam, final String result, final String date) {
         RequestQueue queue = Volley.newRequestQueue(context);
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Subiendo reporte...");
         progressDialog.show();
         try {
 
+            String [] datosFecha = date.split("/");
+            String fechaEditada = datosFecha[2] + "-" + datosFecha[1] + "-" + datosFecha[0];
             HashMap<String, String> params = new HashMap();
             params.put("ID_MALE", String.valueOf(idMale));
             params.put("ID_EXAM", String.valueOf(idExam));
-            params.put("examResult", date);
+            params.put("EXAM_DATE", fechaEditada);
+            params.put("examResult", result);
             params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
@@ -590,6 +597,7 @@ public class PigPresenter {
 
                             try {
                                 int respo = response.getInt("status");
+                                System.out.println("respo :" + respo);
 
                                 progressDialog.dismiss();
 
@@ -608,6 +616,11 @@ public class PigPresenter {
                             Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                         }
                     });
+
+            arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    MY_DEFAULT_TIMEOUT,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(arrayRequest);
         } catch (Exception e) {
             Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();

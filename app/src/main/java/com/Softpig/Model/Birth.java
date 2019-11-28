@@ -22,6 +22,14 @@ public class Birth {
         this.noDead = noDead;
     }
 
+    public Birth (short idMale, String dataBirth, short noBabies, short noMummy, short noDead){
+        this.dataBirth = dataBirth;
+        this.noBabies = noBabies;
+        this.noMummy = noMummy;
+        this.noDead = noDead;
+        this.idMale = idMale;
+    }
+
     public short getIdBirth() {
         return idBirth;
     }
@@ -48,5 +56,33 @@ public class Birth {
 
     public short getNoDead() {
         return noDead;
+    }
+
+    public void setIdBirth(short idBirth) {
+        this.idBirth = idBirth;
+    }
+
+    public void setIdFemale(short idFemale) {
+        this.idFemale = idFemale;
+    }
+
+    public void setIdMale(short idMale) {
+        this.idMale = idMale;
+    }
+
+    public void setDataBirth(String dataBirth) {
+        this.dataBirth = dataBirth;
+    }
+
+    public void setNoBabies(short noBabies) {
+        this.noBabies = noBabies;
+    }
+
+    public void setNoMummy(short noMummy) {
+        this.noMummy = noMummy;
+    }
+
+    public void setNoDead(short noDead) {
+        this.noDead = noDead;
     }
 }

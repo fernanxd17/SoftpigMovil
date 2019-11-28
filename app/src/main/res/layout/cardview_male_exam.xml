@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview_race"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,99 +10,61 @@
     cardview:cardElevation="0dp"
     cardview:cardUseCompatPadding="true">
 
-    <LinearLayout android:id="@+id/ll_cardview_male_exam"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fafafa"
         android:orientation="vertical"
-        android:paddingVertical="10dp">
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp">
+
+
+        <TextView
+            android:id="@+id/nameExamMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="22sp"
+            tools:text="Name Exam" />
+
+        <TextView
+            android:layout_marginTop="5sp"
+            android:id="@+id/tv_date_exam_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="22sp"
+            tools:text="0000-00-00" />
 
         <LinearLayout
+            android:id="@+id/ll_sub_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp">
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_idMaleExam"
+                android:id="@+id/sub_item_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/idRace"
-                android:textSize="15dp"
-                android:layout_gravity="top">
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center_vertical">
-
+                android:textSize="18sp"
+                android:text="Agregar o Modificar Resultado" />
 
             <TextView
-                android:id="@+id/tv_nameExam"
+                android:layout_marginTop="10dp"
+                android:id="@+id/sub_item_modificar_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_race"
-                android:textSize="30dp">
-            </TextView>
-
-            <TextView
-                android:id="@+id/tv_date_exam_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/description"
-                android:textSize="20dp">
-            </TextView>
+                android:textSize="14sp"
+                android:text="Agregar o Modificar Resultado" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="toggleDetails"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Descripción"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/imageViewExpand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/examDescription"
-                android:src="@drawable/up" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayoutDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="8dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/textViewInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No se que poner"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
-
     </LinearLayout>
+
+
 
 </com.google.android.material.card.MaterialCardView>
 

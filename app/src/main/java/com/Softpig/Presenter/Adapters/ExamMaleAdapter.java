@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -13,10 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.Pig;
 import com.Softpig.R;
 import com.Softpig.View.PigActivity;
 
@@ -45,44 +49,23 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolderMaleExam holder, int position) {
-            final ExamMale examMale = listMaleExam.get(position);
-            holder.tvDateExam.setText("Fecha: "+examMale.getExamDate());
-            holder.tvNameExam.setText("Nombre: "+examMale.getName());
-            holder.tvIdMaleExam.setText("ID: "+String.valueOf(examMale.getIdExam()));
-            holder.llCardViewExamMale.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((PigActivity) context).inflarMaleExam(examMale);
-                }
-            });
 
-            holder.imageViewExpand.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (holder.linearLayoutDetails.getVisibility() == View.GONE) {
-                        //ExpandAndCollapseViewUtil.expand(holder.linearLayoutDetails, DURATION);
-                        holder.imageViewExpand.setImageResource(R.drawable.up);
-                        Animation animation = new RotateAnimation(0.0f, -180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                                Animation.RELATIVE_TO_SELF, 0.5f);
-                        animation.setFillAfter(true);
-                        animation.setDuration(DURATION);
-                        holder.imageViewExpand.startAnimation(animation);
-                    } else {
-                        //ExpandAndCollapseViewUtil.collapse(holder.linearLayoutDetails, DURATION);
-                        holder.imageViewExpand.setImageResource(R.drawable.up);
-                        Animation animation = new RotateAnimation(0.0f, 180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                                Animation.RELATIVE_TO_SELF, 0.5f);
-                        animation.setFillAfter(true);
-                        animation.setDuration(DURATION);
-                        holder.imageViewExpand.startAnimation(animation);
-                    }
-                }
-            });
+        final ExamMale examMale = listMaleExam.get(position);
+
+        holder.bind(examMale);
+
+        holder.itemView.setOnClickListener(v -> {
+            boolean expanded = examMale.isExpanded();
+            examMale.setExpanded(!expanded);
+            notifyItemChanged(position);
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
-        return listMaleExam.size();
+        return listMaleExam == null ? 0 : listMaleExam.size();
     }
 
     @Override
@@ -122,19 +105,58 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
 
     public class ViewHolderMaleExam extends RecyclerView.ViewHolder {
 
-        private TextView tvIdMaleExam, tvNameExam, tvDateExam;
-        private LinearLayout llCardViewExamMale;
-        private ViewGroup linearLayoutDetails;
-        private ImageView imageViewExpand;
+        private TextView tvResult, tvNameExam, tvDateExam;
+        private TextView tvModificarResultado;
+        private View subItem;
+        private EditText et_resultado;
+        private Button btCancelar, btAgregar;
         public ViewHolderMaleExam(@NonNull View itemView) {
             super(itemView);
-
-            tvIdMaleExam = itemView.findViewById(R.id.tv_idMaleExam);
-            tvNameExam = itemView.findViewById(R.id.tv_nameExam);
+            tvNameExam = itemView.findViewById(R.id.nameExamMale);
             tvDateExam = itemView.findViewById(R.id.tv_date_exam_male);
-            llCardViewExamMale = itemView.findViewById(R.id.ll_cardview_male_exam);
-            linearLayoutDetails = itemView.findViewById(R.id.linearLayoutDetails);
-            imageViewExpand = itemView.findViewById(R.id.imageViewExpand);
+            subItem = itemView.findViewById(R.id.ll_sub_item);
+            tvResult = itemView.findViewById(R.id.sub_item_result);
+            tvModificarResultado = itemView.findViewById(R.id.sub_item_modificar_result);
+        }
+
+        // Method in ViewHolder class
+        private void bind(ExamMale examMale) {
+            // Get the state
+            boolean expanded = examMale.isExpanded();
+            // Set the visibility based on state
+
+            tvResult.setText(examMale.getResult());
+            tvDateExam.setText(examMale.getExamDate());
+            tvNameExam.setText(examMale.getName());
+            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+
+
+            tvModificarResultado.setOnClickListener(view -> {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                View viewDialog = ((PigActivity)context).getLayoutInflater().inflate(R.layout.report_exam, null);
+                et_resultado = viewDialog.findViewById(R.id.et_resultado);
+                btAgregar = viewDialog.findViewById(R.id.bt_agregar);
+                btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
+
+                alert.setView(viewDialog);
+
+                final AlertDialog alertDialog = alert.create();
+                alertDialog.setCanceledOnTouchOutside(false);
+
+
+                btCancelar.setOnClickListener(v -> alertDialog.dismiss());
+
+                btAgregar.setOnClickListener(v -> {
+                    ((PigActivity)context).modificarExamMale(examMale.getIdExam(),et_resultado.getText().toString(), examMale.getExamDate());
+                    alertDialog.dismiss();
+                });
+
+                alertDialog.show();
+            });
+
+
+
+
         }
 
 

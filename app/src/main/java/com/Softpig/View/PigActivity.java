@@ -1,5 +1,6 @@
 package com.Softpig.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
@@ -50,6 +51,7 @@ public class PigActivity extends AppCompatActivity{
     private GestationFragment gestationFragment;
     private MenuItem searchItem;
     private SearchView searchView;
+    private String [] listIdMale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +72,13 @@ public class PigActivity extends AppCompatActivity{
                 break;
             case "Female": 
                 this.female = (Female)bundle.get("Female");
-                String [] listIdMale = (String[]) bundle.get("listIdMale");
+                listIdMale = (String[]) bundle.get("listIdMale");
                 this.infoFemaleFragment = new InfoFemaleFragment(female, listIdMale);
                 break;
         }
 
         heatFragment = new HeatFragment();
 
-        birthFragment = new BirthFragment();
         pigPresenter = new PigPresenter();
         maleExamFragment = new MaleExamFragment();
         examMaleListFragment = new ExamMaleListFragment();
@@ -92,9 +93,12 @@ public class PigActivity extends AppCompatActivity{
                 break;
             case "Female":
                 gestationFragment = new GestationFragment((String [])bundle.get("listIdMale"));
+                birthFragment = new BirthFragment((String []) bundle.get("listIdMale"));
+                heatFragment = new HeatFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).commit();
                 break;
-            case "Birth": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
+            case "Birth":
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
                 break;
             case "Heat": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, heatFragment).commit();
                 break;
@@ -199,7 +203,16 @@ public class PigActivity extends AppCompatActivity{
         inflarFragment("MaleExam");
     }
 
-    public void agregarGestacion(String idMale, String fechaGestacion) {
-        pigPresenter.agregarGestation(this,female.getIdFemale(),Short.valueOf(idMale), fechaGestacion);
+    public void agregarGestacion(String idMale, String fechaGestacion, final AlertDialog alertDialog) {
+        pigPresenter.agregarGestation(this,female.getIdFemale(),Short.valueOf(idMale), fechaGestacion, alertDialog);
+    }
+
+    public void modificarExamMale(short idExamMale, String result, String date) {
+        pigPresenter.addExamReport(this, male.getIdMale(), idExamMale, result, date);
+    }
+
+    public void agregarParto(Birth birth, final AlertDialog alertDialog) {
+        birth.setIdFemale(female.getIdFemale());
+        pigPresenter.agregarBirth(this, birth, alertDialog);
     }
 }
