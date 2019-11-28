@@ -18,13 +18,27 @@
             android:layout_height="wrap_content"
             android:text="Tipo de reproducción: " />
 
-        <EditText android:id="@+id/et_typeMating"
-            android:layout_marginLeft="10sp"
+        <RadioGroup
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Natural/sincronia..." />
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rb_natural"
+                android:text="Natural"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rb_inseminacion"
+                android:text="Inseminación"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
 
     </LinearLayout>
+
+
 
     <LinearLayout android:id="@+id/ll_sincrony"
         android:layout_below="@id/ll_heat_add"
@@ -36,13 +50,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de inicio:" />
+            android:text="Sincronia:" />
 
-        <EditText android:id="@+id/et_sincrony"
-            android:layout_marginLeft="10sp"
+        <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Si/no..." />
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/bt_si"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sí"/>
+
+            <RadioButton
+                android:id="@+id/bt_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"/>
+        </RadioGroup>
 
     </LinearLayout>
 
@@ -50,25 +76,64 @@
         android:layout_below="@id/ll_sincrony"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de inicio: " />
+            android:text="Fecha Inicio: " />
 
         <EditText
-            android:layout_marginLeft="10sp"
-            android:id="@+id/et_date_start"
-            android:inputType="number"
+            android:id="@+id/et_mostrar_fecha_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Cantidad..." />
+            android:inputType="time"
+            android:hint="@string/formato_fecha"/>
+
+        <ImageButton
+            android:id="@+id/ib_obtener_fecha_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout android:id="@+id/ll_date_end"
+        android:layout_below="@id/ll_date_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha Fin:" />
+
+        <EditText
+            android:id="@+id/et_mostrar_fecha_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:hint="@string/formato_fecha"/>
+
+        <ImageButton
+            android:id="@+id/ib_obtener_fecha_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_centerInParent="true"
-        android:layout_below="@id/ll_date_start"
+        android:layout_below="@id/ll_date_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

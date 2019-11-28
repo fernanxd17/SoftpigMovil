@@ -168,13 +168,12 @@ public class BirthFragment extends Fragment {
                         short noBabies = Short.valueOf(etBabiesNumber.getText().toString());
                         short noMummy = Short.valueOf(etMummyNumber.getText().toString());
                         short noDead = Short.valueOf(etDeadNumber.getText().toString());
-
                         Birth birth  = new Birth(Short.valueOf(idMale), fecha, noBabies, noMummy, noDead);
-
                         ((PigActivity)getContext()).agregarParto(birth, alertDialog);
-
                     }
                 });
+
+
 
                 alertDialog.show();
             }
