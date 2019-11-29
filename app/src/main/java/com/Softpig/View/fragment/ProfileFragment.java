@@ -59,27 +59,12 @@ public class ProfileFragment extends Fragment {
         modificarTextCampos();
 
 
-        tvAssignedItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ProfileActivity)getContext()).presentarFragment("ToolsPerson");
-            }
-        });
+        tvAssignedItems.setOnClickListener(view -> ((ProfileActivity)getContext()).presentarFragment("ToolsPerson"));
 
-        btDespedir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ProfileActivity)getContext()).cambiarEstado("Despedido");
-            }
-        });
+        btDespedir.setOnClickListener(view -> ((ProfileActivity)getContext()).cambiarEstado("Despedido"));
 
         if(employee.getStatus().equalsIgnoreCase("En Funciones")){
-            btInhabilitar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((ProfileActivity)getContext()).cambiarEstado("Inhabilitado");
-                }
-            });
+            btInhabilitar.setOnClickListener(view -> ((ProfileActivity)getContext()).cambiarEstado("Inhabilitado"));
         }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado")){
             btInhabilitar.setOnClickListener(new View.OnClickListener() {
                 @Override
