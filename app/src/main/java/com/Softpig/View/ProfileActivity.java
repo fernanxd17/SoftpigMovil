@@ -119,9 +119,9 @@ public class ProfileActivity extends AppCompatActivity {
        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, fragment).commit();
     }
 
-    public void cambiarEstado(String nuevoEstado) {
-        profilePresenter.cambiarEstado(this, employee.getIdEmployee(), nuevoEstado);
-
+    public void cambiarEstado(final Employee employee,String nuevoEstado) {
+        profilePresenter.cambiarEstado(this, employee, nuevoEstado);
+        this.employee = employee;
     }
 
     public void inflarFragmentError() {
@@ -134,13 +134,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     public Employee getEmployee(){
         return employee;
-    }
-
-    public void openDialogAddHoursPerson() {
-       /* Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
-        String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
-        AddToolDialog addToolEmployeeDialog = new AddToolDialog(nombreEmpleado);
-        addToolEmployeeDialog.show(getFragmentManager(), "Caulcular salario");*/
     }
 
     public void agregarTool(short idTool, String copias) {
