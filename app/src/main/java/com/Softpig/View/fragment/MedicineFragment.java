@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class MedicineFragment extends Fragment {
     private View viewListMedicine;
     private List<Medicine> listMedicine;
     private TextView tvNoMedicine;
+    private SwipeRefreshLayout refrescarListMedicine;
 
     public MedicineFragment() {
         listMedicine = new ArrayList<>();
@@ -38,6 +40,10 @@ public class MedicineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewListMedicine =  inflater.inflate(R.layout.fragment_list_medicine, container, false);
+        refrescarListMedicine = viewListMedicine.findViewById(R.id.refresh_list_medicine);
+        refrescarListMedicine.setOnRefreshListener(() -> {
+            ((MainMenuActivity)getContext()).actualizarListaMedicinas(refrescarListMedicine);
+        });
         ((MainMenuActivity)getActivity()).setTitleTolbar("Medicamentos");
         ((MainMenuActivity)getActivity()).setSearch("Medicine");
 
@@ -59,5 +65,16 @@ public class MedicineFragment extends Fragment {
 
     public MedicineAdapter getMedicineAdapter() {
         return medicineAdapter;
+    }
+
+    public void notificarAdapter() {
+        if (listMedicine.isEmpty()){
+            tvNoMedicine = viewListMedicine.findViewById(R.id.tv_noMedicine);
+            tvNoMedicine.setText("No existen medicamentos");
+        }
+        medicineAdapter = new MedicineAdapter(this.listMedicine, getContext());
+        recyclerMedicine = viewListMedicine.findViewById(R.id.recyclerMedicine);
+        recyclerMedicine.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerMedicine.setAdapter(medicineAdapter);
     }
 }

@@ -624,12 +624,15 @@ public class MainMenuPresenter {
         return true;
     }
 
-    public void inflarMedicineFragment(final MainMenuActivity context, final MedicineFragment medicineFragment) {
+    public void inflarMedicineFragment(final MainMenuActivity context, final MedicineFragment medicineFragment
+            , final SwipeRefreshLayout refrescarListMedicine, final boolean inflar) {
+
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Medicinas...");
-        progressDialog.show();
-
+        if(inflar){
+            progressDialog.setMessage("Cargando Medicinas...");
+            progressDialog.show();
+        }
 
         String url = URLAPI+"inventary_medicine";
 
@@ -655,10 +658,16 @@ public class MainMenuPresenter {
 
                                 listMedicine.add(new Medicine(id, name, type, quantity));
                             }
-                            System.out.println("Size: "+listMedicine.size());
+
                             medicineFragment.setListMedicine(listMedicine);
-                            context.inflarFragment(medicineFragment);
-                            progressDialog.dismiss();
+                            if(inflar){
+                                context.inflarFragment(medicineFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                medicineFragment.notificarAdapter();
+                                refrescarListMedicine.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

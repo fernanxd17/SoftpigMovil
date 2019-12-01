@@ -165,7 +165,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_medicine:
                             searchItem.setVisible(true);
-                            mainMenuPresenter.inflarMedicineFragment(MainMenuActivity.this, medicineFragment);
+                            mainMenuPresenter.inflarMedicineFragment(MainMenuActivity.this, medicineFragment, null, true);
                             break;
                         case R.id.ic_alert:
                             searchItem.setVisible(true);
@@ -411,5 +411,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarValoresListPig(final SwipeRefreshLayout refreshListPig) {
         mainMenuPresenter.inflarPigFragment(this,pigFragment, refreshListPig, false);
+    }
+
+    public void actualizarListaMedicinas(final SwipeRefreshLayout refrescarListMedicine) {
+        mainMenuPresenter.inflarMedicineFragment(this, medicineFragment, refrescarListMedicine, false);
     }
 }

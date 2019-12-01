@@ -4,19 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/medicine_fragment">
-    <TextView
-        android:id="@+id/tv_noMedicine"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:text=""
-        android:textColor="#fff"
-        android:layout_gravity="center"/>
 
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerMedicine"
-        android:layout_marginTop="10dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_list_medicine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_noMedicine"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text=""
+                android:textColor="#fff"
+                android:layout_gravity="center"/>
+
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerMedicine"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>
