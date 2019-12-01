@@ -237,7 +237,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         switch (stringFragment){
 
             case "Employees":
-                mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment);
+                mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment, null, true);
                 break;
             case "Tools":
                 mainMenuPresenter.inflarToolsFragment(this, toolFragment);
@@ -419,5 +419,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListaAlarmas(final SwipeRefreshLayout refreshListAlarm) {
         mainMenuPresenter.inflarAlarmFragment(this, alarmFragment, user.getIdEmployee(), refreshListAlarm, false);
+    }
+
+    public void actualizarListEmployee(final SwipeRefreshLayout refreshListEmployee) {
+        mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment, refreshListEmployee, false);
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class EmployeeFragment extends Fragment {
     private ArrayList<Employee> listEmployees;
     private  View viewEmployee;
     private  TextView tv_noEmployees;
+    private SwipeRefreshLayout refreshListEmployee;
 
 
     public EmployeeFragment() {
@@ -40,6 +42,8 @@ public class EmployeeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewEmployee =  inflater.inflate(R.layout.fragment_list_employees, container, false);
+        refreshListEmployee = viewEmployee.findViewById(R.id.refresh_list_employee);
+        refreshListEmployee.setOnRefreshListener(() -> ((MainMenuActivity)getContext()).actualizarListEmployee(refreshListEmployee));
         ((MainMenuActivity)getActivity()).setSearch("Employee");
         ((MainMenuActivity)getActivity()).setTitleTolbar("Empleados");
         if (listEmployees.isEmpty()){
@@ -58,8 +62,15 @@ public class EmployeeFragment extends Fragment {
     }
 
 
+    public void notificarAdapter() {
+        if (listEmployees.isEmpty()){
+            tv_noEmployees = viewEmployee.findViewById(R.id.tv_noEmployees);
+            tv_noEmployees.setText("NO tienes empleados registrados en tu granja");
+        }
 
-
-
-
+        employeeAdapter = new EmployeeAdapter(listEmployees, getContext());
+        recyclerEmployee = viewEmployee.findViewById(R.id.recyclerEmployee);
+        recyclerEmployee.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerEmployee.setAdapter(employeeAdapter);
+    }
 }

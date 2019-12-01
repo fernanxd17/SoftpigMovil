@@ -339,11 +339,14 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarEmployeesFragment(final MainMenuActivity context,final EmployeeFragment employeeFragment) {
+    public boolean inflarEmployeesFragment(final MainMenuActivity context,final EmployeeFragment employeeFragment,
+                                           final SwipeRefreshLayout refreshListEmployee, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Empleados...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Cargando Empleados...");
+            progressDialog.show();
+        }
 
         String url = URLAPI + "employee_list";
 
@@ -392,8 +395,14 @@ public class MainMenuPresenter {
                                         sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone, instalation, salary ));
                             }
                             employeeFragment.setListEmployees(listEmployee);
-                            context.inflarFragment(employeeFragment);
-                            progressDialog.dismiss();
+
+                            if(inflar){
+                                context.inflarFragment(employeeFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                employeeFragment.notificarAdapter();
+                                refreshListEmployee.setRefreshing(false);
+                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -401,20 +410,17 @@ public class MainMenuPresenter {
                             progressDialog.dismiss();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
