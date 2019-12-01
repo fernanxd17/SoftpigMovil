@@ -55,7 +55,6 @@ public class InstallationFragment extends Fragment {
         recyclerInstallations = viewInstallations.findViewById(R.id.recyclerInstallations);
         recyclerInstallations.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerInstallations.setAdapter(installationAdapter);
-
         return viewInstallations;
     }
 

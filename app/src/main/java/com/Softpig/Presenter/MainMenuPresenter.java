@@ -267,11 +267,14 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarToolsFragment(final MainMenuActivity context, final ToolFragment toolFragment) {
+    public boolean inflarToolsFragment(final MainMenuActivity context, final ToolFragment toolFragment
+            , final SwipeRefreshLayout refreshListTool, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Herramientas...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Cargando Herramientas...");
+            progressDialog.show();
+        }
 
         if(hmTypeTool == null){
             traerDatosTiposTool(context, toolFragment);
@@ -305,10 +308,15 @@ public class MainMenuPresenter {
                             }
 
                             toolFragment.setListTool(listTool);
-                            toolFragment.setContext(context);
-                            context.inflarFragment(toolFragment);
-                            toolsUpdate = true;
-                            progressDialog.dismiss();
+                            if(inflar){
+                                toolFragment.setContext(context);
+                                context.inflarFragment(toolFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                toolFragment.notificarAdapter();
+                                refreshListTool.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

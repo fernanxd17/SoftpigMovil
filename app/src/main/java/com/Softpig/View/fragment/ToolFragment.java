@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,8 @@ public class ToolFragment extends Fragment {
     private View viewDialog;
     private HashMap<String, Short> hmNameTool;
     private List<String> listNameTool;
+    private SwipeRefreshLayout refreshListTool;
+
     public ToolFragment(boolean toolEmployee){
         this.toolEmployee = toolEmployee;
         this.hmTypeTool = new HashMap<>();
@@ -73,6 +76,10 @@ public class ToolFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewTool =  inflater.inflate(R.layout.fragment_list_tools, container, false);
+        refreshListTool = viewTool.findViewById(R.id.refresh_list_tool);
+        refreshListTool.setOnRefreshListener(() -> {
+            ((MainMenuActivity)getContext()).actualizarListaTool(refreshListTool);
+        });
 
 
         if (listTool.isEmpty()){
@@ -193,5 +200,17 @@ public class ToolFragment extends Fragment {
 
     public void setHmListNameTool(HashMap<String, Short> hmNameTool) {
         this.hmNameTool = hmNameTool;
+    }
+
+    public void notificarAdapter() {
+        if (listTool.isEmpty()){
+            tv_noTool = viewTool.findViewById(R.id.tv_noTools);
+            tv_noTool.setText("No hay herramientas en el inventario");
+        }else {
+            toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
+            recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
+            recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerArticle.setAdapter(toolAdapter);
+        }
     }
 }

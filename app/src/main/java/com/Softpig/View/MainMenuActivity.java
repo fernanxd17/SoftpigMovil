@@ -240,7 +240,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment, null, true);
                 break;
             case "Tools":
-                mainMenuPresenter.inflarToolsFragment(this, toolFragment);
+                mainMenuPresenter.inflarToolsFragment(this, toolFragment, null, true);
                 break;
             case "Installations":
                 mainMenuPresenter.inflarInstallationsFragment(this, installationFragment, null, true);
@@ -389,7 +389,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void iniciarPigActivityFemale(final Female female) {
         mainMenuPresenter.iniciarPigActivityFemale(this, female);
-
     }
 
     public void eliminarExistenciaMedicina(short idMedicine) {
@@ -427,5 +426,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListInstallation(final SwipeRefreshLayout refreshListInstallation) {
         mainMenuPresenter.inflarInstallationsFragment(this, installationFragment, refreshListInstallation, false);
+    }
+
+    public void actualizarListaTool(SwipeRefreshLayout refreshListTool) {
+        mainMenuPresenter.inflarToolsFragment(this, toolFragment, refreshListTool, false);
     }
 }
