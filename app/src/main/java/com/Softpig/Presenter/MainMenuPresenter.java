@@ -722,11 +722,12 @@ public class MainMenuPresenter {
                             valores[5] = typeInstallation;
 
                             dashBoardFragment.setValores(valores);
-                            dashBoardFragment.actualizarText();
+
                             if (inflar){
                                 context.inflarFragment(dashBoardFragment);
                                 progressDialog.dismiss();
                             }else{
+                                dashBoardFragment.actualizarText();
                                 refrescarDashboard.setRefreshing(false);
                             }
                         } catch (Exception e) {
