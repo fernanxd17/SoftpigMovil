@@ -169,7 +169,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_alert:
                             searchItem.setVisible(true);
-                            mainMenuPresenter.inflarAlarmFragment(MainMenuActivity.this, alarmFragment, user.getIdEmployee());
+                            mainMenuPresenter.inflarAlarmFragment(MainMenuActivity.this, alarmFragment, user.getIdEmployee(), null, true);
 
                             break;
                         default:
@@ -415,5 +415,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListaMedicinas(final SwipeRefreshLayout refrescarListMedicine) {
         mainMenuPresenter.inflarMedicineFragment(this, medicineFragment, refrescarListMedicine, false);
+    }
+
+    public void actualizarListaAlarmas(final SwipeRefreshLayout refreshListAlarm) {
+        mainMenuPresenter.inflarAlarmFragment(this, alarmFragment, user.getIdEmployee(), refreshListAlarm, false);
     }
 }

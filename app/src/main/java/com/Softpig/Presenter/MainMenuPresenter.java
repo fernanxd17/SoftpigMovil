@@ -1001,11 +1001,16 @@ public class MainMenuPresenter {
 
     }
 
-    public void inflarAlarmFragment(final MainMenuActivity context, final AlarmFragment alarmFragment, final short idEmployee) {
+    public void inflarAlarmFragment(final MainMenuActivity context, final AlarmFragment alarmFragment,
+                                    final short idEmployee, final SwipeRefreshLayout refreschListMedicine,
+                                    final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
         String url = URLAPI+"alarm_list/"+ idEmployee;
        if(idEmployee < 10)
            url = URLAPI+"alarm_list/0"+ idEmployee;
@@ -1030,9 +1035,17 @@ public class MainMenuPresenter {
 
                                 listAlarms.add(new Alarm(idAlarm, idEmployee, date, hour, issue));
                             }
+
                             alarmFragment.setListAlarm(listAlarms);
-                            context.inflarFragment(alarmFragment);
-                            progressDialog.dismiss();
+
+                            if(inflar){
+                                context.inflarFragment(alarmFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                alarmFragment.notificarAdapter();
+                                refreschListMedicine.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

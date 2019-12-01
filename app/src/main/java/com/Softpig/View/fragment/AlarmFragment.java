@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class AlarmFragment extends Fragment {
     private static final String CERO = "0";
     private static final String RAYA = "-";
     private static final String DOS_PUNTOS = ":";
+    private SwipeRefreshLayout refreshListAlarm;
 
 
     //Calendario para obtener fecha & hora
@@ -71,7 +73,13 @@ public class AlarmFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         viewAlarm = inflater.inflate(R.layout.fragment_list_alarm, container, false);
-
+        refreshListAlarm = viewAlarm.findViewById(R.id.refresh_list_alarm);
+        refreshListAlarm.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((MainMenuActivity)getContext()).actualizarListaAlarmas(refreshListAlarm);
+            }
+        });
         ((MainMenuActivity)getActivity()).setSearch("Alarm");
         if (listAlarm.isEmpty()){
             tvNoAlarm = viewAlarm.findViewById(R.id.tv_noAlarms);
@@ -195,5 +203,16 @@ public class AlarmFragment extends Fragment {
     public AlarmAdapter getAlarmAdapter() {
 
         return alarmAdapter;
+    }
+
+    public void notificarAdapter() {
+        if (listAlarm.isEmpty()){
+            tvNoAlarm = viewAlarm.findViewById(R.id.tv_noAlarms);
+            tvNoAlarm.setText("No existen alarmas");
+        }
+        alarmAdapter = new AlarmAdapter(this.listAlarm, getContext());
+        recyclerAlarm = viewAlarm.findViewById(R.id.recyclerAlarms);
+        recyclerAlarm.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerAlarm.setAdapter(alarmAdapter);
     }
 }
