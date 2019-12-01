@@ -121,57 +121,60 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarInstallationsFragment(final MainMenuActivity context, final InstallationFragment installationFragment) {
+    public boolean inflarInstallationsFragment(final MainMenuActivity context, final InstallationFragment installationFragment,
+                                               final SwipeRefreshLayout refreshListInstallation, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
         String url = URLAPI+"installation_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            ArrayList<Installation> listInstallations = new ArrayList<>();
-                            JSONArray jsonInstallations = response.getJSONArray("installations");
+                response -> {
+                    try {
+                        ArrayList<Installation> listInstallations = new ArrayList<>();
+                        JSONArray jsonInstallations = response.getJSONArray("installations");
 
 
-                            for(int i = 0; i < jsonInstallations.length(); i++) {
-                                JSONObject installationObject = jsonInstallations.getJSONObject(i);
-                                short id = (short) installationObject.getInt("id");
-                                String name = installationObject.getString("name");
-                                String type = installationObject.getString("type");
-                                short capacity = (short) installationObject.getInt("capacity");
-                                listInstallations.add(new Installation(id, type, name, capacity));
-                            }
-                            installationFragment.setListInstallations(listInstallations);
+                        for(int i = 0; i < jsonInstallations.length(); i++) {
+                            JSONObject installationObject = jsonInstallations.getJSONObject(i);
+                            short id = (short) installationObject.getInt("id");
+                            String name = installationObject.getString("name");
+                            String type = installationObject.getString("type");
+                            short capacity = (short) installationObject.getInt("capacity");
+                            listInstallations.add(new Installation(id, type, name, capacity));
+                        }
+                        installationFragment.setListInstallations(listInstallations);
+                        if(inflar){
                             context.inflarFragment( installationFragment);
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                        }else{
+                            installationFragment.notificarAdapter();
+                            refreshListInstallation.setRefreshing(false);
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);

@@ -243,7 +243,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarToolsFragment(this, toolFragment);
                 break;
             case "Installations":
-                mainMenuPresenter.inflarInstallationsFragment(this, installationFragment);
+                mainMenuPresenter.inflarInstallationsFragment(this, installationFragment, null, true);
                 break;
             case "Heats":
                 mainMenuPresenter.inflarHeatsFragment(this, heatFragment);
@@ -423,5 +423,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListEmployee(final SwipeRefreshLayout refreshListEmployee) {
         mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment, refreshListEmployee, false);
+    }
+
+    public void actualizarListInstallation(final SwipeRefreshLayout refreshListInstallation) {
+        mainMenuPresenter.inflarInstallationsFragment(this, installationFragment, refreshListInstallation, false);
     }
 }
