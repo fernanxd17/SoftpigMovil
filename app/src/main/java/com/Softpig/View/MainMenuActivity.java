@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.Softpig.R;
 import com.Softpig.View.fragment.DashBoardFragment;
@@ -131,15 +132,15 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
             medicineFragment = new MedicineFragment();
-            presentarFragment("dashboard");
+            presentarFragment("dashboard", null,true);
         }
 
 
     }
 
-    private void presentarFragment(String titleFragment) {
+    private void presentarFragment(String titleFragment, SwipeRefreshLayout refrescarDashboard, boolean inflar) {
         switch (titleFragment){
-            case "dashboard": mainMenuPresenter.presentarDashboard(this, dashBoardFragment);
+            case "dashboard": mainMenuPresenter.presentarDashboard(this, dashBoardFragment,refrescarDashboard,  inflar);
                 break;
                 default: break;
         }
@@ -401,5 +402,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void crearAlerta(String fecha, String hora, String etiq) {
         mainMenuPresenter.addAlarm(this,user.getIdEmployee(), fecha, hora, etiq);
+    }
+
+    public boolean actualizarValoresDashboard(SwipeRefreshLayout refreshDashboard) {
+        presentarFragment("dashboard", refreshDashboard, false);
+        return true;
     }
 }

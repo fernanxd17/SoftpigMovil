@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
@@ -674,11 +676,17 @@ public class MainMenuPresenter {
 
     }
 
-    public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment) {
-
+    public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment,
+                                   final SwipeRefreshLayout refrescarDashboard, final boolean inflar) {
+        /*if(refrescarDashboard != null){
+            refrescarDashboard.setRefreshing(true);
+        }*/
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
 
         String url = URLAPI + "dasboard";
 
@@ -714,9 +722,13 @@ public class MainMenuPresenter {
                             valores[5] = typeInstallation;
 
                             dashBoardFragment.setValores(valores);
-                            context.inflarFragment(dashBoardFragment);
-                            progressDialog.dismiss();
-
+                            dashBoardFragment.actualizarText();
+                            if (inflar){
+                                context.inflarFragment(dashBoardFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                refrescarDashboard.setRefreshing(false);
+                            }
                         } catch (Exception e) {
                             System.out.println("entra 1");
                             e.printStackTrace();
