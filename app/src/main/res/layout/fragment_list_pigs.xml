@@ -2,24 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/pig_images">
 
-    <TextView
-        android:id="@+id/tv_noPigs"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:text=""
-        android:textColor="#fff"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"/>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerPig"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshListPig"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/tv_noPigs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text=""
+                android:textColor="#fff"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerPig"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

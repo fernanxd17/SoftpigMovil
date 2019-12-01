@@ -179,11 +179,14 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarPigFragment(final MainMenuActivity context, final PigFragment pigFragment) {
+    public boolean inflarPigFragment(final MainMenuActivity context, final PigFragment pigFragment,
+                                     final SwipeRefreshLayout refrescarListPig, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
 
         if(listPig != null){
             pigFragment.setListPig(listPig);
@@ -222,10 +225,17 @@ public class MainMenuPresenter {
                                 listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
-                            System.out.println("Size: "+listPigs.size());
+
+
                             pigFragment.setListPig(listPigs);
-                            context.inflarFragment(pigFragment);
-                            progressDialog.dismiss();
+                            if(inflar){
+                                context.inflarFragment(pigFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                pigFragment.notifyAdapter();
+                                refrescarListPig.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

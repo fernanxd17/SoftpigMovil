@@ -161,7 +161,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_pig:
                             searchItem.setVisible(true);
-                            mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment);
+                            mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment, null, true);
                             break;
                         case R.id.ic_medicine:
                             searchItem.setVisible(true);
@@ -404,8 +404,12 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         mainMenuPresenter.addAlarm(this,user.getIdEmployee(), fecha, hora, etiq);
     }
 
-    public boolean actualizarValoresDashboard(SwipeRefreshLayout refreshDashboard) {
+    public boolean actualizarValoresDashboard(final SwipeRefreshLayout refreshDashboard) {
         presentarFragment("dashboard", refreshDashboard, false);
         return true;
+    }
+
+    public void actualizarValoresListPig(final SwipeRefreshLayout refreshListPig) {
+        mainMenuPresenter.inflarPigFragment(this,pigFragment, refreshListPig, false);
     }
 }
