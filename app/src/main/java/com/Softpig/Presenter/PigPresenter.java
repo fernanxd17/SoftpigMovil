@@ -4,12 +4,14 @@ import android.app.ProgressDialog;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
+import com.Softpig.View.fragment.ExamMaleListFragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -360,10 +362,15 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void presentarExamanesFragment(final PigActivity context, final short idMale) {
+    public void presentarExamanesFragment(final PigActivity context, final ExamMaleListFragment examMaleListFragment,
+                                          final short idMale, final SwipeRefreshLayout refreshListExamMale) {
+
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Examenes...");
-        progressDialog.show();
+        if(refreshListExamMale == null){
+            progressDialog.setMessage("Cargando Examenes...");
+            progressDialog.show();
+        }
+
 
 
         String url = URLAPI + "male_exam_list/" + idMale;
@@ -389,9 +396,15 @@ public class PigPresenter {
 
                                 listExamMale.add(new ExamMale(idMale, idExam, date, name, descripcion, result));
                             }
-                            context.setListExamMale(listExamMale);
-                            context.inflarFragment("ExamMaleList");
-                            progressDialog.dismiss();
+                            examMaleListFragment.setListExamMale(listExamMale);
+                            if(refreshListExamMale == null){
+                                context.inflarFragment("ExamMaleList");
+                                progressDialog.dismiss();
+                            }else{
+                                examMaleListFragment.notificarAdapter();
+                                refreshListExamMale.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

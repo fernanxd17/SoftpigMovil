@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.appcompat.widget.SearchView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -156,7 +157,7 @@ public class PigActivity extends AppCompatActivity{
     }
 
     public void verExamanesMale(short idMale) {
-        pigPresenter.presentarExamanesFragment(this, idMale);
+        pigPresenter.presentarExamanesFragment(this, examMaleListFragment, idMale, null);
     }
 
     @Override
@@ -220,5 +221,9 @@ public class PigActivity extends AppCompatActivity{
     public void agregarCelo(final Heat heat, final AlertDialog alertDialog) {
         heat.setIdFemale(female.getIdFemale());
         pigPresenter.agregarHeat(this, heat, alertDialog);
+    }
+
+    public void actualizarListMaleExam(final SwipeRefreshLayout refreshListExamMale) {
+            pigPresenter.presentarExamanesFragment(this,examMaleListFragment, male.getIdPig(), refreshListExamMale);
     }
 }
