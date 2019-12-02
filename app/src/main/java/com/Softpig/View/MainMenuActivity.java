@@ -206,7 +206,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
                 break;
             case R.id.nav_male:
-                mainMenuPresenter.inflarMalesFragment(this,maleFragment, true);
+                mainMenuPresenter.inflarMalesFragment(this,maleFragment, null, true);
                 break;
             case R.id.nav_race:
                 mainMenuPresenter.inflarRacesFragment(this, raceFragment);
@@ -430,5 +430,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListaTool(SwipeRefreshLayout refreshListTool) {
         mainMenuPresenter.inflarToolsFragment(this, toolFragment, refreshListTool, false);
+    }
+
+    public void actualizarListaMale(SwipeRefreshLayout refreshListMale) {
+        mainMenuPresenter.inflarMalesFragment(this, maleFragment, refreshListMale,false);
     }
 }

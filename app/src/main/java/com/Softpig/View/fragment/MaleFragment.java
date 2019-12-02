@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class MaleFragment extends Fragment {
     private Button bt_desasignar_male;
     private String [] listIdMale;
     private Male male;
+    private SwipeRefreshLayout refreshListMale;
 
     public MaleFragment(ArrayList<Male> listMales) {
         this.listMales = listMales;
@@ -46,7 +48,8 @@ public class MaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         viewMale = inflater.inflate(R.layout.fragment_list_male, container, false);
-
+        refreshListMale = viewMale.findViewById(R.id.refresh_list_male);
+        refreshListMale.setOnRefreshListener(() -> ((MainMenuActivity)getContext()).actualizarListaMale(refreshListMale));
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductores");
         ((MainMenuActivity)getActivity()).setSearch("Male");
         if (listMales.isEmpty()){
@@ -65,5 +68,17 @@ public class MaleFragment extends Fragment {
 
     public void setListMale(ArrayList<Male> listMale) {
         this.listMales = listMale;
+    }
+
+    public void notificarAdapter() {
+
+        if (listMales.isEmpty()){
+            tv_noMales = viewMale.findViewById(R.id.tv_noMales);
+            tv_noMales.setText("No existen reproductores");
+        }
+        maleAdapter = new MaleAdapter(this.listMales, getContext());
+        recyclerMale = viewMale.findViewById(R.id.recyclerMale);
+        recyclerMale.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerMale.setAdapter(maleAdapter);
     }
 }

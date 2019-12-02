@@ -508,11 +508,15 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment, final Boolean inflar) {
+    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment,
+                                       final SwipeRefreshLayout refreshListMale, final Boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
 
         if(listPig == null){
             traerDatosPorcinos(context);
@@ -541,13 +545,16 @@ public class MainMenuPresenter {
                                 listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
-
+                            maleFragment.setListMale(listMale);
                             if(inflar){
-                                maleFragment.setListMale(listMale);
                                 context.inflarFragment(maleFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                maleFragment.notificarAdapter();
+                                refreshListMale.setRefreshing(false);
                             }
 
-                            progressDialog.dismiss();
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
