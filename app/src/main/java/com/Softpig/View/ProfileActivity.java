@@ -3,6 +3,7 @@ package com.Softpig.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -110,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void presentarFragment(String toolsPerson) {
         switch (toolsPerson){
             case "ToolsPerson":
-                profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee());
+                profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee(), null, true);
                 break;
         }
     }
@@ -146,5 +147,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void cambiarEstadoEmpleado(String nuevoEstado){
         profileFragment.setTvState(nuevoEstado);
+    }
+
+    public void actualizarListaTool(final SwipeRefreshLayout refreshListTool) {
+        profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee(),
+                refreshListTool, false);
     }
 }

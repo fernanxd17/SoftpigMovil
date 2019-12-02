@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.ProfileActivity;
@@ -28,11 +30,16 @@ public class ProfilePresenter {
 
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
-    public void presentarToolsPerson(final ProfileActivity context, final ToolFragment toolPersonFragment, final int idEmployee) {
+    public void presentarToolsPerson(final ProfileActivity context, final ToolFragment toolPersonFragment,
+                                     final int idEmployee, final SwipeRefreshLayout refreshListToolEmployee,
+                                     final boolean inflar) {
 
       final ProgressDialog progressDialog = new ProgressDialog(context);
-      progressDialog.setMessage("Loading...");
-      progressDialog.show();
+      if(inflar){
+          progressDialog.setMessage("Loading...");
+          progressDialog.show();
+      }
+
       getNameTools(context, toolPersonFragment);
       String url = URLAPI + "article-person_list/" +idEmployee;
       if(idEmployee < 10)
@@ -61,8 +68,15 @@ public class ProfilePresenter {
                           }
 
                           toolPersonFragment.setListTool(toolEmployee);
-                          context.inflarFragment(toolPersonFragment);
-                          progressDialog.dismiss();
+
+                          if(inflar){
+                              context.inflarFragment(toolPersonFragment);
+                              progressDialog.dismiss();
+                          }else{
+                              toolPersonFragment.notificarAdapter();
+                              refreshListToolEmployee.setRefreshing(false);
+                          }
+
 
                       } catch (Exception e) { e.printStackTrace(); }
                   }

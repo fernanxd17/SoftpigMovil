@@ -78,19 +78,24 @@ public class ToolFragment extends Fragment {
         viewTool =  inflater.inflate(R.layout.fragment_list_tools, container, false);
         refreshListTool = viewTool.findViewById(R.id.refresh_list_tool);
         refreshListTool.setOnRefreshListener(() -> {
-            ((MainMenuActivity)getContext()).actualizarListaTool(refreshListTool);
+            if(!toolEmployee)
+                ((MainMenuActivity)getContext()).actualizarListaTool(refreshListTool);
+            else
+                ((ProfileActivity)getContext()).actualizarListaTool(refreshListTool);
         });
 
 
-        if (listTool.isEmpty()){
-            tv_noTool = viewTool.findViewById(R.id.tv_noTools);
-            tv_noTool.setText("No hay herramientas en el inventario");
-        }else {
-            toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
-            recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
-            recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerArticle.setAdapter(toolAdapter);
+        tv_noTool = viewTool.findViewById(R.id.tv_noTools);
+        tv_noTool.setText("No se encontrarón herramientas en tu inventario");
+        if (!listTool.isEmpty()){
+            tv_noTool.setText(listTool.size() + " Herramienta(s) encontrada(s)");
         }
+
+        toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
+        recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
+        recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerArticle.setAdapter(toolAdapter);
+
 
         if(toolEmployee){
             fbAddArticle = viewTool.findViewById(R.id.fb_add_tool_employee);
@@ -203,14 +208,17 @@ public class ToolFragment extends Fragment {
     }
 
     public void notificarAdapter() {
-        if (listTool.isEmpty()){
-            tv_noTool = viewTool.findViewById(R.id.tv_noTools);
-            tv_noTool.setText("No hay herramientas en el inventario");
-        }else {
+
+        tv_noTool = viewTool.findViewById(R.id.tv_noTools);
+        tv_noTool.setText("No se encontrarón herramientas en tu inventario");
+
+        if (!listTool.isEmpty()){
+            tv_noTool.setText(listTool.size() + " Herramienta(s) encontrada(s)");
+        }
             toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
             recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
             recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerArticle.setAdapter(toolAdapter);
-        }
+
     }
 }
