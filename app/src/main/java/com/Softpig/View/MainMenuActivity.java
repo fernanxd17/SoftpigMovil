@@ -203,7 +203,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
         switch (menuItem.getItemId()){
             case R.id.nav_female:
-                mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
+                mainMenuPresenter.inflarFemalesFragment(this, femaleFragment, null);
                 break;
             case R.id.nav_male:
                 mainMenuPresenter.inflarMalesFragment(this,maleFragment, null, true);
@@ -434,5 +434,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListaMale(SwipeRefreshLayout refreshListMale) {
         mainMenuPresenter.inflarMalesFragment(this, maleFragment, refreshListMale,false);
+    }
+
+    public void actualizarListaFemale(final SwipeRefreshLayout refreshListFemale) {
+        mainMenuPresenter.inflarFemalesFragment(this, femaleFragment, refreshListFemale);
     }
 }

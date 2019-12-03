@@ -303,11 +303,14 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void presentarCelosFragment(final PigActivity context, final short idFemale) {
+    public void presentarCelosFragment(final PigActivity context, final short idFemale, final SwipeRefreshLayout refreshLayout) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Partos...");
-        progressDialog.show();
+        if(refreshLayout == null){
+            progressDialog.setMessage("Cargando Partos...");
+            progressDialog.show();
+        }
+
 
 
         String url = URLAPI + "heat_list/" + idFemale;
@@ -334,8 +337,14 @@ public class PigPresenter {
                                 listHeat.add(new Heat(idHeat, idFemale, typeMating, isSincrony, dateStart, dateEnd));
                             }
                             context.setListHeat(listHeat);
-                            context.inflarFragment("Heat");
-                            progressDialog.dismiss();
+
+                            if(refreshLayout == null){
+                                context.inflarFragment("Heat");
+                                progressDialog.dismiss();
+                            }else{
+                                notificarAdapter();
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();

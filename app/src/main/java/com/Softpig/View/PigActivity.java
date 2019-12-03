@@ -137,7 +137,7 @@ public class PigActivity extends AppCompatActivity{
     }
 
     public void inflarFragmentCelos(short idFemale) {
-        pigPresenter.presentarCelosFragment(this, idFemale);
+        pigPresenter.presentarCelosFragment(this, idFemale, null);
     }
 
     public void setListBirth(List<Birth> listBirth) {
@@ -225,5 +225,9 @@ public class PigActivity extends AppCompatActivity{
 
     public void actualizarListMaleExam(final SwipeRefreshLayout refreshListExamMale) {
             pigPresenter.presentarExamanesFragment(this,examMaleListFragment, male.getIdPig(), refreshListExamMale);
+    }
+
+    public void actualizarListHeat(final SwipeRefreshLayout refreshListHeat) {
+        pigPresenter.presentarCelosFragment(this, female.getIdFemale(), refreshListHeat);
     }
 }

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,8 @@ public class HeatFragment extends Fragment {
     final int dia = c.get(Calendar.DAY_OF_MONTH);
     final int anio = c.get(Calendar.YEAR);
 
+    private SwipeRefreshLayout refreshListHeat;
+
     public HeatFragment() {
         // Required empty public constructor
     }
@@ -81,6 +84,10 @@ public class HeatFragment extends Fragment {
                              Bundle savedInstanceState) {
         View viewHeat = inflater.inflate(R.layout.fragment_list_heat, container, false);
         ((PigActivity)getActivity()).setSearch("Heat");
+
+        refreshListHeat.setOnRefreshListener(() -> {
+            ((PigActivity)getActivity()).actualizarListHeat(refreshListHeat);
+        });
         tvNoHeat = viewHeat.findViewById(R.id.tv_noheats);
         if(listHeat.isEmpty()){
             tvNoHeat.setText("No hay celos registrados");

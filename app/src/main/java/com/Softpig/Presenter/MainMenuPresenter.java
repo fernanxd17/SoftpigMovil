@@ -53,9 +53,10 @@ public class MainMenuPresenter {
 
     private static boolean toolsUpdate;
     private MaleFragment maleFragment;
-    private ArrayList<Pig> listPig;
+    private  ArrayList<Pig> listPig;
     private HashMap<String, Short> hmTypeTool;
     private String [] listIdMale;
+    private boolean continuar = false;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
@@ -439,13 +440,17 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarFemalesFragment(final MainMenuActivity context, final FemaleFragment femaleFragment) {
+    public boolean inflarFemalesFragment(final MainMenuActivity context, final FemaleFragment femaleFragment,
+                                         final SwipeRefreshLayout refreshListFemale) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(refreshListFemale == null){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
 
         if(listPig == null){
+            System.out.println("listPig");
             traerDatosPorcinos(context);
         }
 
@@ -455,52 +460,52 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
+                    try {
 
-                        try {
-                            ArrayList<Female> listFemales = new ArrayList<>();
-                            JSONArray jsonFemale = response.getJSONArray("females");
+                        ArrayList<Female> listFemales = new ArrayList<>();
+                        JSONArray jsonFemale = response.getJSONArray("females");
 
+                        for(int i = 0; i < jsonFemale.length(); i++) {
+                            JSONObject femaleObject = jsonFemale.getJSONObject(i);
+                            String stateFemale = femaleObject.getString("state");
+                            if(stateFemale.equalsIgnoreCase("Baja"))
+                                continue;
+                            short id = (short) femaleObject.getInt("id");
+                            String virgin = femaleObject.getString("virgin");
+                            String gestation = femaleObject.getString("gestation");
+                            Pig pig = MainMenuPresenter.this.buscarPig(id);
+                            listFemales.add(new Female(id, virgin, gestation,stateFemale,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
+                                    pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
 
-                            for(int i = 0; i < jsonFemale.length(); i++) {
-                                JSONObject femaleObject = jsonFemale.getJSONObject(i);
-                                short id = (short) femaleObject.getInt("id");
-                                String virgin = femaleObject.getString("virgin");
-                                String gestation = femaleObject.getString("gestation");
-                                String stateFemale = femaleObject.getString("state");
-                                Pig pig = MainMenuPresenter.this.buscarPig(id);
-                                listFemales.add(new Female(id, virgin, gestation,stateFemale,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
-                                        pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
+                        }
 
-                            }
+                        femaleFragment.setListFemale(listFemales);
 
-
-                            femaleFragment.setListFemale(listFemales);
+                        if(refreshListFemale == null){
                             context.inflarFragment(femaleFragment);
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                        }else{
+                            femaleFragment.notificarAdapter();
+                            refreshListFemale.setRefreshing(false);
                         }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -562,20 +567,17 @@ public class MainMenuPresenter {
                             progressDialog.dismiss();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -865,64 +867,63 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            MainMenuPresenter.this.listPig = new ArrayList<>();
-                            JSONArray jsonPig = response.getJSONArray("pigs");
-                            for(int i = 0; i < jsonPig.length(); i++) {
-                                JSONObject pigObject = jsonPig.getJSONObject(i);
-                                short id = (short) pigObject.getInt("id");
-                                String state = pigObject.getString("state");
-                                String sex = pigObject.getString("sex");
-                                short weigth = (short) pigObject.getInt("weigth");
-                                String race = pigObject.getString("race");
-                                String growthPhase = pigObject.getString("growthPhase");
-                                String pigState = pigObject.getString("pigStage");
-                                String health = pigObject.getString("health");
-                                String installation = pigObject.getString("installation");
-                                String birth = pigObject.getString("birthDate");
-                                String acquisition= pigObject.getString("acquisitionDate");
+                    try {
+                        listPig = new ArrayList<>();
+                        JSONArray jsonPig = response.getJSONArray("pigs");
+                        for(int i = 0; i < jsonPig.length(); i++) {
+                            JSONObject pigObject = jsonPig.getJSONObject(i);
+                            short id = (short) pigObject.getInt("id");
+                            String state = pigObject.getString("state");
+                            String sex = pigObject.getString("sex");
+                            short weigth = (short) pigObject.getInt("weigth");
+                            String race = pigObject.getString("race");
+                            String growthPhase = pigObject.getString("growthPhase");
+                            String pigState = pigObject.getString("pigStage");
+                            String health = pigObject.getString("health");
+                            String installation = pigObject.getString("installation");
+                            String birth = pigObject.getString("birthDate");
+                            String acquisition= pigObject.getString("acquisitionDate");
 
-                                MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
-                                        health,installation, birth, acquisition));
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
+                            listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
+                                    health,installation, birth, acquisition));
 
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    error.printStackTrace();
-                    context.inflarFragment(new ErrorFragment());
+                    try {
+                        error.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
 
-                }
-            }
-        });
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
     }
 
     private Pig buscarPig(short id) {
-        for (Pig pig : listPig)
-        {
-            if(pig.getIdPig() == id){
-                return pig;
+        if(listPig != null){
+            for (Pig pig : listPig)
+            {
+                if(pig.getIdPig() == id){
+                    return pig;
+                }
             }
         }
+
         return null;
     }
 
