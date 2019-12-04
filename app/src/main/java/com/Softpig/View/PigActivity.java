@@ -129,7 +129,7 @@ public class PigActivity extends AppCompatActivity{
     }
 
     public void inflarFragmentPartos(short idFemale) {
-        pigPresenter.presentarBirthFragment(this, idFemale);
+        pigPresenter.presentarBirthFragment(this, birthFragment, idFemale, null);
     }
 
     public void inflarFragmentGestacion(short idFemale) {
@@ -223,7 +223,11 @@ public class PigActivity extends AppCompatActivity{
     }
 
 
-    public void actualizarListGestation(SwipeRefreshLayout refreshGestation) {
+    public void actualizarListGestation(final SwipeRefreshLayout refreshGestation) {
         pigPresenter.presentarGestacionFragment(this, gestationFragment, female.getIdFemale(), refreshGestation);
+    }
+
+    public void actualizarListBirth(final SwipeRefreshLayout refreshBirth) {
+        pigPresenter.presentarBirthFragment(this, birthFragment, female.getIdFemale(), refreshBirth);
     }
 }

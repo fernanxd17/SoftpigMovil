@@ -11,6 +11,7 @@ import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
+import com.Softpig.View.fragment.BirthFragment;
 import com.Softpig.View.fragment.ExamMaleListFragment;
 import com.Softpig.View.fragment.GestationFragment;
 import com.Softpig.View.fragment.HeatFragment;
@@ -189,12 +190,14 @@ public class PigPresenter {
         }
     }
 
-    public void presentarBirthFragment(final PigActivity context, final short idFemale) {
+    public void presentarBirthFragment(final PigActivity context, final BirthFragment birthFragment,
+                                       final short idFemale, final SwipeRefreshLayout refreshBirth) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Partos...");
-        progressDialog.show();
-
+        if(refreshBirth == null){
+            progressDialog.setMessage("Cargando Partos...");
+            progressDialog.show();
+        }
 
         String url = URLAPI + "birth_list/" + idFemale;
 
@@ -202,34 +205,37 @@ public class PigPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            List<Birth> listBirth = new ArrayList<>();
-                            JSONArray jsonBirth = response.getJSONArray("births");
-                            for (int i = 0; i < jsonBirth.length(); i++) {
-                                JSONObject birthObject = jsonBirth.getJSONObject(i);
-                                short idBirth = (short) birthObject.getInt("id");
-                                short idMale = (short) birthObject.getInt("male");
-                                String dateBirth = birthObject.getString("date");
-                                short babies = (short) birthObject.getInt("babies");
-                                short mummy = (short) birthObject.getInt("mummy");
-                                short dead = (short) birthObject.getInt("dead");
+                    try {
+                        List<Birth> listBirth = new ArrayList<>();
+                        JSONArray jsonBirth = response.getJSONArray("births");
+                        for (int i = 0; i < jsonBirth.length(); i++) {
+                            JSONObject birthObject = jsonBirth.getJSONObject(i);
+                            short idBirth = (short) birthObject.getInt("id");
+                            short idMale = (short) birthObject.getInt("male");
+                            String dateBirth = birthObject.getString("date");
+                            short babies = (short) birthObject.getInt("babies");
+                            short mummy = (short) birthObject.getInt("mummy");
+                            short dead = (short) birthObject.getInt("dead");
 
 
-                                listBirth.add(new Birth(idBirth, idFemale, idMale, dateBirth, babies, mummy, dead));
-                            }
-                            context.setListBirth(listBirth);
+                            listBirth.add(new Birth(idBirth, idFemale, idMale, dateBirth, babies, mummy, dead));
+                        }
+                        birthFragment.setListBirth(listBirth);
+                        if(refreshBirth == null){
                             context.inflarFragment("Birth");
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment("Error");
-                            progressDialog.dismiss();
+                        }else{
+                            birthFragment.notificarAdapter();
+                            refreshBirth.setRefreshing(false);
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
