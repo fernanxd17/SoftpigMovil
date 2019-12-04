@@ -64,11 +64,15 @@ public class MainMenuPresenter {
         toolsUpdate = false;
     }
 
-    public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
+    public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment,
+                                       final SwipeRefreshLayout refreshRace) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(refreshRace == null){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
 
         String url = URLAPI + "race_list";
 
@@ -76,45 +80,45 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            ArrayList<Race> listRaces = new ArrayList<>();
-                            JSONArray jsonRaces = response.getJSONArray("races");
+                    try {
+                        ArrayList<Race> listRaces = new ArrayList<>();
+                        JSONArray jsonRaces = response.getJSONArray("races");
 
-                                for(int i = 0; i < jsonRaces.length(); i++) {
-                                    JSONObject raceObject = jsonRaces.getJSONObject(i);
-                                    short idRace = (short) raceObject.getInt("id");
-                                    String race = raceObject.getString("name");
-                                    String description = raceObject.getString("description");
-                                    listRaces.add(new Race(idRace, race, description));
-                                }
-                                raceFragment.setListRace(listRaces);
+                            for(int i = 0; i < jsonRaces.length(); i++) {
+                                JSONObject raceObject = jsonRaces.getJSONObject(i);
+                                short idRace = (short) raceObject.getInt("id");
+                                String race = raceObject.getString("name");
+                                String description = raceObject.getString("description");
+                                listRaces.add(new Race(idRace, race, description));
+                            }
+                            raceFragment.setListRace(listRaces);
+                            if(refreshRace == null){
                                 context.inflarFragment(raceFragment);
                                 progressDialog.dismiss();
+                            }else{
+                                raceFragment.notificarAdapter();
+                                refreshRace.setRefreshing(false);
+                            }
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
-                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);

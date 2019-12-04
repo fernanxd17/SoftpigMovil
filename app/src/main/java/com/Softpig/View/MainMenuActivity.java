@@ -209,7 +209,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarMalesFragment(this,maleFragment, null, true);
                 break;
             case R.id.nav_race:
-                mainMenuPresenter.inflarRacesFragment(this, raceFragment);
+                mainMenuPresenter.inflarRacesFragment(this, raceFragment, null);
                 break;
             case R.id.nav_dictionary:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
@@ -438,5 +438,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListaFemale(final SwipeRefreshLayout refreshListFemale) {
         mainMenuPresenter.inflarFemalesFragment(this, femaleFragment, refreshListFemale);
+    }
+
+    public void actualizarListaRazas(final SwipeRefreshLayout refreshRace) {
+        mainMenuPresenter.inflarRacesFragment(this, raceFragment, refreshRace);
     }
 }

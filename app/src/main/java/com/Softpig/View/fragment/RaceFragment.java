@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class RaceFragment extends Fragment {
     private ArrayList<Race> listRaces;
     private View viewRace;
     private TextView tvInfo;
+    private SwipeRefreshLayout refreshRace;
 
 
     public RaceFragment(){
@@ -39,23 +41,33 @@ public class RaceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewRace =  inflater.inflate(R.layout.fragment_list_races, container, false);
+        refreshRace = viewRace.findViewById(R.id.refresh_list_race);
+        refreshRace.setOnRefreshListener(() -> {
+            ((MainMenuActivity)getActivity()).actualizarListaRazas(refreshRace);
+        });
         ((MainMenuActivity) getActivity()).setTitleTolbar("Razas");
-
-        if(listRaces.isEmpty()){
-            tvInfo = viewRace.findViewById(R.id.tv_info);
-            tvInfo.setText("No existen razas registradas.");
-            return viewRace;
-        }
         ((MainMenuActivity)getActivity()).setSearch("Race");
+
+        tvInfo = viewRace.findViewById(R.id.tv_info);
+        tvInfo.setText(listRaces.size() + " Raza(s) encontrada(s)");
+
         raceAdapter = new RaceAdapter(this.listRaces);
         recyclerRace = viewRace.findViewById(R.id.recyclerRace);
         recyclerRace.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerRace.setAdapter(raceAdapter); //cuando ya funcione la api, hay que verificar si carga los cardview sin esta linea, en caso de que no funcione probrar des-comentando a linea
-
+        recyclerRace.setAdapter(raceAdapter);
         return viewRace;
     }
 
     public void setListRace(ArrayList<Race> listRaces) {
         this.listRaces = listRaces;
+    }
+
+    public void notificarAdapter() {
+        tvInfo.setText(listRaces.size() + " Raza(s) encontrada(s)");
+
+        raceAdapter = new RaceAdapter(this.listRaces);
+        recyclerRace = viewRace.findViewById(R.id.recyclerRace);
+        recyclerRace.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerRace.setAdapter(raceAdapter);
     }
 }
