@@ -133,7 +133,8 @@ public class PigActivity extends AppCompatActivity{
     }
 
     public void inflarFragmentGestacion(short idFemale) {
-        pigPresenter.presentarGestacionFragment(this, idFemale);
+        pigPresenter.presentarGestacionFragment(this, gestationFragment, idFemale, null);
+
     }
 
     public void inflarFragmentCelos(short idFemale) {
@@ -144,13 +145,7 @@ public class PigActivity extends AppCompatActivity{
         birthFragment.setListBirth(listBirth);
     }
 
-    public void setListGestation(List<PeriodGestation> listGestation) {
-        gestationFragment.setListGestation(listGestation);
-    }
 
-    public void setListExamMale(List<ExamMale> listExamMale) {
-        examMaleListFragment.setListExamMale(listExamMale);
-    }
 
     public void verExamanesMale(short idMale) {
         pigPresenter.presentarExamanesFragment(this, examMaleListFragment, idMale, null);
@@ -225,5 +220,10 @@ public class PigActivity extends AppCompatActivity{
 
     public void actualizarListHeat(final SwipeRefreshLayout refreshListHeat) {
         pigPresenter.presentarCelosFragment(this, heatFragment,female.getIdFemale(), refreshListHeat);
+    }
+
+
+    public void actualizarListGestation(SwipeRefreshLayout refreshGestation) {
+        pigPresenter.presentarGestacionFragment(this, gestationFragment, female.getIdFemale(), refreshGestation);
     }
 }

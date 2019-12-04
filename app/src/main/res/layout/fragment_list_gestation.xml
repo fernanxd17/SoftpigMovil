@@ -6,28 +6,37 @@
     android:orientation="vertical"
     android:background="@color/primaryColor">
 
-    <RelativeLayout
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_list_gestation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_noGestationPeriod"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text=""
-            android:textColor="#fff"
-            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclergestation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp" />
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_noGestationPeriod"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text=""
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/tv_noGestationPeriod"
+                android:id="@+id/recyclergestation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp" />
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

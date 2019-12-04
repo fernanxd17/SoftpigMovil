@@ -54,19 +54,9 @@ public class InfoFemaleFragment extends Fragment {
             }
         });
 
-        llGestacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((PigActivity)getContext()).inflarFragmentGestacion(female.getIdFemale());
-            }
-        });
+        llGestacion.setOnClickListener(view -> ((PigActivity)getContext()).inflarFragmentGestacion(female.getIdFemale()));
 
-        llCelos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((PigActivity)getContext()).inflarFragmentCelos(female.getIdFemale());
-            }
-        });
+        llCelos.setOnClickListener(view -> ((PigActivity)getContext()).inflarFragmentCelos(female.getIdFemale()));
 
         return viewInfoFemale;
     }
