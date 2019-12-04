@@ -72,6 +72,8 @@ public class HeatFragment extends Fragment {
 
     private SwipeRefreshLayout refreshListHeat;
 
+    private View viewHeat;
+
     public HeatFragment() {
         // Required empty public constructor
     }
@@ -82,21 +84,24 @@ public class HeatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewHeat = inflater.inflate(R.layout.fragment_list_heat, container, false);
+         viewHeat = inflater.inflate(R.layout.fragment_list_heat, container, false);
         ((PigActivity)getActivity()).setSearch("Heat");
+
+        refreshListHeat = viewHeat.findViewById(R.id.refresh_list_heat);
 
         refreshListHeat.setOnRefreshListener(() -> {
             ((PigActivity)getActivity()).actualizarListHeat(refreshListHeat);
         });
         tvNoHeat = viewHeat.findViewById(R.id.tv_noheats);
-        if(listHeat.isEmpty()){
-            tvNoHeat.setText("No hay celos registrados");
-        }else{
-            heatAdapter = new HeatAdapter(listHeat, getContext());
-            recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
-            recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerHeat.setAdapter(heatAdapter);
-        }
+        tvNoHeat.setText("No hay celos registrados");
+        if(!listHeat.isEmpty())
+            tvNoHeat.setText(listHeat.size() +" Celo(s) encontrado(s)");
+
+        heatAdapter = new HeatAdapter(listHeat, getContext());
+        recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
+        recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerHeat.setAdapter(heatAdapter);
+
         fbAddHeat = viewHeat.findViewById(R.id.fb_add_heat_female);
         fbAddHeat.setOnClickListener(view -> {
 
@@ -197,5 +202,16 @@ public class HeatFragment extends Fragment {
     }
     public void setListHeat(List<Heat> listHeat) {
         this.listHeat = listHeat;
+    }
+
+    public void notificarAdapter() {
+        tvNoHeat.setText("No hay celos registrados");
+        if(!listHeat.isEmpty())
+            tvNoHeat.setText(listHeat.size() +" Celo(s) encontrado(s)");
+
+        heatAdapter = new HeatAdapter(listHeat, getContext());
+        recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
+        recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerHeat.setAdapter(heatAdapter);
     }
 }

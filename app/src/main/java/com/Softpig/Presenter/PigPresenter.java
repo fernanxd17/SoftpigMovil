@@ -12,6 +12,7 @@ import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
 import com.Softpig.View.fragment.ExamMaleListFragment;
+import com.Softpig.View.fragment.HeatFragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -303,15 +304,14 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void presentarCelosFragment(final PigActivity context, final short idFemale, final SwipeRefreshLayout refreshLayout) {
+    public void presentarCelosFragment(final PigActivity context, final HeatFragment heatFragment,
+                                       final short idFemale, final SwipeRefreshLayout refreshListHeat) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        if(refreshLayout == null){
+        if(refreshListHeat == null){
             progressDialog.setMessage("Cargando Partos...");
             progressDialog.show();
         }
-
-
 
         String url = URLAPI + "heat_list/" + idFemale;
 
@@ -319,38 +319,35 @@ public class PigPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            List<Heat> listHeat = new ArrayList<>();
-                            JSONArray jsonHeat = response.getJSONArray("heats");
-                            for (int i = 0; i < jsonHeat.length(); i++) {
-                                JSONObject heatObject = jsonHeat.getJSONObject(i);
-                                short idHeat = (short) heatObject.getInt("id");
-                                String typeMating = heatObject.getString("type");
-                                String sincrony = heatObject.getString("sincrony");
-                                String dateStart = heatObject.getString("dateStart");
-                                String dateEnd = heatObject.getString("dateEnd");
-                                boolean isSincrony = sincrony.equalsIgnoreCase("Si");
-                                listHeat.add(new Heat(idHeat, idFemale, typeMating, isSincrony, dateStart, dateEnd));
-                            }
-                            context.setListHeat(listHeat);
-
-                            if(refreshLayout == null){
-                                context.inflarFragment("Heat");
-                                progressDialog.dismiss();
-                            }else{
-                                notificarAdapter();
-                            }
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment("Error");
-                            progressDialog.dismiss();
+                response -> {
+                    try {
+                        List<Heat> listHeat = new ArrayList<>();
+                        JSONArray jsonHeat = response.getJSONArray("heats");
+                        for (int i = 0; i < jsonHeat.length(); i++) {
+                            JSONObject heatObject = jsonHeat.getJSONObject(i);
+                            short idHeat = (short) heatObject.getInt("id");
+                            String typeMating = heatObject.getString("type");
+                            String sincrony = heatObject.getString("sincrony");
+                            String dateStart = heatObject.getString("dateStart");
+                            String dateEnd = heatObject.getString("dateEnd");
+                            boolean isSincrony = sincrony.equalsIgnoreCase("Si");
+                            listHeat.add(new Heat(idHeat, idFemale, typeMating, isSincrony, dateStart, dateEnd));
                         }
+                        heatFragment.setListHeat(listHeat);
+
+                        if(refreshListHeat == null){
+                            context.inflarFragment("Heat");
+                            progressDialog.dismiss();
+                        }else{
+                            heatFragment.notificarAdapter();
+                            refreshListHeat.setRefreshing(false);
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
