@@ -21,7 +21,6 @@
                     android:title="Razas" />
                 <item
                     android:id="@+id/nav_report"
-                    android:enabled="false"
                     android:icon="@drawable/ic_timeline"
                     android:title="Informes" />
             </menu>

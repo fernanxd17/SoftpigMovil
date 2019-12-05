@@ -26,6 +26,7 @@ import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.RaceFragment;
+import com.Softpig.View.fragment.ReportFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
 import com.Softpig.View.fragment.InstallationFragment;
@@ -67,6 +68,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
     private MedicineFragment medicineFragment;
+    private ReportFragment reportFragment;
     private AlarmFragment alarmFragment;
     private HeatFragment heatFragment;
     private BottomNavigationView bottomNavigationView;
@@ -132,6 +134,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
             medicineFragment = new MedicineFragment();
+            reportFragment = new ReportFragment();
             presentarFragment("dashboard", null,true);
         }
 
@@ -199,8 +202,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-
         switch (menuItem.getItemId()){
             case R.id.nav_female:
                 mainMenuPresenter.inflarFemalesFragment(this, femaleFragment, null);
@@ -218,7 +219,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).commit();
                 break;
             case R.id.nav_report:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
                 break;
             case R.id.nav_out:
                 super.onBackPressed();
