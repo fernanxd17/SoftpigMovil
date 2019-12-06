@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
@@ -17,7 +16,7 @@ public class ReportFragment extends Fragment {
 
     private View viewReport;
     private LinearLayout llInformeGeneral, llFertilidadMachos, llProduccionHembras;
-    private FertilidadMachosFragment fertilidadMachosFragment;
+    private PieChartFragment pieChartFragment;
 
     public ReportFragment() {
 
@@ -33,7 +32,7 @@ public class ReportFragment extends Fragment {
         llFertilidadMachos = viewReport.findViewById(R.id.ll_fertilidad_machos);
         llProduccionHembras = viewReport.findViewById(R.id.ll_produccion_hembras);
 
-        fertilidadMachosFragment = new FertilidadMachosFragment();
+        pieChartFragment = new PieChartFragment();
 
         llInformeGeneral.setOnClickListener(view ->  invocarInformeGeneral());
         llFertilidadMachos.setOnClickListener(view -> invocarFertilidadMachos());
@@ -46,7 +45,7 @@ public class ReportFragment extends Fragment {
     }
 
     private void invocarFertilidadMachos() {
-        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fertilidadMachosFragment).commit();
+        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pieChartFragment).commit();
     }
 
     private void invocarInformeGeneral() {

@@ -24,12 +24,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FertilidadMachosFragment extends Fragment {
+public class PieChartFragment extends Fragment {
 
     private PieChart gfFertMachos;
     private View viewFertMachos;
 
-    public FertilidadMachosFragment() {
+    public PieChartFragment() {
         // Required empty public constructor
     }
 
@@ -37,12 +37,9 @@ public class FertilidadMachosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewFertMachos = inflater.inflate(R.layout.fragment_fertilidad_machos, container, false);
+        viewFertMachos = inflater.inflate(R.layout.fragment_piechart, container, false);
         gfFertMachos = viewFertMachos.findViewById(R.id.grafic_fert_machos);
         generarGrafico();
-
-
-
 
 
         return viewFertMachos;
@@ -53,13 +50,12 @@ public class FertilidadMachosFragment extends Fragment {
         gfFertMachos.getDescription().setEnabled(false);
         gfFertMachos.setExtraOffsets(5,10,5,5);
         gfFertMachos.setDragDecelerationFrictionCoef(0.99f);
-        gfFertMachos.setDrawHoleEnabled(false);
+
+        gfFertMachos.setDrawHoleEnabled(true);
         gfFertMachos.setHoleColor(Color.WHITE);
-        gfFertMachos.setTransparentCircleRadius(61f);
+        gfFertMachos.setTransparentCircleRadius(60f);
 
         ArrayList<PieEntry> yValues = tomarValores();
-
-
 
         Description description = new Description();
         description.setText("Este es un ejemplo de grafico");
