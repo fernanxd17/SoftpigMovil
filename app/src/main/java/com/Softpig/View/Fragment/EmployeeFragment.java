@@ -1,22 +1,18 @@
 package com.Softpig.View.Fragment;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.Softpig.Model.Employee;
 import com.Softpig.Presenter.Adapters.EmployeeAdapter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-
 import java.util.ArrayList;
 
 public class EmployeeFragment extends Fragment {
@@ -28,7 +24,6 @@ public class EmployeeFragment extends Fragment {
     private  TextView tv_noEmployees;
     private SwipeRefreshLayout refreshListEmployee;
 
-
     public EmployeeFragment() {
         this.listEmployees = new ArrayList<>();
     }
@@ -36,7 +31,6 @@ public class EmployeeFragment extends Fragment {
     public void setListEmployees(ArrayList<Employee> listEmployees){
         this.listEmployees = listEmployees;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +54,6 @@ public class EmployeeFragment extends Fragment {
 
         return viewEmployee;
     }
-
 
     public void notificarAdapter() {
         if (listEmployees.isEmpty()){

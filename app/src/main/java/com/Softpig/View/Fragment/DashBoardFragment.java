@@ -4,13 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
@@ -43,13 +41,8 @@ public DashBoardFragment (){
         llEmployeeDashboard = view.findViewById(R.id.ll_empleyees_dashboard);
         swipeRefreshLayout = view.findViewById(R.id.refreshDashboard);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ((MainMenuActivity)getContext()).actualizarValoresDashboard(swipeRefreshLayout);
-            }
-        });
-
+        swipeRefreshLayout.setOnRefreshListener(() -> ((MainMenuActivity)getContext()).
+                actualizarValoresDashboard(swipeRefreshLayout));
 
         if(!MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
             tvNumAdmins = view.findViewById(R.id.tv_num_admins);
@@ -61,7 +54,6 @@ public DashBoardFragment (){
         }else{
             llEmployeeDashboard.setVisibility(View.INVISIBLE);
         }
-
 
         tvNumInstallations = view.findViewById(R.id.tv_num_installations);
         tvNumInstallations.setText("Instalaciones Registradas: " + valores[4]);
@@ -78,26 +70,11 @@ public DashBoardFragment (){
         llToalsDashboard = view.findViewById(R.id.ll_tools_dashboard);
 
 
-        this.llEmployeeDashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainMenuActivity)getActivity()).controllerFragment("Employees");
-            }
-        });
+        this.llEmployeeDashboard.setOnClickListener(view -> ((MainMenuActivity)getActivity()).controllerFragment("Employees"));
 
-        this.llInstallationsDashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).controllerFragment("Installations");
-            }
-        });
+        this.llInstallationsDashboard.setOnClickListener(v -> ((MainMenuActivity)getActivity()).controllerFragment("Installations"));
 
-        this.llToalsDashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainMenuActivity)getActivity()).controllerFragment("Tools");
-            }
-        });
+        this.llToalsDashboard.setOnClickListener(v -> ((MainMenuActivity)getActivity()).controllerFragment("Tools"));
 
         return view;
 
@@ -116,7 +93,6 @@ public DashBoardFragment (){
             llEmployeeDashboard.setVisibility(View.INVISIBLE);
         }
 
-
         tvNumInstallations = view.findViewById(R.id.tv_num_installations);
         tvNumInstallations.setText("Instalaciones Registradas: " + valores[4]);
         tvNumTypeInstallations = view.findViewById(R.id.tv_num_type_installations);
@@ -128,6 +104,5 @@ public DashBoardFragment (){
         tvToolsPrestamo = view.findViewById(R.id.tv_num_tools_prestamo);
         tvToolsPrestamo.setText("En prestamo: " + valores[2]);
     }
-
 
 }

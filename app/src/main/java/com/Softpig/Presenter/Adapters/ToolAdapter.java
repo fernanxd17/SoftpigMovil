@@ -7,20 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Softpig.Model.Tool;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.ProfileActivity;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,16 +58,12 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
 
             }
 
-            holder.ivRemoveArticleEmployee.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            holder.ivRemoveArticleEmployee.setOnClickListener(view -> {
 
-                    try{
-                        ((MainMenuActivity)context).eliminarArticulo(tool.getIdArticle(), "Article");
-                    }catch (Exception e){
-                        System.out.println("Context: profileActivit");
-                        ((ProfileActivity)context).eliminarArticuloPersona(tool.getIdArticle(), "ArticlePerson");
-                    }
+                try{
+                    ((MainMenuActivity)context).eliminarArticulo(tool.getIdArticle(), "Article");
+                }catch (Exception e){
+                    ((ProfileActivity)context).eliminarArticuloPersona(tool.getIdArticle(), "ArticlePerson");
                 }
             });
     }

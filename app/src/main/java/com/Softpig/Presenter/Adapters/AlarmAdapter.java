@@ -8,15 +8,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Softpig.Model.Alarm;
-import com.Softpig.Model.Male;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +27,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolderAl
         listAlarmFull = new ArrayList<>(listAlarm);
         this.context = context;
     }
-
-
 
     @NonNull
     @Override
@@ -73,7 +67,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolderAl
                             String.valueOf(alarm.getIdAlarm()).toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(alarm);
                     }
-
                 }
             }
 
@@ -102,7 +95,5 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolderAl
             tvHora = itemView.findViewById(R.id.tv_valor_hora);
             ivRemoveAlarm = itemView.findViewById(R.id.iv_remove_alarm);
          }
-
         }
     }
-

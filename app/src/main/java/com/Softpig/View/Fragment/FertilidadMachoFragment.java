@@ -20,8 +20,7 @@ public class FertilidadMachoFragment extends Fragment {
     public FertilidadMachoFragment() {
         // Required empty public constructor
     }
-
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

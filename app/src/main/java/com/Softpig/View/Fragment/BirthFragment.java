@@ -130,29 +130,26 @@ public class BirthFragment extends Fragment {
                 public void onNothingSelected(AdapterView<?> parent) { }
             });
 
-            ibObtenerFecha.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
-                            final int mesActual = month + 1;
-                            //Formateo el día obtenido: antepone el 0 si son menores de 10
-                            String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
-                            //Formateo el mes obtenido: antepone el 0 si son menores de 10
-                            String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
-                            //Muestro la fecha con el formato deseado
-                            etMostrarFecha.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
-                        }
-                        //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-                        /**
-                         *También puede cargar los valores que usted desee
-                         */
-                    },anio, mes, dia);
-                    //Muestro el widget
-                    recogerFecha.show();
-                }
+            ibObtenerFecha.setOnClickListener(view1 -> {
+                DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int month, int dayOfMonth) {
+                        //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                        final int mesActual = month + 1;
+                        //Formateo el día obtenido: antepone el 0 si son menores de 10
+                        String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                        //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                        String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                        //Muestro la fecha con el formato deseado
+                        etMostrarFecha.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
+                    }
+                    //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+                    /**
+                     *También puede cargar los valores que usted desee
+                     */
+                },anio, mes, dia);
+                //Muestro el widget
+                recogerFecha.show();
             });
 
             alert.setView(viewDialog);
@@ -160,26 +157,16 @@ public class BirthFragment extends Fragment {
             final AlertDialog alertDialog = alert.create();
             alertDialog.setCanceledOnTouchOutside(false);
 
-            btCancelar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    alertDialog.dismiss();
-                }
+            btCancelar.setOnClickListener(view12 -> alertDialog.dismiss());
+
+            btAgregar.setOnClickListener(view13 -> {
+                String fecha = etMostrarFecha.getText().toString();
+                short noBabies = Short.valueOf(etBabiesNumber.getText().toString());
+                short noMummy = Short.valueOf(etMummyNumber.getText().toString());
+                short noDead = Short.valueOf(etDeadNumber.getText().toString());
+                Birth birth  = new Birth(Short.valueOf(idMale), fecha, noBabies, noMummy, noDead);
+                ((PigActivity)getContext()).agregarParto(birth, alertDialog);
             });
-
-            btAgregar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String fecha = etMostrarFecha.getText().toString();
-                    short noBabies = Short.valueOf(etBabiesNumber.getText().toString());
-                    short noMummy = Short.valueOf(etMummyNumber.getText().toString());
-                    short noDead = Short.valueOf(etDeadNumber.getText().toString());
-                    Birth birth  = new Birth(Short.valueOf(idMale), fecha, noBabies, noMummy, noDead);
-                    ((PigActivity)getContext()).agregarParto(birth, alertDialog);
-                }
-            });
-
-
 
             alertDialog.show();
         });

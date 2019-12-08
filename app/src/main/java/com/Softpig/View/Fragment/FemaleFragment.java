@@ -1,23 +1,19 @@
 package com.Softpig.View.Fragment;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.Softpig.Model.Female;
 import com.Softpig.Presenter.Adapters.FemaleAdapter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-
 import java.util.ArrayList;
 
 public class FemaleFragment extends Fragment {
@@ -60,15 +56,6 @@ public class FemaleFragment extends Fragment {
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerFemale.setAdapter(femaleAdapter);
 
-
-
-        /*this.ll_heats_female.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainMenuActivity)getActivity()).controllerFragment("Heats");
-            }
-        });*/
-
         return viewFemale;
     }
 
@@ -100,8 +87,6 @@ public class FemaleFragment extends Fragment {
         recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerFemale.setAdapter(femaleAdapter);
-
-
-
     }
+
 }

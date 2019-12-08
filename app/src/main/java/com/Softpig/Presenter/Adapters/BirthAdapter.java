@@ -6,15 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Softpig.Model.Birth;
-import com.Softpig.Model.Male;
 import com.Softpig.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +49,6 @@ public class BirthAdapter extends RecyclerView.Adapter<BirthAdapter.ViewHolderBi
         return listBirth.size();
     }
 
-
     @Override
     public Filter getFilter() {
         return birthFilter;
@@ -90,7 +85,6 @@ public class BirthAdapter extends RecyclerView.Adapter<BirthAdapter.ViewHolderBi
 
     public class ViewHolderBirth extends RecyclerView.ViewHolder {
 
-        private LinearLayout llBirth;
         private TextView tvIdBirth,tvMaleDad, tvDate;
         private TextView tvNumBabies, tvNumMummy, tvNumDead;
         public ViewHolderBirth(@NonNull View itemView) {

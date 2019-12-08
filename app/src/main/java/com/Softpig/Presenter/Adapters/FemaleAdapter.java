@@ -6,15 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
@@ -49,12 +46,7 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
         holder.tv_gestation.setText(female.getGestation());
         holder.tv_pesoFemale.setText(female.getWeigth()+" Kg");
 
-        holder.llCardviewFemale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainMenuActivity) context).iniciarPigActivityFemale(female);
-            }
-        });
+        holder.llCardviewFemale.setOnClickListener(view -> ((MainMenuActivity) context).iniciarPigActivityFemale(female));
     }
 
     @Override
@@ -80,7 +72,6 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
                         || female.getRace().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(female);
                     }
-
                 }
             }
 
@@ -99,7 +90,6 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
 
     public class ViewHolderFemale extends RecyclerView.ViewHolder {
 
-        ImageView imagenFemale;
         TextView tv_idFemale, tv_nulipara, tv_pesoFemale,tv_gestation;
         LinearLayout llCardviewFemale;
 
@@ -110,7 +100,7 @@ public class FemaleAdapter extends RecyclerView.Adapter<FemaleAdapter.ViewHolder
             tv_pesoFemale = itemView.findViewById(R.id.tv_pesoFemale);
             tv_gestation =  itemView.findViewById(R.id.tv_gestation);
             llCardviewFemale = itemView.findViewById(R.id.ll_cardview_female);
-
         }
     }
+
 }
