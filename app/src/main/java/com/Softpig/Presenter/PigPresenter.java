@@ -11,10 +11,10 @@ import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
-import com.Softpig.View.fragment.BirthFragment;
-import com.Softpig.View.fragment.ExamMaleListFragment;
-import com.Softpig.View.fragment.GestationFragment;
-import com.Softpig.View.fragment.HeatFragment;
+import com.Softpig.View.Fragment.BirthFragment;
+import com.Softpig.View.Fragment.ExamMaleListFragment;
+import com.Softpig.View.Fragment.GestationFragment;
+import com.Softpig.View.Fragment.HeatFragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,7 +28,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 

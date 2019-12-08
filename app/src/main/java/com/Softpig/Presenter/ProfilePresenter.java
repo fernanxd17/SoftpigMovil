@@ -9,8 +9,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.ProfileActivity;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.ToolFragment;
+import com.Softpig.View.Fragment.ErrorFragment;
+import com.Softpig.View.Fragment.ToolFragment;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ProfilePresenter {
 

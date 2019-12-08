@@ -14,9 +14,9 @@ import android.view.inputmethod.EditorInfo;
 import com.Softpig.Model.Employee;
 import com.Softpig.Presenter.ProfilePresenter;
 import com.Softpig.R;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.ProfileFragment;
-import com.Softpig.View.fragment.ToolFragment;
+import com.Softpig.View.Fragment.ErrorFragment;
+import com.Softpig.View.Fragment.ProfileFragment;
+import com.Softpig.View.Fragment.ToolFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
