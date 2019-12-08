@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/primaryColor">
+    android:background="@drawable/person">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="15dp"
-        android:background="#90E4E2E2">
+        android:background="@drawable/border_radius">
 
         <LinearLayout
             android:id="@+id/ll_title_person"
@@ -44,7 +43,7 @@
                 android:text="INFORMACIÓN PERSONAL"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="15dp">
+                android:textSize="20dp">
             </TextView>
 
         </LinearLayout>
@@ -93,7 +92,7 @@
                         android:layout_marginBottom="5dp">
                     </TextView>
                     <TextView
-                        android:id="@+id/tv_gender"
+                        android:id="@+id/tv_gender_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Genero:"
@@ -135,7 +134,7 @@
                     </TextView>
                     <TextView
                         android:layout_marginLeft="5dp"
-                        android:id="@+id/tv__gender"
+                        android:id="@+id/tv_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hombre"
@@ -147,13 +146,16 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2">
+                android:layout_weight="0.2"
+                android:background="@drawable/ic_style"
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="5dp">
                 <ImageView
                     android:layout_centerInParent="true"
                     android:id="@+id/iv_person"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_supervisor_account"
+                    android:background="@drawable/user"
                     android:layout_gravity="center">
                 </ImageView>
             </RelativeLayout>
@@ -171,7 +173,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="15dp"
-        android:background="#90E4E2E2">
+        android:background="@drawable/border_radius">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -186,7 +188,7 @@
                 android:text="INFORMACIÓN EMPRESARIAL"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="15dp">
+                android:textSize="20dp">
             </TextView>
 
         </LinearLayout>
@@ -325,7 +327,10 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2">
+                android:layout_weight="0.2"
+                android:background="@drawable/ic_style"
+                android:layout_marginVertical="70dp"
+                android:layout_marginHorizontal="5dp">
                 <ImageView
                     android:layout_centerInParent="true"
                     android:id="@+id/iv_email"
@@ -348,7 +353,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="15dp"
-        android:background="#90E4E2E2"
+        android:background="@drawable/border_radius"
         android:layout_marginTop="25dp">
 
         <LinearLayout
@@ -363,7 +368,7 @@
                 android:layout_height="wrap_content"
                 android:text="INFORMACIÓN DE CONTACTO"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textAlignment="center">
             </TextView>
         </LinearLayout>
@@ -447,7 +452,10 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2">
+                android:layout_weight="0.2"
+                android:background="@drawable/ic_style"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="5dp">
                 <ImageView
                     android:layout_centerInParent="true"
                     android:id="@+id/iv_instalations"
@@ -474,7 +482,7 @@
             android:layout_height="wrap_content"
             android:text="DESPEDIR"
             android:paddingHorizontal="20dp"
-            android:background="@color/secondaryColor"
+            android:background="@drawable/custom_button"
             android:layout_gravity="center"
             android:layout_marginRight="30dp">
         </Button>
@@ -484,7 +492,7 @@
             android:layout_height="wrap_content"
             android:text="INHABILITAR"
             android:paddingHorizontal="20dp"
-            android:background="@color/secondaryColor"
+            android:background="@drawable/custom_button"
             android:layout_gravity="center">
         </Button>
 
