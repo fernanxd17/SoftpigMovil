@@ -2,6 +2,8 @@ package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.renderscript.RenderScript;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -24,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class ProfilePresenter {
 
@@ -47,38 +50,35 @@ public class ProfilePresenter {
               Request.Method.GET,
               url,
               null,
-              new Response.Listener<JSONObject>() {
-                  @Override
-                  public void onResponse(JSONObject response) {
+              response -> {
 
-                      try {
+                  try {
 
-                          JSONArray jsonToolPerson = response.getJSONArray("articles");
-                          ArrayList<Tool> toolEmployee = new ArrayList<>();
-                          for(int i = 0; i < jsonToolPerson.length(); i++) {
-                              JSONObject toolPersonObject = jsonToolPerson.getJSONObject(i);
-                              short loan = (short) toolPersonObject.getInt("loan");
-                              if (loan == 0)
-                                  continue;
-                              short idTool = (short) toolPersonObject.getInt("id");
-                              String name = toolPersonObject.getString("name");
-                              String type = toolPersonObject.getString("type");
-                              toolEmployee.add(new Tool(idTool, name, type, loan));
-                          }
+                      JSONArray jsonToolPerson = response.getJSONArray("articles");
+                      ArrayList<Tool> toolEmployee = new ArrayList<>();
+                      for(int i = 0; i < jsonToolPerson.length(); i++) {
+                          JSONObject toolPersonObject = jsonToolPerson.getJSONObject(i);
+                          short loan = (short) toolPersonObject.getInt("loan");
+                          if (loan == 0)
+                              continue;
+                          short idTool = (short) toolPersonObject.getInt("id");
+                          String name = toolPersonObject.getString("name");
+                          String type = toolPersonObject.getString("type");
+                          toolEmployee.add(new Tool(idTool, name, type, loan));
+                      }
 
-                          toolPersonFragment.setListTool(toolEmployee);
+                      toolPersonFragment.setListTool(toolEmployee);
 
-                          if(inflar){
-                              context.inflarFragment(toolPersonFragment);
-                              progressDialog.dismiss();
-                          }else{
-                              toolPersonFragment.notificarAdapter();
-                              refreshListToolEmployee.setRefreshing(false);
-                          }
+                      if(inflar){
+                          context.inflarFragment(toolPersonFragment);
+                          progressDialog.dismiss();
+                      }else{
+                          toolPersonFragment.notificarAdapter();
+                          refreshListToolEmployee.setRefreshing(false);
+                      }
 
 
-                      } catch (Exception e) { e.printStackTrace(); }
-                  }
+                  } catch (Exception e) { e.printStackTrace(); }
               }, new Response.ErrorListener() {
           @Override
           public void onErrorResponse(VolleyError error) {
@@ -302,51 +302,46 @@ public class ProfilePresenter {
         }
     }
 
-    public void addToolEmployee(final ProfileActivity context, final short idEmployee, final short idTool, final String copias) {
+    public void addToolEmployee(final ToolFragment toolFragment, final short idEmployee, final Tool tool) {
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+        RequestQueue queue = Volley.newRequestQueue(toolFragment.getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(toolFragment.getContext());
         progressDialog.setMessage("Agregando herramienta...");
         progressDialog.show();
         try{
 
             HashMap<String, String> params = new HashMap();
             params.put("person", String.valueOf(idEmployee));
-            params.put("article", String.valueOf(idTool));
-            params.put("copies", copias);
+            params.put("article", String.valueOf(tool.getIdArticle()));
+            params.put("copies", String.valueOf(tool.getLoan()));
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/add_aritcle-employee",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
+                        try {
 
-                            try {
-                                int respo = response.getInt("status");
+                            int respo = response.getInt("status");
+                            toolFragment.getListTool().add(new Tool(tool.getIdArticle(), tool.getName(), "-", tool.getLoan()));
+                            toolFragment.notificarAdapter();
 
-                                progressDialog.dismiss();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                            progressDialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(toolFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(toolFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         }catch(Exception e){
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(toolFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.Model.Employee;
+import com.Softpig.Model.Tool;
 import com.Softpig.Presenter.ProfilePresenter;
 import com.Softpig.R;
 import com.Softpig.View.Fragment.ErrorFragment;
@@ -137,8 +138,8 @@ public class ProfileActivity extends AppCompatActivity {
         return employee;
     }
 
-    public void agregarTool(short idTool, String copias) {
-        profilePresenter.addToolEmployee(this, employee.getIdEmployee(), idTool, copias);
+    public void agregarTool(final ToolFragment toolFragment, final Tool tool) {
+        profilePresenter.addToolEmployee(toolFragment,employee.getIdEmployee(), tool);
     }
 
     public void addWorkedHours(String workedHours) {

@@ -13,6 +13,12 @@ public class Tool {
         this.loan  = loan;
     }
 
+    public Tool(short idArticle, String name, short loan){
+        this.idArticle = idArticle;
+        this.name = name;
+        this.loan  = loan;
+    }
+
     public Tool(short idArticle, String typeArticle, String name, short quantity, short loan) {
         this.idArticle = idArticle;
         this.typeArticle = typeArticle;
