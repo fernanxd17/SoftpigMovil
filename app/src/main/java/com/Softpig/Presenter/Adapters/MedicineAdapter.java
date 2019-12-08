@@ -9,11 +9,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Softpig.Model.Medicine;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;

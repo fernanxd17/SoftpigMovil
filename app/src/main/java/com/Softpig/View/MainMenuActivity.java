@@ -3,7 +3,6 @@ package com.Softpig.View;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
@@ -17,19 +16,19 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.Softpig.View.fragment.AboutFragment;
-import com.Softpig.View.fragment.AlarmFragment;
-import com.Softpig.View.fragment.DictionaryFragment;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.FemaleFragment;
-import com.Softpig.View.fragment.HeatFragment;
-import com.Softpig.View.fragment.MaleFragment;
-import com.Softpig.View.fragment.MedicineFragment;
-import com.Softpig.View.fragment.RaceFragment;
-import com.Softpig.View.fragment.ReportFragment;
-import com.Softpig.View.fragment.ToolFragment;
-import com.Softpig.View.fragment.EmployeeFragment;
-import com.Softpig.View.fragment.InstallationFragment;
+import com.Softpig.View.Fragment.AboutFragment;
+import com.Softpig.View.Fragment.AlarmFragment;
+import com.Softpig.View.Fragment.DictionaryFragment;
+import com.Softpig.View.Fragment.ErrorFragment;
+import com.Softpig.View.Fragment.FemaleFragment;
+import com.Softpig.View.Fragment.HeatFragment;
+import com.Softpig.View.Fragment.MaleFragment;
+import com.Softpig.View.Fragment.MedicineFragment;
+import com.Softpig.View.Fragment.RaceFragment;
+import com.Softpig.View.Fragment.ReportFragment;
+import com.Softpig.View.Fragment.ToolFragment;
+import com.Softpig.View.Fragment.EmployeeFragment;
+import com.Softpig.View.Fragment.InstallationFragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,8 +46,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.Softpig.R;
-import com.Softpig.View.fragment.DashBoardFragment;
-import com.Softpig.View.fragment.PigFragment;
+import com.Softpig.View.Fragment.DashBoardFragment;
+import com.Softpig.View.Fragment.PigFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 

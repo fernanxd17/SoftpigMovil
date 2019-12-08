@@ -2,12 +2,10 @@ package com.Softpig.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.appcompat.widget.SearchView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,19 +16,18 @@ import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.Male;
-import com.Softpig.Model.PeriodGestation;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
-import com.Softpig.View.fragment.BirthFragment;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.ExamMaleListFragment;
-import com.Softpig.View.fragment.GestationFragment;
-import com.Softpig.View.fragment.HeatFragment;
-import com.Softpig.View.fragment.InfoFemaleFragment;
-import com.Softpig.View.fragment.InfoMaleFragment;
-import com.Softpig.View.fragment.InfoPigFragment;
-import com.Softpig.View.fragment.MaleExamFragment;
+import com.Softpig.View.Fragment.BirthFragment;
+import com.Softpig.View.Fragment.ErrorFragment;
+import com.Softpig.View.Fragment.ExamMaleListFragment;
+import com.Softpig.View.Fragment.GestationFragment;
+import com.Softpig.View.Fragment.HeatFragment;
+import com.Softpig.View.Fragment.InfoFemaleFragment;
+import com.Softpig.View.Fragment.InfoMaleFragment;
+import com.Softpig.View.Fragment.InfoPigFragment;
+import com.Softpig.View.Fragment.MaleExamFragment;
 
 import java.util.List;
 

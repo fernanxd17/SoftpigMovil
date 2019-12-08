@@ -1,19 +1,15 @@
 package com.Softpig.Presenter.Adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +17,10 @@ public class GestationAdapter extends  RecyclerView.Adapter<GestationAdapter.Vie
 
     private List<PeriodGestation> listGestation;
     private List<PeriodGestation> listGestationFull;
-    private Context context;
 
-    public GestationAdapter(List<PeriodGestation> listGestation, Context context) {
+    public GestationAdapter(List<PeriodGestation> listGestation) {
         this.listGestation = listGestation;
         listGestationFull = new ArrayList<>(listGestation);
-        this.context = context;
     }
 
     @NonNull
@@ -82,9 +76,6 @@ public class GestationAdapter extends  RecyclerView.Adapter<GestationAdapter.Vie
             notifyDataSetChanged();
         }
     };
-
-
-
 
     public class ViewHolderGestation extends RecyclerView.ViewHolder {
 

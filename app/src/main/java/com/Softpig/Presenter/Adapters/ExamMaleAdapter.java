@@ -4,26 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Softpig.Model.ExamMale;
-import com.Softpig.Model.Male;
-import com.Softpig.Model.Pig;
 import com.Softpig.R;
 import com.Softpig.View.PigActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +23,6 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
     private List<ExamMale> listMaleExam;
     private List<ExamMale> listMaleExamFull;
     private Context context;
-    private static final int DURATION = 250;
 
     public ExamMaleAdapter(List<ExamMale> listMaleExam, Context context) {
         this.listMaleExam = listMaleExam;
@@ -51,17 +41,13 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
     public void onBindViewHolder(@NonNull final ViewHolderMaleExam holder, int position) {
 
         final ExamMale examMale = listMaleExam.get(position);
-
         holder.bind(examMale);
-
         holder.itemView.setOnClickListener(v -> {
             boolean expanded = examMale.isExpanded();
             examMale.setExpanded(!expanded);
             notifyItemChanged(position);
         });
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -86,7 +72,6 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
                             examMale.getName().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(examMale);
                     }
-
                 }
             }
 
@@ -110,6 +95,7 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
         private View subItem;
         private EditText et_resultado;
         private Button btCancelar, btAgregar;
+
         public ViewHolderMaleExam(@NonNull View itemView) {
             super(itemView);
             tvNameExam = itemView.findViewById(R.id.nameExamMale);
@@ -119,17 +105,13 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
             tvModificarResultado = itemView.findViewById(R.id.sub_item_modificar_result);
         }
 
-        // Method in ViewHolder class
         private void bind(ExamMale examMale) {
-            // Get the state
-            boolean expanded = examMale.isExpanded();
-            // Set the visibility based on state
 
+            boolean expanded = examMale.isExpanded();
             tvResult.setText(examMale.getResult());
             tvDateExam.setText(examMale.getExamDate());
             tvNameExam.setText(examMale.getName());
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
-
 
             tvModificarResultado.setOnClickListener(view -> {
                 final AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -139,10 +121,8 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
                 btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
 
                 alert.setView(viewDialog);
-
                 final AlertDialog alertDialog = alert.create();
                 alertDialog.setCanceledOnTouchOutside(false);
-
 
                 btCancelar.setOnClickListener(v -> alertDialog.dismiss());
 
@@ -153,13 +133,6 @@ public class ExamMaleAdapter extends RecyclerView.Adapter<ExamMaleAdapter.ViewHo
 
                 alertDialog.show();
             });
-
-
-
-
         }
-
-
-
     }
 }

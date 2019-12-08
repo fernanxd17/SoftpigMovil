@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.Softpig.Model.Employee;
 import com.Softpig.View.MainMenuActivity;
-import com.Softpig.View.fragment.AboutFragment;
-import com.Softpig.View.fragment.DictionaryFragment;
-import com.Softpig.View.fragment.ForgetPassFragment;
-import com.Softpig.View.fragment.LoginFragment;
+import com.Softpig.View.Fragment.AboutFragment;
+import com.Softpig.View.Fragment.DictionaryFragment;
+import com.Softpig.View.Fragment.ForgetPassFragment;
+import com.Softpig.View.Fragment.LoginFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

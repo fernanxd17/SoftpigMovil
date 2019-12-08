@@ -1,20 +1,15 @@
 package com.Softpig.Presenter.Adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.Softpig.Model.Birth;
 import com.Softpig.Model.Heat;
 import com.Softpig.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +17,10 @@ public class HeatAdapter extends RecyclerView.Adapter<HeatAdapter.ViewHolderHeat
 
     private List<Heat> listHeat;
     private List<Heat> listHeatFull;
-    private Context context;
 
-    public HeatAdapter(List<Heat> listHeat, Context context) {
+    public HeatAdapter(List<Heat> listHeat) {
         this.listHeat = listHeat;
         listHeatFull = new ArrayList<>(listHeat);
-        this.context = context;
     }
 
     @NonNull
@@ -89,6 +82,7 @@ public class HeatAdapter extends RecyclerView.Adapter<HeatAdapter.ViewHolderHeat
     public class ViewHolderHeat extends RecyclerView.ViewHolder {
 
         private TextView tvIdHeat, tvType, tvSincrony, tvDateStart, tvDateEnd;
+
         public ViewHolderHeat(@NonNull View itemView) {
             super(itemView);
             tvIdHeat = itemView.findViewById(R.id.tv_idHeat);

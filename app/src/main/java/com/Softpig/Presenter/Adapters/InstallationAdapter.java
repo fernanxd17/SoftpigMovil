@@ -1,22 +1,16 @@
 package com.Softpig.Presenter.Adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.Softpig.Model.Employee;
 import com.Softpig.Model.Installation;
 import com.Softpig.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +19,10 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
 
     private List<Installation> listInstallationsFull;
     private List<Installation> listInstallations;
-    private Context context;
 
-    public InstallationAdapter(List<Installation> listInstallations, Context context) {
+    public InstallationAdapter(List<Installation> listInstallations) {
         this.listInstallations = listInstallations;
         listInstallationsFull = new ArrayList<>(listInstallations);
-        this.context = context;
     }
 
     @NonNull
@@ -71,7 +63,6 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
                             installation.getTypeInstalation().toLowerCase().contains(filterPattern)){
                         listaFiltrada.add(installation);
                     }
-
                 }
             }
 
@@ -99,13 +90,6 @@ public class InstallationAdapter extends RecyclerView.Adapter<InstallationAdapte
             tv_typeInstallation = itemView.findViewById(R.id.tv_valor_type_installation);
             tv_measurements = itemView.findViewById(R.id.tv__valor_medidasInstallation);
             llCardviewInstallation = itemView.findViewById(R.id.ll_cardview_installation);
-
-            llCardviewInstallation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
         }
     }
 }

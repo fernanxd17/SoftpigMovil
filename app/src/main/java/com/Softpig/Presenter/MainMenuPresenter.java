@@ -2,12 +2,9 @@ package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
-
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
@@ -19,19 +16,18 @@ import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.PigActivity;
-import com.Softpig.View.ProfileActivity;
-import com.Softpig.View.fragment.AlarmFragment;
-import com.Softpig.View.fragment.DashBoardFragment;
-import com.Softpig.View.fragment.EmployeeFragment;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.FemaleFragment;
-import com.Softpig.View.fragment.HeatFragment;
-import com.Softpig.View.fragment.InstallationFragment;
-import com.Softpig.View.fragment.MaleFragment;
-import com.Softpig.View.fragment.MedicineFragment;
-import com.Softpig.View.fragment.PigFragment;
-import com.Softpig.View.fragment.RaceFragment;
-import com.Softpig.View.fragment.ToolFragment;
+import com.Softpig.View.Fragment.AlarmFragment;
+import com.Softpig.View.Fragment.DashBoardFragment;
+import com.Softpig.View.Fragment.EmployeeFragment;
+import com.Softpig.View.Fragment.ErrorFragment;
+import com.Softpig.View.Fragment.FemaleFragment;
+import com.Softpig.View.Fragment.HeatFragment;
+import com.Softpig.View.Fragment.InstallationFragment;
+import com.Softpig.View.Fragment.MaleFragment;
+import com.Softpig.View.Fragment.MedicineFragment;
+import com.Softpig.View.Fragment.PigFragment;
+import com.Softpig.View.Fragment.RaceFragment;
+import com.Softpig.View.Fragment.ToolFragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,12 +35,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +49,6 @@ public class MainMenuPresenter {
     private  ArrayList<Pig> listPig;
     private HashMap<String, Short> hmTypeTool;
     private String [] listIdMale;
-    private boolean continuar = false;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
@@ -727,15 +719,12 @@ public class MainMenuPresenter {
 
     public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment,
                                    final SwipeRefreshLayout refrescarDashboard, final boolean inflar) {
-        /*if(refrescarDashboard != null){
-            refrescarDashboard.setRefreshing(true);
-        }*/
+
         final ProgressDialog progressDialog = new ProgressDialog(context);
         if(inflar){
             progressDialog.setMessage("Loading...");
             progressDialog.show();
         }
-
 
         String url = URLAPI + "dasboard";
 
@@ -743,66 +732,57 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            JSONArray jsonDataEmployee = response.getJSONArray("dashboard");
-                            JSONObject adminObject = jsonDataEmployee.getJSONObject(0);
-                            short adminNum = (short) adminObject.getInt("administrativos");
-                            JSONObject operaObject = jsonDataEmployee.getJSONObject(1);
-                            short operNum = (short) operaObject.getInt("operativos");
-                            JSONObject toolPersonObject = jsonDataEmployee.getJSONObject(2);
-                            short numToolPerson = (short)toolPersonObject.getInt("article_person");
-                            JSONObject toolInventaryObject = jsonDataEmployee.getJSONObject(3);
-                            short toolInventario =  (short) toolInventaryObject.getInt("items_inventory");
-                            JSONObject numInstallationObject = jsonDataEmployee.getJSONObject(4);
-                            short numInstallation = (short)numInstallationObject.getInt("number_installations");
-                            JSONObject typeInstallationObject = jsonDataEmployee.getJSONObject(5);
-                            short typeInstallation = (short)typeInstallationObject.getInt("installations_type");
+                    try {
+                        JSONArray jsonDataEmployee = response.getJSONArray("dashboard");
+                        JSONObject adminObject = jsonDataEmployee.getJSONObject(0);
+                        short adminNum = (short) adminObject.getInt("administrativos");
+                        JSONObject operaObject = jsonDataEmployee.getJSONObject(1);
+                        short operNum = (short) operaObject.getInt("operativos");
+                        JSONObject toolInventaryObject = jsonDataEmployee.getJSONObject(2);
+                        short toolInventario =  (short) toolInventaryObject.getInt("items_inventory");
+                        JSONObject toolPersonObject = jsonDataEmployee.getJSONObject(3);
+                        short numToolPerson = (short)toolPersonObject.getInt("article_person");
+                        JSONObject numInstallationObject = jsonDataEmployee.getJSONObject(4);
+                        short numInstallation = (short)numInstallationObject.getInt("number_installations");
+                        JSONObject typeInstallationObject = jsonDataEmployee.getJSONObject(5);
+                        short typeInstallation = (short)typeInstallationObject.getInt("installations_type");
 
-                            short [] valores = new short [6];
-                            valores[0] = adminNum;
-                            valores[1] = operNum;
-                            valores[2] = numToolPerson;
-                            valores[3] = toolInventario;
-                            valores[4] = numInstallation;
-                            valores[5] = typeInstallation;
+                        short [] valores = new short [6];
+                        valores[0] = adminNum;
+                        valores[1] = operNum;
+                        valores[2] = numToolPerson;
+                        valores[3] = toolInventario;
+                        valores[4] = numInstallation;
+                        valores[5] = typeInstallation;
 
-                            dashBoardFragment.setValores(valores);
+                        dashBoardFragment.setValores(valores);
 
-                            if (inflar){
-                                context.inflarFragment(dashBoardFragment);
-                                progressDialog.dismiss();
-                            }else{
-                                dashBoardFragment.actualizarText();
-                                refrescarDashboard.setRefreshing(false);
-                            }
-                        } catch (Exception e) {
-                            System.out.println("entra 1");
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
+                        if (inflar){
+                            context.inflarFragment(dashBoardFragment);
                             progressDialog.dismiss();
+                        }else{
+                            dashBoardFragment.actualizarText();
+                            refrescarDashboard.setRefreshing(false);
                         }
+                    } catch (Exception e) {
+                        System.out.println("entra 1");
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try { error.printStackTrace();
+                    try { error.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                    context.inflarFragment(new ErrorFragment());
-
-                    progressDialog.dismiss();
-
-                } catch (Exception e) {
-                    System.out.println("Entra 2");
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         json.setRetryPolicy(new DefaultRetryPolicy(

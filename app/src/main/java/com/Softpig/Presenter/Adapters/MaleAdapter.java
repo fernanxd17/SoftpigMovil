@@ -8,14 +8,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Softpig.Model.Male;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +41,7 @@ public class MaleAdapter  extends RecyclerView.Adapter<MaleAdapter.ViewHolderMal
         holder.tv_idMale.setText("ID: "+male.getIdMale());
         holder.tv_raceMale.setText(""+male.getRace());
         holder.tv_conformacionFisica.setText(male.getConformacionFisica());
-        holder.llCardviewMale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainMenuActivity)context).iniciarPigActivityMale(male);
-            }
-        });
+        holder.llCardviewMale.setOnClickListener(view -> ((MainMenuActivity)context).iniciarPigActivityMale(male));
     }
 
     @Override

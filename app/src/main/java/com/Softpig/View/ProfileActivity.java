@@ -12,11 +12,12 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 
 import com.Softpig.Model.Employee;
+import com.Softpig.Model.Tool;
 import com.Softpig.Presenter.ProfilePresenter;
 import com.Softpig.R;
-import com.Softpig.View.fragment.ErrorFragment;
-import com.Softpig.View.fragment.ProfileFragment;
-import com.Softpig.View.fragment.ToolFragment;
+import com.Softpig.View.Fragment.ErrorFragment;
+import com.Softpig.View.Fragment.ProfileFragment;
+import com.Softpig.View.Fragment.ToolFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -129,16 +130,16 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ErrorFragment()).commit();
     }
 
-    public void eliminarArticuloPersona(short position, String articlePerson) {
-        profilePresenter.eliminarArticuloPersona(this, position, articlePerson);
+    public void eliminarArticuloPersona(final short idArticle, final String table) {
+        profilePresenter.eliminarArticuloPersona(toolFragment, idArticle, table);
     }
 
     public Employee getEmployee(){
         return employee;
     }
 
-    public void agregarTool(short idTool, String copias) {
-        profilePresenter.addToolEmployee(this, employee.getIdEmployee(), idTool, copias);
+    public void agregarTool(final ToolFragment toolFragment, final Tool tool) {
+        profilePresenter.addToolEmployee(toolFragment,employee.getIdEmployee(), tool);
     }
 
     public void addWorkedHours(String workedHours) {

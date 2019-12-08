@@ -9,15 +9,11 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.Softpig.Model.Male;
 import com.Softpig.Model.Pig;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 

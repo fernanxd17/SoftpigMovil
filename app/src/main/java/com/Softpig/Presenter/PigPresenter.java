@@ -2,19 +2,17 @@ package com.Softpig.Presenter;
 
 import android.app.ProgressDialog;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
-import com.Softpig.View.fragment.BirthFragment;
-import com.Softpig.View.fragment.ExamMaleListFragment;
-import com.Softpig.View.fragment.GestationFragment;
-import com.Softpig.View.fragment.HeatFragment;
+import com.Softpig.View.Fragment.BirthFragment;
+import com.Softpig.View.Fragment.ExamMaleListFragment;
+import com.Softpig.View.Fragment.GestationFragment;
+import com.Softpig.View.Fragment.HeatFragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,13 +20,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -206,7 +201,6 @@ public class PigPresenter {
                 url,
                 null,
                 response -> {
-
                     try {
                         List<Birth> listBirth = new ArrayList<>();
                         JSONArray jsonBirth = response.getJSONArray("births");
@@ -219,7 +213,6 @@ public class PigPresenter {
                             short mummy = (short) birthObject.getInt("mummy");
                             short dead = (short) birthObject.getInt("dead");
 
-
                             listBirth.add(new Birth(idBirth, idFemale, idMale, dateBirth, babies, mummy, dead));
                         }
                         birthFragment.setListBirth(listBirth);
@@ -231,26 +224,22 @@ public class PigPresenter {
                             refreshBirth.setRefreshing(false);
                         }
 
-
                     } catch (Exception e) {
                         e.printStackTrace();
                         context.inflarFragment("Error");
                         progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment("Error");
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -264,9 +253,7 @@ public class PigPresenter {
             progressDialog.show();
         }
 
-
         String url = URLAPI + "period_gestation_list/" + idFemale;
-
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
@@ -327,7 +314,6 @@ public class PigPresenter {
         }
 
         String url = URLAPI + "heat_list/" + idFemale;
-
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -356,26 +342,22 @@ public class PigPresenter {
                             refreshListHeat.setRefreshing(false);
                         }
 
-
                     } catch (Exception e) {
                         e.printStackTrace();
                         context.inflarFragment("Error");
                         progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment("Error");
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -390,61 +372,52 @@ public class PigPresenter {
             progressDialog.show();
         }
 
-
-
         String url = URLAPI + "male_exam_list/" + idMale;
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
+                    try {
+                        List<ExamMale> listExamMale = new ArrayList<>();
+                        JSONArray jsonExamMale = response.getJSONArray("exams");
+                        for (int i = 0; i < jsonExamMale.length(); i++) {
+                            JSONObject examMaleObject = jsonExamMale.getJSONObject(i);
+                            short idExam = (short) examMaleObject.getInt("id");
+                            String date = examMaleObject.getString("date");
+                            String name = examMaleObject.getString("name");
+                            String result = examMaleObject.getString("result");
+                            String descripcion = examMaleObject.getString("description");
 
-                        try {
-                            List<ExamMale> listExamMale = new ArrayList<>();
-                            JSONArray jsonExamMale = response.getJSONArray("exams");
-                            for (int i = 0; i < jsonExamMale.length(); i++) {
-                                JSONObject examMaleObject = jsonExamMale.getJSONObject(i);
-                                short idExam = (short) examMaleObject.getInt("id");
-                                String date = examMaleObject.getString("date");
-                                String name = examMaleObject.getString("name");
-                                String result = examMaleObject.getString("result");
-                                String descripcion = examMaleObject.getString("description");
-
-                                listExamMale.add(new ExamMale(idMale, idExam, date, name, descripcion, result));
-                            }
-                            examMaleListFragment.setListExamMale(listExamMale);
-                            if(refreshListExamMale == null){
-                                context.inflarFragment("ExamMaleList");
-                                progressDialog.dismiss();
-                            }else{
-                                examMaleListFragment.notificarAdapter();
-                                refreshListExamMale.setRefreshing(false);
-                            }
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment("Error");
-                            progressDialog.dismiss();
+                            listExamMale.add(new ExamMale(idMale, idExam, date, name, descripcion, result));
                         }
+                        examMaleListFragment.setListExamMale(listExamMale);
+                        if(refreshListExamMale == null){
+                            context.inflarFragment("ExamMaleList");
+                            progressDialog.dismiss();
+                        }else{
+                            examMaleListFragment.notificarAdapter();
+                            refreshListExamMale.setRefreshing(false);
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment("Error");
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -471,27 +444,21 @@ public class PigPresenter {
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/add_birth",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                int respo = response.getInt("status");
-                                progressDialog.dismiss();
-                                alertDialog.dismiss();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                    response -> {
+                        try {
+                            int respo = response.getInt("status");
+                            progressDialog.dismiss();
+                            alertDialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         } catch (Exception e) {
@@ -508,9 +475,6 @@ public class PigPresenter {
 
         RequestQueue queue = Volley.newRequestQueue(context);
         try {
-            System.out.println("idfemale:" + idFemale);
-            System.out.println("idMale: " + idMale);
-            System.out.println("date:" + fechaGestacion);
             HashMap<String, String> params = new HashMap();
             params.put("ID_FEMALE", String.valueOf(idFemale));
             params.put("idMale", String.valueOf(idMale));
@@ -521,27 +485,21 @@ public class PigPresenter {
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/add_gestation",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                int respo = response.getInt("status");
-                                progressDialog.dismiss();
-                                alertDialog.dismiss();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                    response -> {
+                        try {
+                            int respo = response.getInt("status");
+                            progressDialog.dismiss();
+                            alertDialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
 
             arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -581,29 +539,23 @@ public class PigPresenter {
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/add_heat",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                int respo = response.getInt("status");
-                                progressDialog.dismiss();
-                                alertDialog.dismiss();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                                alertDialog.dismiss();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
+                    response -> {
+                        try {
+                            int respo = response.getInt("status");
                             progressDialog.dismiss();
                             alertDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                            alertDialog.dismiss();
                         }
+                    },
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        alertDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         } catch (Exception e) {
@@ -632,30 +584,23 @@ public class PigPresenter {
                     Request.Method.PUT,
                     "https://softpig.herokuapp.com/api/report_exam",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
-                                System.out.println("respo :" + respo);
+                        try {
+                            int respo = response.getInt("status");
+                            System.out.println("respo :" + respo);
+                            progressDialog.dismiss();
 
-                                progressDialog.dismiss();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
 
             arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
