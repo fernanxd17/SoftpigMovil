@@ -71,18 +71,20 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             List<Medicine> listaFiltrada = new ArrayList<>();
             if(charSequence == null || charSequence.length()==0){
                 listaFiltrada.addAll(listMedicineFull);
-            }else{
+            }else {
                 String filterPattern = charSequence.toString().toLowerCase().trim();
-                for(Medicine medicine: listMedicineFull){
-                    if(String.valueOf(medicine.getIdMedicine()).toLowerCase().contains(filterPattern) ||
-                            medicine.getName().toLowerCase().contains(filterPattern)  ||
-                            medicine.getQuantity() >= Integer.parseInt(filterPattern)){
-                        listaFiltrada.add(medicine);
+                for (Medicine medicine : listMedicineFull) {
+                    try {
+                        if (String.valueOf(medicine.getIdMedicine()).toLowerCase().contains(filterPattern) ||
+                                medicine.getName().toLowerCase().contains(filterPattern) ||
+                                Integer.parseInt(filterPattern) >= medicine.getQuantity()) {
+                            listaFiltrada.add(medicine);
+                        }
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
                     }
-
                 }
             }
-
             FilterResults filterResults = new FilterResults();
             filterResults.values = listaFiltrada;
             return filterResults;

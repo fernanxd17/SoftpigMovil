@@ -122,4 +122,75 @@ public class Employee implements Serializable {
         return salary;
     }
 
+    public void setIdEmployee(short idEmployee) {
+        this.idEmployee = idEmployee;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setContract(String contract) {
+        this.contract = contract;
+    }
+
+    public void setHoursWorked(String hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    public void setAdmissionDate(String admissionDate) {
+        this.admissionDate = admissionDate;
+    }
+
+    public void setDateOff(String dateOff) {
+        this.dateOff = dateOff;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setMotherLastName(String motherLastName) {
+        this.motherLastName = motherLastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setInstallation(String installation) {
+        this.installation = installation;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class FemaleFragment extends Fragment {
     private  View viewFemale;
     private LinearLayout ll_heats_female;
     private String[] listIdMale;
+    private SwipeRefreshLayout refreshListFemale;
 
     public FemaleFragment() {
     }
@@ -37,18 +39,27 @@ public class FemaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewFemale =  inflater.inflate(R.layout.fragment_list_female, container, false);
+        refreshListFemale = viewFemale.findViewById(R.id.refresh_list_female);
+        refreshListFemale.setOnRefreshListener(() -> {
+            ((MainMenuActivity)getActivity()).actualizarListaFemale(refreshListFemale);
+        });
+
         ll_heats_female = viewFemale.findViewById(R.id.ll_heats_female);
         ((MainMenuActivity)getActivity()).setTitleTolbar("Reproductoras");
         ((MainMenuActivity)getActivity()).setSearch("Female");
-        if (listFemale.isEmpty()){
-            tv_noFemales = viewFemale.findViewById(R.id.tv_noFemales);
-            tv_noFemales.setText("NO existen reproductoras");
-            return viewFemale;
-        }
+
+        tv_noFemales = viewFemale.findViewById(R.id.tv_noFemales);
+        tv_noFemales.setText("No existen reproductoras");
+
+        if (!listFemale.isEmpty())
+            tv_noFemales.setText(listFemale.size() + " Reproductora(s) encontrada(s)");
+
+        System.out.println("ListFemalesize:" +listFemale.size());
         femaleAdapter = new FemaleAdapter(this.listFemale, getContext());
         recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
         recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerFemale.setAdapter(femaleAdapter);
+
 
 
         /*this.ll_heats_female.setOnClickListener(new View.OnClickListener() {
@@ -75,5 +86,22 @@ public class FemaleFragment extends Fragment {
 
     public String [] getListIdMale(){
         return listIdMale;
+    }
+
+    public void notificarAdapter() {
+
+        tv_noFemales = viewFemale.findViewById(R.id.tv_noFemales);
+        tv_noFemales.setText("No existen reproductoras");
+
+        if (!listFemale.isEmpty())
+            tv_noFemales.setText(listFemale.size() + " Reproductora(s) encontrada(s)");
+
+        femaleAdapter = new FemaleAdapter(this.listFemale, getContext());
+        recyclerFemale = viewFemale.findViewById(R.id.recyclerFemale);
+        recyclerFemale.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerFemale.setAdapter(femaleAdapter);
+
+
+
     }
 }

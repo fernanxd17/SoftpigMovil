@@ -59,84 +59,66 @@ public class ProfileFragment extends Fragment {
         modificarTextCampos();
 
 
-        tvAssignedItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ProfileActivity)getContext()).presentarFragment("ToolsPerson");
+        tvAssignedItems.setOnClickListener(view -> ((ProfileActivity)getContext()).presentarFragment("ToolsPerson"));
+
+        btDespedir.setOnClickListener(view -> ((ProfileActivity)getContext()).cambiarEstado(employee,"Despedido"));
+
+        btInhabilitar.setOnClickListener(view -> {
+            if(employee.getStatus().equalsIgnoreCase("En Funciones") && btInhabilitar.getText().toString().equalsIgnoreCase("Inhabilitar")){
+                ((ProfileActivity)getContext()).cambiarEstado(employee,"Inhabilitado");
+            }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado") && btInhabilitar.getText().toString().equalsIgnoreCase("Habilitar")){
+                ((ProfileActivity)getContext()).cambiarEstado(employee,"En Funciones");
             }
         });
 
-        btDespedir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ProfileActivity)getContext()).cambiarEstado("Despedido");
-            }
-        });
 
-        if(employee.getStatus().equalsIgnoreCase("En Funciones")){
-            btInhabilitar.setOnClickListener(new View.OnClickListener() {
+
+
+        tvAddHoursWorked.setOnClickListener(view -> {
+            final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            View viewDialog = getLayoutInflater().inflate(R.layout.add_hours_worked, null);
+
+            TextView tvNameEmployeeAddHour = viewDialog.findViewById(R.id.tv_name_employee_add_hour);
+            String nameEmployee = employee.getFirstName() + " " + employee.getLastName();
+            tvNameEmployeeAddHour.setText(nameEmployee);
+
+            final EditText etHourWorked = viewDialog.findViewById(R.id.etHourWorked);
+            Button btAgregar =  viewDialog.findViewById(R.id.btAgregar);
+            Button btCancelar = viewDialog.findViewById(R.id.btCancelar);
+
+            alert.setView(viewDialog);
+            final AlertDialog alertDialog = alert.create();
+            alertDialog.setCanceledOnTouchOutside(false);
+
+            btAgregar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((ProfileActivity)getContext()).cambiarEstado("Inhabilitado");
+                   String hoursAdd = etHourWorked.getText().toString();
+                   if(hoursAdd.isEmpty() || Integer.parseInt(hoursAdd) == 0){
+                       Toast.makeText(getContext(), "Debe agregar un numero de horas", Toast.LENGTH_SHORT);
+                   }else{
+                       ((ProfileActivity)getContext()).addWorkedHours(hoursAdd);
+
+
+                       int salario = Integer.parseInt(hoursAdd) * 3450;
+                       DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+                       String valorFormateado = decimalFormat.format(salario);
+                       ProfileFragment.this.tvSalary.setText("$ "+valorFormateado);
+                   }
+
+                    alertDialog.dismiss();
+
                 }
             });
-        }else if(employee.getStatus().equalsIgnoreCase("Inhabilitado")){
-            btInhabilitar.setOnClickListener(new View.OnClickListener() {
+
+            btCancelar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((ProfileActivity)getContext()).cambiarEstado("En Funciones");
+                    alertDialog.dismiss();
                 }
             });
-        }
 
-        tvAddHoursWorked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                View viewDialog = getLayoutInflater().inflate(R.layout.add_hours_worked, null);
-
-                TextView tvNameEmployeeAddHour = viewDialog.findViewById(R.id.tv_name_employee_add_hour);
-                String nameEmployee = employee.getFirstName() + " " + employee.getLastName();
-                tvNameEmployeeAddHour.setText(nameEmployee);
-
-                final EditText etHourWorked = viewDialog.findViewById(R.id.etHourWorked);
-                Button btAgregar =  viewDialog.findViewById(R.id.btAgregar);
-                Button btCancelar = viewDialog.findViewById(R.id.btCancelar);
-
-                alert.setView(viewDialog);
-                final AlertDialog alertDialog = alert.create();
-                alertDialog.setCanceledOnTouchOutside(false);
-
-                btAgregar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                       String hoursAdd = etHourWorked.getText().toString();
-                       if(hoursAdd.isEmpty() || Integer.parseInt(hoursAdd) == 0){
-                           Toast.makeText(getContext(), "Debe agregar un numero de horas", Toast.LENGTH_SHORT);
-                       }else{
-                           ((ProfileActivity)getContext()).addWorkedHours(hoursAdd);
-
-
-                           int salario = Integer.parseInt(hoursAdd) * 3450;
-                           DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
-                           String valorFormateado = decimalFormat.format(salario);
-                           ProfileFragment.this.tvSalary.setText("$ "+valorFormateado);
-                       }
-
-                        alertDialog.dismiss();
-
-                    }
-                });
-
-                btCancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        alertDialog.dismiss();
-                    }
-                });
-
-               alertDialog.show();
-            }
+           alertDialog.show();
         });
 
 

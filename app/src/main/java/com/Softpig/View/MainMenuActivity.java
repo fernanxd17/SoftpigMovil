@@ -26,6 +26,7 @@ import com.Softpig.View.fragment.HeatFragment;
 import com.Softpig.View.fragment.MaleFragment;
 import com.Softpig.View.fragment.MedicineFragment;
 import com.Softpig.View.fragment.RaceFragment;
+import com.Softpig.View.fragment.ReportFragment;
 import com.Softpig.View.fragment.ToolFragment;
 import com.Softpig.View.fragment.EmployeeFragment;
 import com.Softpig.View.fragment.InstallationFragment;
@@ -43,6 +44,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.Softpig.R;
 import com.Softpig.View.fragment.DashBoardFragment;
@@ -66,6 +68,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private DictionaryFragment dictionaryFragment;
     private ErrorFragment errorFragment;
     private MedicineFragment medicineFragment;
+    private ReportFragment reportFragment;
     private AlarmFragment alarmFragment;
     private HeatFragment heatFragment;
     private BottomNavigationView bottomNavigationView;
@@ -131,15 +134,16 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             femaleFragment = new FemaleFragment();
             maleFragment = new MaleFragment();
             medicineFragment = new MedicineFragment();
-            presentarFragment("dashboard");
+            reportFragment = new ReportFragment();
+            presentarFragment("dashboard", null,true);
         }
 
 
     }
 
-    private void presentarFragment(String titleFragment) {
+    private void presentarFragment(String titleFragment, SwipeRefreshLayout refrescarDashboard, boolean inflar) {
         switch (titleFragment){
-            case "dashboard": mainMenuPresenter.presentarDashboard(this, dashBoardFragment);
+            case "dashboard": mainMenuPresenter.presentarDashboard(this, dashBoardFragment,refrescarDashboard,  inflar);
                 break;
                 default: break;
         }
@@ -160,15 +164,15 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                             break;
                         case R.id.ic_pig:
                             searchItem.setVisible(true);
-                            mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment);
+                            mainMenuPresenter.inflarPigFragment(MainMenuActivity.this,pigFragment, null, true);
                             break;
                         case R.id.ic_medicine:
                             searchItem.setVisible(true);
-                            mainMenuPresenter.inflarMedicineFragment(MainMenuActivity.this, medicineFragment);
+                            mainMenuPresenter.inflarMedicineFragment(MainMenuActivity.this, medicineFragment, null, true);
                             break;
                         case R.id.ic_alert:
                             searchItem.setVisible(true);
-                            mainMenuPresenter.inflarAlarmFragment(MainMenuActivity.this, alarmFragment, user.getIdEmployee());
+                            mainMenuPresenter.inflarAlarmFragment(MainMenuActivity.this, alarmFragment, user.getIdEmployee(), null, true);
 
                             break;
                         default:
@@ -198,17 +202,15 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-
         switch (menuItem.getItemId()){
             case R.id.nav_female:
-                mainMenuPresenter.inflarFemalesFragment(this, femaleFragment);
+                mainMenuPresenter.inflarFemalesFragment(this, femaleFragment, null);
                 break;
             case R.id.nav_male:
-                mainMenuPresenter.inflarMalesFragment(this,maleFragment, true);
+                mainMenuPresenter.inflarMalesFragment(this,maleFragment, null, true);
                 break;
             case R.id.nav_race:
-                mainMenuPresenter.inflarRacesFragment(this, raceFragment);
+                mainMenuPresenter.inflarRacesFragment(this, raceFragment, null);
                 break;
             case R.id.nav_dictionary:
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
@@ -217,7 +219,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).commit();
                 break;
             case R.id.nav_report:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
                 break;
             case R.id.nav_out:
                 super.onBackPressed();
@@ -236,13 +238,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         switch (stringFragment){
 
             case "Employees":
-                mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment);
+                mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment, null, true);
                 break;
             case "Tools":
-                mainMenuPresenter.inflarToolsFragment(this, toolFragment);
+                mainMenuPresenter.inflarToolsFragment(this, toolFragment, null, true);
                 break;
             case "Installations":
-                mainMenuPresenter.inflarInstallationsFragment(this, installationFragment);
+                mainMenuPresenter.inflarInstallationsFragment(this, installationFragment, null, true);
                 break;
             case "Heats":
                 mainMenuPresenter.inflarHeatsFragment(this, heatFragment);
@@ -388,7 +390,6 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void iniciarPigActivityFemale(final Female female) {
         mainMenuPresenter.iniciarPigActivityFemale(this, female);
-
     }
 
     public void eliminarExistenciaMedicina(short idMedicine) {
@@ -401,5 +402,46 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void crearAlerta(String fecha, String hora, String etiq) {
         mainMenuPresenter.addAlarm(this,user.getIdEmployee(), fecha, hora, etiq);
+    }
+
+    public boolean actualizarValoresDashboard(final SwipeRefreshLayout refreshDashboard) {
+        presentarFragment("dashboard", refreshDashboard, false);
+        return true;
+    }
+
+    public void actualizarValoresListPig(final SwipeRefreshLayout refreshListPig) {
+        mainMenuPresenter.inflarPigFragment(this,pigFragment, refreshListPig, false);
+    }
+
+    public void actualizarListaMedicinas(final SwipeRefreshLayout refrescarListMedicine) {
+        mainMenuPresenter.inflarMedicineFragment(this, medicineFragment, refrescarListMedicine, false);
+    }
+
+    public void actualizarListaAlarmas(final SwipeRefreshLayout refreshListAlarm) {
+        mainMenuPresenter.inflarAlarmFragment(this, alarmFragment, user.getIdEmployee(), refreshListAlarm, false);
+    }
+
+    public void actualizarListEmployee(final SwipeRefreshLayout refreshListEmployee) {
+        mainMenuPresenter.inflarEmployeesFragment(this, employeeFragment, refreshListEmployee, false);
+    }
+
+    public void actualizarListInstallation(final SwipeRefreshLayout refreshListInstallation) {
+        mainMenuPresenter.inflarInstallationsFragment(this, installationFragment, refreshListInstallation, false);
+    }
+
+    public void actualizarListaTool(SwipeRefreshLayout refreshListTool) {
+        mainMenuPresenter.inflarToolsFragment(this, toolFragment, refreshListTool, false);
+    }
+
+    public void actualizarListaMale(SwipeRefreshLayout refreshListMale) {
+        mainMenuPresenter.inflarMalesFragment(this, maleFragment, refreshListMale,false);
+    }
+
+    public void actualizarListaFemale(final SwipeRefreshLayout refreshListFemale) {
+        mainMenuPresenter.inflarFemalesFragment(this, femaleFragment, refreshListFemale);
+    }
+
+    public void actualizarListaRazas(final SwipeRefreshLayout refreshRace) {
+        mainMenuPresenter.inflarRacesFragment(this, raceFragment, refreshRace);
     }
 }

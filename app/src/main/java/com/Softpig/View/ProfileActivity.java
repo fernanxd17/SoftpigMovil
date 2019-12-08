@@ -3,6 +3,7 @@ package com.Softpig.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -110,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void presentarFragment(String toolsPerson) {
         switch (toolsPerson){
             case "ToolsPerson":
-                profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee());
+                profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee(), null, true);
                 break;
         }
     }
@@ -119,9 +120,9 @@ public class ProfileActivity extends AppCompatActivity {
        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, fragment).commit();
     }
 
-    public void cambiarEstado(String nuevoEstado) {
-        profilePresenter.cambiarEstado(this, employee.getIdEmployee(), nuevoEstado);
-
+    public void cambiarEstado(final Employee employee,String nuevoEstado) {
+        profilePresenter.cambiarEstado(this, employee, nuevoEstado);
+        this.employee = employee;
     }
 
     public void inflarFragmentError() {
@@ -136,13 +137,6 @@ public class ProfileActivity extends AppCompatActivity {
         return employee;
     }
 
-    public void openDialogAddHoursPerson() {
-       /* Employee empleado = ((ProfileActivity)getActivity()).getEmployee();
-        String nombreEmpleado = empleado.getFirstName() + " " + empleado.getLastName();
-        AddToolDialog addToolEmployeeDialog = new AddToolDialog(nombreEmpleado);
-        addToolEmployeeDialog.show(getFragmentManager(), "Caulcular salario");*/
-    }
-
     public void agregarTool(short idTool, String copias) {
         profilePresenter.addToolEmployee(this, employee.getIdEmployee(), idTool, copias);
     }
@@ -153,5 +147,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void cambiarEstadoEmpleado(String nuevoEstado){
         profileFragment.setTvState(nuevoEstado);
+    }
+
+    public void actualizarListaTool(final SwipeRefreshLayout refreshListTool) {
+        profilePresenter.presentarToolsPerson(this, toolFragment, employee.getIdEmployee(),
+                refreshListTool, false);
     }
 }

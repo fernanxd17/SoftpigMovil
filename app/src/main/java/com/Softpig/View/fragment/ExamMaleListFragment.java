@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ExamMaleListFragment extends Fragment {
     private RecyclerView recyclerMaleExam;
     private ExamMaleAdapter examMaleAdapter;
     private TextView tvNoMaleExam;
+    private SwipeRefreshLayout refreshListExamMale;
 
 
     public ExamMaleListFragment() {
@@ -43,16 +45,24 @@ public class ExamMaleListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewInfoMale =  inflater.inflate(R.layout.fragment_list_male_exam, container, false);
+        refreshListExamMale = viewInfoMale.findViewById(R.id.refresh_list_exam_male);
+        refreshListExamMale.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((PigActivity)getContext()).actualizarListMaleExam(refreshListExamMale);
+            }
+        });
         ((PigActivity)getActivity()).setSearch("MaleExam");
         tvNoMaleExam = viewInfoMale.findViewById(R.id.tv_noExamMale);
-        if(listExamMale.isEmpty()){
-            tvNoMaleExam.setText("No hay registro de examanes");
-        }else{
+        tvNoMaleExam.setText("No hay registro de examanes");
+        if(!listExamMale.isEmpty()){
+            tvNoMaleExam.setText(listExamMale.size() + " Examen(es) registrado(s)");
+        }
             examMaleAdapter = new ExamMaleAdapter(this.listExamMale, getContext());
             recyclerMaleExam = viewInfoMale.findViewById(R.id.recyclerListExamMale);
             recyclerMaleExam.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerMaleExam.setAdapter(examMaleAdapter);
-        }
+
         return viewInfoMale;
     }
 
@@ -64,4 +74,16 @@ public class ExamMaleListFragment extends Fragment {
         return examMaleAdapter;
     }
 
+    public void notificarAdapter() {
+        tvNoMaleExam.setText("No hay registro de examanes");
+        if(!listExamMale.isEmpty()){
+            tvNoMaleExam.setText(listExamMale.size() + " Examen(es) registrado(s)");
+        }
+
+        examMaleAdapter = new ExamMaleAdapter(this.listExamMale, getContext());
+        recyclerMaleExam = viewInfoMale.findViewById(R.id.recyclerListExamMale);
+        recyclerMaleExam.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerMaleExam.setAdapter(examMaleAdapter);
+
+    }
 }

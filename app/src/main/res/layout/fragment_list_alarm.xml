@@ -5,27 +5,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_list_alarm"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/alarm_fragment">
+        android:layout_height="match_parent">
 
-        <TextView android:id="@+id/tv_noAlarms"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text=""
-            android:textColor="#fff"
-            android:layout_gravity="center"/>
-
-        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerAlarms"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/alarm_fragment">
+
+            <TextView android:id="@+id/tv_noAlarms"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text=""
+                android:textColor="#fff"
+                android:layout_gravity="center"/>
+
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerAlarms"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_add_alarm"

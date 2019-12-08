@@ -6,29 +6,38 @@
     android:orientation="vertical"
     android:background="@drawable/tool_person">
 
-    <RelativeLayout
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_list_tool"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_noTools"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text=""
-            android:textColor="#fff"
-            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerArticle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_noTools"
-            android:layout_marginTop="0dp" />
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_noTools"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text=""
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerArticle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_noTools"
+                android:layout_marginTop="0dp" />
+
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -4,6 +4,9 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.Softpig.Model.Employee;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.ProfileActivity;
 import com.Softpig.View.fragment.ErrorFragment;
@@ -27,11 +30,16 @@ public class ProfilePresenter {
 
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
-    public void presentarToolsPerson(final ProfileActivity context, final ToolFragment toolPersonFragment, final int idEmployee) {
+    public void presentarToolsPerson(final ProfileActivity context, final ToolFragment toolPersonFragment,
+                                     final int idEmployee, final SwipeRefreshLayout refreshListToolEmployee,
+                                     final boolean inflar) {
 
       final ProgressDialog progressDialog = new ProgressDialog(context);
-      progressDialog.setMessage("Loading...");
-      progressDialog.show();
+      if(inflar){
+          progressDialog.setMessage("Loading...");
+          progressDialog.show();
+      }
+
       getNameTools(context, toolPersonFragment);
       String url = URLAPI + "article-person_list/" +idEmployee;
       if(idEmployee < 10)
@@ -60,8 +68,15 @@ public class ProfilePresenter {
                           }
 
                           toolPersonFragment.setListTool(toolEmployee);
-                          context.inflarFragment(toolPersonFragment);
-                          progressDialog.dismiss();
+
+                          if(inflar){
+                              context.inflarFragment(toolPersonFragment);
+                              progressDialog.dismiss();
+                          }else{
+                              toolPersonFragment.notificarAdapter();
+                              refreshListToolEmployee.setRefreshing(false);
+                          }
+
 
                       } catch (Exception e) { e.printStackTrace(); }
                   }
@@ -142,7 +157,7 @@ public class ProfilePresenter {
         queue.add(json);
     }
 
-    public void cambiarEstado(final ProfileActivity context,final short idEmployee, final String estadoNuevo) {
+    public void cambiarEstado(final ProfileActivity context, final Employee employee, final String estadoNuevo) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Cambiando estado...");
@@ -152,7 +167,7 @@ public class ProfilePresenter {
         try{
 
             HashMap<String, String> params = new HashMap();
-            params.put("id", String.valueOf(idEmployee));
+            params.put("id", String.valueOf(employee.getIdEmployee()));
             params.put("state", estadoNuevo);
             params.put("Content-Type","application/json");
 
@@ -166,6 +181,8 @@ public class ProfilePresenter {
                             try {
                                 int respo = response.getInt("status");
                                 context.cambiarEstadoEmpleado(estadoNuevo);
+                                employee.setStatus(estadoNuevo);
+
                                 progressDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -47,12 +47,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolderAl
         holder.tvAsunto.setText(alarm.getIssue());
         holder.tvFecha.setText(alarm.getDate());
         holder.tvHora.setText(alarm.getHour());
-        holder.ivRemoveAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainMenuActivity)context).eliminarAlarma();
-            }
-        });
+        holder.ivRemoveAlarm.setOnClickListener(view -> ((MainMenuActivity)context).eliminarAlarma());
     }
 
     @Override

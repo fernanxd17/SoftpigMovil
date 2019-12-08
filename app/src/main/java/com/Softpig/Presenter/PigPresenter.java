@@ -4,12 +4,17 @@ import android.app.ProgressDialog;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.Softpig.Model.Birth;
 import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.View.PigActivity;
+import com.Softpig.View.fragment.BirthFragment;
+import com.Softpig.View.fragment.ExamMaleListFragment;
+import com.Softpig.View.fragment.GestationFragment;
+import com.Softpig.View.fragment.HeatFragment;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -185,12 +190,14 @@ public class PigPresenter {
         }
     }
 
-    public void presentarBirthFragment(final PigActivity context, final short idFemale) {
+    public void presentarBirthFragment(final PigActivity context, final BirthFragment birthFragment,
+                                       final short idFemale, final SwipeRefreshLayout refreshBirth) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Partos...");
-        progressDialog.show();
-
+        if(refreshBirth == null){
+            progressDialog.setMessage("Cargando Partos...");
+            progressDialog.show();
+        }
 
         String url = URLAPI + "birth_list/" + idFemale;
 
@@ -198,34 +205,37 @@ public class PigPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            List<Birth> listBirth = new ArrayList<>();
-                            JSONArray jsonBirth = response.getJSONArray("births");
-                            for (int i = 0; i < jsonBirth.length(); i++) {
-                                JSONObject birthObject = jsonBirth.getJSONObject(i);
-                                short idBirth = (short) birthObject.getInt("id");
-                                short idMale = (short) birthObject.getInt("male");
-                                String dateBirth = birthObject.getString("date");
-                                short babies = (short) birthObject.getInt("babies");
-                                short mummy = (short) birthObject.getInt("mummy");
-                                short dead = (short) birthObject.getInt("dead");
+                    try {
+                        List<Birth> listBirth = new ArrayList<>();
+                        JSONArray jsonBirth = response.getJSONArray("births");
+                        for (int i = 0; i < jsonBirth.length(); i++) {
+                            JSONObject birthObject = jsonBirth.getJSONObject(i);
+                            short idBirth = (short) birthObject.getInt("id");
+                            short idMale = (short) birthObject.getInt("male");
+                            String dateBirth = birthObject.getString("date");
+                            short babies = (short) birthObject.getInt("babies");
+                            short mummy = (short) birthObject.getInt("mummy");
+                            short dead = (short) birthObject.getInt("dead");
 
 
-                                listBirth.add(new Birth(idBirth, idFemale, idMale, dateBirth, babies, mummy, dead));
-                            }
-                            context.setListBirth(listBirth);
+                            listBirth.add(new Birth(idBirth, idFemale, idMale, dateBirth, babies, mummy, dead));
+                        }
+                        birthFragment.setListBirth(listBirth);
+                        if(refreshBirth == null){
                             context.inflarFragment("Birth");
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment("Error");
-                            progressDialog.dismiss();
+                        }else{
+                            birthFragment.notificarAdapter();
+                            refreshBirth.setRefreshing(false);
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -246,10 +256,14 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void presentarGestacionFragment(final PigActivity context, final short idFemale) {
+    public void presentarGestacionFragment(final PigActivity context, final GestationFragment gestationFragment,
+                                           final short idFemale, final SwipeRefreshLayout refreshGestation) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Celos...");
-        progressDialog.show();
+        if (refreshGestation == null) {
+            progressDialog.setMessage("Cargando Celos...");
+            progressDialog.show();
+        }
+
 
         String url = URLAPI + "period_gestation_list/" + idFemale;
 
@@ -258,55 +272,59 @@ public class PigPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            List<PeriodGestation> listGestation = new ArrayList<>();
-                            JSONArray jsonGestation = response.getJSONArray("gestations");
-                            for (int i = 0; i < jsonGestation.length(); i++) {
-                                JSONObject gestationObject = jsonGestation.getJSONObject(i);
-                                short idGestation = (short) gestationObject.getInt("id");
-                                short idMale = (short) gestationObject.getInt("male");
-                                String dateStart = gestationObject.getString("date_start");
+                response -> {
+                    try {
+                        List<PeriodGestation> listGestation = new ArrayList<>();
+                        JSONArray jsonGestation = response.getJSONArray("gestations");
+                        for (int i = 0; i < jsonGestation.length(); i++) {
+                            JSONObject gestationObject = jsonGestation.getJSONObject(i);
+                            short idGestation = (short) gestationObject.getInt("id");
+                            short idMale = (short) gestationObject.getInt("male");
+                            String dateStart = gestationObject.getString("date_start");
 
-                                listGestation.add(new PeriodGestation(idGestation, idFemale, idMale, dateStart));
-                            }
-                            context.setListGestation(listGestation);
+                            listGestation.add(new PeriodGestation(idGestation, idFemale, idMale, dateStart));
+                        }
+                        gestationFragment.setListGestation(listGestation);
+
+                        if(refreshGestation == null){
                             context.inflarFragment("Gestation");
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment("Error");
-                            progressDialog.dismiss();
+                        }else{
+                            gestationFragment.notificarAdapter();
+                            refreshGestation.setRefreshing(false);
                         }
+
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment("Error");
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
     }
 
-    public void presentarCelosFragment(final PigActivity context, final short idFemale) {
+    public void presentarCelosFragment(final PigActivity context, final HeatFragment heatFragment,
+                                       final short idFemale, final SwipeRefreshLayout refreshListHeat) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Partos...");
-        progressDialog.show();
-
+        if(refreshListHeat == null){
+            progressDialog.setMessage("Cargando Partos...");
+            progressDialog.show();
+        }
 
         String url = URLAPI + "heat_list/" + idFemale;
 
@@ -314,32 +332,35 @@ public class PigPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
+                    try {
+                        List<Heat> listHeat = new ArrayList<>();
+                        JSONArray jsonHeat = response.getJSONArray("heats");
+                        for (int i = 0; i < jsonHeat.length(); i++) {
+                            JSONObject heatObject = jsonHeat.getJSONObject(i);
+                            short idHeat = (short) heatObject.getInt("id");
+                            String typeMating = heatObject.getString("type");
+                            String sincrony = heatObject.getString("sincrony");
+                            String dateStart = heatObject.getString("dateStart");
+                            String dateEnd = heatObject.getString("dateEnd");
+                            boolean isSincrony = sincrony.equalsIgnoreCase("Si");
+                            listHeat.add(new Heat(idHeat, idFemale, typeMating, isSincrony, dateStart, dateEnd));
+                        }
+                        heatFragment.setListHeat(listHeat);
 
-                        try {
-                            List<Heat> listHeat = new ArrayList<>();
-                            JSONArray jsonHeat = response.getJSONArray("heats");
-                            for (int i = 0; i < jsonHeat.length(); i++) {
-                                JSONObject heatObject = jsonHeat.getJSONObject(i);
-                                short idHeat = (short) heatObject.getInt("id");
-                                String typeMating = heatObject.getString("type");
-                                String sincrony = heatObject.getString("sincrony");
-                                String dateStart = heatObject.getString("dateStart");
-                                String dateEnd = heatObject.getString("dateEnd");
-                                boolean isSincrony = sincrony.equalsIgnoreCase("Si");
-                                listHeat.add(new Heat(idHeat, idFemale, typeMating, isSincrony, dateStart, dateEnd));
-                            }
-                            context.setListHeat(listHeat);
+                        if(refreshListHeat == null){
                             context.inflarFragment("Heat");
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment("Error");
-                            progressDialog.dismiss();
+                        }else{
+                            heatFragment.notificarAdapter();
+                            refreshListHeat.setRefreshing(false);
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment("Error");
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -360,10 +381,15 @@ public class PigPresenter {
         queue.add(json);
     }
 
-    public void presentarExamanesFragment(final PigActivity context, final short idMale) {
+    public void presentarExamanesFragment(final PigActivity context, final ExamMaleListFragment examMaleListFragment,
+                                          final short idMale, final SwipeRefreshLayout refreshListExamMale) {
+
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Examenes...");
-        progressDialog.show();
+        if(refreshListExamMale == null){
+            progressDialog.setMessage("Cargando Examenes...");
+            progressDialog.show();
+        }
+
 
 
         String url = URLAPI + "male_exam_list/" + idMale;
@@ -389,9 +415,15 @@ public class PigPresenter {
 
                                 listExamMale.add(new ExamMale(idMale, idExam, date, name, descripcion, result));
                             }
-                            context.setListExamMale(listExamMale);
-                            context.inflarFragment("ExamMaleList");
-                            progressDialog.dismiss();
+                            examMaleListFragment.setListExamMale(listExamMale);
+                            if(refreshListExamMale == null){
+                                context.inflarFragment("ExamMaleList");
+                                progressDialog.dismiss();
+                            }else{
+                                examMaleListFragment.notificarAdapter();
+                                refreshListExamMale.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -523,7 +555,7 @@ public class PigPresenter {
         }
     }
 
-    public void agregarHeat(final PigActivity context, final short idFemale, final String typeMating, final String sincrony, final Date dateStart, final Date dateEnd) {
+    public void agregarHeat(final PigActivity context, final Heat heat, final AlertDialog alertDialog) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registrando celo...");
         progressDialog.show();
@@ -531,17 +563,23 @@ public class PigPresenter {
         RequestQueue queue = Volley.newRequestQueue(context);
         try {
 
+            System.out.println("datos");
+            System.out.println(heat.getIdFemale());
+            System.out.println(heat.getTypeMating());
+            System.out.println(heat.isSincrony() ? "Si" : "No");
+            System.out.println(heat.getDateStart());
+            System.out.println(heat.getDateEnd());
             HashMap<String, String> params = new HashMap();
-            params.put("ID_FEMALE", String.valueOf(idFemale));
-            params.put("typeMating", typeMating);
-            params.put("sincrony", sincrony);
-            params.put("DATE_START", String.valueOf(dateStart));
-            params.put("dateEnd", String.valueOf(dateEnd));
+            params.put("ID_FEMALE", String.valueOf(heat.getIdFemale()));
+            params.put("typeMating", heat.getTypeMating());
+            params.put("sincrony", heat.isSincrony() ? "Si" : "No");
+            params.put("DATE_START", heat.getDateStart());
+            params.put("dateEnd", heat.getDateEnd());
             params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
                     Request.Method.POST,
-                    "https://softpig.herokuapp.com/api/add_gestation",
+                    "https://softpig.herokuapp.com/api/add_heat",
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -549,10 +587,12 @@ public class PigPresenter {
                             try {
                                 int respo = response.getInt("status");
                                 progressDialog.dismiss();
+                                alertDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
+                                alertDialog.dismiss();
                             }
                         }
                     },
@@ -561,6 +601,7 @@ public class PigPresenter {
                         public void onErrorResponse(VolleyError error) {
                             error.printStackTrace();
                             progressDialog.dismiss();
+                            alertDialog.dismiss();
                             Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                         }
                     });

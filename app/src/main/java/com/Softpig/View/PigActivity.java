@@ -2,7 +2,9 @@ package com.Softpig.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.appcompat.widget.SearchView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -127,35 +129,26 @@ public class PigActivity extends AppCompatActivity{
     }
 
     public void inflarFragmentPartos(short idFemale) {
-        pigPresenter.presentarBirthFragment(this, idFemale);
+        pigPresenter.presentarBirthFragment(this, birthFragment, idFemale, null);
     }
 
     public void inflarFragmentGestacion(short idFemale) {
-        pigPresenter.presentarGestacionFragment(this, idFemale);
+        pigPresenter.presentarGestacionFragment(this, gestationFragment, idFemale, null);
+
     }
 
     public void inflarFragmentCelos(short idFemale) {
-        pigPresenter.presentarCelosFragment(this, idFemale);
+        pigPresenter.presentarCelosFragment(this, heatFragment,idFemale, null);
     }
 
     public void setListBirth(List<Birth> listBirth) {
         birthFragment.setListBirth(listBirth);
     }
 
-    public void setListHeat(List<Heat> listHeat) {
-        heatFragment.setListHeat(listHeat);
-    }
 
-    public void setListGestation(List<PeriodGestation> listGestation) {
-        gestationFragment.setListGestation(listGestation);
-    }
-
-    public void setListExamMale(List<ExamMale> listExamMale) {
-        examMaleListFragment.setListExamMale(listExamMale);
-    }
 
     public void verExamanesMale(short idMale) {
-        pigPresenter.presentarExamanesFragment(this, idMale);
+        pigPresenter.presentarExamanesFragment(this, examMaleListFragment, idMale, null);
     }
 
     @Override
@@ -214,5 +207,27 @@ public class PigActivity extends AppCompatActivity{
     public void agregarParto(Birth birth, final AlertDialog alertDialog) {
         birth.setIdFemale(female.getIdFemale());
         pigPresenter.agregarBirth(this, birth, alertDialog);
+    }
+
+    public void agregarCelo(final Heat heat, final AlertDialog alertDialog) {
+        heat.setIdFemale(female.getIdFemale());
+        pigPresenter.agregarHeat(this, heat, alertDialog);
+    }
+
+    public void actualizarListMaleExam(final SwipeRefreshLayout refreshListExamMale) {
+            pigPresenter.presentarExamanesFragment(this,examMaleListFragment, male.getIdPig(), refreshListExamMale);
+    }
+
+    public void actualizarListHeat(final SwipeRefreshLayout refreshListHeat) {
+        pigPresenter.presentarCelosFragment(this, heatFragment,female.getIdFemale(), refreshListHeat);
+    }
+
+
+    public void actualizarListGestation(final SwipeRefreshLayout refreshGestation) {
+        pigPresenter.presentarGestacionFragment(this, gestationFragment, female.getIdFemale(), refreshGestation);
+    }
+
+    public void actualizarListBirth(final SwipeRefreshLayout refreshBirth) {
+        pigPresenter.presentarBirthFragment(this, birthFragment, female.getIdFemale(), refreshBirth);
     }
 }

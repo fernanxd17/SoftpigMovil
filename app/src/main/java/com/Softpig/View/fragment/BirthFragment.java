@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,9 @@ public class BirthFragment extends Fragment {
     private String idMale;
     private List<String> listIdMale;
 
+    private SwipeRefreshLayout refreshBirth;
+    private View viewBirth;
+
     public BirthFragment(String [] listIdMale) {
         this.listIdMale = new ArrayList<String>();
         llenarListaId(listIdMale);
@@ -77,106 +81,108 @@ public class BirthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewBirth = inflater.inflate(R.layout.fragment_list_birth, container, false);
+        viewBirth = inflater.inflate(R.layout.fragment_list_birth, container, false);
+        refreshBirth = viewBirth.findViewById(R.id.refresh_list_birth);
+        refreshBirth.setOnRefreshListener(() -> {
+            ((PigActivity)getActivity()).actualizarListBirth(refreshBirth);
+        });
+
         fbAddBirth = viewBirth.findViewById(R.id.fb_add_birth_female);
         ((PigActivity)getActivity()).setSearch("Birth");
         noBirth = viewBirth.findViewById(R.id.tv_nobirth);
-        if(listBirth.size() == 0){
-            noBirth.setText("No existen registros de partos");
-        }else{
-            birthAdapter = new BirthAdapter(listBirth, getContext());
-            recyclerBirth = viewBirth.findViewById(R.id.recyclerBirth);
-            recyclerBirth.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerBirth.setAdapter(birthAdapter);
-        }
 
-        fbAddBirth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                View viewDialog = getLayoutInflater().inflate(R.layout.add_birth, null);
+        noBirth.setText(listBirth.size() + " Parto(s) encontrado(s)");
 
-                spMale = viewDialog.findViewById(R.id.sp_male);
-                etMostrarFecha = viewDialog.findViewById(R.id.et_mostrar_fecha);
-                etBabiesNumber = viewDialog.findViewById(R.id.et_babies_number);
-                etMummyNumber = viewDialog.findViewById(R.id.et_mummy_number);
-                etDeadNumber = viewDialog.findViewById(R.id.et_number_dead);
-                btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
-                btAgregar = viewDialog.findViewById(R.id.bt_agregar);
-                ibObtenerFecha = viewDialog.findViewById(R.id.ib_obtener_fecha);
+        birthAdapter = new BirthAdapter(listBirth, getContext());
+        recyclerBirth = viewBirth.findViewById(R.id.recyclerBirth);
+        recyclerBirth.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerBirth.setAdapter(birthAdapter);
 
 
-                adapterSpinnerMale = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_spinner_item, listIdMale);
-                adapterSpinnerMale.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fbAddBirth.setOnClickListener(view -> {
+            final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            View viewDialog = getLayoutInflater().inflate(R.layout.add_birth, null);
+
+            spMale = viewDialog.findViewById(R.id.sp_male);
+            etMostrarFecha = viewDialog.findViewById(R.id.et_mostrar_fecha);
+            etBabiesNumber = viewDialog.findViewById(R.id.et_babies_number);
+            etMummyNumber = viewDialog.findViewById(R.id.et_mummy_number);
+            etDeadNumber = viewDialog.findViewById(R.id.et_number_dead);
+            btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
+            btAgregar = viewDialog.findViewById(R.id.bt_agregar);
+            ibObtenerFecha = viewDialog.findViewById(R.id.ib_obtener_fecha);
 
 
-                spMale.setAdapter(adapterSpinnerMale);
+            adapterSpinnerMale = new ArrayAdapter<String>(getContext(),
+                    android.R.layout.simple_spinner_item, listIdMale);
+            adapterSpinnerMale.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spMale.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        if(position > 0)
-                            idMale = (String) parent.getSelectedItem();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) { }
-                });
+            spMale.setAdapter(adapterSpinnerMale);
 
-                ibObtenerFecha.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
-                                final int mesActual = month + 1;
-                                //Formateo el día obtenido: antepone el 0 si son menores de 10
-                                String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
-                                //Formateo el mes obtenido: antepone el 0 si son menores de 10
-                                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
-                                //Muestro la fecha con el formato deseado
-                                etMostrarFecha.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
-                            }
-                            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-                            /**
-                             *También puede cargar los valores que usted desee
-                             */
-                        },anio, mes, dia);
-                        //Muestro el widget
-                        recogerFecha.show();
-                    }
-                });
+            spMale.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                alert.setView(viewDialog);
+                    if(position > 0)
+                        idMale = (String) parent.getSelectedItem();
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) { }
+            });
 
-                final AlertDialog alertDialog = alert.create();
-                alertDialog.setCanceledOnTouchOutside(false);
+            ibObtenerFecha.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                            final int mesActual = month + 1;
+                            //Formateo el día obtenido: antepone el 0 si son menores de 10
+                            String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                            //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                            String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                            //Muestro la fecha con el formato deseado
+                            etMostrarFecha.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
+                        }
+                        //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+                        /**
+                         *También puede cargar los valores que usted desee
+                         */
+                    },anio, mes, dia);
+                    //Muestro el widget
+                    recogerFecha.show();
+                }
+            });
 
-                btCancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        alertDialog.dismiss();
-                    }
-                });
+            alert.setView(viewDialog);
 
-                btAgregar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String fecha = etMostrarFecha.getText().toString();
-                        short noBabies = Short.valueOf(etBabiesNumber.getText().toString());
-                        short noMummy = Short.valueOf(etMummyNumber.getText().toString());
-                        short noDead = Short.valueOf(etDeadNumber.getText().toString());
-                        Birth birth  = new Birth(Short.valueOf(idMale), fecha, noBabies, noMummy, noDead);
-                        ((PigActivity)getContext()).agregarParto(birth, alertDialog);
-                    }
-                });
+            final AlertDialog alertDialog = alert.create();
+            alertDialog.setCanceledOnTouchOutside(false);
+
+            btCancelar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+
+            btAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String fecha = etMostrarFecha.getText().toString();
+                    short noBabies = Short.valueOf(etBabiesNumber.getText().toString());
+                    short noMummy = Short.valueOf(etMummyNumber.getText().toString());
+                    short noDead = Short.valueOf(etDeadNumber.getText().toString());
+                    Birth birth  = new Birth(Short.valueOf(idMale), fecha, noBabies, noMummy, noDead);
+                    ((PigActivity)getContext()).agregarParto(birth, alertDialog);
+                }
+            });
 
 
 
-                alertDialog.show();
-            }
+            alertDialog.show();
         });
 
         return viewBirth;
@@ -188,5 +194,14 @@ public class BirthFragment extends Fragment {
 
     public BirthAdapter getBirthAdapter(){
         return birthAdapter;
+    }
+
+    public void notificarAdapter() {
+        noBirth.setText(listBirth.size() + " Parto(s) encontrado(s)");
+
+        birthAdapter = new BirthAdapter(listBirth, getContext());
+        recyclerBirth = viewBirth.findViewById(R.id.recyclerBirth);
+        recyclerBirth.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerBirth.setAdapter(birthAdapter);
     }
 }

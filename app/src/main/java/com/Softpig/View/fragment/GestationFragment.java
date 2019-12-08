@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,9 @@ public class GestationFragment extends Fragment {
     final int dia = c.get(Calendar.DAY_OF_MONTH);
     final int anio = c.get(Calendar.YEAR);
 
+    private View viewGestation;
+
+    private SwipeRefreshLayout refreshGestation;
     public GestationFragment(String [] listIdMale) {
         this.listIdMale = new ArrayList<String>();
         llenarListaId(listIdMale);
@@ -76,104 +80,92 @@ public class GestationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View viewGestation =  inflater.inflate(R.layout.fragment_list_gestation, container, false);
+         viewGestation =  inflater.inflate(R.layout.fragment_list_gestation, container, false);
+         refreshGestation = viewGestation.findViewById(R.id.refresh_list_gestation);
+         refreshGestation.setOnRefreshListener(() -> {
+             ((PigActivity)getActivity()).actualizarListGestation(refreshGestation);
+         });
         ((PigActivity)getActivity()).setSearch("Gestation");
         noGestation = viewGestation.findViewById(R.id.tv_noGestationPeriod);
 
-        if(listPeriodGestation.isEmpty()){
-            noGestation.setText("No existen registros de Periodos de Gestación");
-        }else{
-            gestationAdapter = new GestationAdapter(listPeriodGestation, getContext());
-            recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
-            recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerGestation.setAdapter(gestationAdapter);
-        }
+        noGestation.setText(listPeriodGestation.size() + " Periodo(s) de Celo(s) encontrado(s)");
+
+        gestationAdapter = new GestationAdapter(listPeriodGestation, getContext());
+        recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
+        recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerGestation.setAdapter(gestationAdapter);
+
 
         fbAddGestation = viewGestation.findViewById(R.id.fb_add_gestation_female);
         fbAddGestation.show();
 
-        fbAddGestation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                View viewDialog = getLayoutInflater().inflate(R.layout.add_gestation, null);
+        fbAddGestation.setOnClickListener(v -> {
+            final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            View viewDialog = getLayoutInflater().inflate(R.layout.add_gestation, null);
 
-                adapterSpinnerGestation = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_spinner_item, listIdMale);
-                adapterSpinnerGestation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spIdMale = viewDialog.findViewById(R.id.sp_id_male);
-                btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
-                btAgregar = viewDialog.findViewById(R.id.bt_agregar);
+            adapterSpinnerGestation = new ArrayAdapter<>(getContext(),
+                    android.R.layout.simple_spinner_item, listIdMale);
+            adapterSpinnerGestation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spIdMale = viewDialog.findViewById(R.id.sp_id_male);
-                spIdMale.setAdapter(adapterSpinnerGestation);
+            spIdMale = viewDialog.findViewById(R.id.sp_id_male);
+            btCancelar = viewDialog.findViewById(R.id.bt_cancelar);
+            btAgregar = viewDialog.findViewById(R.id.bt_agregar);
 
-                spIdMale.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            spIdMale = viewDialog.findViewById(R.id.sp_id_male);
+            spIdMale.setAdapter(adapterSpinnerGestation);
+
+            spIdMale.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    if(position > 0)
+                        idMale = (String) parent.getSelectedItem();
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) { }
+            });
+
+
+            etFechaGestacion = viewDialog.findViewById(R.id.et_mostrar_fecha);
+            ibFechaGestacion = viewDialog.findViewById(R.id.ib_obtener_fecha);
+            ibFechaGestacion.setOnClickListener(v13 -> {
+                DatePickerDialog recogerFecha = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                        if(position > 0)
-                            idMale = (String) parent.getSelectedItem();
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                        final int mesActual = month + 1;
+                        //Formateo el día obtenido: antepone el 0 si son menores de 10
+                        String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                        //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                        String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                        //Muestro la fecha con el formato deseado
+                        etFechaGestacion.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
                     }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) { }
-                });
+                    //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+                    /**
+                     *También puede cargar los valores que usted desee
+                     */
+                },anio, mes, dia);
+                //Muestro el widget
+                recogerFecha.show();
+            });
 
+            alert.setView(viewDialog);
 
-                etFechaGestacion = viewDialog.findViewById(R.id.et_mostrar_fecha);
-                ibFechaGestacion = viewDialog.findViewById(R.id.ib_obtener_fecha);
-                ibFechaGestacion.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DatePickerDialog recogerFecha = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
-                                final int mesActual = month + 1;
-                                //Formateo el día obtenido: antepone el 0 si son menores de 10
-                                String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
-                                //Formateo el mes obtenido: antepone el 0 si son menores de 10
-                                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
-                                //Muestro la fecha con el formato deseado
-                                etFechaGestacion.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
-                            }
-                            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-                            /**
-                             *También puede cargar los valores que usted desee
-                             */
-                        },anio, mes, dia);
-                        //Muestro el widget
-                        recogerFecha.show();
-                    }
-                });
-
-                alert.setView(viewDialog);
-
-                final AlertDialog alertDialog = alert.create();
-                alertDialog.setCanceledOnTouchOutside(false);
+            final AlertDialog alertDialog = alert.create();
+            alertDialog.setCanceledOnTouchOutside(false);
 
 
 
-                btCancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
+            btCancelar.setOnClickListener(v12 -> alertDialog.dismiss());
 
-                btAgregar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString(), alertDialog);
-                        alertDialog.dismiss();
-                    }
-                });
+            btAgregar.setOnClickListener(v1 -> {
+                ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString(), alertDialog);
+                alertDialog.dismiss();
+            });
 
-                alertDialog.show();
-            }
-
-
+            alertDialog.show();
         });
 
 
@@ -191,4 +183,12 @@ public class GestationFragment extends Fragment {
         return gestationAdapter;
     }
 
+    public void notificarAdapter() {
+        noGestation.setText(listPeriodGestation.size() + " Periodo(s) de Celo(s) encontrado(s)");
+
+        gestationAdapter = new GestationAdapter(listPeriodGestation, getContext());
+        recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
+        recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerGestation.setAdapter(gestationAdapter);
+    }
 }

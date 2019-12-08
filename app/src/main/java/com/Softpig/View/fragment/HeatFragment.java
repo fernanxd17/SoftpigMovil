@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,10 @@ public class HeatFragment extends Fragment {
     final int dia = c.get(Calendar.DAY_OF_MONTH);
     final int anio = c.get(Calendar.YEAR);
 
+    private SwipeRefreshLayout refreshListHeat;
+
+    private View viewHeat;
+
     public HeatFragment() {
         // Required empty public constructor
     }
@@ -79,22 +84,32 @@ public class HeatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewHeat = inflater.inflate(R.layout.fragment_list_heat, container, false);
+         viewHeat = inflater.inflate(R.layout.fragment_list_heat, container, false);
         ((PigActivity)getActivity()).setSearch("Heat");
+
+        refreshListHeat = viewHeat.findViewById(R.id.refresh_list_heat);
+
+        refreshListHeat.setOnRefreshListener(() -> {
+            ((PigActivity)getActivity()).actualizarListHeat(refreshListHeat);
+        });
         tvNoHeat = viewHeat.findViewById(R.id.tv_noheats);
-        if(listHeat.isEmpty()){
-            tvNoHeat.setText("No hay celos registrados");
-        }else{
-            heatAdapter = new HeatAdapter(listHeat, getContext());
-            recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
-            recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerHeat.setAdapter(heatAdapter);
-        }
+        tvNoHeat.setText("No hay celos registrados");
+        if(!listHeat.isEmpty())
+            tvNoHeat.setText(listHeat.size() +" Celo(s) encontrado(s)");
+
+        heatAdapter = new HeatAdapter(listHeat, getContext());
+        recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
+        recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerHeat.setAdapter(heatAdapter);
+
         fbAddHeat = viewHeat.findViewById(R.id.fb_add_heat_female);
         fbAddHeat.setOnClickListener(view -> {
 
+
+
             final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
             View viewDialog = getLayoutInflater().inflate(R.layout.add_heat, null);
+
 
             matingNatural = viewDialog.findViewById(R.id.rb_natural);
             matingEnsiminacion = viewDialog.findViewById(R.id.rb_inseminacion);
@@ -107,100 +122,75 @@ public class HeatFragment extends Fragment {
             btNo = viewDialog.findViewById(R.id.bt_no);
             btSi = viewDialog.findViewById(R.id.bt_si);
 
-            btAgregar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                    mating = "";
-                    if(matingNatural.isChecked()){
-                        mating = "Natural";
-                    }else if(matingEnsiminacion.isChecked()){
-                        mating = "Inseminacion";
+            obtenerFechaStart.setOnClickListener(view15 -> {
+                DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view15, int year, int month, int dayOfMonth) {
+                        //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                        final int mesActual = month + 1;
+                        //Formateo el día obtenido: antepone el 0 si son menores de 10
+                        String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                        //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                        String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                        //Muestro la fecha con el formato deseado
+                        mostrarFechaStart.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
                     }
-
-                    sincrony = false;
-
-                    if(btSi.isChecked()){
-                        sincrony= true;
-                    }
-
-                    obtenerFechaStart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                    //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
-                                    final int mesActual = month + 1;
-                                    //Formateo el día obtenido: antepone el 0 si son menores de 10
-                                    String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
-                                    //Formateo el mes obtenido: antepone el 0 si son menores de 10
-                                    String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
-                                    //Muestro la fecha con el formato deseado
-                                    mostrarFechaStart.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
-                                }
-                                //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-                                /**
-                                 *También puede cargar los valores que usted desee
-                                 */
-                            },anio, mes, dia);
-                            //Muestro el widget
-                            recogerFecha.show();
-                        }
-                    });
-
-                    obtenerFechaEnd.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                    //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
-                                    final int mesActual = month + 1;
-                                    //Formateo el día obtenido: antepone el 0 si son menores de 10
-                                    String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
-                                    //Formateo el mes obtenido: antepone el 0 si son menores de 10
-                                    String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
-                                    //Muestro la fecha con el formato deseado
-                                    mostrarFechaEnd.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
-                                }
-                                //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-                                /**
-                                 *También puede cargar los valores que usted desee
-                                 */
-                            },anio, mes, dia);
-                            //Muestro el widget
-                            recogerFecha.show();
-                        }
-                    });
-
-                    alert.setView(viewDialog);
-
-                    final AlertDialog alertDialog = alert.create();
-                    alertDialog.setCanceledOnTouchOutside(false);
-
-                    btCancelar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            alertDialog.dismiss();
-                        }
-                    });
-
-                    btAgregar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Heat heat = new Heat(mating,sincrony, mostrarFechaStart.getText().toString(),
-                                    mostrarFechaEnd.getText().toString());
-
-
-                        }
-                    });
-                }
+                    //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+                    /**
+                     *También puede cargar los valores que usted desee
+                     */
+                },anio, mes, dia);
+                //Muestro el widget
+                recogerFecha.show();
             });
 
+            obtenerFechaEnd.setOnClickListener(view12 -> {
+                //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+/**
+ *También puede cargar los valores que usted desee
+ */
+                DatePickerDialog recogerFecha = new DatePickerDialog(getContext(), (view1, year, month, dayOfMonth) -> {
+                    //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+                    final int mesActual = month + 1;
+                    //Formateo el día obtenido: antepone el 0 si son menores de 10
+                    String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                    //Formateo el mes obtenido: antepone el 0 si son menores de 10
+                    String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                    //Muestro la fecha con el formato deseado
+                    mostrarFechaEnd.setText(year + RAYA + mesFormateado + RAYA + diaFormateado);
+                },anio, mes, dia);
+                //Muestro el widget
+                recogerFecha.show();
+            });
 
+            alert.setView(viewDialog);
 
+            final AlertDialog alertDialog = alert.create();
+            alertDialog.setCanceledOnTouchOutside(false);
 
+            btCancelar.setOnClickListener(v -> alertDialog.dismiss());
+
+            btAgregar.setOnClickListener(view16 -> {
+
+                mating = "";
+                if(matingNatural.isChecked()){
+                    mating = "Natural";
+                }else if(matingEnsiminacion.isChecked()){
+                    mating = "Inseminacion";
+                }
+
+                sincrony = false;
+
+                if(btSi.isChecked()){
+                    sincrony= true;
+                }
+                Heat heat = new Heat(mating,sincrony, mostrarFechaStart.getText().toString(),
+                        mostrarFechaEnd.getText().toString());
+                ((PigActivity)getContext()).agregarCelo(heat, alertDialog);
+            });
+
+            alertDialog.show();
 
         });
 
@@ -212,5 +202,16 @@ public class HeatFragment extends Fragment {
     }
     public void setListHeat(List<Heat> listHeat) {
         this.listHeat = listHeat;
+    }
+
+    public void notificarAdapter() {
+        tvNoHeat.setText("No hay celos registrados");
+        if(!listHeat.isEmpty())
+            tvNoHeat.setText(listHeat.size() +" Celo(s) encontrado(s)");
+
+        heatAdapter = new HeatAdapter(listHeat, getContext());
+        recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
+        recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerHeat.setAdapter(heatAdapter);
     }
 }

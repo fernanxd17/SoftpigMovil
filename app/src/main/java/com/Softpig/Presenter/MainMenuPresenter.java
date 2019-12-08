@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
@@ -51,9 +53,10 @@ public class MainMenuPresenter {
 
     private static boolean toolsUpdate;
     private MaleFragment maleFragment;
-    private ArrayList<Pig> listPig;
+    private  ArrayList<Pig> listPig;
     private HashMap<String, Short> hmTypeTool;
     private String [] listIdMale;
+    private boolean continuar = false;
     public static final int MY_DEFAULT_TIMEOUT = 15000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
@@ -61,11 +64,15 @@ public class MainMenuPresenter {
         toolsUpdate = false;
     }
 
-    public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment) {
+    public boolean inflarRacesFragment(final MainMenuActivity context, final RaceFragment raceFragment,
+                                       final SwipeRefreshLayout refreshRace) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(refreshRace == null){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
 
         String url = URLAPI + "race_list";
 
@@ -73,45 +80,45 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            ArrayList<Race> listRaces = new ArrayList<>();
-                            JSONArray jsonRaces = response.getJSONArray("races");
+                    try {
+                        ArrayList<Race> listRaces = new ArrayList<>();
+                        JSONArray jsonRaces = response.getJSONArray("races");
 
-                                for(int i = 0; i < jsonRaces.length(); i++) {
-                                    JSONObject raceObject = jsonRaces.getJSONObject(i);
-                                    short idRace = (short) raceObject.getInt("id");
-                                    String race = raceObject.getString("name");
-                                    String description = raceObject.getString("description");
-                                    listRaces.add(new Race(idRace, race, description));
-                                }
-                                raceFragment.setListRace(listRaces);
+                            for(int i = 0; i < jsonRaces.length(); i++) {
+                                JSONObject raceObject = jsonRaces.getJSONObject(i);
+                                short idRace = (short) raceObject.getInt("id");
+                                String race = raceObject.getString("name");
+                                String description = raceObject.getString("description");
+                                listRaces.add(new Race(idRace, race, description));
+                            }
+                            raceFragment.setListRace(listRaces);
+                            if(refreshRace == null){
                                 context.inflarFragment(raceFragment);
                                 progressDialog.dismiss();
+                            }else{
+                                raceFragment.notificarAdapter();
+                                refreshRace.setRefreshing(false);
+                            }
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
-                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -119,57 +126,60 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarInstallationsFragment(final MainMenuActivity context, final InstallationFragment installationFragment) {
+    public boolean inflarInstallationsFragment(final MainMenuActivity context, final InstallationFragment installationFragment,
+                                               final SwipeRefreshLayout refreshListInstallation, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
         String url = URLAPI+"installation_list";
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            ArrayList<Installation> listInstallations = new ArrayList<>();
-                            JSONArray jsonInstallations = response.getJSONArray("installations");
+                response -> {
+                    try {
+                        ArrayList<Installation> listInstallations = new ArrayList<>();
+                        JSONArray jsonInstallations = response.getJSONArray("installations");
 
 
-                            for(int i = 0; i < jsonInstallations.length(); i++) {
-                                JSONObject installationObject = jsonInstallations.getJSONObject(i);
-                                short id = (short) installationObject.getInt("id");
-                                String name = installationObject.getString("name");
-                                String type = installationObject.getString("type");
-                                short capacity = (short) installationObject.getInt("capacity");
-                                listInstallations.add(new Installation(id, type, name, capacity));
-                            }
-                            installationFragment.setListInstallations(listInstallations);
+                        for(int i = 0; i < jsonInstallations.length(); i++) {
+                            JSONObject installationObject = jsonInstallations.getJSONObject(i);
+                            short id = (short) installationObject.getInt("id");
+                            String name = installationObject.getString("name");
+                            String type = installationObject.getString("type");
+                            short capacity = (short) installationObject.getInt("capacity");
+                            listInstallations.add(new Installation(id, type, name, capacity));
+                        }
+                        installationFragment.setListInstallations(listInstallations);
+                        if(inflar){
                             context.inflarFragment( installationFragment);
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                        }else{
+                            installationFragment.notificarAdapter();
+                            refreshListInstallation.setRefreshing(false);
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -177,11 +187,14 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarPigFragment(final MainMenuActivity context, final PigFragment pigFragment) {
+    public boolean inflarPigFragment(final MainMenuActivity context, final PigFragment pigFragment,
+                                     final SwipeRefreshLayout refrescarListPig, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
 
         if(listPig != null){
             pigFragment.setListPig(listPig);
@@ -220,10 +233,17 @@ public class MainMenuPresenter {
                                 listPigs.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
                                         health,installation, birth, acquisition));
                             }
-                            System.out.println("Size: "+listPigs.size());
+
+
                             pigFragment.setListPig(listPigs);
-                            context.inflarFragment(pigFragment);
-                            progressDialog.dismiss();
+                            if(inflar){
+                                context.inflarFragment(pigFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                pigFragment.notifyAdapter();
+                                refrescarListPig.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -252,11 +272,14 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarToolsFragment(final MainMenuActivity context, final ToolFragment toolFragment) {
+    public boolean inflarToolsFragment(final MainMenuActivity context, final ToolFragment toolFragment
+            , final SwipeRefreshLayout refreshListTool, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Herramientas...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Cargando Herramientas...");
+            progressDialog.show();
+        }
 
         if(hmTypeTool == null){
             traerDatosTiposTool(context, toolFragment);
@@ -290,10 +313,15 @@ public class MainMenuPresenter {
                             }
 
                             toolFragment.setListTool(listTool);
-                            toolFragment.setContext(context);
-                            context.inflarFragment(toolFragment);
-                            toolsUpdate = true;
-                            progressDialog.dismiss();
+                            if(inflar){
+                                toolFragment.setContext(context);
+                                context.inflarFragment(toolFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                toolFragment.notificarAdapter();
+                                refreshListTool.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -327,11 +355,14 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarEmployeesFragment(final MainMenuActivity context,final EmployeeFragment employeeFragment) {
+    public boolean inflarEmployeesFragment(final MainMenuActivity context,final EmployeeFragment employeeFragment,
+                                           final SwipeRefreshLayout refreshListEmployee, final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Empleados...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Cargando Empleados...");
+            progressDialog.show();
+        }
 
         String url = URLAPI + "employee_list";
 
@@ -380,8 +411,14 @@ public class MainMenuPresenter {
                                         sex, firstName, secondName, fatherLastName, motherLastName, email, phone, celPhone, instalation, salary ));
                             }
                             employeeFragment.setListEmployees(listEmployee);
-                            context.inflarFragment(employeeFragment);
-                            progressDialog.dismiss();
+
+                            if(inflar){
+                                context.inflarFragment(employeeFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                employeeFragment.notificarAdapter();
+                                refreshListEmployee.setRefreshing(false);
+                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -389,20 +426,17 @@ public class MainMenuPresenter {
                             progressDialog.dismiss();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -410,13 +444,17 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarFemalesFragment(final MainMenuActivity context, final FemaleFragment femaleFragment) {
+    public boolean inflarFemalesFragment(final MainMenuActivity context, final FemaleFragment femaleFragment,
+                                         final SwipeRefreshLayout refreshListFemale) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(refreshListFemale == null){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
 
         if(listPig == null){
+            System.out.println("listPig");
             traerDatosPorcinos(context);
         }
 
@@ -426,52 +464,52 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
+                    try {
 
-                        try {
-                            ArrayList<Female> listFemales = new ArrayList<>();
-                            JSONArray jsonFemale = response.getJSONArray("females");
+                        ArrayList<Female> listFemales = new ArrayList<>();
+                        JSONArray jsonFemale = response.getJSONArray("females");
 
+                        for(int i = 0; i < jsonFemale.length(); i++) {
+                            JSONObject femaleObject = jsonFemale.getJSONObject(i);
+                            String stateFemale = femaleObject.getString("state");
+                            if(stateFemale.equalsIgnoreCase("Baja"))
+                                continue;
+                            short id = (short) femaleObject.getInt("id");
+                            String virgin = femaleObject.getString("virgin");
+                            String gestation = femaleObject.getString("gestation");
+                            Pig pig = MainMenuPresenter.this.buscarPig(id);
+                            listFemales.add(new Female(id, virgin, gestation,stateFemale,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
+                                    pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
 
-                            for(int i = 0; i < jsonFemale.length(); i++) {
-                                JSONObject femaleObject = jsonFemale.getJSONObject(i);
-                                short id = (short) femaleObject.getInt("id");
-                                String virgin = femaleObject.getString("virgin");
-                                String gestation = femaleObject.getString("gestation");
-                                String stateFemale = femaleObject.getString("state");
-                                Pig pig = MainMenuPresenter.this.buscarPig(id);
-                                listFemales.add(new Female(id, virgin, gestation,stateFemale,pig.getState(), pig.getSex(), pig.getWeigth(), pig.getRace(), pig.getGrowthPhase(),
-                                        pig.getPigState(), pig.getHealth(), pig.getInstallation(), pig.getBirthDate(), pig.getAcquisitionDate()));
+                        }
 
-                            }
+                        femaleFragment.setListFemale(listFemales);
 
-
-                            femaleFragment.setListFemale(listFemales);
+                        if(refreshListFemale == null){
                             context.inflarFragment(femaleFragment);
                             progressDialog.dismiss();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                        }else{
+                            femaleFragment.notificarAdapter();
+                            refreshListFemale.setRefreshing(false);
                         }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -479,11 +517,15 @@ public class MainMenuPresenter {
 
     }
 
-    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment, final Boolean inflar) {
+    public boolean inflarMalesFragment(final MainMenuActivity context, final MaleFragment maleFragment,
+                                       final SwipeRefreshLayout refreshListMale, final Boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
 
         if(listPig == null){
             traerDatosPorcinos(context);
@@ -512,13 +554,16 @@ public class MainMenuPresenter {
                                 listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
                                 }
-
+                            maleFragment.setListMale(listMale);
                             if(inflar){
-                                maleFragment.setListMale(listMale);
                                 context.inflarFragment(maleFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                maleFragment.notificarAdapter();
+                                refreshListMale.setRefreshing(false);
                             }
 
-                            progressDialog.dismiss();
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -526,20 +571,17 @@ public class MainMenuPresenter {
                             progressDialog.dismiss();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+                    try {
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-            }
-        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -612,12 +654,15 @@ public class MainMenuPresenter {
         return true;
     }
 
-    public void inflarMedicineFragment(final MainMenuActivity context, final MedicineFragment medicineFragment) {
+    public void inflarMedicineFragment(final MainMenuActivity context, final MedicineFragment medicineFragment
+            , final SwipeRefreshLayout refrescarListMedicine, final boolean inflar) {
+
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Cargando Medicinas...");
-        progressDialog.show();
-
+        if(inflar){
+            progressDialog.setMessage("Cargando Medicinas...");
+            progressDialog.show();
+        }
 
         String url = URLAPI+"inventary_medicine";
 
@@ -643,10 +688,16 @@ public class MainMenuPresenter {
 
                                 listMedicine.add(new Medicine(id, name, type, quantity));
                             }
-                            System.out.println("Size: "+listMedicine.size());
+
                             medicineFragment.setListMedicine(listMedicine);
-                            context.inflarFragment(medicineFragment);
-                            progressDialog.dismiss();
+                            if(inflar){
+                                context.inflarFragment(medicineFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                medicineFragment.notificarAdapter();
+                                refrescarListMedicine.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -674,11 +725,17 @@ public class MainMenuPresenter {
 
     }
 
-    public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment) {
-
+    public void presentarDashboard(final MainMenuActivity context, final DashBoardFragment dashBoardFragment,
+                                   final SwipeRefreshLayout refrescarDashboard, final boolean inflar) {
+        /*if(refrescarDashboard != null){
+            refrescarDashboard.setRefreshing(true);
+        }*/
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+
 
         String url = URLAPI + "dasboard";
 
@@ -714,9 +771,14 @@ public class MainMenuPresenter {
                             valores[5] = typeInstallation;
 
                             dashBoardFragment.setValores(valores);
-                            context.inflarFragment(dashBoardFragment);
-                            progressDialog.dismiss();
 
+                            if (inflar){
+                                context.inflarFragment(dashBoardFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                dashBoardFragment.actualizarText();
+                                refrescarDashboard.setRefreshing(false);
+                            }
                         } catch (Exception e) {
                             System.out.println("entra 1");
                             e.printStackTrace();
@@ -809,64 +871,63 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            MainMenuPresenter.this.listPig = new ArrayList<>();
-                            JSONArray jsonPig = response.getJSONArray("pigs");
-                            for(int i = 0; i < jsonPig.length(); i++) {
-                                JSONObject pigObject = jsonPig.getJSONObject(i);
-                                short id = (short) pigObject.getInt("id");
-                                String state = pigObject.getString("state");
-                                String sex = pigObject.getString("sex");
-                                short weigth = (short) pigObject.getInt("weigth");
-                                String race = pigObject.getString("race");
-                                String growthPhase = pigObject.getString("growthPhase");
-                                String pigState = pigObject.getString("pigStage");
-                                String health = pigObject.getString("health");
-                                String installation = pigObject.getString("installation");
-                                String birth = pigObject.getString("birthDate");
-                                String acquisition= pigObject.getString("acquisitionDate");
+                    try {
+                        listPig = new ArrayList<>();
+                        JSONArray jsonPig = response.getJSONArray("pigs");
+                        for(int i = 0; i < jsonPig.length(); i++) {
+                            JSONObject pigObject = jsonPig.getJSONObject(i);
+                            short id = (short) pigObject.getInt("id");
+                            String state = pigObject.getString("state");
+                            String sex = pigObject.getString("sex");
+                            short weigth = (short) pigObject.getInt("weigth");
+                            String race = pigObject.getString("race");
+                            String growthPhase = pigObject.getString("growthPhase");
+                            String pigState = pigObject.getString("pigStage");
+                            String health = pigObject.getString("health");
+                            String installation = pigObject.getString("installation");
+                            String birth = pigObject.getString("birthDate");
+                            String acquisition= pigObject.getString("acquisitionDate");
 
-                                MainMenuPresenter.this.listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
-                                        health,installation, birth, acquisition));
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
+                            listPig.add(new Pig(id, state, sex, weigth, race, growthPhase, pigState,
+                                    health,installation, birth, acquisition));
 
                         }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    error.printStackTrace();
-                    context.inflarFragment(new ErrorFragment());
+                    try {
+                        error.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
 
-                }
-            }
-        });
+                    }
+                });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
     }
 
     private Pig buscarPig(short id) {
-        for (Pig pig : listPig)
-        {
-            if(pig.getIdPig() == id){
-                return pig;
+        if(listPig != null){
+            for (Pig pig : listPig)
+            {
+                if(pig.getIdPig() == id){
+                    return pig;
+                }
             }
         }
+
         return null;
     }
 
@@ -969,11 +1030,16 @@ public class MainMenuPresenter {
 
     }
 
-    public void inflarAlarmFragment(final MainMenuActivity context, final AlarmFragment alarmFragment, final short idEmployee) {
+    public void inflarAlarmFragment(final MainMenuActivity context, final AlarmFragment alarmFragment,
+                                    final short idEmployee, final SwipeRefreshLayout refreschListMedicine,
+                                    final boolean inflar) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        if(inflar){
+
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
         String url = URLAPI+"alarm_list/"+ idEmployee;
        if(idEmployee < 10)
            url = URLAPI+"alarm_list/0"+ idEmployee;
@@ -998,9 +1064,17 @@ public class MainMenuPresenter {
 
                                 listAlarms.add(new Alarm(idAlarm, idEmployee, date, hour, issue));
                             }
+
                             alarmFragment.setListAlarm(listAlarms);
-                            context.inflarFragment(alarmFragment);
-                            progressDialog.dismiss();
+
+                            if(inflar){
+                                context.inflarFragment(alarmFragment);
+                                progressDialog.dismiss();
+                            }else{
+                                alarmFragment.notificarAdapter();
+                                refreschListMedicine.setRefreshing(false);
+                            }
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
