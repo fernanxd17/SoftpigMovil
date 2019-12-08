@@ -90,7 +90,7 @@ public class GestationFragment extends Fragment {
 
         noGestation.setText(listPeriodGestation.size() + " Periodo(s) de Celo(s) encontrado(s)");
 
-        gestationAdapter = new GestationAdapter(listPeriodGestation, getContext());
+        gestationAdapter = new GestationAdapter(listPeriodGestation);
         recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
         recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerGestation.setAdapter(gestationAdapter);
@@ -186,7 +186,7 @@ public class GestationFragment extends Fragment {
     public void notificarAdapter() {
         noGestation.setText(listPeriodGestation.size() + " Periodo(s) de Celo(s) encontrado(s)");
 
-        gestationAdapter = new GestationAdapter(listPeriodGestation, getContext());
+        gestationAdapter = new GestationAdapter(listPeriodGestation);
         recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
         recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerGestation.setAdapter(gestationAdapter);

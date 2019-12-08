@@ -85,10 +85,7 @@ public class ToolFragment extends Fragment {
 
 
         tv_noTool = viewTool.findViewById(R.id.tv_noTools);
-        tv_noTool.setText("No se encontrarón herramientas en tu inventario");
-        if (!listTool.isEmpty()){
-            tv_noTool.setText(listTool.size() + " Herramienta(s) encontrada(s)");
-        }
+        tv_noTool.setText(listTool.size() + " Herramienta(s) Encontrada(s)");
 
         toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
         recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
@@ -203,15 +200,18 @@ public class ToolFragment extends Fragment {
     public void notificarAdapter() {
 
         tv_noTool = viewTool.findViewById(R.id.tv_noTools);
-        tv_noTool.setText("No se encontrarón herramientas en tu inventario");
+        tv_noTool.setText(listTool.size() + " Herramienta(s) Encontrada(s)");
 
-        if (!listTool.isEmpty()){
-            tv_noTool.setText(listTool.size() + " Herramienta(s) encontrada(s)");
+        toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
+        recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
+        recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerArticle.setAdapter(toolAdapter);
+
+    }
+
+    public void eliminarToolList(final int idTool) {
+        for (int i = 0; i< listTool.size(); i++){
+            listTool.remove(i);
         }
-            toolAdapter = new ToolAdapter(listTool, toolEmployee, context);
-            recyclerArticle = viewTool.findViewById(R.id.recyclerArticle);
-            recyclerArticle.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerArticle.setAdapter(toolAdapter);
-
     }
 }

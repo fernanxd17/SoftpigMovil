@@ -184,14 +184,14 @@ public class ProfilePresenter {
         }
     }
 
-    public void eliminarArticuloPersona(final ProfileActivity context,final int idTool, final String articlePerson) {
+    public void eliminarArticuloPersona(final ToolFragment toolFragment,final int idTool, final String articlePerson) {
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+        RequestQueue queue = Volley.newRequestQueue(toolFragment.getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(toolFragment.getContext());
         progressDialog.setMessage("Eliminando articulo...");
         progressDialog.show();
-        try{
 
+        try{
             HashMap<String, String> params = new HashMap();
             params.put("article", String.valueOf(idTool));
             params.put("table", articlePerson);
@@ -205,18 +205,20 @@ public class ProfilePresenter {
                         try {
                             int respo = response.getInt("status");
                             System.out.println("respo: "+ respo);
+                            toolFragment.eliminarToolList(idTool);
+                            toolFragment.notificarAdapter();
                             progressDialog.dismiss();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            Toast.makeText(toolFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     },
                     error -> {
                         error.printStackTrace();
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        Toast.makeText(toolFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
                     MY_DEFAULT_TIMEOUT,
@@ -224,7 +226,7 @@ public class ProfilePresenter {
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(arrayRequest);
         }catch(Exception e){
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(toolFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }

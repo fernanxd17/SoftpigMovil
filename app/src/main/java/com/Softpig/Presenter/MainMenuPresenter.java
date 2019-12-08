@@ -740,10 +740,10 @@ public class MainMenuPresenter {
                         short adminNum = (short) adminObject.getInt("administrativos");
                         JSONObject operaObject = jsonDataEmployee.getJSONObject(1);
                         short operNum = (short) operaObject.getInt("operativos");
-                        JSONObject toolPersonObject = jsonDataEmployee.getJSONObject(2);
-                        short numToolPerson = (short)toolPersonObject.getInt("article_person");
-                        JSONObject toolInventaryObject = jsonDataEmployee.getJSONObject(3);
+                        JSONObject toolInventaryObject = jsonDataEmployee.getJSONObject(2);
                         short toolInventario =  (short) toolInventaryObject.getInt("items_inventory");
+                        JSONObject toolPersonObject = jsonDataEmployee.getJSONObject(3);
+                        short numToolPerson = (short)toolPersonObject.getInt("article_person");
                         JSONObject numInstallationObject = jsonDataEmployee.getJSONObject(4);
                         short numInstallation = (short)numInstallationObject.getInt("number_installations");
                         JSONObject typeInstallationObject = jsonDataEmployee.getJSONObject(5);

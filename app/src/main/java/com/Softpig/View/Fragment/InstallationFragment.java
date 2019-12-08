@@ -51,7 +51,7 @@ public class InstallationFragment extends Fragment {
         }
 
         ((MainMenuActivity)getActivity()).setSearch("Installation");
-        installationAdapter = new InstallationAdapter(listInstallations,getContext());
+        installationAdapter = new InstallationAdapter(listInstallations);
         recyclerInstallations = viewInstallations.findViewById(R.id.recyclerInstallations);
         recyclerInstallations.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerInstallations.setAdapter(installationAdapter);
@@ -69,7 +69,7 @@ public class InstallationFragment extends Fragment {
         }
 
         ((MainMenuActivity)getActivity()).setSearch("Installation");
-        installationAdapter = new InstallationAdapter(listInstallations,getContext());
+        installationAdapter = new InstallationAdapter(listInstallations);
         recyclerInstallations = viewInstallations.findViewById(R.id.recyclerInstallations);
         recyclerInstallations.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerInstallations.setAdapter(installationAdapter);

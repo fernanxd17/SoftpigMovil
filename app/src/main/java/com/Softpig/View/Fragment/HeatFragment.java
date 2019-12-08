@@ -91,7 +91,7 @@ public class HeatFragment extends Fragment {
         if(!listHeat.isEmpty())
             tvNoHeat.setText(listHeat.size() +" Celo(s) encontrado(s)");
 
-        heatAdapter = new HeatAdapter(listHeat, getContext());
+        heatAdapter = new HeatAdapter(listHeat);
         recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
         recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerHeat.setAdapter(heatAdapter);
@@ -203,7 +203,7 @@ public class HeatFragment extends Fragment {
         if(!listHeat.isEmpty())
             tvNoHeat.setText(listHeat.size() +" Celo(s) encontrado(s)");
 
-        heatAdapter = new HeatAdapter(listHeat, getContext());
+        heatAdapter = new HeatAdapter(listHeat);
         recyclerHeat = viewHeat.findViewById(R.id.recyclerHeat);
         recyclerHeat.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerHeat.setAdapter(heatAdapter);

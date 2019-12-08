@@ -130,8 +130,8 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ErrorFragment()).commit();
     }
 
-    public void eliminarArticuloPersona(short position, String articlePerson) {
-        profilePresenter.eliminarArticuloPersona(this, position, articlePerson);
+    public void eliminarArticuloPersona(final short idArticle, final String table) {
+        profilePresenter.eliminarArticuloPersona(toolFragment, idArticle, table);
     }
 
     public Employee getEmployee(){
