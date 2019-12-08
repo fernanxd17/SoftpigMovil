@@ -1,5 +1,6 @@
 package com.Softpig;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,7 +12,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.media.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.Softpig.View.MainMenuActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -24,10 +26,18 @@ import static android.graphics.Color.rgb;
 public class FirebaseService extends FirebaseMessagingService {
 
     private String TAG = "FirebaseService";
+    private CharSequence text;
+    private  long timestamp;
+    private CharSequence sender;
 
     public FirebaseService() {
     }
 
+    public FirebaseService(CharSequence text, CharSequence sender){
+        this.text = text;
+        this.sender = sender;
+        timestamp = System.currentTimeMillis();
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -119,6 +129,32 @@ public class FirebaseService extends FirebaseMessagingService {
             //
             String NOTIFICATION_CHANNEL_ID = getString(R.string.default_notification_channel_id);
 
+        Notification notificationBuilder = new androidx.core.app.NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.nav_pig)
+                .setColor(rgb(254, 220, 220))
+                .setContentTitle(title)
+                .setContentText(body)
+                .setAutoCancel(true)
+                .setVibrate(new long[]{0, 1000, 500, 1000})
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,
+                    "Notification",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+
+            notificationChannel.setDescription("Descripcion");
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.BLUE);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableLights(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
 
            /* NotificationCompat.Builder notificationBuilder =
                     new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
@@ -152,5 +188,18 @@ public class FirebaseService extends FirebaseMessagingService {
 
             notificationManager.notify(0, notificationBuilder.build());*/
         }
+
+    public CharSequence getText() {
+        return text;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public CharSequence getSender() {
+        return sender;
+    }
+
 
 }
