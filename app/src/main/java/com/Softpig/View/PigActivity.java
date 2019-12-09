@@ -117,12 +117,12 @@ public class PigActivity extends AppCompatActivity{
     }
 
 
-    public void desasignarMale(short idMale) {
-        pigPresenter.desasignarMale(idMale, this);
+    public void desasignarMale(final short idMale) {
+        pigPresenter.desasignarMale(idMale, infoMaleFragment);
     }
 
-    public void desasignarFemale(short idFemale) {
-        pigPresenter.desasignarFemale(idFemale, this);
+    public void desasignarFemale(final short idFemale) {
+        pigPresenter.desasignarFemale(idFemale, infoFemaleFragment);
     }
 
     public void inflarFragmentPartos(short idFemale) {
@@ -208,7 +208,7 @@ public class PigActivity extends AppCompatActivity{
 
     public void agregarCelo(final Heat heat, final AlertDialog alertDialog) {
         heat.setIdFemale(female.getIdFemale());
-        pigPresenter.agregarHeat(this, heat, alertDialog);
+        pigPresenter.agregarHeat(heatFragment, heat, alertDialog);
     }
 
     public void actualizarListMaleExam(final SwipeRefreshLayout refreshListExamMale) {

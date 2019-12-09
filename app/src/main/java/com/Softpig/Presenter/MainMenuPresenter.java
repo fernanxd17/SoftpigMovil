@@ -947,10 +947,10 @@ public class MainMenuPresenter {
         queue.add(json);
     }
 
-    public void eliminarExistenciasMedicina(final MainMenuActivity context, final short idMedicine) {
+    public void eliminarExistenciasMedicina(final MedicineFragment medicineFragment, final short idMedicine) {
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+        RequestQueue queue = Volley.newRequestQueue(medicineFragment.getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(medicineFragment.getContext());
         progressDialog.setMessage("Eliminando existencias...");
         progressDialog.show();
         try{
@@ -964,26 +964,25 @@ public class MainMenuPresenter {
 
                         try {
                             int respo = response.getInt("status");
-                            Toast.makeText(context, "Existencias eliminadas", Toast.LENGTH_SHORT).show();
+                            medicineFragment.eliminarMedicina(idMedicine);
+                            medicineFragment.notificarAdapter();
+                            Toast.makeText(medicineFragment.getContext(), "Existencias eliminadas", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            Toast.makeText(medicineFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(medicineFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         }catch(Exception e){
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(medicineFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
 
@@ -1054,10 +1053,10 @@ public class MainMenuPresenter {
         queue.add(json);
     }
 
-    public void eliminarAlarmPerson(final MainMenuActivity context, final short idEmployee) {
+    public void eliminarAlarmPerson(final AlarmFragment alarmFragment, final short idEmployee) {
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+        RequestQueue queue = Volley.newRequestQueue(alarmFragment.getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(alarmFragment.getContext());
         progressDialog.setMessage("Eliminando alarm...");
         progressDialog.show();
         try{
@@ -1074,26 +1073,26 @@ public class MainMenuPresenter {
 
                         try {
                             int respo = response.getInt("status");
-
-                            Toast.makeText(context, "alarma eliminada", Toast.LENGTH_SHORT).show();
-
+                            alarmFragment.eliminarAlarma(idEmployee);
+                            alarmFragment.notificarAdapter();
+                            Toast.makeText(alarmFragment.getContext(), "alarma eliminada", Toast.LENGTH_SHORT).show();
                             System.out.println("respo: "+ respo);
                             progressDialog.dismiss();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            Toast.makeText(alarmFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     },
                     error -> {
                         error.printStackTrace();
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        Toast.makeText(alarmFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         }catch(Exception e){
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(alarmFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
 
@@ -1152,18 +1151,18 @@ public class MainMenuPresenter {
 
     }
 
-    public void addAlarm(final MainMenuActivity context, final short id_employee, final String date, final String hour, final String issue){
-        RequestQueue queue = Volley.newRequestQueue(context);
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+    public void addAlarm(final AlarmFragment alarmFragment, final Alarm alarm){
+        RequestQueue queue = Volley.newRequestQueue(alarmFragment.getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(alarmFragment.getContext());
         progressDialog.setMessage("Agregando alarma...");
         progressDialog.show();
         try{
 
             HashMap<String, String> params = new HashMap();
-            params.put("id_Employee", String.valueOf(id_employee));
-            params.put("date", date);
-            params.put("hour", hour);
-            params.put("issue", issue);
+            params.put("id_Employee", String.valueOf(alarm.getIdEmployee()));
+            params.put("date", alarm.getDate());
+            params.put("hour", alarm.getHour());
+            params.put("issue", alarm.getIssue());
             params.put("Content-Type","application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
@@ -1171,26 +1170,27 @@ public class MainMenuPresenter {
                     "https://softpig.herokuapp.com/api/add_alarm",
                     new JSONObject(params),
                     response -> {
-
                         try {
                             int respo = response.getInt("status");
-
+                            alarmFragment.addAlarm(alarm);
+                            alarmFragment.notificarAdapter();
+                            Toast.makeText(alarmFragment.getContext(), "Alarma agregada con exito", Toast.LENGTH_SHORT);
                             progressDialog.dismiss();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            Toast.makeText(alarmFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     },
                     error -> {
                         error.printStackTrace();
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        Toast.makeText(alarmFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
+
             queue.add(arrayRequest);
         }catch(Exception e){
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(alarmFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }

@@ -44,12 +44,8 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.tvNameMedicine.setText(medicine.getName());
         holder.tvTypeMedicine.setText(medicine.getTypeMedicine());
         holder.tvCantidadMedicine.setText(String.valueOf(medicine.getQuantity()));
-        holder.ivEliminarMedicine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainMenuActivity)context).eliminarExistenciaMedicina(medicine.getIdMedicine());
-            }
-        });
+        holder.ivEliminarMedicine.setOnClickListener(view ->
+                ((MainMenuActivity)context).eliminarExistenciaMedicina(medicine.getIdMedicine()));
     }
 
     @Override

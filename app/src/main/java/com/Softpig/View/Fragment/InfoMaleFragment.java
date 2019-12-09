@@ -22,7 +22,6 @@ public class InfoMaleFragment extends Fragment {
     private Button btDesasignarMale;
     private View viewInfoMale;
     private Male male;
-    private String [] listIdMale;
 
 
     public InfoMaleFragment(Male male) {
@@ -37,19 +36,9 @@ public class InfoMaleFragment extends Fragment {
 
         capturarCampos();
         modificarCampos();
-        btDesasignarMale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((PigActivity) getContext()).desasignarMale(male.getIdMale());
-            }
-        });
+        btDesasignarMale.setOnClickListener(view -> ((PigActivity) getContext()).desasignarMale(male.getIdMale()));
 
-        tvVerExamanes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((PigActivity)getContext()).verExamanesMale(male.getIdMale());
-            }
-        });
+        tvVerExamanes.setOnClickListener(view -> ((PigActivity)getContext()).verExamanesMale(male.getIdMale()));
 
         return viewInfoMale;
     }
@@ -73,11 +62,14 @@ public class InfoMaleFragment extends Fragment {
         installationMale.setText(male.getInstallation());
         razaMale.setText(male.getRace());
         saludMale.setText(male.getHealth());
-        pesoMale.setText(String.valueOf(male.getWeigth()) + "Kg");
+        pesoMale.setText(male.getWeigth() + "Kg");
         fisicaMale.setText(male.getConformacionFisica());
         if(MainMenuActivity.rol.equalsIgnoreCase("Empleado Operativo")){
             btDesasignarMale.setVisibility(View.INVISIBLE);
         }
     }
 
+    public void volverActivy() {
+        ((PigActivity)getContext()).finish();
+    }
 }

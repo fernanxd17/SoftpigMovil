@@ -8,6 +8,8 @@ import com.Softpig.Model.Birth;
 import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.PeriodGestation;
+import com.Softpig.View.Fragment.InfoFemaleFragment;
+import com.Softpig.View.Fragment.InfoMaleFragment;
 import com.Softpig.View.PigActivity;
 import com.Softpig.View.Fragment.BirthFragment;
 import com.Softpig.View.Fragment.ExamMaleListFragment;
@@ -36,7 +38,7 @@ public class PigPresenter {
     public PigPresenter() {
     }
 
-    public void darDeBajaPig(short idPig, final PigActivity context) {
+    public void darDeBajaPig(final short idPig, final PigActivity context) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Realizando Baja...");
@@ -53,32 +55,26 @@ public class PigPresenter {
                     Request.Method.PUT,
                     "https://softpig.herokuapp.com/api/inactivate_pig/" + idPig,
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
-                                System.out.println("respo: " + respo);
+                        try {
+                            int respo = response.getInt("status");
+                            System.out.println("respo: " + respo);
 
 
-                                progressDialog.dismiss();
+                            progressDialog.dismiss();
 
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         } catch (Exception e) {
@@ -87,13 +83,13 @@ public class PigPresenter {
         }
     }
 
-    public void desasignarFemale(final short idFemale, final PigActivity context) {
+    public void desasignarFemale(final short idFemale, final InfoFemaleFragment infoFemaleFragment) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+        final ProgressDialog progressDialog = new ProgressDialog(infoFemaleFragment.getContext());
         progressDialog.setMessage("Des-asignando reporductora...");
 
         progressDialog.show();
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(infoFemaleFragment.getContext());
 
         try {
 
@@ -105,44 +101,39 @@ public class PigPresenter {
                     Request.Method.PUT,
                     "https://softpig.herokuapp.com/api/remove_female/" + idFemale,
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
-                                System.out.println("respo: " + respo);
-                                progressDialog.dismiss();
+                        try {
+                            int respo = response.getInt("status");
+                            System.out.println("respo: " + respo);
+                            progressDialog.dismiss();
+                            infoFemaleFragment.volver();
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(infoFemaleFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(infoFemaleFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         } catch (Exception e) {
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(infoFemaleFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }
 
-    public void desasignarMale(final short idMale, final PigActivity context) {
+    public void desasignarMale(final short idMale, final InfoMaleFragment infoMaleFragment) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+        final ProgressDialog progressDialog = new ProgressDialog(infoMaleFragment.getContext());
         progressDialog.setMessage("Des-asignado Reproductor...");
         progressDialog.show();
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(infoMaleFragment.getContext());
         try {
             HashMap<String, String> params = new HashMap();
             params.put("id", String.valueOf(idMale));
@@ -152,35 +143,28 @@ public class PigPresenter {
                     Request.Method.PUT,
                     "https://softpig.herokuapp.com/api/remove_male/" + idMale,
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
+                        try {
+                            infoMaleFragment.volverActivy();
+                            int respo = response.getInt("status");
+                            System.out.println("respo: " + respo);
+                            progressDialog.dismiss();
 
-                                System.out.println("respo: " + respo);
-
-                                progressDialog.dismiss();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(infoMaleFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(infoMaleFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         } catch (Exception e) {
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(infoMaleFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }
@@ -513,20 +497,14 @@ public class PigPresenter {
         }
     }
 
-    public void agregarHeat(final PigActivity context, final Heat heat, final AlertDialog alertDialog) {
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+    public void agregarHeat(final HeatFragment heatFragment, final Heat heat, final AlertDialog alertDialog) {
+        final ProgressDialog progressDialog = new ProgressDialog(heatFragment.getContext());
         progressDialog.setMessage("Registrando celo...");
         progressDialog.show();
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(heatFragment.getContext());
         try {
 
-            System.out.println("datos");
-            System.out.println(heat.getIdFemale());
-            System.out.println(heat.getTypeMating());
-            System.out.println(heat.isSincrony() ? "Si" : "No");
-            System.out.println(heat.getDateStart());
-            System.out.println(heat.getDateEnd());
             HashMap<String, String> params = new HashMap();
             params.put("ID_FEMALE", String.valueOf(heat.getIdFemale()));
             params.put("typeMating", heat.getTypeMating());
@@ -542,11 +520,13 @@ public class PigPresenter {
                     response -> {
                         try {
                             int respo = response.getInt("status");
+                            heatFragment.addHeat(heat);
+                            heatFragment.notificarAdapter();
                             progressDialog.dismiss();
                             alertDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            Toast.makeText(heatFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                             alertDialog.dismiss();
                         }
@@ -555,11 +535,11 @@ public class PigPresenter {
                         error.printStackTrace();
                         progressDialog.dismiss();
                         alertDialog.dismiss();
-                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        Toast.makeText(heatFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         } catch (Exception e) {
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(heatFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }

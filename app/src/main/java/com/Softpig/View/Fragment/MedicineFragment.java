@@ -37,6 +37,7 @@ public class MedicineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         viewListMedicine =  inflater.inflate(R.layout.fragment_list_medicine, container, false);
         refrescarListMedicine = viewListMedicine.findViewById(R.id.refresh_list_medicine);
         refrescarListMedicine.setOnRefreshListener(() -> {
@@ -74,5 +75,14 @@ public class MedicineFragment extends Fragment {
         recyclerMedicine = viewListMedicine.findViewById(R.id.recyclerMedicine);
         recyclerMedicine.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerMedicine.setAdapter(medicineAdapter);
+    }
+
+    public void eliminarMedicina(final short idMedicine) {
+        for (int i = 0; i < listMedicine.size(); i++){
+            if(listMedicine.get(i).getIdMedicine() == idMedicine) {
+                listMedicine.remove(i);
+                break;
+            }
+        }
     }
 }
