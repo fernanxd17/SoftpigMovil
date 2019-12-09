@@ -452,17 +452,17 @@ public class PigPresenter {
 
     }
 
-    public void agregarGestation(final PigActivity context, final short idFemale, final short idMale, final String fechaGestacion, final AlertDialog alertDialog) {
-        final ProgressDialog progressDialog = new ProgressDialog(context);
+    public void agregarGestation(final GestationFragment gestationFragment, final PeriodGestation periodGestation, final AlertDialog alertDialog) {
+        final ProgressDialog progressDialog = new ProgressDialog(gestationFragment.getContext());
         progressDialog.setMessage("Registrando gestación...");
         progressDialog.show();
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(gestationFragment.getContext());
         try {
             HashMap<String, String> params = new HashMap();
-            params.put("ID_FEMALE", String.valueOf(idFemale));
-            params.put("idMale", String.valueOf(idMale));
-            params.put("DATE_START", fechaGestacion);
+            params.put("ID_FEMALE", String.valueOf(periodGestation.getIdFemale()));
+            params.put("idMale", String.valueOf(periodGestation.getIdMale()));
+            params.put("DATE_START", periodGestation.getDateStart());
             params.put("Content-Type", "application/json");
 
             JsonObjectRequest arrayRequest = new JsonObjectRequest(
@@ -472,18 +472,20 @@ public class PigPresenter {
                     response -> {
                         try {
                             int respo = response.getInt("status");
+                            gestationFragment.addGestacion(periodGestation);
+                            gestationFragment.notificarAdapter();
                             progressDialog.dismiss();
                             alertDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            Toast.makeText(gestationFragment.getContext(), "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     },
                     error -> {
                         error.printStackTrace();
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                        Toast.makeText(gestationFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
 
             arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -492,7 +494,7 @@ public class PigPresenter {
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(arrayRequest);
         } catch (Exception e) {
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(gestationFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
     }

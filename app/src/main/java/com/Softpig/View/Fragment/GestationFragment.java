@@ -161,8 +161,8 @@ public class GestationFragment extends Fragment {
             btCancelar.setOnClickListener(v12 -> alertDialog.dismiss());
 
             btAgregar.setOnClickListener(v1 -> {
-                ((PigActivity)getContext()).agregarGestacion(idMale, etFechaGestacion.getText().toString(), alertDialog);
-                alertDialog.dismiss();
+                PeriodGestation periodGestation = new PeriodGestation(Short.parseShort(idMale), etFechaGestacion.getText().toString());
+                ((PigActivity)getContext()).agregarGestacion(periodGestation, alertDialog);
             });
 
             alertDialog.show();
@@ -172,8 +172,6 @@ public class GestationFragment extends Fragment {
         return viewGestation;
 
     }
-
-
 
     public void setListGestation(List<PeriodGestation> listGestation) {
         this.listPeriodGestation = listGestation;
@@ -190,5 +188,10 @@ public class GestationFragment extends Fragment {
         recyclerGestation = viewGestation.findViewById(R.id.recyclergestation);
         recyclerGestation.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerGestation.setAdapter(gestationAdapter);
+    }
+
+    public void addGestacion(final PeriodGestation periodGestation) {
+        periodGestation.setIdPeriodGestation((short)(listPeriodGestation.get(listPeriodGestation.size()-1).getIdPeriodGestation() + 1));
+        listPeriodGestation.add(periodGestation);
     }
 }

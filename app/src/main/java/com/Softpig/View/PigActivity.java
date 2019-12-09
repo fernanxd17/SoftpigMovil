@@ -16,6 +16,7 @@ import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.PeriodGestation;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
@@ -193,8 +194,9 @@ public class PigActivity extends AppCompatActivity{
         inflarFragment("MaleExam");
     }
 
-    public void agregarGestacion(String idMale, String fechaGestacion, final AlertDialog alertDialog) {
-        pigPresenter.agregarGestation(this,female.getIdFemale(),Short.valueOf(idMale), fechaGestacion, alertDialog);
+    public void agregarGestacion(final PeriodGestation periodGestation, final AlertDialog alertDialog) {
+        periodGestation.setIdFemale(female.getIdFemale());
+        pigPresenter.agregarGestation(gestationFragment,periodGestation, alertDialog);
     }
 
     public void modificarExamMale(short idExamMale, String result, String date) {
