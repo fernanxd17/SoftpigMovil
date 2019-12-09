@@ -151,7 +151,8 @@ public class AlarmFragment extends Fragment {
                 String etiq = etEtiq.getText().toString();
                 String hora = etMostrarHora.getText().toString();
                 String fecha = etMostrarFecha.getText().toString();
-                ((MainMenuActivity)getContext()).crearAlerta(fecha, hora, etiq);
+                Alarm alarm = new Alarm(fecha, hora, etiq);
+                ((MainMenuActivity)getContext()).crearAlerta(alarm);
                 alertDialog.dismiss();
             });
 
@@ -180,5 +181,18 @@ public class AlarmFragment extends Fragment {
         recyclerAlarm = viewAlarm.findViewById(R.id.recyclerAlarms);
         recyclerAlarm.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerAlarm.setAdapter(alarmAdapter);
+    }
+
+    public void addAlarm(final Alarm alarm) {
+        this.listAlarm.add(alarm);
+    }
+
+    public void eliminarAlarma(final short idEmployee) {
+        for(int i = 0; i  < listAlarm.size(); i++){
+            if(listAlarm.get(i).getIdEmployee() == idEmployee) {
+                listAlarm.remove(i);
+                break;
+            }
+        }
     }
 }

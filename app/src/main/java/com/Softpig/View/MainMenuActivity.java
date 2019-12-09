@@ -3,10 +3,12 @@ package com.Softpig.View;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Installation;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.Medicine;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.MainMenuPresenter;
 
@@ -229,7 +231,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     /**
-     * metodo que se comunica con el presetador para abrir un fragment
+     * metodo que se comunica con el presentador para abrir un fragment
      * @param stringFragment
      */
     public void controllerFragment(String stringFragment){
@@ -391,16 +393,17 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         mainMenuPresenter.iniciarPigActivityFemale(this, female);
     }
 
-    public void eliminarExistenciaMedicina(short idMedicine) {
-        mainMenuPresenter.eliminarExistenciasMedicina(this, idMedicine);
+    public void eliminarExistenciaMedicina(final short idMedicine) {
+        mainMenuPresenter.eliminarExistenciasMedicina(medicineFragment, idMedicine);
     }
 
     public void eliminarAlarma() {
-        mainMenuPresenter.eliminarAlarmPerson(this, user.getIdEmployee());
+        mainMenuPresenter.eliminarAlarmPerson(alarmFragment, user.getIdEmployee());
     }
 
-    public void crearAlerta(String fecha, String hora, String etiq) {
-        mainMenuPresenter.addAlarm(this,user.getIdEmployee(), fecha, hora, etiq);
+    public void crearAlerta(final Alarm alarm) {
+        alarm.setIdEmployee(user.getIdEmployee());
+        mainMenuPresenter.addAlarm(alarmFragment,alarm);
     }
 
     public boolean actualizarValoresDashboard(final SwipeRefreshLayout refreshDashboard) {

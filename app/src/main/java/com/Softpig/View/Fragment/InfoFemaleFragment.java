@@ -1,16 +1,9 @@
 package com.Softpig.View.Fragment;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import android.view.*;
+import android.widget.*;
 import com.Softpig.Model.Female;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
@@ -40,19 +33,9 @@ public class InfoFemaleFragment extends Fragment {
         viewInfoFemale =  inflater.inflate(R.layout.fragment_female, container, false);
         capturarCampos();
         modificarCampos();
-        bt_desasignar_female.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((PigActivity) getContext()).desasignarFemale(female.getIdFemale());
-            }
-        });
+        bt_desasignar_female.setOnClickListener(view -> ((PigActivity) getContext()).desasignarFemale(female.getIdFemale()));
 
-        llPartos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((PigActivity) getContext()).inflarFragmentPartos(female.getIdFemale());
-            }
-        });
+        llPartos.setOnClickListener(view -> ((PigActivity) getContext()).inflarFragmentPartos(female.getIdFemale()));
 
         llGestacion.setOnClickListener(view -> ((PigActivity)getContext()).inflarFragmentGestacion(female.getIdFemale()));
 
@@ -90,4 +73,7 @@ public class InfoFemaleFragment extends Fragment {
         }
     }
 
+    public void volver() {
+        ((PigActivity)getContext()).finish();
+    }
 }

@@ -16,6 +16,7 @@ import com.Softpig.Model.ExamMale;
 import com.Softpig.Model.Female;
 import com.Softpig.Model.Heat;
 import com.Softpig.Model.Male;
+import com.Softpig.Model.PeriodGestation;
 import com.Softpig.Model.Pig;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
@@ -117,12 +118,12 @@ public class PigActivity extends AppCompatActivity{
     }
 
 
-    public void desasignarMale(short idMale) {
-        pigPresenter.desasignarMale(idMale, this);
+    public void desasignarMale(final short idMale) {
+        pigPresenter.desasignarMale(idMale, infoMaleFragment);
     }
 
-    public void desasignarFemale(short idFemale) {
-        pigPresenter.desasignarFemale(idFemale, this);
+    public void desasignarFemale(final short idFemale) {
+        pigPresenter.desasignarFemale(idFemale, infoFemaleFragment);
     }
 
     public void inflarFragmentPartos(short idFemale) {
@@ -193,8 +194,9 @@ public class PigActivity extends AppCompatActivity{
         inflarFragment("MaleExam");
     }
 
-    public void agregarGestacion(String idMale, String fechaGestacion, final AlertDialog alertDialog) {
-        pigPresenter.agregarGestation(this,female.getIdFemale(),Short.valueOf(idMale), fechaGestacion, alertDialog);
+    public void agregarGestacion(final PeriodGestation periodGestation, final AlertDialog alertDialog) {
+        periodGestation.setIdFemale(female.getIdFemale());
+        pigPresenter.agregarGestation(gestationFragment,periodGestation, alertDialog);
     }
 
     public void modificarExamMale(short idExamMale, String result, String date) {
@@ -208,7 +210,7 @@ public class PigActivity extends AppCompatActivity{
 
     public void agregarCelo(final Heat heat, final AlertDialog alertDialog) {
         heat.setIdFemale(female.getIdFemale());
-        pigPresenter.agregarHeat(this, heat, alertDialog);
+        pigPresenter.agregarHeat(heatFragment, heat, alertDialog);
     }
 
     public void actualizarListMaleExam(final SwipeRefreshLayout refreshListExamMale) {
