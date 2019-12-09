@@ -49,7 +49,7 @@ public class MainMenuPresenter {
     private  ArrayList<Pig> listPig;
     private HashMap<String, Short> hmTypeTool;
     private String [] listIdMale;
-    public static final int MY_DEFAULT_TIMEOUT = 15000;
+    public static final int MY_DEFAULT_TIMEOUT = 10000;
     private static final String URLAPI = "https://softpig.herokuapp.com/api/";
 
     public MainMenuPresenter(){
@@ -78,21 +78,21 @@ public class MainMenuPresenter {
                         ArrayList<Race> listRaces = new ArrayList<>();
                         JSONArray jsonRaces = response.getJSONArray("races");
 
-                            for(int i = 0; i < jsonRaces.length(); i++) {
-                                JSONObject raceObject = jsonRaces.getJSONObject(i);
-                                short idRace = (short) raceObject.getInt("id");
-                                String race = raceObject.getString("name");
-                                String description = raceObject.getString("description");
-                                listRaces.add(new Race(idRace, race, description));
-                            }
-                            raceFragment.setListRace(listRaces);
-                            if(refreshRace == null){
-                                context.inflarFragment(raceFragment);
-                                progressDialog.dismiss();
-                            }else{
-                                raceFragment.notificarAdapter();
-                                refreshRace.setRefreshing(false);
-                            }
+                        for(int i = 0; i < jsonRaces.length(); i++) {
+                            JSONObject raceObject = jsonRaces.getJSONObject(i);
+                            short idRace = (short) raceObject.getInt("id");
+                            String race = raceObject.getString("name");
+                            String description = raceObject.getString("description");
+                            listRaces.add(new Race(idRace, race, description));
+                        }
+                        raceFragment.setListRace(listRaces);
+                        if(refreshRace == null){
+                            context.inflarFragment(raceFragment);
+                            progressDialog.dismiss();
+                        }else{
+                            raceFragment.notificarAdapter();
+                            refreshRace.setRefreshing(false);
+                        }
 
 
                     } catch (Exception e) {
@@ -102,15 +102,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -163,15 +163,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -283,65 +283,49 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            ContentValues contentValues = new ContentValues();
-
-                            List<Tool> listTool = new ArrayList<>();
-                            JSONArray jsonTools = response.getJSONArray("articles");
-                            for(int i = 0; i < jsonTools.length(); i++) {
-                                JSONObject toolObject = jsonTools.getJSONObject(i);
-                                short quantity = (short) toolObject.getInt("quantity");
-                                if(quantity == 0){ continue; }
-                                short loan = (short)toolObject.getInt("loan");
-                                short id = (short) toolObject.getInt("id");
-                                String name = toolObject.getString("name");
-                                String type = toolObject.getString("type");
-                                listTool.add(new Tool(id, type, name, quantity, loan));
-
-                            }
-
-                            toolFragment.setListTool(listTool);
-                            if(inflar){
-                                toolFragment.setContext(context);
-                                context.inflarFragment(toolFragment);
-                                progressDialog.dismiss();
-                            }else{
-                                toolFragment.notificarAdapter();
-                                refreshListTool.setRefreshing(false);
-                            }
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                response -> {
+                    try {
+                        List<Tool> listTool = new ArrayList<>();
+                        JSONArray jsonTools = response.getJSONArray("articles");
+                        for(int i = 0; i < jsonTools.length(); i++) {
+                            JSONObject toolObject = jsonTools.getJSONObject(i);
+                            short quantity = (short) toolObject.getInt("quantity");
+                            if(quantity == 0){ continue; }
+                            short loan = (short)toolObject.getInt("loan");
+                            short id = (short) toolObject.getInt("id");
+                            String name = toolObject.getString("name");
+                            String type = toolObject.getString("type");
+                            listTool.add(new Tool(id, type, name, quantity, loan));
                         }
+
+                        toolFragment.setListTool(listTool);
+
+                        if(inflar){
+                            toolFragment.setContext(context);
+                            context.inflarFragment(toolFragment);
+                            progressDialog.dismiss();
+                        }else{
+                            toolFragment.notificarAdapter();
+                            refreshListTool.setRefreshing(false);
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
+                }, error -> {
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
             }
         });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
-
-
-
 
         return true;
 
@@ -420,15 +404,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -493,15 +477,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -545,7 +529,7 @@ public class MainMenuPresenter {
 
                                 listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
                                         pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
-                                }
+                            }
                             maleFragment.setListMale(listMale);
                             if(inflar){
                                 context.inflarFragment(maleFragment);
@@ -565,15 +549,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -774,15 +758,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try { error.printStackTrace();
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try { error.printStackTrace();
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         json.setRetryPolicy(new DefaultRetryPolicy(
@@ -793,14 +777,13 @@ public class MainMenuPresenter {
 
     }
 
-    public void eliminarArticulo(final MainMenuActivity context,final int idTool, final String table) {
+    public void eliminarArticulo(final ToolFragment toolFragment,final int idTool, final String table) {
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Eliminando articulo...");
+        RequestQueue queue = Volley.newRequestQueue(toolFragment.getContext());
+        final ProgressDialog progressDialog = new ProgressDialog(toolFragment.getContext());
+        progressDialog.setMessage("Eliminando Herramienta...");
         progressDialog.show();
         try{
-
             HashMap<String, String> params = new HashMap();
             params.put("article", String.valueOf(idTool));
             params.put("table", table);
@@ -810,34 +793,33 @@ public class MainMenuPresenter {
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/remove_article",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            try {
-                                int respo = response.getInt("status");
-                                System.out.println("respo: "+ respo);
-
-                                progressDialog.dismiss();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                    response -> {
+                        try {
+                            int respo = response.getInt("status");
+                            toolFragment.eliminarToolList(idTool);
+                            toolFragment.notificarAdapter();
+                            progressDialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(toolFragment.getContext(), "Error en la APP", Toast.LENGTH_LONG).show();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(toolFragment.getContext(), "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
+
+           /* arrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    MY_DEFAULT_TIMEOUT,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
+
             queue.add(arrayRequest);
+
         }catch(Exception e){
-            Toast.makeText(context, "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+            Toast.makeText(toolFragment.getContext(), "Error interno, Intentelo mas tarde", Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         }
 
@@ -883,16 +865,16 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        error.printStackTrace();
-                        context.inflarFragment(new ErrorFragment());
+            try {
+                error.printStackTrace();
+                context.inflarFragment(new ErrorFragment());
 
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
 
-                    }
-                });
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
@@ -978,20 +960,17 @@ public class MainMenuPresenter {
                     Request.Method.PUT,
                     "https://softpig.herokuapp.com/api/remove_medicine/"+ idMedicine,
                     null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
-                                Toast.makeText(context, "Existencias eliminadas", Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
+                        try {
+                            int respo = response.getInt("status");
+                            Toast.makeText(context, "Existencias eliminadas", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
                     new Response.ErrorListener() {
@@ -1021,59 +1000,53 @@ public class MainMenuPresenter {
             progressDialog.show();
         }
         String url = URLAPI+"alarm_list/"+ idEmployee;
-       if(idEmployee < 10)
-           url = URLAPI+"alarm_list/0"+ idEmployee;
+        if(idEmployee < 10)
+            url = URLAPI+"alarm_list/0"+ idEmployee;
 
         JsonObjectRequest json = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
-                            ArrayList<Alarm> listAlarms = new ArrayList<>();
-                            JSONArray jsonAlarm = response.getJSONArray("alarms");
-                            for(int i = 0; i < jsonAlarm.length(); i++) {
-                                JSONObject alarmObject = jsonAlarm.getJSONObject(i);
-                                short idAlarm = (short) alarmObject.getInt("id");
-                                String date = alarmObject.getString("date");
-                                String hour = alarmObject.getString("hour");
-                                String issue = alarmObject.getString("issue");
+                    try {
+                        ArrayList<Alarm> listAlarms = new ArrayList<>();
+                        JSONArray jsonAlarm = response.getJSONArray("alarms");
+                        for(int i = 0; i < jsonAlarm.length(); i++) {
+                            JSONObject alarmObject = jsonAlarm.getJSONObject(i);
+                            short idAlarm = (short) alarmObject.getInt("id");
+                            String date = alarmObject.getString("date");
+                            String hour = alarmObject.getString("hour");
+                            String issue = alarmObject.getString("issue");
 
-                                listAlarms.add(new Alarm(idAlarm, idEmployee, date, hour, issue));
-                            }
-
-                            alarmFragment.setListAlarm(listAlarms);
-
-                            if(inflar){
-                                context.inflarFragment(alarmFragment);
-                                progressDialog.dismiss();
-                            }else{
-                                alarmFragment.notificarAdapter();
-                                refreschListMedicine.setRefreshing(false);
-                            }
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                            listAlarms.add(new Alarm(idAlarm, idEmployee, date, hour, issue));
                         }
+
+                        alarmFragment.setListAlarm(listAlarms);
+
+                        if(inflar){
+                            context.inflarFragment(alarmFragment);
+                            progressDialog.dismiss();
+                        }else{
+                            alarmFragment.notificarAdapter();
+                            refreschListMedicine.setRefreshing(false);
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
             }
         });
 
@@ -1097,32 +1070,26 @@ public class MainMenuPresenter {
                     Request.Method.DELETE,
                     url,
                     null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
+                        try {
+                            int respo = response.getInt("status");
 
-                                    Toast.makeText(context, "alarma eliminada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "alarma eliminada", Toast.LENGTH_SHORT).show();
 
-                                System.out.println("respo: "+ respo);
-                                progressDialog.dismiss();
+                            System.out.println("respo: "+ respo);
+                            progressDialog.dismiss();
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         }catch(Exception e){
@@ -1144,44 +1111,38 @@ public class MainMenuPresenter {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        try {
+                    try {
 
-                            JSONArray jsonMales = response.getJSONArray("males");
-                            MainMenuPresenter.this.listIdMale = new String [jsonMales.length()];
-                            for(int i = 0; i < jsonMales.length(); i++) {
-                                JSONObject maleObject = jsonMales.getJSONObject(i);
-                                short id = (short) maleObject.getInt("id");
-                                MainMenuPresenter.this.listIdMale[i] = String.valueOf(id);
-                            }
-                            Intent i = new Intent();
-                            i.setClass(context, PigActivity.class);
-                            i.putExtra("Female", female);
-                            i.putExtra("fragment", "Female");
-                            i.putExtra("listIdMale", MainMenuPresenter.this.listIdMale);
-                            context.startActivity(i);
-                            progressDialog.dismiss();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            context.inflarFragment(new ErrorFragment());
-                            progressDialog.dismiss();
+                        JSONArray jsonMales = response.getJSONArray("males");
+                        MainMenuPresenter.this.listIdMale = new String [jsonMales.length()];
+                        for(int i = 0; i < jsonMales.length(); i++) {
+                            JSONObject maleObject = jsonMales.getJSONObject(i);
+                            short id = (short) maleObject.getInt("id");
+                            MainMenuPresenter.this.listIdMale[i] = String.valueOf(id);
                         }
+                        Intent i = new Intent();
+                        i.setClass(context, PigActivity.class);
+                        i.putExtra("Female", female);
+                        i.putExtra("fragment", "Female");
+                        i.putExtra("listIdMale", MainMenuPresenter.this.listIdMale);
+                        context.startActivity(i);
+                        progressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-                try {
-                    context.inflarFragment(new ErrorFragment());
-                    progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
             }
         });
 
@@ -1209,29 +1170,23 @@ public class MainMenuPresenter {
                     Request.Method.POST,
                     "https://softpig.herokuapp.com/api/add_alarm",
                     new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                    response -> {
 
-                            try {
-                                int respo = response.getInt("status");
+                        try {
+                            int respo = response.getInt("status");
 
-                                progressDialog.dismiss();
+                            progressDialog.dismiss();
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                                progressDialog.dismiss();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, "Error en la APP, Intentelo mas tarde", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         }
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
-                        }
+                    error -> {
+                        error.printStackTrace();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error obteniendo datos, Intentelo mas tarde", Toast.LENGTH_LONG).show();
                     });
             queue.add(arrayRequest);
         }catch(Exception e){

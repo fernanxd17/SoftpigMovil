@@ -211,6 +211,7 @@ public class ToolFragment extends Fragment {
 
     public void eliminarToolList(final int idTool) {
         for (int i = 0; i< listTool.size(); i++){
+            if(idTool == listTool.get(i).getIdArticle())
             listTool.remove(i);
         }
     }

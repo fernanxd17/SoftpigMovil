@@ -367,8 +367,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         return super.onKeyDown(keyCode, event);
     }
 
-    public void eliminarArticulo(int position, String article) {
-        mainMenuPresenter.eliminarArticulo(this, position, article);
+    public void eliminarArticulo(final short idTool, final String tableArticle) {
+        mainMenuPresenter.eliminarArticulo(toolFragment, idTool, tableArticle);
     }
 
     public void iniciarPigActivityMale(final Male male) {
