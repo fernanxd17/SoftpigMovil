@@ -137,4 +137,15 @@
     <string name="formato_hora">hh:mm</string>
     <string name="default_notification_channel_id">Hola, bievenido</string>
     <string name="long_dummy_text">Notificación de ejemplo</string>
+    <string name="exam_agresividad">Comportamiento del verraco con los trabajadores y con el resto de porcinos tanto hembras como machos.</string>
+    <string name="exam_alimenticios">Inapetencia del verraco</string>
+    <string name="exam_crianza">Análisis de comportamiento social del verraco.</string>
+    <string name="exam_enfermedad">Inspección de enfermedades respiratorias, sarna, heces, dolor, o cojera.</string>
+    <string name="exam_hormonal">Análisis de sangre para determinar si la hipófisis puede responder correctamente a la hormona liberadora de gonadotropina.</string>
+    <string name="exam_genital">Análisis de alteraciones o defectos en el pene, analisis despues de hacer sedación con 12 azaperona (Stresnil).</string>
+    <string name="exam_hereditarios">Análisis de problemas hereditarios, análisis de anormalidad en testículos.</string>
+    <string name="exam_oseos">Detección de osteocondrosis o artritis</string>
+    <string name="exam_parasitologico">Control de parásitos en los verracos</string>
+    <string name="exam_pulmonar">Control de influencias, neumonía, rinitis previas.</string>
+    <string name="exam_suministro">La falta de ellos puede causar una severa deshidratación en el verraco.</string>
 </resources>

@@ -9,6 +9,11 @@
     tools:context=".View.Fragment.DictionaryFragment"
     android:orientation="vertical"
    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
 
     <LinearLayout
         android:id="@+id/ll_login"
@@ -162,7 +167,311 @@
             </TextView>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Examenes del Verraco"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_agresividad"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_agresividad"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Agresividad:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_agresividad_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_agresividad"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_alimenticios"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_alimenticios"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Alimenticios:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_alimenticios_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_alimenticios"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_crianza"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_crianza"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Crianza:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_crianza_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_crianza"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_enfermedad"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_enfermedad"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Enfermedad:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_enfermedad_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_enfermedad"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_hormonal"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_hormonal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Hormonal:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_hormonal_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_hormonal"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_genital"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_genital"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Genital:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_genital_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_genital"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_hereditarios"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_hereditarios"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Hereditarios:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_hereditarios_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_hereditarios"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_oseos"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_oseos"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Óseos:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_oseos_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_oseos"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_parasitologico"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_parasitologico"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Parasitologico:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_parasitologico_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_parasitologico"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_pulmonar"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_pulmonar"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Pulmonar:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_pulmonar_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_pulmonar"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exam_suministro"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/tv_exam_suministro"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Suministro:">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_exam_suministro_definicion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exam_suministro"
+                android:textAlignment="inherit">
+            </TextView>
+        </LinearLayout>
+
     </LinearLayout>
 
-
+    </ScrollView>
 </LinearLayout>

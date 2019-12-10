@@ -15,11 +15,9 @@ import com.Softpig.View.MainMenuActivity;
 public class ReportFragment extends Fragment {
 
     private View viewReport;
-    private LinearLayout llInformeGeneral, llFertilidadMachos, llProduccionHembras;
-    private PieChartFragment pieChartFragment;
-    private FertilidadMachoFragment fertilidadMachosFragment;
+    private LinearLayout llInformeGeneral, llInformeFertilidad;
+    private InformeFertilidadFragment informeFertilidadFragment;
     private InformeGeneralFragment informeGeneralFragment;
-    private ProduccionHembrasFragment produccionHembrasFragment;
 
     public ReportFragment() {
 
@@ -32,30 +30,26 @@ public class ReportFragment extends Fragment {
         viewReport = inflater.inflate(R.layout.fragment_report, container, false);
 
         llInformeGeneral = viewReport.findViewById(R.id.ll_informe_general);
-        llFertilidadMachos = viewReport.findViewById(R.id.ll_fertilidad_machos);
-        llProduccionHembras = viewReport.findViewById(R.id.ll_produccion_hembras);
+        llInformeFertilidad = viewReport.findViewById(R.id.ll_informe_fertilidad);
 
-        fertilidadMachosFragment = new FertilidadMachoFragment();
+        informeFertilidadFragment = new InformeFertilidadFragment();
         informeGeneralFragment = new InformeGeneralFragment();
-        produccionHembrasFragment = new ProduccionHembrasFragment();
 
 
-        llInformeGeneral.setOnClickListener(view ->  invocarInformeGeneral());
-        llFertilidadMachos.setOnClickListener(view -> invocarFertilidadMachos());
-        llProduccionHembras.setOnClickListener(view -> invocarProduccionHembras());
+        llInformeGeneral.setOnClickListener(view ->  presentarInformeGeneral());
+        llInformeFertilidad.setOnClickListener(view -> invocarInformeFertilidad());
         return viewReport;
     }
 
-    private void invocarProduccionHembras() {
+
+
+    private void invocarInformeFertilidad() {
+        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, informeFertilidadFragment).commit();
+    }
+
+    private void presentarInformeGeneral() {
+       // ((MainMenuActivity)getContext()).presentarInformeGeneral();
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, informeGeneralFragment).commit();
-    }
-
-    private void invocarFertilidadMachos() {
-        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fertilidadMachosFragment).commit();
-    }
-
-    private void invocarInformeGeneral() {
-        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, produccionHembrasFragment).commit();
     }
 
 }

@@ -5,10 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".View.Fragment.InformeGeneralFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <TextView android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AQUI VAN LAS GRAFICAS DE LOS REPRODUCTORES"/>
+
+        <Button
+            android:id="@+id/bt_generar_pdf"
+            android:layout_below="@id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generar PDF"
+            android:background="@drawable/custom_button"/>
+
+    </RelativeLayout>
+
 
 </FrameLayout>

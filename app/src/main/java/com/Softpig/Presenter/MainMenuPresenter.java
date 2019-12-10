@@ -1194,4 +1194,64 @@ public class MainMenuPresenter {
             progressDialog.dismiss();
         }
     }
+
+    public void generalReport(final MainMenuActivity context, final HeatFragment heatFragment) {
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String url = URLAPI + "general-report";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            ArrayList<Male> listMale = new ArrayList<>();
+                            JSONArray jsonMales = response.getJSONArray("general-report");
+
+                           /* for(int i = 0; i < jsonMales.length(); i++) {
+                                JSONObject maleObject = jsonMales.getJSONObject(i);
+                                short id = (short) maleObject.getInt("id");
+                                String conformation = maleObject.getString("conformation");
+                                String stateMale = maleObject.getString("state");
+                                Pig pig = buscarPig(id);
+
+                                listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
+                                        pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
+                            }
+
+
+                            maleFragment.setListMale(listMale);
+                            context.inflarFragment(maleFragment);
+                            progressDialog.dismiss();*/
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            context.inflarFragment(new ErrorFragment());
+                            progressDialog.dismiss();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                try {
+                    context.inflarFragment(new ErrorFragment());
+                    progressDialog.dismiss();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
 }

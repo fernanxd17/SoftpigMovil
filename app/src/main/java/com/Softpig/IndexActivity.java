@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.Softpig.Model.Employee;
+import com.Softpig.Model.Report;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.Fragment.AboutFragment;
 import com.Softpig.View.Fragment.DictionaryFragment;
@@ -37,6 +38,8 @@ public class IndexActivity extends AppCompatActivity {
         setContentView(R.layout.container_login);
         fragmentManager = getSupportFragmentManager();
         mAuth = FirebaseAuth.getInstance();
+
+
         if(savedInstanceState == null){
             tvOpc1 = findViewById(R.id.tv_opc_1);
             tvOpc2 = findViewById(R.id.tv_opc_2);
@@ -44,23 +47,20 @@ public class IndexActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
         }
 
-        tvOpc1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String txtOpc1 = tvOpc1.getText().toString();
-                switch (txtOpc1){
-                    case "Diccionario":
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new DictionaryFragment()).commit();
-                        tvOpc1.setText("Iniciar Sesión");
-                        tvOpc2.setText("Acerca De");
-                        break;
-                     default:
-                         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
-                         tvOpc1.setText("Diccionario");
-                         break;
-                }
-
+        tvOpc1.setOnClickListener(view -> {
+            String txtOpc1 = tvOpc1.getText().toString();
+            switch (txtOpc1){
+                case "Diccionario":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new DictionaryFragment()).commit();
+                    tvOpc1.setText("Iniciar Sesión");
+                    tvOpc2.setText("Acerca De");
+                    break;
+                 default:
+                     getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
+                     tvOpc1.setText("Diccionario");
+                     break;
             }
+
         });
 
         tvOpc2.setOnClickListener(new View.OnClickListener() {
@@ -162,5 +162,9 @@ public class IndexActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void pdfView(View view){
+
     }
 }
