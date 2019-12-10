@@ -16,8 +16,7 @@ public class ReportFragment extends Fragment {
 
     private View viewReport;
     private LinearLayout llInformeGeneral, llInformeFertilidad;
-    private InformeFertilidadFragment informeFertilidadFragment;
-    private InformeGeneralFragment informeGeneralFragment;
+
 
     public ReportFragment() {
 
@@ -32,24 +31,21 @@ public class ReportFragment extends Fragment {
         llInformeGeneral = viewReport.findViewById(R.id.ll_informe_general);
         llInformeFertilidad = viewReport.findViewById(R.id.ll_informe_fertilidad);
 
-        informeFertilidadFragment = new InformeFertilidadFragment();
-        informeGeneralFragment = new InformeGeneralFragment();
 
 
         llInformeGeneral.setOnClickListener(view ->  presentarInformeGeneral());
-        llInformeFertilidad.setOnClickListener(view -> invocarInformeFertilidad());
+        llInformeFertilidad.setOnClickListener(view -> presentarInformeFertilidad());
         return viewReport;
     }
 
 
 
-    private void invocarInformeFertilidad() {
-        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, informeFertilidadFragment).commit();
+    private void presentarInformeFertilidad() {
+        //((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, informeFertilidadFragment).commit();
     }
 
     private void presentarInformeGeneral() {
-       // ((MainMenuActivity)getContext()).presentarInformeGeneral();
-        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, informeGeneralFragment).commit();
+        ((MainMenuActivity)getContext()).presentarInformeGeneral();
     }
 
 }

@@ -24,6 +24,8 @@ import com.Softpig.View.Fragment.DictionaryFragment;
 import com.Softpig.View.Fragment.ErrorFragment;
 import com.Softpig.View.Fragment.FemaleFragment;
 import com.Softpig.View.Fragment.HeatFragment;
+import com.Softpig.View.Fragment.InformeFertilidadFragment;
+import com.Softpig.View.Fragment.InformeGeneralFragment;
 import com.Softpig.View.Fragment.MaleFragment;
 import com.Softpig.View.Fragment.MedicineFragment;
 import com.Softpig.View.Fragment.RaceFragment;
@@ -82,6 +84,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     private MenuInflater menuInflater;
     private SearchView searchView;
     private Bundle datos;
+    private InformeFertilidadFragment informeFertilidadFragment;
+    private InformeGeneralFragment informeGeneralFragment;
 
     public static String rol;
     private TextView tvNameIzq, tvEmailIzq;
@@ -136,6 +140,8 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             maleFragment = new MaleFragment();
             medicineFragment = new MedicineFragment();
             reportFragment = new ReportFragment();
+            informeFertilidadFragment = new InformeFertilidadFragment();
+            informeGeneralFragment = new InformeGeneralFragment();
             presentarFragment("dashboard", null,true);
         }
 
@@ -445,5 +451,9 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
 
     public void actualizarListaRazas(final SwipeRefreshLayout refreshRace) {
         mainMenuPresenter.inflarRacesFragment(this, raceFragment, refreshRace);
+    }
+
+    public void presentarInformeGeneral() {
+        mainMenuPresenter.presentarInformeGeneral(this, informeGeneralFragment);
     }
 }

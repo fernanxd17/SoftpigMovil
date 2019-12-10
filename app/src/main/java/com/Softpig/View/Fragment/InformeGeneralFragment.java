@@ -1,6 +1,5 @@
 package com.Softpig.View.Fragment;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,19 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
+import com.Softpig.Model.GeneralReport;
 import com.Softpig.Model.Report;
 import com.Softpig.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class InformeGeneralFragment extends Fragment {
 
 
     private View viewGenerarFragment;
     private Button btGenerarPDF;
     private Report report;
+    private GeneralReport generalReport;
     //encabezados de la tabla mostrada en el pdf de productividad general
     private String[] header={"Porcinos", "Hembras", "Machos", "Reproductoras", "Reproductores",
             "No Celos", "No Gestaciones", "No Partos", "Lechones", "Marrano", "Primal", "Gordo"};
@@ -57,4 +55,7 @@ public class InformeGeneralFragment extends Fragment {
         //report.createTable(header,);
     }
 
+    public void setReport(final GeneralReport generalReport) {
+        this.generalReport = generalReport;
+    }
 }
