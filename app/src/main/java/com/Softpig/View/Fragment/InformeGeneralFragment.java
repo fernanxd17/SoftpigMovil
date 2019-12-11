@@ -37,7 +37,7 @@ public class InformeGeneralFragment extends Fragment {
     private TextView tvTotalCerdos, tvTotalMachos, tvTotalHembras, tvMachosRpd, tvHembrasRpd;
     private TextView tvLechones, tvMarranos, tvPromNaci, tvPromCelos, tvPromGest;
 
-    private TextView tvGrafCerdos;
+    private TextView tvGrafCerdos, tv_graf_reproductores, tv_graf_fertilidad;
 
 
     public InformeGeneralFragment() {
@@ -58,11 +58,16 @@ public class InformeGeneralFragment extends Fragment {
         tvGrafCerdos.setOnClickListener(view -> {
             mostrarGraficoCerdos();
         });
-        btGenerarPDF.setOnClickListener(view -> {
-            generarPdf();
-        });
         tvGrafEtapas.setOnClickListener(view -> {
             mostrarDiagBarras();
+        });
+
+        tv_graf_reproductores.setOnClickListener(view -> {
+
+        });
+
+        tv_graf_fertilidad.setOnClickListener(view -> {
+
         });
 
         return viewGenerarFragment;
@@ -95,21 +100,20 @@ public class InformeGeneralFragment extends Fragment {
 
 
     private void setCampos() {
-        tvTotalCerdos.setText(generalReport.getPigsFarm()  + " unidades");
-        tvTotalMachos.setText(generalReport.getMalesFarm() + " unidades");
-        tvTotalHembras.setText(generalReport.getFemalesFarm() + " unidades");
-        tvMachosRpd.setText(generalReport.getMalesRpd() + " unidades");
-        tvHembrasRpd.setText(generalReport.getFemaleRpd() + " unidades");
-        tvLechones.setText(generalReport.getLechones() + " unidades");
-        tvMarranos.setText(generalReport.getMarranos() + " unidades");
-        tvPromNaci.setText(generalReport.getPromNaci() + " unidades");
-        tvPromCelos.setText(generalReport.getPromCelos() + " unidades");
-        tvPromGest.setText(generalReport.getPromGest() + " unidades");
+        tvTotalCerdos.setText(String.valueOf(generalReport.getPigsFarm()));
+        tvTotalMachos.setText(String.valueOf(generalReport.getMalesFarm()));
+        tvTotalHembras.setText(String.valueOf(generalReport.getFemalesFarm()));
+        tvMachosRpd.setText(String.valueOf(generalReport.getMalesRpd()));
+        tvHembrasRpd.setText(String.valueOf(generalReport.getFemaleRpd()));
+        tvLechones.setText(String.valueOf(generalReport.getLechones()));
+        tvMarranos.setText(String.valueOf(generalReport.getMarranos()));
+        tvPromNaci.setText(String.valueOf(generalReport.getPromNaci()));
+        tvPromCelos.setText(String.valueOf(generalReport.getPromCelos()));
+        tvPromGest.setText(String.valueOf(generalReport.getPromGest()));
     }
 
     private void capturarCampos(){
         tvGrafCerdos = viewGenerarFragment.findViewById(R.id.tv_graf_cerdos);
-        btGenerarPDF = viewGenerarFragment.findViewById(R.id.bt_generar_pdf);
         tvTotalCerdos = viewGenerarFragment.findViewById(R.id.tv_total_cerdos);
         tvTotalMachos = viewGenerarFragment.findViewById(R.id.tv_total_machos);
         tvTotalHembras = viewGenerarFragment.findViewById(R.id.tv_total_hembras);
@@ -121,6 +125,7 @@ public class InformeGeneralFragment extends Fragment {
         tvPromCelos = viewGenerarFragment.findViewById(R.id.tv_prom_celos);
         tvGrafEtapas = viewGenerarFragment.findViewById(R.id.tv_graf_etapas);
         tvPromGest = viewGenerarFragment.findViewById(R.id.tv_prom_gest);
+        tv_graf_reproductores = viewGenerarFragment.findViewById(R.id.tv_graf_reproductores);
     }
 
     private void generarPdf() {

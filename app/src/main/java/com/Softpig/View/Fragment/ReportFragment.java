@@ -13,12 +13,15 @@ import android.widget.TextView;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 
+import java.util.Calendar;
+
 public class ReportFragment extends Fragment {
 
     private View viewReport;
     private LinearLayout llInformeGeneral, llInformeFertilidad;
     private short  [] valores;
     private TextView tvBebes, tvDead, tvGestaciones, tvPartos;
+    private Calendar fecha;
 
     public ReportFragment() {
 
@@ -36,12 +39,13 @@ public class ReportFragment extends Fragment {
         llInformeFertilidad.setOnClickListener(view -> presentarInformeFertilidad());
         return viewReport;
     }
-
+    //Estos son los campos que se muestran en el dashboard de los informes
     private void setearCampos() {
-        tvBebes.setText("Bebes: "+valores[0]);
-        tvDead.setText("Muertos: "+valores[1]);
-        tvPartos.setText("Partos: "+valores[2]);
-        tvGestaciones.setText("Gestaciones: "+valores[3]);
+        fecha = Calendar.getInstance();
+        tvBebes.setText("Total de bebes nacidos: "+valores[0]+ " en "+fecha.get(Calendar.YEAR));
+        tvDead.setText("Total bebes muertos al nacer : "+valores[1]+" en "+fecha.get(Calendar.YEAR));
+        tvPartos.setText("Total de partos: "+valores[2]+" en el "+ fecha.get(Calendar.YEAR));
+        tvGestaciones.setText("Total de gestaciones: "+valores[3]+" en el "+ fecha.get(Calendar.YEAR));
     }
 
     private void capturarCampos() {
@@ -56,7 +60,7 @@ public class ReportFragment extends Fragment {
 
 
     private void presentarInformeFertilidad() {
-        //((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, informeFertilidadFragment).commit();
+        ((MainMenuActivity)getContext()).presentarInformeFertilidad();
     }
 
     private void presentarInformeGeneral() {

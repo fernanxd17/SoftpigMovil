@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.Softpig.Model.Alarm;
 import com.Softpig.Model.Employee;
 import com.Softpig.Model.Female;
+import com.Softpig.Model.FertilityReport;
 import com.Softpig.Model.GeneralReport;
 import com.Softpig.Model.Installation;
 import com.Softpig.Model.Male;
@@ -15,6 +16,7 @@ import com.Softpig.Model.Medicine;
 import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
+import com.Softpig.View.Fragment.InformeFertilidadFragment;
 import com.Softpig.View.Fragment.InformeGeneralFragment;
 import com.Softpig.View.Fragment.ReportFragment;
 import com.Softpig.View.MainMenuActivity;
@@ -1259,6 +1261,59 @@ public class MainMenuPresenter {
         queue.add(json);
     }
 
+    public void presentarInformeFertilidad( final MainMenuActivity context, final InformeFertilidadFragment informeFertilidadFragment) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Creando informe...");
+        progressDialog.show();
+
+        String url = URLAPI + "fertility_report";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                response -> {
+                    try {
+
+                        JSONArray jsonGeneralReport = response.getJSONArray("fertility-report");
+
+                        JSONObject datosPorcinos = jsonGeneralReport.getJSONObject(0);
+                        short prombabies = (short) datosPorcinos.getInt("noBabies");
+                        short promMommy = (short) datosPorcinos.getInt("noMommy");
+                        short promDead = (short)datosPorcinos.getInt("noDead");
+                        short promWeigth = (short) datosPorcinos.getInt("weigth");
+                        short promBirthsFemale = (short) datosPorcinos.getInt("birth-female");
+                        short promBirthsMale = (short) datosPorcinos.getInt("birth-male");
+
+                        FertilityReport fertilityReport = new FertilityReport(prombabies, promMommy, promDead,
+                                promWeigth, promBirthsFemale, promBirthsMale);
+
+                        informeFertilidadFragment.setReport(fertilityReport);
+                        context.inflarFragment(informeFertilidadFragment);
+                        progressDialog.dismiss();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
+                    }
+                }, error -> {
+
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
+
     public void inflarReportFragment(final MainMenuActivity context,final  ReportFragment reportFragment) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Generando informe...");
@@ -1309,4 +1364,5 @@ public class MainMenuPresenter {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);
     }
+
 }

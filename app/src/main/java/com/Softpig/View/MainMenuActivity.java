@@ -456,4 +456,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     public void presentarInformeGeneral() {
         mainMenuPresenter.presentarInformeGeneral(this, informeGeneralFragment);
     }
+
+    public  void presentarInformeFertilidad(){
+        mainMenuPresenter.presentarInformeFertilidad(this, informeFertilidadFragment);
+    }
+
+
 }
