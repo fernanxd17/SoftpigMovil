@@ -2,6 +2,7 @@ package com.Softpig.View.Fragment;
 
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ public class PieChartFragment extends Fragment {
 
     private PieChart gfFertMachos;
     private View viewFertMachos;
+    private ArrayList<PieEntry> valoresGraf;
 
     public PieChartFragment() {
         // Required empty public constructor
@@ -48,24 +50,24 @@ public class PieChartFragment extends Fragment {
     private void generarGrafico() {
         gfFertMachos.setUsePercentValues(true);
         gfFertMachos.getDescription().setEnabled(false);
-        gfFertMachos.setExtraOffsets(5,10,5,5);
+        gfFertMachos.setExtraOffsets(10,10,10,10);
         gfFertMachos.setDragDecelerationFrictionCoef(0.99f);
 
         gfFertMachos.setDrawHoleEnabled(true);
         gfFertMachos.setHoleColor(Color.WHITE);
         gfFertMachos.setTransparentCircleRadius(60f);
 
-        ArrayList<PieEntry> yValues = tomarValores();
+
 
         Description description = new Description();
-        description.setText("Este es un ejemplo de grafico");
-        description.setTextSize(9);
+        description.setText("Cerdos en la granja por genero.");
+        description.setTextSize(12);
         gfFertMachos.setDescription(description);
 
         gfFertMachos.animateY(1000, Easing.EaseInOutCubic);
 
-        PieDataSet dataSet = new PieDataSet(yValues, "Paises");
-        dataSet.setSliceSpace(2f);
+        PieDataSet dataSet = new PieDataSet(valoresGraf, "Generos");
+        dataSet.setSliceSpace(4f);
         dataSet.setSelectionShift(5f);
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
 
@@ -76,18 +78,8 @@ public class PieChartFragment extends Fragment {
         gfFertMachos.setData(data);
     }
 
-    private ArrayList<PieEntry> tomarValores() {
 
-        ArrayList<PieEntry> yValues = new ArrayList<>();
-        yValues.add(new PieEntry(34f, "España"));
-        yValues.add(new PieEntry(24f, "Colombia"));
-        yValues.add(new PieEntry(14f, "Brasil"));
-        yValues.add(new PieEntry(4f, "Argentina"));
-        yValues.add(new PieEntry(50f, "Chile"));
-        yValues.add(new PieEntry(12, "Ven"));
-        yValues.add(new PieEntry(14f, "Peru"));
-
-        return yValues;
+    public void setValores(final ArrayList<PieEntry> valoresGraf) {
+        this.valoresGraf = valoresGraf;
     }
-
 }

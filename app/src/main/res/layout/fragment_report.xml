@@ -78,17 +78,17 @@
                         android:layout_marginHorizontal="10dp"
                         android:layout_weight="0.8">
 
-                        <TextView
+                        <TextView android:id="@+id/no_bebes_mes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No se que poner"
+                            android:text="Bebes: 0 unidades"
                             android:layout_marginBottom="5dp"
                             android:layout_gravity="left">
                         </TextView>
-                        <TextView
+                        <TextView android:id="@+id/no_dead_mes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No se que poner"
+                            android:text="Muertos: 0 unidades"
                             android:layout_gravity="left"
                             android:layout_marginBottom="20dp">
                         </TextView>
@@ -156,17 +156,17 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="10dp">
 
-                        <TextView
+                        <TextView android:id="@+id/no_gestaciones_mes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No se que poner"
+                            android:text="Gestaciones: 0"
                             android:layout_marginBottom="5dp"
                             android:layout_gravity="left">
                         </TextView>
-                        <TextView
+                        <TextView android:id="@+id/no_partos_mes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No se que poner"
+                            android:text="Partos: 0"
                             android:layout_gravity="left"
                             android:layout_marginBottom="20dp">
                         </TextView>

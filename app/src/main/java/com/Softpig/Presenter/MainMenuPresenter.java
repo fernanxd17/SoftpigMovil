@@ -16,6 +16,7 @@ import com.Softpig.Model.Pig;
 import com.Softpig.Model.Race;
 import com.Softpig.Model.Tool;
 import com.Softpig.View.Fragment.InformeGeneralFragment;
+import com.Softpig.View.Fragment.ReportFragment;
 import com.Softpig.View.MainMenuActivity;
 import com.Softpig.View.PigActivity;
 import com.Softpig.View.Fragment.AlarmFragment;
@@ -1211,21 +1212,27 @@ public class MainMenuPresenter {
                 null,
                 response -> {
                     try {
-                        GeneralReport generalReport = new GeneralReport();
+
                         JSONArray jsonGeneralReport = response.getJSONArray("general-report");
 
-                        for(int i = 0; i < jsonGeneralReport.length(); i++) {
-                            JSONObject maleObject = jsonGeneralReport.getJSONObject(i);
-                            /*short id = (short) maleObject.getInt("id");
-                            String conformation = maleObject.getString("conformation");
-                            String stateMale = maleObject.getString("state");
-                            Pig pig = buscarPig(id);
+                        JSONObject datosPorcinos = jsonGeneralReport.getJSONObject(0);
+                        short totalPigs = (short) datosPorcinos.getInt("pigs_farm");
+                        short totalMales = (short) datosPorcinos.getInt("males_farm");
+                        short totalFemales = (short)datosPorcinos.getInt("females_farm");
+                        short malesRpd = (short) datosPorcinos.getInt("active_males");
+                        short femalesRpd = (short) datosPorcinos.getInt("active_females");
+                        short promNaci = (short) datosPorcinos.getInt("births");
+                        short promGest = (short) datosPorcinos.getInt("gestations");
+                        short promCelos = (short) datosPorcinos.getInt("heats");
 
-                            listMale.add(new Male(id, conformation,stateMale, pig.getState(),pig.getSex(),pig.getWeigth() , pig.getRace(), pig.getGrowthPhase(),
-                                    pig.getPigState(), pig.getHealth(), pig.getInstallation(),pig.getBirthDate(), pig.getAcquisitionDate()));
-                            */
-                        }
+                        JSONObject lechonesObject = jsonGeneralReport.getJSONObject(1);
+                        short totalLechones = (short) lechonesObject.getInt("Lechon");
 
+                        JSONObject marranosObject = jsonGeneralReport.getJSONObject(2);
+                        short totalMarranos = (short) marranosObject.getInt("Marrano");
+
+                        GeneralReport generalReport = new GeneralReport(totalPigs, totalMales, totalFemales,
+                                malesRpd, femalesRpd, totalLechones, totalMarranos, promNaci, promCelos, promGest);
 
                         informeGeneralFragment.setReport(generalReport);
                         context.inflarFragment(informeGeneralFragment);
@@ -1247,6 +1254,57 @@ public class MainMenuPresenter {
                         progressDialog.dismiss();
                     }
                 });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(json);
+    }
+
+    public void inflarReportFragment(final MainMenuActivity context,final  ReportFragment reportFragment) {
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Generando informe...");
+        progressDialog.show();
+
+        String url = URLAPI + "report_data";
+
+        JsonObjectRequest json = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                response -> {
+                    try {
+
+                        JSONArray jsonGeneralReport = response.getJSONArray("report-data");
+
+                        JSONObject datosBebesDead = jsonGeneralReport.getJSONObject(0);
+                        short noBabies = (short) datosBebesDead.getInt("noBabies");
+                        short noDead = (short) datosBebesDead.getInt("noDead");
+
+                        JSONObject fertilidad = jsonGeneralReport.getJSONObject(1);
+                        short births = (short) fertilidad.getInt("births");
+                        short gestations = (short) fertilidad.getInt("gestations");
+
+                        short [] valores = {noBabies, noDead, births, gestations};
+
+                        reportFragment.setValores(valores);
+                        context.inflarFragment(reportFragment);
+                        progressDialog.dismiss();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        context.inflarFragment(new ErrorFragment());
+                        progressDialog.dismiss();
+                    }
+                }, error -> {
+
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);

@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.container_profile);
         toolFragment = new ToolFragment(true);
         profileFragment = new ProfileFragment(employee);
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, profileFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, profileFragment).addToBackStack(null).commit();
     }
 
 
@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void inflarFragment(Fragment fragment){
-       getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, fragment).commit();
+       getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, fragment).addToBackStack(null).commit();
     }
 
     public void cambiarEstado(final Employee employee,String nuevoEstado) {
@@ -127,7 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void inflarFragmentError() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ErrorFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsProfile, new ErrorFragment()).addToBackStack(null).commit();
     }
 
     public void eliminarArticuloPersona(final short idArticle, final String table) {

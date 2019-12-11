@@ -167,7 +167,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                     switch (menuItem.getItemId()){
                         case R.id.ic_home:
                             searchItem.setVisible(false);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dashBoardFragment).addToBackStack(null).commit();
                             break;
                         case R.id.ic_pig:
                             searchItem.setVisible(true);
@@ -220,13 +220,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarRacesFragment(this, raceFragment, null);
                 break;
             case R.id.nav_dictionary:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, dictionaryFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_about:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, new AboutFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_report:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, reportFragment).commit();
+                mainMenuPresenter.inflarReportFragment(this, reportFragment);
                 break;
             case R.id.nav_out:
                 super.onBackPressed();
@@ -257,13 +257,13 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
                 mainMenuPresenter.inflarHeatsFragment(this, heatFragment);
                 break;
             default:
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, errorFragment).addToBackStack(null).commit();
                 break;
         }
     }
 
     public void inflarFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).addToBackStack(null).commit();
     }
 
     public void setTitleTolbar(String title){
@@ -299,14 +299,14 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }*/
 
 
-    //código para quitar las barras que de navegación de android en algunas versiones
+    /*//código para quitar las barras que de navegación de android en algunas versiones
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             hideSystemUI();
         }
-    }
+    }*/
 
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
@@ -364,7 +364,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         });
     }
 
-    @Override
+   /* @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
@@ -373,7 +373,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 
     public void eliminarArticulo(final short idTool, final String tableArticle) {
         mainMenuPresenter.eliminarArticulo(toolFragment, idTool, tableArticle);

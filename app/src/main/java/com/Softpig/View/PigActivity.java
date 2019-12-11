@@ -87,28 +87,28 @@ public class PigActivity extends AppCompatActivity{
 
     public void inflarFragment(String fragment) {
         switch (fragment){
-            case "Pig": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoPigFragment).commit();
+            case "Pig": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoPigFragment).addToBackStack(null).commit();
                 break;
-            case "Male": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoMaleFragment).commit();
+            case "Male": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoMaleFragment).addToBackStack(null).commit();
                 break;
             case "Female":
                 gestationFragment = new GestationFragment((String [])bundle.get("listIdMale"));
                 birthFragment = new BirthFragment((String []) bundle.get("listIdMale"));
                 heatFragment = new HeatFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, infoFemaleFragment).addToBackStack(null).commit();
                 break;
             case "Birth":
-                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, birthFragment).addToBackStack(null).commit();
                 break;
-            case "Heat": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, heatFragment).commit();
+            case "Heat": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, heatFragment).addToBackStack(null).commit();
                 break;
-            case "Gestation": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, gestationFragment).commit();
+            case "Gestation": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, gestationFragment).addToBackStack(null).commit();
                 break;
-            case "ExamMaleList": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, examMaleListFragment).commit();
+            case "ExamMaleList": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, examMaleListFragment).addToBackStack(null).commit();
                 break;
-            case "MaleExam": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, maleExamFragment).commit();
+            case "MaleExam": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, maleExamFragment).addToBackStack(null).commit();
                 break;
-            case "Error": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, new ErrorFragment()).commit();
+            case "Error": getSupportFragmentManager().beginTransaction().replace(R.id.containerFragmentsPigs, new ErrorFragment()).addToBackStack(null).commit();
                 break;
         }
     }

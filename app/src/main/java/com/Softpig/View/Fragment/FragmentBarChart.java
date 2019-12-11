@@ -25,6 +25,7 @@ public class FragmentBarChart extends Fragment {
 
     private BarChart bchar;
     private View vBarChart;
+    private ArrayList<BarEntry> yVals;
 
     public FragmentBarChart() {
         // Required empty public constructor
@@ -38,20 +39,19 @@ public class FragmentBarChart extends Fragment {
         vBarChart = inflater.inflate(R.layout.fragment_bar_chart, container, false);
         bchar = vBarChart.findViewById(R.id.chart1);
         bchar.getDescription().setEnabled(false);
+        setData();
 
-        setData(10);
         bchar.setFitBars(true);
 
         return vBarChart;
     }
 
-    private void setData(int count) {
-        ArrayList<BarEntry> yVals = new ArrayList<>();
+    public void setData() {
 
-        for (int i = 0; i< count; i++){
-            float value = (float)(Math.random()*100);
-            yVals.add(new BarEntry(i, (int)value));
-        }
+
+
+
+
 
         BarDataSet set = new BarDataSet(yVals, "Data Set");
         set.setColors(ColorTemplate.MATERIAL_COLORS);
@@ -65,4 +65,7 @@ public class FragmentBarChart extends Fragment {
 
     }
 
+    public void seValores(ArrayList<BarEntry> yVals) {
+        this.yVals = yVals;
+    }
 }

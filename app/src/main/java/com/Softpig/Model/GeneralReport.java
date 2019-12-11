@@ -6,24 +6,21 @@ public class GeneralReport {
             "No Celos", "No Gestaciones", "No Partos", "Lechones", "Marrano", "Primal", "Gordo"};
 
     private int pigsFarm;
-    private int femalesFarm;
     private int malesFarm;
-    private int activeMales;
-    private int activeFemales;
-    private int totalLechones;
+    private int femalesFarm;
+    private int malesRpd;
+    private int femaleRpd;
+    private int lechones;
+    private int marranos;
+    private int promNaci;
+    private int promCelos;
+    private int promGest;
 
     public GeneralReport(){
 
     }
 
-    public GeneralReport(int pigsFarm, int femalesFarm, int malesFarm, int activeMales, int activeFemales, int totalLechones) {
-        this.pigsFarm = pigsFarm;
-        this.femalesFarm = femalesFarm;
-        this.malesFarm = malesFarm;
-        this.activeMales = activeMales;
-        this.activeFemales = activeFemales;
-        this.totalLechones = totalLechones;
-    }
+
 
     public String[] getEncabezados() {
         return encabezados;
@@ -31,6 +28,20 @@ public class GeneralReport {
 
     public void setEncabezados(String[] encabezados) {
         this.encabezados = encabezados;
+    }
+
+    public GeneralReport(int pigsFarm, int malesFarm, int femalesFarm, int malesRpd, int femaleRpd,
+                         int lechones, int marranos, int promNaci, int promCelos, int promGest) {
+        this.pigsFarm = pigsFarm;
+        this.malesFarm = malesFarm;
+        this.femalesFarm = femalesFarm;
+        this.malesRpd = malesRpd;
+        this.femaleRpd = femaleRpd;
+        this.lechones = lechones;
+        this.marranos = marranos;
+        this.promNaci = promNaci;
+        this.promCelos = promCelos;
+        this.promGest = promGest;
     }
 
     public int getPigsFarm() {
@@ -41,14 +52,6 @@ public class GeneralReport {
         this.pigsFarm = pigsFarm;
     }
 
-    public int getFemalesFarm() {
-        return femalesFarm;
-    }
-
-    public void setFemalesFarm(int femalesFarm) {
-        this.femalesFarm = femalesFarm;
-    }
-
     public int getMalesFarm() {
         return malesFarm;
     }
@@ -57,27 +60,67 @@ public class GeneralReport {
         this.malesFarm = malesFarm;
     }
 
-    public int getActiveMales() {
-        return activeMales;
+    public int getFemalesFarm() {
+        return femalesFarm;
     }
 
-    public void setActiveMales(int activeMales) {
-        this.activeMales = activeMales;
+    public void setFemalesFarm(int femalesFarm) {
+        this.femalesFarm = femalesFarm;
     }
 
-    public int getActiveFemales() {
-        return activeFemales;
+    public int getMalesRpd() {
+        return malesRpd;
     }
 
-    public void setActiveFemales(int activeFemales) {
-        this.activeFemales = activeFemales;
+    public void setMalesRpd(int malesRpd) {
+        this.malesRpd = malesRpd;
     }
 
-    public int getTotalLechones() {
-        return totalLechones;
+    public int getFemaleRpd() {
+        return femaleRpd;
     }
 
-    public void setTotalLechones(int totalLechones) {
-        this.totalLechones = totalLechones;
+    public void setFemaleRpd(int femaleRpd) {
+        this.femaleRpd = femaleRpd;
+    }
+
+    public int getLechones() {
+        return lechones;
+    }
+
+    public void setLechones(int lechones) {
+        this.lechones = lechones;
+    }
+
+    public int getMarranos() {
+        return marranos;
+    }
+
+    public void setMarranos(int marranos) {
+        this.marranos = marranos;
+    }
+
+    public int getPromNaci() {
+        return promNaci;
+    }
+
+    public void setPromNaci(int promNaci) {
+        this.promNaci = promNaci;
+    }
+
+    public int getPromCelos() {
+        return promCelos;
+    }
+
+    public void setPromCelos(int promCelos) {
+        this.promCelos = promCelos;
+    }
+
+    public int getPromGest() {
+        return promGest;
+    }
+
+    public void setPromGest(int promGest) {
+        this.promGest = promGest;
     }
 }
