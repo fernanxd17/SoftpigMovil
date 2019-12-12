@@ -41,7 +41,7 @@
                 android:id="@+id/tv_title_type_Article"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ctg:"
+                android:text="Categoria:   "
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"
                 android:layout_below="@id/tv_nameArticle"
@@ -67,7 +67,7 @@
                 android:layout_below="@id/tv_typearticle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="T:"
+                android:text="Invetario:"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"/>
 
@@ -84,13 +84,11 @@
                 </TextView>
 
             <TextView
-                android:layout_marginLeft="10sp"
-                android:layout_toRightOf="@id/tv_valor_totalarticle"
                 android:id="@+id/tv_available_article"
-                android:layout_below="@id/tv_typearticle"
+                android:layout_below="@id/tv_valor_totalarticle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="D:"
+                android:text="Disponibles:"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"/>
 
@@ -98,7 +96,7 @@
                 android:id="@+id/tv_valor_available_article"
                 android:layout_marginLeft="5sp"
                 android:layout_toRightOf="@id/tv_available_article"
-                android:layout_below="@id/tv_typearticle"
+                android:layout_below="@id/tv_valor_totalarticle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#"
@@ -106,13 +104,11 @@
                 android:textSize="@dimen/textSize_cardview"/>
 
             <TextView
-                android:layout_toRightOf="@id/tv_valor_available_article"
                 android:id="@+id/tv_loan_article"
-                android:layout_below="@id/tv_typearticle"
+                android:layout_below="@id/tv_available_article"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="P:"
-                android:layout_marginLeft="10sp"
+                android:text="Prestamo:"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/textSize_cardview"/>
 
@@ -120,7 +116,7 @@
                 android:id="@+id/tv_valor_loan_article"
                 android:layout_marginLeft="5sp"
                 android:layout_toRightOf="@id/tv_loan_article"
-                android:layout_below="@id/tv_typearticle"
+                android:layout_below="@id/tv_available_article"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#"
@@ -128,7 +124,7 @@
                 android:textSize="@dimen/textSize_cardview"/>
 
                     <ImageView
-                        android:layout_below="@id/tv_typearticle"
+                        android:layout_below="@id/tv_valor_loan_article"
                         android:layout_alignParentRight="true"
                         android:id="@+id/iv_remove_article"
                         android:layout_width="wrap_content"

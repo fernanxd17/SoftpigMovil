@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.fragment.EmployeeFragment"
-    android:background="@drawable/list_person">
+    tools:context=".View.Fragment.EmployeeFragment"
+    android:background="@drawable/employee">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_list_employee"

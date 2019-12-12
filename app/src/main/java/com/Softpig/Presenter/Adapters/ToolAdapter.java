@@ -51,7 +51,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolderArti
             holder.tv_typearticle.setText(tool.getTypeArticle());
 
             if(!toolEmployee){
-                holder.tv_totalarticle.setText(String.valueOf(tool.getQuantity()));
+                holder.tvValorTotalTool.setText(String.valueOf(tool.getQuantity()));
                 holder.tvValorToolsAvailable.setText(String.valueOf(tool.getQuantity()- tool.getLoan()));
                 holder.tvValorToolsLoan.setText(String.valueOf(tool.getLoan()));
             }else{
