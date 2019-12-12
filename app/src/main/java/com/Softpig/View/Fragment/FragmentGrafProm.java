@@ -42,7 +42,7 @@ public class FragmentGrafProm extends Fragment {
                              Bundle savedInstanceState) {
         vBarChart = inflater.inflate(R.layout.fragment_bar_chart, container, false);
         bchar = vBarChart.findViewById(R.id.chart1);
-        bchar.getDescription().setEnabled(false);
+        bchar.getDescription().setEnabled(true);
         labels = new ArrayList<>();
         setData();
 

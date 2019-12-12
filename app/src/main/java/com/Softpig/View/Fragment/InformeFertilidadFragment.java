@@ -18,9 +18,7 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class InformeFertilidadFragment extends Fragment {
 
 
@@ -39,7 +37,7 @@ public class InformeFertilidadFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewGenerarFragment = inflater.inflate(R.layout.fragment_informe_fertilidad, container, false);
 
-        barChart = new FragmentBarChart();
+
         capturarCampos();
         setCampos();
 
@@ -57,9 +55,9 @@ public class InformeFertilidadFragment extends Fragment {
     private void mostrarGraficoBarras() {
         ArrayList<BarEntry> values = new ArrayList<>();
         values.add(new BarEntry(0, fertilityReport.getPrombabies()));
-        values.add(new BarEntry(1, fertilityReport.getPromMommy()));
         values.add(new BarEntry(1, fertilityReport.getPromDead()));
-        values.add(new BarEntry(1, fertilityReport.getPromWeigth()));
+        values.add(new BarEntry(2, fertilityReport.getPromMommy()));
+        barChart = new FragmentBarChart("");
         barChart.seValores(values);
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().
                 replace(R.id.containerFragments, barChart).addToBackStack(null).commit();
@@ -67,6 +65,7 @@ public class InformeFertilidadFragment extends Fragment {
     }
 
     private void mostrarGraficoPromPartos() {
+        barChart = new FragmentBarChart("partos");
         ArrayList<BarEntry> values = new ArrayList<>();
         values.add(new BarEntry(0, fertilityReport.getPromBirthsFemale()));
         values.add(new BarEntry(1, fertilityReport.getPromBirthsMale()));
@@ -82,7 +81,6 @@ public class InformeFertilidadFragment extends Fragment {
         tv_babies.setText(String.valueOf(fertilityReport.getPrombabies()));
         tv_mommy.setText(String.valueOf(fertilityReport.getPromMommy()));
         tv_dead.setText(String.valueOf(fertilityReport.getPromDead()));
-        tv_weigth.setText(String.valueOf(fertilityReport.getPromWeigth()));
     }
 
     private void capturarCampos() {
@@ -91,7 +89,6 @@ public class InformeFertilidadFragment extends Fragment {
         tv_babies = viewGenerarFragment.findViewById(R.id.tv_babies);
         tv_mommy = viewGenerarFragment.findViewById(R.id.tv_mommy);
         tv_dead = viewGenerarFragment.findViewById(R.id.tv_dead);
-        tv_weigth = viewGenerarFragment.findViewById(R.id.tv_weigth);
         tv_graf_prom_partos = viewGenerarFragment.findViewById(R.id.tv_graf_prom_partos);
         tv_graf_info_births = viewGenerarFragment.findViewById(R.id.tv_graf_info_births);
     }

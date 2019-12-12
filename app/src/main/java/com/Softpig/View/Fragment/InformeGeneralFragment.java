@@ -54,7 +54,7 @@ public class InformeGeneralFragment extends Fragment {
         // Inflate the layout for this fragment
         viewGenerarFragment = inflater.inflate(R.layout.fragment_informe_general, container, false);
         pieChartFragment = new PieChartFragment();
-        barChart = new FragmentBarChart();
+
         verracosHembrasFragment = new VerracosHembrasFragment();
         fragmentGrafProm = new FragmentGrafProm();
         capturarCampos();
@@ -63,9 +63,8 @@ public class InformeGeneralFragment extends Fragment {
         tvGrafCerdos.setOnClickListener(view -> {
             mostrarGraficoCerdos();
         });
-        tvGrafEtapas.setOnClickListener(view -> {
-            mostrarDiagBarras();
-        });
+        tvGrafEtapas.setOnClickListener(view ->
+            mostrarDiagBarrasEtapas());
 
         tv_graf_reproductores.setOnClickListener(view -> {
             mostrarGraficoReproductores();
@@ -116,19 +115,23 @@ public class InformeGeneralFragment extends Fragment {
         return listValues;
     }
 
-    private void mostrarDiagBarras() {
-        ArrayList<BarEntry> yVals = new ArrayList<>();
-        yVals.add(new BarEntry(0, generalReport.getLechones()));
-        yVals.add(new BarEntry(1, generalReport.getMarranos()));
-        barChart.seValores(yVals);
+    private void mostrarDiagBarrasEtapas() {
+        ArrayList<PieEntry> yVals = new ArrayList<>();
+        yVals.add(new PieEntry(generalReport.getLechones(),"Lechones"));
+        yVals.add(new PieEntry(generalReport.getMarranos(), "Marranos"));
+        yVals.add(new PieEntry(0, "Primal"));
+        yVals.add(new PieEntry(0, "Engorde"));
+        pieChartFragment.setValores(yVals);
+        pieChartFragment.setDescription("Cerdos por etapas");
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().
-                replace(R.id.containerFragments, barChart).addToBackStack(null).commit();
+                replace(R.id.containerFragments, pieChartFragment).addToBackStack(null).commit();
 
     }
 
     private void mostrarGraficoCerdos() {
         ArrayList<PieEntry> valores = setValoresgrafico();
         pieChartFragment.setValores(valores);
+        pieChartFragment.setDescription("Cerdos por genero");
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pieChartFragment).addToBackStack(null).commit();
     }
 
@@ -137,6 +140,7 @@ public class InformeGeneralFragment extends Fragment {
         ArrayList<PieEntry> yValues = new ArrayList<>();
         yValues.add(new PieEntry(generalReport.getMalesFarm(), "Machos"));
         yValues.add(new PieEntry(generalReport.getFemalesFarm(), "Hembras"));
+
         return yValues;
     }
 

@@ -30,6 +30,7 @@ public class PieChartFragment extends Fragment {
     private PieChart gfFertMachos;
     private View viewFertMachos;
     private ArrayList<PieEntry> valoresGraf;
+    Description description;
 
     public PieChartFragment() {
         // Required empty public constructor
@@ -41,13 +42,19 @@ public class PieChartFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewFertMachos = inflater.inflate(R.layout.fragment_piechart, container, false);
         gfFertMachos = viewFertMachos.findViewById(R.id.grafic_fert_machos);
-        generarGraficoVerracos();
+        generarGrafico();
 
 
         return viewFertMachos;
     }
 
-    private void generarGraficoVerracos() {
+    public void setDescription(String description){
+        this.description= new Description();
+        this.description.setText(description);
+        this.description.setTextSize(18);
+    }
+
+    private void generarGrafico() {
         gfFertMachos.setUsePercentValues(true);
         gfFertMachos.getDescription().setEnabled(false);
         gfFertMachos.setExtraOffsets(10,10,10,10);
@@ -58,15 +65,11 @@ public class PieChartFragment extends Fragment {
         gfFertMachos.setTransparentCircleRadius(60f);
 
 
-
-        Description description = new Description();
-        description.setText("Cerdos en la granja por genero.");
-        description.setTextSize(12);
         gfFertMachos.setDescription(description);
 
         gfFertMachos.animateY(1000, Easing.EaseInOutCubic);
 
-        PieDataSet dataSet = new PieDataSet(valoresGraf, "Generos");
+        PieDataSet dataSet = new PieDataSet(valoresGraf, "");
         dataSet.setSliceSpace(4f);
         dataSet.setSelectionShift(5f);
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
