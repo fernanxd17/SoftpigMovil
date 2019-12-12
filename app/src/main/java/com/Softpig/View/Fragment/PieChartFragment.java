@@ -41,13 +41,13 @@ public class PieChartFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewFertMachos = inflater.inflate(R.layout.fragment_piechart, container, false);
         gfFertMachos = viewFertMachos.findViewById(R.id.grafic_fert_machos);
-        generarGrafico();
+        generarGraficoVerracos();
 
 
         return viewFertMachos;
     }
 
-    private void generarGrafico() {
+    private void generarGraficoVerracos() {
         gfFertMachos.setUsePercentValues(true);
         gfFertMachos.getDescription().setEnabled(false);
         gfFertMachos.setExtraOffsets(10,10,10,10);
