@@ -263,7 +263,10 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
     }
 
     public void inflarFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).addToBackStack(null).commit();
+        if(fragment instanceof DashBoardFragment)
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).commit();
+        else
+             getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragment).addToBackStack(null).commit();
     }
 
     public void setTitleTolbar(String title){
@@ -364,7 +367,7 @@ public class MainMenuActivity extends AppCompatActivity  implements  NavigationV
         });
     }
 
-   /* @Override
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
