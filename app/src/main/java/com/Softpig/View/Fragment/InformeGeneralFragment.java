@@ -18,17 +18,20 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class InformeGeneralFragment extends Fragment {
 
     private FragmentBarChart barChart;
     private PieChartFragment pieChartFragment;
+    private VerracosHembrasFragment verracosHembrasFragment;
     private View viewGenerarFragment;
     private Button btGenerarPDF;
     private Report report;
     private TextView tvGrafEtapas;
     private GeneralReport generalReport;
+    private FragmentGrafProm fragmentGrafProm;
     //encabezados de la tabla mostrada en el pdf de productividad general
     private String[] header={"Porcinos", "Hembras", "Machos", "Reproductoras", "Reproductores",
             "No Celos", "No Gestaciones", "No Partos", "Lechones", "Marrano", "Primal", "Gordo"};
@@ -51,43 +54,85 @@ public class InformeGeneralFragment extends Fragment {
         // Inflate the layout for this fragment
         viewGenerarFragment = inflater.inflate(R.layout.fragment_informe_general, container, false);
         pieChartFragment = new PieChartFragment();
-        barChart = new FragmentBarChart();
+
+        verracosHembrasFragment = new VerracosHembrasFragment();
+        fragmentGrafProm = new FragmentGrafProm();
         capturarCampos();
         setCampos();
 
         tvGrafCerdos.setOnClickListener(view -> {
             mostrarGraficoCerdos();
         });
-        tvGrafEtapas.setOnClickListener(view -> {
-            mostrarDiagBarras();
-        });
+        tvGrafEtapas.setOnClickListener(view ->
+            mostrarDiagBarrasEtapas());
 
         tv_graf_reproductores.setOnClickListener(view -> {
-
+            mostrarGraficoReproductores();
         });
 
         tv_graf_fertilidad.setOnClickListener(view -> {
-
+            mostrarGraficoFertilidad();
         });
 
         return viewGenerarFragment;
     }
 
-    private void mostrarDiagBarras() {
+    private void mostrarGraficoFertilidad() {
+        ArrayList<BarEntry> yVals = setValoresPromedios();
+        fragmentGrafProm.setValores(yVals);
+        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragmentGrafProm).addToBackStack(null).commit();
+
+    }
+
+    private ArrayList<BarEntry> setValoresPromedios() {
         ArrayList<BarEntry> yVals = new ArrayList<>();
-        yVals.add(new BarEntry(0, generalReport.getLechones()));
-        yVals.add(new BarEntry(1, generalReport.getMarranos()));
-        barChart.seValores(yVals);
+
+        yVals.add(new BarEntry(0, generalReport.getPromNaci()));
+        yVals.add(new BarEntry(1, generalReport.getPromGest()));
+        yVals.add(new BarEntry(2, generalReport.getPromCelos()));
+
+        return yVals;
+    }
+
+    private void mostrarGraficoReproductores() {
+        List<ArrayList<PieEntry>> valores = setValoresgraficoVerracosHembras();
+        verracosHembrasFragment.setValores(valores);
+        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, verracosHembrasFragment).addToBackStack(null).commit();
+    }
+
+    private List<ArrayList<PieEntry>> setValoresgraficoVerracosHembras() {
+        List<ArrayList<PieEntry>> listValues = new ArrayList<>();
+        ArrayList<PieEntry> yValues = new ArrayList<>();
+        yValues.add(new PieEntry(generalReport.getMalesRpd(), "Verracos"));
+        yValues.add(new PieEntry(generalReport.getMalesFarm(), "Machos"));
+        listValues.add(yValues);
+
+        yValues = new ArrayList<>();
+        yValues.add(new PieEntry(generalReport.getFemaleRpd(), "Reproductoras"));
+        yValues.add(new PieEntry(generalReport.getFemalesFarm(), "Hembras"));
+        listValues.add(yValues);
+
+        return listValues;
+    }
+
+    private void mostrarDiagBarrasEtapas() {
+        ArrayList<PieEntry> yVals = new ArrayList<>();
+        yVals.add(new PieEntry(generalReport.getLechones(),"Lechones"));
+        yVals.add(new PieEntry(generalReport.getMarranos(), "Marranos"));
+        yVals.add(new PieEntry(0, "Primal"));
+        yVals.add(new PieEntry(0, "Engorde"));
+        pieChartFragment.setValores(yVals);
+        pieChartFragment.setDescription("Cerdos por etapas");
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().
-                replace(R.id.containerFragments, barChart).addToBackStack(null).commit();
+                replace(R.id.containerFragments, pieChartFragment).addToBackStack(null).commit();
 
     }
 
     private void mostrarGraficoCerdos() {
         ArrayList<PieEntry> valores = setValoresgrafico();
         pieChartFragment.setValores(valores);
+        pieChartFragment.setDescription("Cerdos por genero");
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pieChartFragment).addToBackStack(null).commit();
-
     }
 
     private ArrayList<PieEntry> setValoresgrafico() {
@@ -95,6 +140,7 @@ public class InformeGeneralFragment extends Fragment {
         ArrayList<PieEntry> yValues = new ArrayList<>();
         yValues.add(new PieEntry(generalReport.getMalesFarm(), "Machos"));
         yValues.add(new PieEntry(generalReport.getFemalesFarm(), "Hembras"));
+
         return yValues;
     }
 
@@ -113,6 +159,7 @@ public class InformeGeneralFragment extends Fragment {
     }
 
     private void capturarCampos(){
+        tv_graf_fertilidad = viewGenerarFragment.findViewById(R.id.tv_graf_fertilidad);
         tvGrafCerdos = viewGenerarFragment.findViewById(R.id.tv_graf_cerdos);
         tvTotalCerdos = viewGenerarFragment.findViewById(R.id.tv_total_cerdos);
         tvTotalMachos = viewGenerarFragment.findViewById(R.id.tv_total_machos);

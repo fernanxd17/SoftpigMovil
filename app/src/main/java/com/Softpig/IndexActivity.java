@@ -51,33 +51,30 @@ public class IndexActivity extends AppCompatActivity {
             String txtOpc1 = tvOpc1.getText().toString();
             switch (txtOpc1){
                 case "Diccionario":
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new DictionaryFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new DictionaryFragment()).addToBackStack(null).commit();
                     tvOpc1.setText("Iniciar Sesión");
                     tvOpc2.setText("Acerca De");
                     break;
                  default:
-                     getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
+                     getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).addToBackStack(null).commit();
                      tvOpc1.setText("Diccionario");
                      break;
             }
 
         });
 
-        tvOpc2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String txtOpc2 = tvOpc2.getText().toString();
-                switch (txtOpc2){
-                    case "Acerca De":
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new AboutFragment()).commit();
-                        tvOpc2.setText("Iniciar Sesión");
-                        tvOpc1.setText("Diccionario");
-                        break;
-                    default:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).commit();
-                        tvOpc2.setText("Acerca De");
-                        break;
-                }
+        tvOpc2.setOnClickListener(view -> {
+            String txtOpc2 = tvOpc2.getText().toString();
+            switch (txtOpc2){
+                case "Acerca De":
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new AboutFragment()).addToBackStack(null).commit();
+                    tvOpc2.setText("Iniciar Sesión");
+                    tvOpc1.setText("Diccionario");
+                    break;
+                default:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container_fragments_login, new LoginFragment()).addToBackStack(null).commit();
+                    tvOpc2.setText("Acerca De");
+                    break;
             }
         });
 
@@ -129,14 +126,14 @@ public class IndexActivity extends AppCompatActivity {
         return true;
     }
 
-    //código para quitar las barras que de navegación de android en algunas versiones
+   /* //código para quitar las barras que de navegación de android en algunas versiones
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             hideSystemUI();
         }
-    }
+    }*/
 
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();

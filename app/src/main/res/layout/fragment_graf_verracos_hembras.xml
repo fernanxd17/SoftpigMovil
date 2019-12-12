@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Fragment.PieChartFragment"
+    android:layout_gravity="center_vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/grafic_verracos"
+                android:layout_width="500dp"
+                android:layout_height="400dp"
+                android:layout_marginBottom="50dp">
+            </com.github.mikephil.charting.charts.PieChart>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:layout_below="@id/grafic_verracos"
+                android:id="@+id/grafic_hembras"
+                android:layout_width="500dp"
+                android:layout_height="400dp">
+            </com.github.mikephil.charting.charts.PieChart>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+</RelativeLayout>
+
+
+
+
