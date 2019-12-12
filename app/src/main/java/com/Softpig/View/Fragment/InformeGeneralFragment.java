@@ -31,6 +31,7 @@ public class InformeGeneralFragment extends Fragment {
     private Report report;
     private TextView tvGrafEtapas;
     private GeneralReport generalReport;
+    private FragmentGrafProm fragmentGrafProm;
     //encabezados de la tabla mostrada en el pdf de productividad general
     private String[] header={"Porcinos", "Hembras", "Machos", "Reproductoras", "Reproductores",
             "No Celos", "No Gestaciones", "No Partos", "Lechones", "Marrano", "Primal", "Gordo"};
@@ -55,6 +56,7 @@ public class InformeGeneralFragment extends Fragment {
         pieChartFragment = new PieChartFragment();
         barChart = new FragmentBarChart();
         verracosHembrasFragment = new VerracosHembrasFragment();
+        fragmentGrafProm = new FragmentGrafProm();
         capturarCampos();
         setCampos();
 
@@ -70,17 +72,33 @@ public class InformeGeneralFragment extends Fragment {
         });
 
         tv_graf_fertilidad.setOnClickListener(view -> {
-
+            mostrarGraficoFertilidad();
         });
 
         return viewGenerarFragment;
+    }
+
+    private void mostrarGraficoFertilidad() {
+        ArrayList<BarEntry> yVals = setValoresPromedios();
+        fragmentGrafProm.setValores(yVals);
+        ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, fragmentGrafProm).addToBackStack(null).commit();
+
+    }
+
+    private ArrayList<BarEntry> setValoresPromedios() {
+        ArrayList<BarEntry> yVals = new ArrayList<>();
+
+        yVals.add(new BarEntry(0, generalReport.getPromNaci()));
+        yVals.add(new BarEntry(1, generalReport.getPromGest()));
+        yVals.add(new BarEntry(2, generalReport.getPromCelos()));
+
+        return yVals;
     }
 
     private void mostrarGraficoReproductores() {
         List<ArrayList<PieEntry>> valores = setValoresgraficoVerracosHembras();
         verracosHembrasFragment.setValores(valores);
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, verracosHembrasFragment).addToBackStack(null).commit();
-
     }
 
     private List<ArrayList<PieEntry>> setValoresgraficoVerracosHembras() {

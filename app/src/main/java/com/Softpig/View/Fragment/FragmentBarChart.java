@@ -47,22 +47,13 @@ public class FragmentBarChart extends Fragment {
     }
 
     public void setData() {
-
-
-
-
-
-
         BarDataSet set = new BarDataSet(yVals, "Data Set");
         set.setColors(ColorTemplate.MATERIAL_COLORS);
         set.setDrawValues(true);
-
         BarData data = new BarData(set);
-
         bchar.setData(data);
         bchar.invalidate();
         bchar.animateY(500);
-
     }
 
     public void seValores(ArrayList<BarEntry> yVals) {
