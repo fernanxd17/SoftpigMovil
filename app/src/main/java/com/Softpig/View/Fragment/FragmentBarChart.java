@@ -97,7 +97,7 @@ public class FragmentBarChart extends Fragment {
         bchar.animateY(2000);
         bchar.invalidate();
 
-        graficarLinealPartos();
+        //graficarLinealPartos();
 
 
     }
