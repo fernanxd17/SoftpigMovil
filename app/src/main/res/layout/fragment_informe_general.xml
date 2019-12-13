@@ -124,9 +124,10 @@
                         android:text="0 unidades"
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"/>
-                    <TextView android:id="@+id/tv_empty"
+                    <TextView android:id="@+id/tv_graf_cerdos_anual"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="italic"
                         android:text=""
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"/>

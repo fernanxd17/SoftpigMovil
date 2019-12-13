@@ -8,26 +8,44 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.Softpig.R;
+import com.Softpig.View.MainMenuActivity;
 import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PieChartFragment extends Fragment {
-
+public class PieChartFragment extends Fragment{
     private PieChart gfFertMachos;
+    private LineChart gfLineChartAnual;
     private View viewFertMachos;
     private ArrayList<PieEntry> valoresGraf;
     Description description;
@@ -42,11 +60,50 @@ public class PieChartFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewFertMachos = inflater.inflate(R.layout.fragment_piechart, container, false);
         gfFertMachos = viewFertMachos.findViewById(R.id.grafic_fert_machos);
+        gfLineChartAnual = viewFertMachos.findViewById(R.id.line_chart_anual);
+        
         generarGrafico();
+        generarGraficoLineChartAnual();
+
+
 
 
         return viewFertMachos;
     }
+
+    private void generarGraficoLineChartAnual() {
+        //gfLineChartAnual.setOnChartGestureListener((OnChartGestureListener) getContext());
+        //gfLineChartAnual.setOnChartValueSelectedListener((OnChartValueSelectedListener) getContext());
+        gfLineChartAnual.setVisibility(View.VISIBLE);
+        gfLineChartAnual.setDragEnabled(true);
+        gfLineChartAnual.setScaleEnabled(false);
+
+        gfLineChartAnual.getAxisLeft().setEnabled(false);
+
+        ArrayList<Entry> yValues = new ArrayList<>();
+
+        yValues.add(new Entry(2015,1f));
+        yValues.add(new Entry(2017,2f));
+        yValues.add(new Entry(2018,8f));
+        yValues.add(new Entry(2019,9f));
+
+        LineDataSet set1 = new LineDataSet(yValues, "Registro de cerdos");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.RED);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(12f);
+        set1.setValueTextColor(Color.BLACK);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        dataSets.add(set1);
+        LineData data = new LineData(dataSets);
+        gfLineChartAnual.setData(data);
+
+
+    }
+
 
     public void setDescription(String description){
         this.description= new Description();
@@ -85,4 +142,24 @@ public class PieChartFragment extends Fragment {
     public void setValores(final ArrayList<PieEntry> valoresGraf) {
         this.valoresGraf = valoresGraf;
     }
+
+
+    private class MyAxisValueFormatter extends IndexAxisValueFormatter {
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            switch ((int)value){
+                case 1: return "2015";
+                case 2: return "2017";
+                case 3: return "2018";
+                case 4: return "2019";
+            }
+
+            return "";
+        }
+    }
+
+
 }
+
+

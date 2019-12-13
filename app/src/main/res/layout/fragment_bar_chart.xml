@@ -3,20 +3,56 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <com.github.mikephil.charting.charts.BarChart
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:id="@+id/chart1">
+                android:id="@+id/chart1"
+                android:layout_marginBottom="20sp">
             </com.github.mikephil.charting.charts.BarChart>
 
+            <com.github.mikephil.charting.charts.LineChart
+                android:visibility="invisible"
+                android:id="@+id/line_chart_anual_partos"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20sp">
+            </com.github.mikephil.charting.charts.LineChart>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:visibility="invisible"
+                android:id="@+id/line_chart_anual_gest"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20sp">
+            </com.github.mikephil.charting.charts.LineChart>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:visibility="invisible"
+                android:id="@+id/line_chart_anual_celos"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20sp">
+            </com.github.mikephil.charting.charts.LineChart>
+
+
+
         </LinearLayout>
+    </ScrollView>
+
 
 
 

@@ -1,6 +1,7 @@
 package com.Softpig.View.Fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,12 +12,17 @@ import android.view.ViewGroup;
 
 import com.Softpig.R;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -29,6 +35,7 @@ public class FragmentBarChart extends Fragment {
     private BarChart bchar;
     private View vBarChart;
     private ArrayList<BarEntry> yVals;
+    private LineChart lineChartPartos, lineChartGest, lineChartCelos;
     private ArrayList<String> labels;
     Description description;
     String typeGraf;
@@ -46,6 +53,9 @@ public class FragmentBarChart extends Fragment {
         vBarChart = inflater.inflate(R.layout.fragment_bar_chart, container, false);
         bchar = vBarChart.findViewById(R.id.chart1);
         bchar.getDescription().setEnabled(true);
+        lineChartCelos = vBarChart.findViewById(R.id.line_chart_anual_celos);
+        lineChartGest = vBarChart.findViewById(R.id.line_chart_anual_gest);
+        lineChartPartos = vBarChart.findViewById(R.id.line_chart_anual_partos);
         labels = new ArrayList<>();
         if(typeGraf.equalsIgnoreCase("partos")){
             setDataPromedios();
@@ -86,6 +96,8 @@ public class FragmentBarChart extends Fragment {
         xAxis.setLabelRotationAngle(270);
         bchar.animateY(2000);
         bchar.invalidate();
+
+
     }
 
     public void setDataPartos() {
@@ -116,6 +128,94 @@ public class FragmentBarChart extends Fragment {
         xAxis.setLabelRotationAngle(270);
         bchar.animateY(2000);
         bchar.invalidate();
+
+        graficarLinealPartos();
+        graficarLinealGest();
+        graficarLinealCelos();
+
+    }
+
+    private void graficarLinealCelos() {
+        lineChartCelos.setVisibility(View.VISIBLE);
+        lineChartCelos.setDragEnabled(true);
+        lineChartCelos.setScaleEnabled(false);
+
+        lineChartCelos.getAxisLeft().setEnabled(false);
+
+        ArrayList<Entry> yValues = new ArrayList<>();
+
+        yValues.add(new Entry(2018,2f));
+        yValues.add(new Entry(2019,13f));
+
+
+
+        LineDataSet set1 = new LineDataSet(yValues, "Periodos de Celos");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.RED);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(12f);
+        set1.setValueTextColor(Color.BLACK);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        dataSets.add(set1);
+        LineData data = new LineData(dataSets);
+        lineChartCelos.setData(data);
+    }
+
+    private void graficarLinealGest() {
+        lineChartGest.setVisibility(View.VISIBLE);
+        lineChartGest.setDragEnabled(true);
+        lineChartGest.setScaleEnabled(false);
+
+        lineChartGest.getAxisLeft().setEnabled(false);
+
+        ArrayList<Entry> yValues = new ArrayList<>();
+
+        yValues.add(new Entry(2018,2));
+        yValues.add(new Entry(2019,13));
+
+        LineDataSet set1 = new LineDataSet(yValues, "Periodos de Gestación");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.RED);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(12f);
+        set1.setValueTextColor(Color.BLACK);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        dataSets.add(set1);
+        LineData data = new LineData(dataSets);
+        lineChartGest.setData(data);
+    }
+
+    private void graficarLinealPartos() {
+        lineChartPartos.setVisibility(View.VISIBLE);
+        lineChartPartos.setDragEnabled(true);
+        lineChartPartos.setScaleEnabled(false);
+
+        lineChartPartos.getAxisLeft().setEnabled(false);
+
+        ArrayList<Entry> yValues = new ArrayList<>();
+
+        yValues.add(new Entry(2018,1f));
+        yValues.add(new Entry(2019,10f));
+
+        LineDataSet set1 = new LineDataSet(yValues, "Partos");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.RED);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(12f);
+        set1.setValueTextColor(Color.BLACK);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        dataSets.add(set1);
+        LineData data = new LineData(dataSets);
+        lineChartPartos.setData(data);
     }
 
     public void seValores(ArrayList<BarEntry> yVals) {
