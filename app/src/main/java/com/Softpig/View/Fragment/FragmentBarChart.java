@@ -97,6 +97,38 @@ public class FragmentBarChart extends Fragment {
         bchar.animateY(2000);
         bchar.invalidate();
 
+        graficarLinealPartos();
+
+
+    }
+
+    private void graficarPartos(){
+
+        lineChartPartos.setVisibility(View.VISIBLE);
+        lineChartPartos.setDragEnabled(true);
+        lineChartPartos.setScaleEnabled(false);
+
+        lineChartPartos.getAxisLeft().setEnabled(false);
+
+        ArrayList<Entry> yValues = new ArrayList<>();
+
+        yValues.add(new Entry(2017,1f));
+        yValues.add(new Entry(2018,5f));
+        yValues.add(new Entry(2019,10f));
+
+        LineDataSet set1 = new LineDataSet(yValues, "Partos");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.RED);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(12f);
+        set1.setValueTextColor(Color.BLACK);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        dataSets.add(set1);
+        LineData data = new LineData(dataSets);
+        lineChartPartos.setData(data);
 
     }
 
@@ -129,13 +161,13 @@ public class FragmentBarChart extends Fragment {
         bchar.animateY(2000);
         bchar.invalidate();
 
-        graficarLinealPartos();
-        graficarLinealGest();
-        graficarLinealCelos();
+        graficarLinealBebes();
+        graficarLinealMomias();
+        graficarLinealMuertos();
 
     }
 
-    private void graficarLinealCelos() {
+    private void graficarLinealBebes() {
         lineChartCelos.setVisibility(View.VISIBLE);
         lineChartCelos.setDragEnabled(true);
         lineChartCelos.setScaleEnabled(false);
@@ -144,12 +176,12 @@ public class FragmentBarChart extends Fragment {
 
         ArrayList<Entry> yValues = new ArrayList<>();
 
-        yValues.add(new Entry(2018,2f));
-        yValues.add(new Entry(2019,13f));
+        yValues.add(new Entry(2018,14f));
+        yValues.add(new Entry(2019,39f));
 
 
 
-        LineDataSet set1 = new LineDataSet(yValues, "Periodos de Celos");
+        LineDataSet set1 = new LineDataSet(yValues, "Bebes / Año");
 
         set1.setFillAlpha(110);
 
@@ -164,7 +196,7 @@ public class FragmentBarChart extends Fragment {
         lineChartCelos.setData(data);
     }
 
-    private void graficarLinealGest() {
+    private void graficarLinealMuertos() {
         lineChartGest.setVisibility(View.VISIBLE);
         lineChartGest.setDragEnabled(true);
         lineChartGest.setScaleEnabled(false);
@@ -173,10 +205,10 @@ public class FragmentBarChart extends Fragment {
 
         ArrayList<Entry> yValues = new ArrayList<>();
 
-        yValues.add(new Entry(2018,2));
-        yValues.add(new Entry(2019,13));
+        yValues.add(new Entry(2018,0));
+        yValues.add(new Entry(2019,4));
 
-        LineDataSet set1 = new LineDataSet(yValues, "Periodos de Gestación");
+        LineDataSet set1 = new LineDataSet(yValues, "Muertos / Año");
 
         set1.setFillAlpha(110);
 
@@ -191,7 +223,7 @@ public class FragmentBarChart extends Fragment {
         lineChartGest.setData(data);
     }
 
-    private void graficarLinealPartos() {
+    private void graficarLinealMomias() {
         lineChartPartos.setVisibility(View.VISIBLE);
         lineChartPartos.setDragEnabled(true);
         lineChartPartos.setScaleEnabled(false);
@@ -201,9 +233,9 @@ public class FragmentBarChart extends Fragment {
         ArrayList<Entry> yValues = new ArrayList<>();
 
         yValues.add(new Entry(2018,1f));
-        yValues.add(new Entry(2019,10f));
+        yValues.add(new Entry(2019,1f));
 
-        LineDataSet set1 = new LineDataSet(yValues, "Partos");
+        LineDataSet set1 = new LineDataSet(yValues, "Momias / Año");
 
         set1.setFillAlpha(110);
 

@@ -49,9 +49,11 @@ public class PieChartFragment extends Fragment{
     private View viewFertMachos;
     private ArrayList<PieEntry> valoresGraf;
     Description description;
+    private String grafico;
 
-    public PieChartFragment() {
+    public PieChartFragment(String grafico) {
         // Required empty public constructor
+        this.grafico = grafico;
     }
 
 
@@ -63,7 +65,12 @@ public class PieChartFragment extends Fragment{
         gfLineChartAnual = viewFertMachos.findViewById(R.id.line_chart_anual);
         
         generarGrafico();
-        generarGraficoLineChartAnual();
+        if(grafico.equalsIgnoreCase("cerdos")){
+            generarGraficoLineChartAnual();
+        }else{
+            gfLineChartAnual.setVisibility(View.INVISIBLE);
+        }
+
 
 
 

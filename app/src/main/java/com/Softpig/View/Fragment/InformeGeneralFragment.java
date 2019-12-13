@@ -53,7 +53,7 @@ public class InformeGeneralFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewGenerarFragment = inflater.inflate(R.layout.fragment_informe_general, container, false);
-        pieChartFragment = new PieChartFragment();
+
 
         verracosHembrasFragment = new VerracosHembrasFragment();
         fragmentGrafProm = new FragmentGrafProm();
@@ -117,6 +117,7 @@ public class InformeGeneralFragment extends Fragment {
 
     private void mostrarDiagBarrasEtapas() {
         ArrayList<PieEntry> yVals = new ArrayList<>();
+        pieChartFragment = new PieChartFragment("etapas");
         yVals.add(new PieEntry(generalReport.getLechones(),"Lechones"));
         yVals.add(new PieEntry(generalReport.getMarranos(), "Marranos"));
         yVals.add(new PieEntry(0, "Primal"));
@@ -130,8 +131,10 @@ public class InformeGeneralFragment extends Fragment {
 
     private void mostrarGraficoCerdos() {
         ArrayList<PieEntry> valores = setValoresgrafico();
+        pieChartFragment = new PieChartFragment("cerdos");
         pieChartFragment.setValores(valores);
         pieChartFragment.setDescription("Cerdos por genero");
+
         ((MainMenuActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerFragments, pieChartFragment).addToBackStack(null).commit();
     }
 
