@@ -1,9 +1,7 @@
 package com.Softpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.Softpig.R;
 import com.github.barteksc.pdfviewer.PDFView;
 

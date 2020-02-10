@@ -1,7 +1,5 @@
 package com.Softpig.Model;
 
-import java.util.Date;
-
 public class Alarm {
 
     private short idAlarm;

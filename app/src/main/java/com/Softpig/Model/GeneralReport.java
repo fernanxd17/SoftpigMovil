@@ -16,12 +16,6 @@ public class GeneralReport {
     private int promCelos;
     private int promGest;
 
-    public GeneralReport(){
-
-    }
-
-
-
     public String[] getEncabezados() {
         return encabezados;
     }

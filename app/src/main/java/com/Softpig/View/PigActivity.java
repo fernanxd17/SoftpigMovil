@@ -4,32 +4,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
-
-import com.Softpig.Model.Birth;
-import com.Softpig.Model.ExamMale;
-import com.Softpig.Model.Female;
-import com.Softpig.Model.Heat;
-import com.Softpig.Model.Male;
-import com.Softpig.Model.PeriodGestation;
-import com.Softpig.Model.Pig;
+import com.Softpig.Model.*;
 import com.Softpig.Presenter.PigPresenter;
 import com.Softpig.R;
-import com.Softpig.View.Fragment.BirthFragment;
-import com.Softpig.View.Fragment.ErrorFragment;
-import com.Softpig.View.Fragment.ExamMaleListFragment;
-import com.Softpig.View.Fragment.GestationFragment;
-import com.Softpig.View.Fragment.HeatFragment;
-import com.Softpig.View.Fragment.InfoFemaleFragment;
-import com.Softpig.View.Fragment.InfoMaleFragment;
-import com.Softpig.View.Fragment.InfoPigFragment;
-import com.Softpig.View.Fragment.MaleExamFragment;
-
+import com.Softpig.View.Fragment.*;
 import java.util.List;
 
 public class PigActivity extends AppCompatActivity{

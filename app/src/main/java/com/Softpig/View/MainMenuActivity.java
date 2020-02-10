@@ -2,59 +2,30 @@ package com.Softpig.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.Softpig.Model.Alarm;
-import com.Softpig.Model.Employee;
-import com.Softpig.Model.Female;
-import com.Softpig.Model.Installation;
-import com.Softpig.Model.Male;
-import com.Softpig.Model.Medicine;
-import com.Softpig.Model.Pig;
+import com.Softpig.Model.*;
 import com.Softpig.Presenter.MainMenuPresenter;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-
-import com.Softpig.View.Fragment.AboutFragment;
-import com.Softpig.View.Fragment.AlarmFragment;
-import com.Softpig.View.Fragment.DictionaryFragment;
-import com.Softpig.View.Fragment.ErrorFragment;
-import com.Softpig.View.Fragment.FemaleFragment;
-import com.Softpig.View.Fragment.HeatFragment;
-import com.Softpig.View.Fragment.InformeFertilidadFragment;
-import com.Softpig.View.Fragment.InformeGeneralFragment;
-import com.Softpig.View.Fragment.MaleFragment;
-import com.Softpig.View.Fragment.MedicineFragment;
-import com.Softpig.View.Fragment.RaceFragment;
-import com.Softpig.View.Fragment.ReportFragment;
-import com.Softpig.View.Fragment.ToolFragment;
-import com.Softpig.View.Fragment.EmployeeFragment;
-import com.Softpig.View.Fragment.InstallationFragment;
+import com.Softpig.View.Fragment.*;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.Softpig.R;
 import com.Softpig.View.Fragment.DashBoardFragment;
 import com.Softpig.View.Fragment.PigFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
 import java.util.ArrayList;
 
 public class MainMenuActivity extends AppCompatActivity  implements  NavigationView.OnNavigationItemSelectedListener{

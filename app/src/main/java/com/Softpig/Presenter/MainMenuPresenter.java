@@ -1,51 +1,18 @@
 package com.Softpig.Presenter;
 
-import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.Intent;
+import org.json.*;
+import java.util.*;
+import com.Softpig.Model.*;
+import com.android.volley.*;
 import android.widget.Toast;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.Softpig.Model.Alarm;
-import com.Softpig.Model.Employee;
-import com.Softpig.Model.Female;
-import com.Softpig.Model.FertilityReport;
-import com.Softpig.Model.GeneralReport;
-import com.Softpig.Model.Installation;
-import com.Softpig.Model.Male;
-import com.Softpig.Model.Medicine;
-import com.Softpig.Model.Pig;
-import com.Softpig.Model.Race;
-import com.Softpig.Model.Tool;
-import com.Softpig.View.Fragment.InformeFertilidadFragment;
-import com.Softpig.View.Fragment.InformeGeneralFragment;
-import com.Softpig.View.Fragment.ReportFragment;
-import com.Softpig.View.MainMenuActivity;
+import android.content.Intent;
+import android.app.ProgressDialog;
+import com.Softpig.View.Fragment.*;
 import com.Softpig.View.PigActivity;
-import com.Softpig.View.Fragment.AlarmFragment;
-import com.Softpig.View.Fragment.DashBoardFragment;
-import com.Softpig.View.Fragment.EmployeeFragment;
-import com.Softpig.View.Fragment.ErrorFragment;
-import com.Softpig.View.Fragment.FemaleFragment;
-import com.Softpig.View.Fragment.HeatFragment;
-import com.Softpig.View.Fragment.InstallationFragment;
-import com.Softpig.View.Fragment.MaleFragment;
-import com.Softpig.View.Fragment.MedicineFragment;
-import com.Softpig.View.Fragment.PigFragment;
-import com.Softpig.View.Fragment.RaceFragment;
-import com.Softpig.View.Fragment.ToolFragment;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.Softpig.View.MainMenuActivity;
 import com.android.volley.toolbox.Volley;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.android.volley.toolbox.JsonObjectRequest;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MainMenuPresenter {
 
@@ -1247,15 +1214,15 @@ public class MainMenuPresenter {
                     }
                 }, error -> {
 
-                    try {
-                        context.inflarFragment(new ErrorFragment());
-                        progressDialog.dismiss();
+            try {
+                context.inflarFragment(new ErrorFragment());
+                progressDialog.dismiss();
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(json);

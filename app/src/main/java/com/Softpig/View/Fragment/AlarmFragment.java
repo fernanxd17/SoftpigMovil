@@ -1,30 +1,21 @@
 package com.Softpig.View.Fragment;
 
+import java.util.*;
+import com.Softpig.R;
+import android.view.*;
+import android.widget.*;
+import android.os.Bundle;
+import com.Softpig.Model.Alarm;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import com.Softpig.Model.Alarm;
-import com.Softpig.Presenter.Adapters.AlarmAdapter;
-import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+import com.Softpig.Presenter.Adapters.AlarmAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 public class AlarmFragment extends Fragment {
 

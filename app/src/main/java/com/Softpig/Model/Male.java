@@ -1,7 +1,5 @@
 package com.Softpig.Model;
 
-import java.util.Date;
-
 public class Male extends Pig{
     private short idMale;
     private String conformacionFisica;

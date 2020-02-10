@@ -1,7 +1,6 @@
 package com.Softpig.Model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Employee implements Serializable {
 
@@ -193,4 +192,5 @@ public class Employee implements Serializable {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
 }

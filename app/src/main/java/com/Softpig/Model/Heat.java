@@ -1,7 +1,5 @@
 package com.Softpig.Model;
 
-import java.sql.Date;
-
 public class Heat {
 
     private short idHeat;

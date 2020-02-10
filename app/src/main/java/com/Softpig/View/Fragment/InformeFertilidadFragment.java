@@ -1,23 +1,17 @@
 package com.Softpig.View.Fragment;
 
-
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.Softpig.Model.FertilityReport;
 import com.Softpig.Model.Report;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
 import com.github.mikephil.charting.data.BarEntry;
-
 import java.util.ArrayList;
-
 
 public class InformeFertilidadFragment extends Fragment {
 

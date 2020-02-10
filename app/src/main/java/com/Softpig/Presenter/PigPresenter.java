@@ -1,33 +1,17 @@
 package com.Softpig.Presenter;
 
-import android.app.ProgressDialog;
+import org.json.*;
+import java.util.*;
+import com.Softpig.Model.*;
+import com.android.volley.*;
 import android.widget.Toast;
-import androidx.appcompat.app.AlertDialog;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.Softpig.Model.Birth;
-import com.Softpig.Model.ExamMale;
-import com.Softpig.Model.Heat;
-import com.Softpig.Model.PeriodGestation;
-import com.Softpig.View.Fragment.InfoFemaleFragment;
-import com.Softpig.View.Fragment.InfoMaleFragment;
+import android.app.ProgressDialog;
+import com.Softpig.View.Fragment.*;
 import com.Softpig.View.PigActivity;
-import com.Softpig.View.Fragment.BirthFragment;
-import com.Softpig.View.Fragment.ExamMaleListFragment;
-import com.Softpig.View.Fragment.GestationFragment;
-import com.Softpig.View.Fragment.HeatFragment;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import androidx.appcompat.app.AlertDialog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class PigPresenter {
 

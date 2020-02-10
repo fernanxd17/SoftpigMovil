@@ -1,15 +1,12 @@
 package com.Softpig.View.Fragment;
 
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +18,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.Softpig.Model.PeriodGestation;
 import com.Softpig.Presenter.Adapters.GestationAdapter;
 import com.Softpig.R;
 import com.Softpig.View.PigActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

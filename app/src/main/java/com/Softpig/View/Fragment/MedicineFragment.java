@@ -1,22 +1,18 @@
 package com.Softpig.View.Fragment;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.Softpig.Model.Medicine;
 import com.Softpig.Presenter.Adapters.MedicineAdapter;
 import com.Softpig.R;
 import com.Softpig.View.MainMenuActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 

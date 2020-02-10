@@ -1,6 +1,5 @@
 package com.Softpig.View.Fragment;
 
-
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;

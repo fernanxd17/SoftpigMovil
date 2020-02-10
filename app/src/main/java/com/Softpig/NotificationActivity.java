@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.RemoteInput;
-
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,10 +14,8 @@ import android.os.SystemClock;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.Softpig.App.CHANNEL_1_ID;
 import static com.Softpig.App.CHANNEL_2_ID;
 
