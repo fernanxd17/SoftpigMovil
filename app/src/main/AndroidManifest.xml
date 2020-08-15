@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.Softpig">
+    package="com.softpig">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.PDFActivity"></activity>
-        <activity android:name=".NotificationActivity" />
+        <activity android:name="com.softpig.View.PDFActivity"></activity>
+        <activity android:name="com.softpig.NotificationActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -24,15 +24,15 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".View.PigActivity" />
+        <activity android:name="com.softpig.View.PigActivity" />
         <activity
-            android:name=".View.ProfileActivity"
+            android:name="com.softpig.View.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".View.MainMenuActivity"
+            android:name="com.softpig.View.MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".IndexActivity"
+            android:name="com.softpig.IndexActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -42,13 +42,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".FirebaseService">
+        <service android:name="com.softpig.FirebaseService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <receiver android:name=".DirectReplyReceiver" />
+        <receiver android:name="com.softpig.DirectReplyReceiver" />
     </application>
 
 </manifest>
