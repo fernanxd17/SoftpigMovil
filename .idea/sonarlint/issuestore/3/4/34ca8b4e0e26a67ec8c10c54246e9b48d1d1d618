@@ -1,0 +1,184 @@
+
+R
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+P
+java:S3516š"9Refactor this method to not always return the same value.(ôµ²
+Q
+java:S1874`"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+b
+java:S1192º"FDefine a constant instead of duplicating this literal "state" 6 times.(Èªæûúÿÿÿÿ
+f
+java:S1192â"JDefine a constant instead of duplicating this literal "male_list" 3 times.(ƒêêÖúÿÿÿÿ
+z
+java:S1192š"cDefine a constant instead of duplicating this literal "Error interno, Intentelo mas tarde" 4 times.(‹×‰Å
+R	java:S125Ô"<This block of commented-out lines of code should be removed.(“¬èò
+J
+java:S1172œ"3Remove this unused method parameter "heatFragment".(ñ³Ÿş
+R
+java:S1874è"6Remove this use of "ProgressDialog"; it is deprecated.(»­°Çıÿÿÿÿ
+R
+java:S1874Ç"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+^
+java:S1192¼"GDefine a constant instead of duplicating this literal "weigth" 3 times.(èÆÓä
+R
+java:S1874Ç"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+J
+java:S1068"/Remove this unused "toolsUpdate" private field.(ö¼«äıÿÿÿÿ
+ˆ
+java:S1192"lDefine a constant instead of duplicating this literal "Error obteniendo datos, Intentelo mas tarde" 4 times.(ˆˆÆüÿÿÿÿ
+N
+java:S1874´"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+T	java:S106Ö"9Replace this use of System.out or System.err by a logger.(ŒÙ®äşÿÿÿÿ
+F
+java:S3740÷"/Provide the parametrized type for this generic.(Óã¤î
+R
+java:S1874”	"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+Q
+java:S1874`"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874Ñ	"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+I
+java:S1874•	"2Remove this use of "setMessage"; it is deprecated.(âÿ±ê
+R
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874µ"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+N
+java:S1874©"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+U
+java:S1117ô">Rename "hmTypeTool" which hides the field declared at line 22.(– ÑÏ
+O	java:S106›"9Replace this use of System.out or System.err by a logger.(ö‰§×
+R
+java:S1874á"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874á"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874³"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+D
+java:S1604†"(Make this anonymous inner class a lambda(´¸©”üÿÿÿÿ
+R
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+N
+java:S1874Ù"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+R
+java:S1874”	"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+?
+java:S1604«"(Make this anonymous inner class a lambda(ÑÂğ
+R
+java:S1874ò"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+I
+java:S1874ã"2Remove this use of "setMessage"; it is deprecated.(Öè´­
+]
+java:S2259ö"AA "NullPointerException" could be thrown; "pig" is nullable here.(ÀÑôÌùÿÿÿÿ
+]
+java:S2259º"AA "NullPointerException" could be thrown; "pig" is nullable here.(ÀÑôÌùÿÿÿÿ
+M
+java:S1874$"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+N
+java:S1874Ÿ"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+R
+java:S1874…
+"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+?
+java:S1604è"(Make this anonymous inner class a lambda(ÑÂğ
+N
+java:S1874Ò	"2Remove this use of "setMessage"; it is deprecated.(ùıûÿÿÿÿ
+M
+java:S1874b"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+R
+java:S1874‡"6Remove this use of "ProgressDialog"; it is deprecated.(»­°Çıÿÿÿÿ
+R
+java:S1874×"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+H
+java:S1874·"2Remove this use of "setMessage"; it is deprecated.(Û÷†3
+Q
+java:S1874""6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+D
+java:S1604É"(Make this anonymous inner class a lambda(´¸©”üÿÿÿÿ
+R
+java:S1874…
+"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+?
+java:S1604°"(Make this anonymous inner class a lambda(ÑÂğ
+M
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(›Á¿¢
+M
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(›Á¿¢
+L
+java:S1874ó"6Remove this use of "ProgressDialog"; it is deprecated.(¬¼„W
+]
+java:S1192î"FDefine a constant instead of duplicating this literal "males" 3 times.(İ£—±
+I
+java:S1874†
+"2Remove this use of "setMessage"; it is deprecated.(âÿ±ê
+>
+java:S3010"(Remove this assignment of "toolsUpdate".(şˆ™ã
+R
+java:S1874§"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+F
+java:S3740í"/Provide the parametrized type for this generic.(Óã¤î
+?
+java:S1604ë"(Make this anonymous inner class a lambda(ÑÂğ
+R
+java:S1874µ"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+H
+java:S1874ô"2Remove this use of "setMessage"; it is deprecated.(’ØÌ.
+R
+java:S1874‡"6Remove this use of "ProgressDialog"; it is deprecated.(»­°Çıÿÿÿÿ
+F
+java:S5411ú"*Use the primitive boolean expression here.(ÎøŸµûÿÿÿÿ
+R	java:S125×"<This block of commented-out lines of code should be removed.(ø—Ç˜
+N
+java:S1874"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+N
+java:S1874ô"2Remove this use of "setMessage"; it is deprecated.(İ®Œ²ıÿÿÿÿ
+F
+java:S5411Ø"*Use the primitive boolean expression here.(ÎøŸµûÿÿÿÿ
+R
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+D
+java:S1604Ú"(Make this anonymous inner class a lambda(´¸©”üÿÿÿÿ
+
+java:S1192²"eDefine a constant instead of duplicating this literal "Error en la APP, Intentelo mas tarde" 3 times.(—¤´àÿÿÿÿÿ
+?
+java:S1604í"(Make this anonymous inner class a lambda(ÑÂğ
+R
+java:S1874Ñ	"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+c
+java:S1192‚"GDefine a constant instead of duplicating this literal "status" 4 times.(…ˆ“şÿÿÿÿ
+I
+java:S1874ˆ"2Remove this use of "setMessage"; it is deprecated.(”ÊÎ•
+I
+java:S1874"2Remove this use of "setMessage"; it is deprecated.(·Çß€
+R
+java:S1874×"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874ò"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+?
+java:S1604Á"(Make this anonymous inner class a lambda(ÑÂğ
+R
+java:S1874³"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+Q
+java:S1874""6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+N
+java:S1874Ê"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
+N
+java:S1874é"2Remove this use of "setMessage"; it is deprecated.(Á¥ÇØÿÿÿÿÿ
+R	java:S125•"<This block of commented-out lines of code should be removed.(ãÖ±ã
+O	java:S106•"9Replace this use of System.out or System.err by a logger.(Ó‡øÅ
+L
+java:S1874ó"6Remove this use of "ProgressDialog"; it is deprecated.(¬¼„W
+f
+java:S1192$"KDefine a constant instead of duplicating this literal "Loading..." 9 times.(ñËÄİÿÿÿÿÿ
+D
+java:S1604"(Make this anonymous inner class a lambda(´¸©”üÿÿÿÿ
+R
+java:S1874"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874§"6Remove this use of "ProgressDialog"; it is deprecated.(ËÓ‘úûÿÿÿÿ
+R
+java:S1874è"6Remove this use of "ProgressDialog"; it is deprecated.(»­°Çıÿÿÿÿ
+N
+java:S1874"2Remove this use of "setMessage"; it is deprecated.(ñËÄİÿÿÿÿÿ
